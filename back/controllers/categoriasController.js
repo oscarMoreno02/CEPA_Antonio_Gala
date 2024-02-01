@@ -35,21 +35,33 @@ const listCategoriaAgrupada = (req, res = response) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(404).json('No exite una tarea con ese id')
+            res.status(404).json('No exite una categoria con ese id')
         })
 }
 
 const listCategoria = (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getCategoria(req.params.id)
+    conexion.getCategoriaById(req.params.id)
         .then(data => {
             res.status(200).json( data)
         })
         .catch(err => {
             console.log(err)
-            res.status(404).json('No exite una tarea con ese id')
+            res.status(404).json('No exite una categoria con ese id')
         })
 }
+const listCategoriaByNombre = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getCategoriaByNombre(req.params.nombre)
+        .then(data => {
+            res.status(200).json( data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json('No exite una categoria con ese nombre')
+        })
+}
+
 
 const editCategoria= (req, res = response)=>{
     const conexion = new Conexion()
@@ -96,5 +108,6 @@ module.exports={
     editCategoria,
     createCategoria,
     listAllCategoriasAgrupadas,
-    listCategoriaAgrupada
+    listCategoriaAgrupada,
+    listCategoriaByNombre
 }

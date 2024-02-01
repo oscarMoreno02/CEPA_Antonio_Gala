@@ -47,7 +47,6 @@ class ConexionCategorias{
     }
     getAllCategoriasAgrupadas = async () => {
         try{
-            console.log('llega')
             let resultado = [];
             this.conectar();
             resultado = await models.Categoria.findAll({
@@ -91,13 +90,33 @@ class ConexionCategorias{
             this.desconectar();
         }
     }
-    getCategoria = async (id) => {
+    getCategoriaById = async (id) => {
         try{
             let resultado = [];
             this.conectar();
             resultado = await models.Categoria.findByPk(id);
             if (!resultado) {
-                throw error;
+                throw new Error('error');
+            }
+            return resultado;
+        }catch(error){
+            throw error
+        }
+        finally{
+            this.desconectar()
+        }
+    }
+    getCategoriaByNombre= async (n) => {
+        try{
+            let resultado = [];
+            this.conectar();
+            console.log(n)
+            resultado = await models.Categoria.findOne({where: { nombre: n}});
+       
+            console.log(resultado)
+            if (!resultado) {
+                console.log('error')
+                throw new Error('error');
             }
             return resultado;
         }catch(error){
