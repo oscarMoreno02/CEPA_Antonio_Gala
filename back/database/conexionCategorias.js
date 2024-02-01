@@ -45,18 +45,21 @@ class ConexionCategorias{
             this.desconectar();
         }
     }
-    getAllCategoriasAgrupadas = async () => {
+    getAllCategoriasAgrupadas = async (id) => {
         try{
-            let resultado = [];
+            let categorias = [];
             this.conectar();
-            resultado = await models.Categoria.findAll({
-                include: [{
-                        model: models.Categoria,
-                        as: 'subcategorias',
-                    },
-                ],
+            categorias = await models.Categoria.findAll({
+                where: {
+                    dependiente: id
+                },
             });
-            return resultado;
+            for (let i = 0; i < categorias.length; i++) {
+                const subcategorias = await  this.getAllCategoriasAgrupadas(categorias[i].id);
+                categorias[i].dataValues.subcategorias = subcategorias;
+            }
+
+            return categorias;
         }catch(error){
           throw error
         }finally{

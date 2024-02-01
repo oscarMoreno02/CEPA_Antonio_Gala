@@ -18,7 +18,7 @@ const listAllCategorias = (req, res = response) => {
 }
 const listAllCategoriasAgrupadas = (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getAllCategoriasAgrupadas()
+    conexion.getAllCategoriasAgrupadas(null)
         .then(data => {
             res.status(200).json(data)
         })
