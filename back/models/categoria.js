@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsTo(models.Categoria, {
         foreignKey: 'dependiente',
+        as: 'categoriaPrincipal'
+      });
+      this.hasMany(models.Categoria, {
+        foreignKey: 'dependiente',
         as: 'subcategorias'
       });
     }

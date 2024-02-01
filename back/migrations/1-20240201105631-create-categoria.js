@@ -12,6 +12,7 @@ module.exports = {
       nombre: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       dependiente:{
         type: Sequelize.INTEGER,

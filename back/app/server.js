@@ -3,7 +3,8 @@ const cors = require('cors');
 class Server {
     constructor() {
         this.app = express();
-        this.apiPath = '/api';
+        // this.apiPath = '/api';
+        this.categoriasPath = '/api/categoria';
         this.middlewares();
         this.routes();
         
@@ -13,7 +14,8 @@ class Server {
         this.app.use(express.json());
     }
     routes(){
-        this.app.use(this.apiPath , require('../routes/routes'));
+        // this.app.use(this.apiPath , require('../routes/routes'));
+        this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
     }
 
     listen() {
