@@ -5,6 +5,7 @@ class Server {
         this.app = express();
         // this.apiPath = '/api';
         this.categoriasPath = '/api/categoria';
+        this.enlacesPath='/api/enlaces'
         this.middlewares();
         this.routes();
         
@@ -16,6 +17,7 @@ class Server {
     routes(){
         // this.app.use(this.apiPath , require('../routes/routes'));
         this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
+        this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
     }
 
     listen() {
