@@ -50,9 +50,6 @@ class ConexionCategorias{
             let resultado = [];
             this.conectar();
             resultado = await models.Categoria.findAll({
-                where: {
-                    dependiente: null
-                },
                 include: [{
                         model: models.Categoria,
                         as: 'subcategorias',
