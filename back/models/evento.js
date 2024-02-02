@@ -1,12 +1,33 @@
-class evento {
-    constructor(id, nombre, descripcion, fecha, hora, foto, mg, visibilidad){
-        this.is = id
-        this.nombre = nombre,
-        this.descripcion = descripcion,
-        this.fecha = fecha,
-        this.hora = hora,
-        this.foto = foto,
-        this.mg = mg,
-        this.visibilidad = visibilidad
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Evento extends Model {
+   
+    static associate(models) {
+      this.hasMany(models.Asistencia, {
+        foreignKey: 'idEvento',
+        as: 'asistencias'
+      });
+      this.hasMany(models.Chats, {
+        foreignKey: 'idEvento',
+        as: 'chats'
+      });
     }
-}
+  }
+  Evento.init({
+    nombre: DataTypes.STRING,
+    descripcion: DataTypes.STRING,
+    fecha: DataTypes.STRING,
+    hora: DataTypes.STRING,
+    foto: DataTypes.STRING,
+    mg: DataTypes.NUMBER,
+    visibilidad: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Evento',
+    tableName: 'eventos'
+  });
+  return Evento;
+};
