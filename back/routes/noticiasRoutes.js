@@ -3,7 +3,7 @@ const {Router} = require('express');
 const router = Router();
 const { check } = require('express-validator');
 const {validateValues}=require('../helpers/validar-campos')
-
+const validator=require('../helpers/noticia-validators')
 
 const controller=require('../controllers/noticiasController')
 
@@ -12,9 +12,20 @@ const controller=require('../controllers/noticiasController')
     router.get('/enlaces',controller.listAllNoticiasWithSecciones)
     router.get('/:id',controller.listNoticia)
     router.get('/',controller.listAllNoticias)
-    router.put('/:id',controller.editNoticia)
     router.delete('/:id',controller.removeNoticia)
 
-    router.post('',controller.createNoticia)
+    router.put('/:id',
+    [
+        check('titulo', 'Tamaño de titulo incorrecto').trim().isLength({ min: 5 }),
+        check('idCategoria').custom(validator.categoriaExiste),
+        validateValues
+    ],controller.editNoticia)
+
+    router.post('',   
+    [
+        check('titulo', 'Tamaño de titulo incorrecto').trim().isLength({ min: 5 }),
+        check('idCategoria').custom(validator.categoriaExiste),
+        validateValues
+    ],controller.createNoticia)
 
     module.exports = router;
