@@ -68,7 +68,7 @@ const createNoticia = (req, res = response) => {
 
 const removeNoticia= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.deleteEnlace(req.params.id)
+    conexion.deleteNoticia(req.params.id)
         .then(msg => {
 
             res.status(202).json('Exito en la eliminacion')
@@ -78,7 +78,28 @@ const removeNoticia= (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
-
+const listAllNoticiasWithSecciones = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllNoticiasWithSecciones()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
+const listNoticiasWithSecciones = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllNoticiasWithSecciones(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 module.exports={
     listAllNoticias,
     listNoticia,
@@ -86,4 +107,6 @@ module.exports={
     editNoticia,
     createNoticia,
     listNoticiasByCategorias,
+    listAllNoticiasWithSecciones,
+    listNoticiasWithSecciones
 }

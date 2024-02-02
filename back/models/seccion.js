@@ -11,12 +11,17 @@ module.exports = (sequelize, DataTypes) => {
         as: 'noticia'
       });
     }
+    static associate(models) {
+      this.hasMany(models.Enlace, {
+        foreignKey: 'idSeccion',
+        as: 'enlaces'
+      });
+    }
   }
   Seccion.init({
     idNoticia: DataTypes.NUMBER,
     titulo: DataTypes.STRING,
     texto: DataTypes.TEXT,
-    idCategoria: DataTypes.NUMBER,
     foto: DataTypes.STRING
   }, {
     sequelize,

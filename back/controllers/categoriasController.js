@@ -109,5 +109,5 @@ module.exports={
     createCategoria,
     listAllCategoriasAgrupadas,
     listCategoriaAgrupada,
-    listCategoriaByNombre
+    listCategoriaByNombre,
 }

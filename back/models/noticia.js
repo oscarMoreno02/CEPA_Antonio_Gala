@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.Seccion, {
         foreignKey: 'idNoticia',
-        as: 'noticia'
+        as: 'secciones'
       });
     }
   }

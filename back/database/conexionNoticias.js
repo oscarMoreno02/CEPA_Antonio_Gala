@@ -112,7 +112,7 @@ class ConexionNoticias{
         try{
             let resultado = 0
             this.conectar();
-            let task = await models.Enlace.findByPk(id);
+            let task = await models.Noticia.findByPk(id);
             await task.update(body)
             return resultado
         }catch(error){
@@ -121,7 +121,58 @@ class ConexionNoticias{
             this.desconectar()
         }
     }
-   
+    getNoticiaWithSecciones = async (id) => {
+        try{
+            let resultado = [];
+            this.conectar();
+            resultado = await models.Noticia.findByPk(id,{
+                include: [{
+                        model: models.Seccion,
+                        as: 'secciones',
+                        include:[{
+                            model: models.Enlace,
+                            as: 'secciones',
+                        },
+                    ]
+                    },
+                ],
+            });
+            if(resultado==null){
+                throw  new Error()
+            }
+            return resultado;
+        }catch(error){
+          throw error
+        }finally{
+            this.desconectar();
+        }
+    }
+    getAllNoticiasWithSecciones = async () => {
+        try{
+            let resultado = [];
+            this.conectar();
+            resultado = await models.Noticia.findAll({
+                include: [{
+                        model: models.Seccion,
+                        as: 'secciones',
+                        include: [{
+                            model: models.Enlace,
+                            as: 'enlaces',
+                        },
+                    ],
+                    },
+                ],
+            });
+            if(resultado==null){
+                throw  new Error()
+            }
+            return resultado;
+        }catch(error){
+          throw error
+        }finally{
+            this.desconectar();
+        }
+    }
 }
 
 module.exports = ConexionNoticias;
