@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   Noticia.init({
     titulo: DataTypes.STRING,
     enlace: DataTypes.STRING,
-    idCategoria: DataTypes.STRING
+    idCategoria: DataTypes.STRING,
+    foto: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Noticia',

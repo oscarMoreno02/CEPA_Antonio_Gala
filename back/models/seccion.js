@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     idNoticia: DataTypes.NUMBER,
     titulo: DataTypes.STRING,
     texto: DataTypes.TEXT,
-    idCategoria: DataTypes.NUMBER
+    idCategoria: DataTypes.NUMBER,
+    foto: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Seccion',

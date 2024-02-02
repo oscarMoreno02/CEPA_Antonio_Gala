@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      foto: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       idCategoria: {
         type: Sequelize.INTEGER,
         allowNull: false,

@@ -4,7 +4,7 @@ class Server {
     constructor() {
         this.app = express();
         // this.apiPath = '/api';
-        this.categoriasPath = '/api/categoria';
+        this.categoriasPath = '/api/categorias';
         this.enlacesPath='/api/enlaces'
         this.middlewares();
         this.routes();
