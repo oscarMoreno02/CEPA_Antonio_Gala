@@ -2,12 +2,12 @@ const {
     response,
     request
 } = require('express');
-const Conexion = require('../database/conexionNoticias');
+const Conexion = require('../database/conexionSecciones');
 const bcrypt = require('bcrypt');
 
-const listAllNoticias= (req, res = response) => {
+const listAllSecciones= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getAllNoticias()
+    conexion.getAllSecciones()
         .then(data => {
             res.status(200).json(data)
         })
@@ -17,9 +17,9 @@ const listAllNoticias= (req, res = response) => {
         })
 }
 
-const listNoticia = (req, res = response) => {
+const listSeccion= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getNoticiaById(req.params.id)
+    conexion.getSeccionById(req.params.id)
         .then(data => {
             res.status(200).json( data)
         })
@@ -28,9 +28,9 @@ const listNoticia = (req, res = response) => {
             res.status(404).json('No exite un noticia con ese id')
         })
 }
-const listNoticiasByCategorias= (req, res = response) => {
+const listSeccionesByNoticia= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getNoticiaByCategoria(req.params.id)
+    conexion.getSeccionByNoticia(req.params.id)
         .then(data => {
             res.status(200).json( data)
         })
@@ -41,9 +41,9 @@ const listNoticiasByCategorias= (req, res = response) => {
 }
 
 
-const editNoticia= (req, res = response)=>{
+const editSeccion= (req, res = response)=>{
     const conexion = new Conexion()
-    conexion.updateFullNoticia(req.params.id,req.body)
+    conexion.updateFullSeccion(req.params.id,req.body)
     .then(data => {
         res.status(202).json('Actualizado correctamente')
     })
@@ -54,9 +54,9 @@ const editNoticia= (req, res = response)=>{
 
 }
 
-const createNoticia = (req, res = response) => {
+const createSeccion= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.insertNoticia(req.body)
+    conexion.insertSeccion(req.body)
         .then(data => {
             res.status(201).json('Noticia registrado correctamente')
         })
@@ -66,9 +66,9 @@ const createNoticia = (req, res = response) => {
         })
 }
 
-const removeNoticia= (req, res = response) => {
+const removeSeccion= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.deleteNoticia(req.params.id)
+    conexion.deleteSeccion(req.params.id)
         .then(msg => {
 
             res.status(202).json('Exito en la eliminacion')
@@ -78,9 +78,9 @@ const removeNoticia= (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
-const listAllNoticiasWithSecciones = (req, res = response) => {
+const listAllSeccionesWithEnlaces= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getAllNoticiasWithSecciones()
+    conexion.getAllSeccionesWithEnlaces()
         .then(data => {
             res.status(200).json(data)
         })
@@ -89,9 +89,9 @@ const listAllNoticiasWithSecciones = (req, res = response) => {
             res.status(404).json()
         })
 }
-const listNoticiaWithSecciones = (req, res = response) => {
+const listSeccionWithEnlaces = (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getNoticiaWithSecciones(req.params.id)
+    conexion.getSeccionWithEnlaces(req.params.id)
         .then(data => {
             res.status(200).json(data)
         })
@@ -101,12 +101,12 @@ const listNoticiaWithSecciones = (req, res = response) => {
         })
 }
 module.exports={
-    listAllNoticias,
-    listNoticia,
-    removeNoticia,
-    editNoticia,
-    createNoticia,
-    listNoticiasByCategorias,
-    listAllNoticiasWithSecciones,
-    listNoticiaWithSecciones
+    listAllSecciones,
+    listSeccion,
+    removeSeccion,
+    editSeccion,
+    createSeccion,
+    listSeccionesByNoticia,
+    listAllSeccionesWithEnlaces,
+    listSeccionWithEnlaces
 }

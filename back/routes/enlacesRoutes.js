@@ -1,5 +1,5 @@
 require('express-group-routes')
-const {Router} = require('express');
+const {Router, text} = require('express');
 const router = Router();
 const { check } = require('express-validator');
 const {validateValues}=require('../helpers/validar-campos')
@@ -14,7 +14,7 @@ const controller=require('../controllers/enlacesController')
     
     router.put('/:id',
     [
-        check('textClave','Tamaño del texto clave incorrecto ').trim().isLength({ min: 5 }),
+        check('textoClave','Tamaño del texto clave incorrecto ').trim().isLength({ min: 5,  max: 30  }),
         check('url','Formato de enlace incorrecto').isURL(),
         check('idSeccion').custom(validator.seccionExiste),
         validateValues
@@ -22,7 +22,7 @@ const controller=require('../controllers/enlacesController')
     controller.editEnlace)
     router.post('',
     [
-        check('textClave','Tamaño del texto clave incorrecto ').trim().isLength({ min: 5 }),
+        check('textoClave','Tamaño del texto clave incorrecto ').trim().isLength({ min: 5, max: 30 }),
         check('url','Formato de enlace incorrecto').isURL(),
         check('idSeccion').custom(validator.seccionExiste),
         validateValues

@@ -65,7 +65,7 @@ class ConexionNoticias{
         try{
             let resultado = [];
             this.conectar();
-            resultado = await models.Noticia.findOne({where: { idNoticia: n}});
+            resultado = await models.Noticia.findOne({where: { idCategoria: n}});
             if (!resultado) {
                 console.log('error')
                 throw new Error('error');
@@ -131,7 +131,7 @@ class ConexionNoticias{
                         as: 'secciones',
                         include:[{
                             model: models.Enlace,
-                            as: 'secciones',
+                            as: 'enlaces',
                         },
                     ]
                     },
