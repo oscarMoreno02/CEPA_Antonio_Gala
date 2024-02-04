@@ -4,7 +4,7 @@ const Conexion = require('../database/Conexion');
 const rolesGet =  (req, res = response) => {
     
     const conx = new Conexion();
-    conx.getlistado()    
+    conx.getRoles()    
         .then( msg => {
             console.log('Listado correcto!');
             res.status(200).json(msg);
@@ -17,7 +17,7 @@ const rolesGet =  (req, res = response) => {
 
 const rolesPost =  (req = request, res = response) => {
     const conx = new Conexion();
-    conx.registrarRol(req.body.id, req.body.nombre)    
+    conx.registrarRoles(req.body.id, req.body.nombre)    
         .then( msg => {
             console.log('Insertado correctamente!');
             res.status(201).json(msg);
@@ -30,7 +30,7 @@ const rolesPost =  (req = request, res = response) => {
 
 const rolesDelete =  (req, res) => {
     const conx = new Conexion();
-    conx.borrarRol(req.params.id)    
+    conx.borrarRoles(req.params.id)    
         .then( msg => {
             console.log('Borrado correctamente!');  //Podemos acceder a este valor de req porque lo hemos almacenado en el middleware validarHWT extrayendo la información del token.
             res.status(202).json(msg);
@@ -43,7 +43,7 @@ const rolesDelete =  (req, res) => {
 
 const rolesPut =  (req, res = response) => {
     const conx = new Conexion();
-    conx.modificarRol(req.params.id, req.body.nombre)    
+    conx.modificarRoles(req.params.id, req.body.nombre)    
         .then( msg => {
             console.log('Modificado correctamente!');
             res.status(202).json(msg);

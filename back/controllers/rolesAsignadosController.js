@@ -1,10 +1,9 @@
 const {response,request} = require('express');
-const Conexion = require('../database/Conexion');
+const Conexion = require('../database/conexionRolesAsignados');
 
-const usuariosGet =  (req, res = response) => {
-    
+const rolesAsignadosGet =  (req, res = response) => {
     const conx = new Conexion();
-    conx.getUsuarios()    
+    conx.getRolesAsignados()    
         .then( msg => {
             console.log('Listado correcto!');
             res.status(200).json(msg);
@@ -15,22 +14,9 @@ const usuariosGet =  (req, res = response) => {
         });
 }
 
-const usuarioGet =  (req, res = response) => {
+const rolesAsignadosPost =  (req = request, res = response) => {
     const conx = new Conexion();
-    conx.getUsuario(req.params.id)    
-        .then( msg => {
-            console.log('Listado correcto!');
-            res.status(200).json(msg);
-        })
-        .catch( err => {
-            console.log('No hay registro!');
-            res.status(200).json({'msg':'No se ha encontrado el registro'});
-        });
-}
-
-const usuariosPost =  (req = request, res = response) => {
-    const conx = new Conexion();
-    conx.registrarUsuario(req.body.id, req.body.nombre, req.body.email, req.body.password)    
+    conx.registrarRolesAsignados(req.body.id, req.body.nombre)    
         .then( msg => {
             console.log('Insertado correctamente!');
             res.status(201).json(msg);
@@ -41,9 +27,9 @@ const usuariosPost =  (req = request, res = response) => {
         });
 }
 
-const usuariosDelete =  (req, res) => {
+const rolesAsignadosDelete =  (req, res) => {
     const conx = new Conexion();
-    conx.borrarUsuario(req.params.id)    
+    conx.borrarRolesAsignados(req.params.id)    
         .then( msg => {
             console.log('Borrado correctamente!');  //Podemos acceder a este valor de req porque lo hemos almacenado en el middleware validarHWT extrayendo la información del token.
             res.status(202).json(msg);
@@ -54,9 +40,9 @@ const usuariosDelete =  (req, res) => {
         });
 }
 
-const usuariosPut =  (req, res = response) => {
+const rolesAsignadosPut =  (req, res = response) => {
     const conx = new Conexion();
-    conx.modificarUsuario(req.params.id, req.body.nombre, req.body.email, req.body.password)    
+    conx.modificarRolesAsignados(req.params.id, req.body.nombre)    
         .then( msg => {
             console.log('Modificado correctamente!');
             res.status(202).json(msg);
@@ -69,9 +55,8 @@ const usuariosPut =  (req, res = response) => {
 
 
 module.exports = {
-    usuariosGet,
-    usuariosDelete,
-    usuariosPost,
-    usuariosPut,
-    usuarioGet
+    rolesAsignadosGet,
+    rolesAsignadosDelete,
+    rolesAsignadosPost,
+    rolesAsignadosPut
 }
