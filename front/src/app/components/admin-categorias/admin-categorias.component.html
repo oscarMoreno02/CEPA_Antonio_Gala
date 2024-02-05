@@ -11,7 +11,7 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:10%">Id</th>
+                <th style="width:10%"></th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:30%">Tipo de categoria</th>
                 <th style="width:20%">Categoria a la que pertenece</th>
@@ -19,7 +19,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-categoria>
             <tr>
-                <td>{{categoria.id }}</td>
+                <td><app-editar-categoria [listaCategorias]="listaCategorias" [id]="categoria.id"></app-editar-categoria></td>
                 <td>{{ categoria.nombre}}</td>
                 @if(categoria.dependiente==null){
                     <td>Principal</td>

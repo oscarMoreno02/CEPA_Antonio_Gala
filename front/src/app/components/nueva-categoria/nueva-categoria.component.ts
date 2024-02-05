@@ -69,8 +69,10 @@ export class NuevaCategoriaComponent implements OnInit  {
       this.visible = true;
   }
   crear(b:Boolean){
-    console.log(this.categoriaDependiente)
-    if(this.validarCampos()){
+    if(b){
+
+      console.log(this.categoriaDependiente)
+      if(this.validarCampos()){
      
       this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
       this.servicioCategoria.insertCategoria(this.nuevaCategoria).subscribe({
@@ -90,6 +92,7 @@ export class NuevaCategoriaComponent implements OnInit  {
         }
       })
     }
+  }
   }
   validarCampos():Boolean{
     let valido = true

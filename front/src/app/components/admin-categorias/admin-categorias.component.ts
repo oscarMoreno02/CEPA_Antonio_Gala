@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { CategoriasService } from '../../services/categorias.service';
 import { Subscription } from 'rxjs';
 import { Categoria } from '../../interface/categoria';
-import { TableModule } from 'primeng/table';
+import { EditableColumn, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.component';
+import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.component';
 @Component({
   selector: 'app-admin-categorias',
   standalone: true,
@@ -16,8 +17,8 @@ import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.comp
     RouterLink,
     TableModule,
     ButtonModule,
-    NuevaCategoriaComponent
-  
+    NuevaCategoriaComponent,
+    EditarCategoriaComponent
   ],
   templateUrl: './admin-categorias.component.html',
   styleUrl: './admin-categorias.component.css',

@@ -33,4 +33,27 @@ export class CategoriasService {
      
      )
    }
+   getCategoria(id:number): Observable<any | undefined> {
+
+    return this.http.get<any>(this.baseUrl+'/'+id).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+  deleteCategoria(id:number): Observable<any | undefined> {
+
+    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+  updateCategoria(categoria:Categoria): Observable<any | undefined> {
+     return this.http.put<any>(this.baseUrl+'/'+categoria.id,categoria,).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+     )
+   }
 }
