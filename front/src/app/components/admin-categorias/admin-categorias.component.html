@@ -1,0 +1,40 @@
+<app-nueva-categoria></app-nueva-categoria>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaCategorias"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} categorias"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:10%">Id</th>
+                <th style="width:40%">Nombre</th>
+                <th style="width:30%">Tipo de categoria</th>
+                <th style="width:20%">Categoria a la que pertenece</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-categoria>
+            <tr>
+                <td>{{categoria.id }}</td>
+                <td>{{ categoria.nombre}}</td>
+                @if(categoria.dependiente==null){
+                    <td>Principal</td>
+                }@else {
+                    <td>Subcategoria</td>
+                }
+                <td>{{ categoria.dependiente }}</td>
+             
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
