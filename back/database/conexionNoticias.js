@@ -8,7 +8,7 @@ const {
 } = require('sequelize');
 const models = require('../models/index.js');
 
-class ConexionNoticias{
+class ConexionNoticias {
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
             host: process.env.DB_HOST,
@@ -34,19 +34,19 @@ class ConexionNoticias{
     }
 
     getAllNoticias = async () => {
-        try{
+        try {
             let resultado = [];
             this.conectar();
             resultado = await models.Noticia.findAll();
             return resultado;
-        }catch(error){
-          throw error
-        }finally{
+        } catch (error) {
+            throw error
+        } finally {
             this.desconectar();
         }
     }
     getNoticiaById = async (id) => {
-        try{
+        try {
             let resultado = [];
             this.conectar();
             resultado = await models.Noticia.findByPk(id);
@@ -54,27 +54,39 @@ class ConexionNoticias{
                 throw new Error('error');
             }
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }
-        finally{
+        } finally {
             this.desconectar()
         }
     }
-    getNoticiaByCategoria= async (n) => {
-        try{
+    getNoticiaByCategoria = async (n) => {
+        try {
             let resultado = [];
             this.conectar();
-            resultado = await models.Noticia.findOne({where: { idCategoria: n}});
+            resultado = await models.Noticia.findOne({
+                    where: {
+                        idCategoria: n
+                    },
+                    include: [{
+                        model: models.Seccion,
+                        as: 'secciones',
+                        include: [{
+                            model: models.Enlace,
+                            as: 'enlaces',
+                        }, ]
+                    }, ],
+                }
+
+            );
             if (!resultado) {
                 console.log('error')
                 throw new Error('error');
             }
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }
-        finally{
+        } finally {
             this.desconectar()
         }
     }
@@ -94,7 +106,7 @@ class ConexionNoticias{
     }
 
     deleteNoticia = async (id) => {
-        try{
+        try {
             this.conectar();
             let resultado = await models.Noticia.findByPk(id);
             if (!resultado) {
@@ -102,74 +114,70 @@ class ConexionNoticias{
             }
             await resultado.destroy();
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
-    updateFullNoticia= async (id,body) => {
-        try{
+    updateFullNoticia = async (id, body) => {
+        try {
             let resultado = 0
             this.conectar();
             let task = await models.Noticia.findByPk(id);
             await task.update(body)
             return resultado
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
     getNoticiaWithSecciones = async (id) => {
-        try{
+        try {
             let resultado = [];
             this.conectar();
-            resultado = await models.Noticia.findByPk(id,{
+            resultado = await models.Noticia.findByPk(id, {
                 include: [{
-                        model: models.Seccion,
-                        as: 'secciones',
-                        include:[{
-                            model: models.Enlace,
-                            as: 'enlaces',
-                        },
-                    ]
-                    },
-                ],
+                    model: models.Seccion,
+                    as: 'secciones',
+                    include: [{
+                        model: models.Enlace,
+                        as: 'enlaces',
+                    }, ]
+                }, ],
             });
-            if(resultado==null){
-                throw  new Error()
+            if (resultado == null) {
+                throw new Error()
             }
             return resultado;
-        }catch(error){
-          throw error
-        }finally{
+        } catch (error) {
+            throw error
+        } finally {
             this.desconectar();
         }
     }
     getAllNoticiasWithSecciones = async () => {
-        try{
+        try {
             let resultado = [];
             this.conectar();
             resultado = await models.Noticia.findAll({
                 include: [{
-                        model: models.Seccion,
-                        as: 'secciones',
-                        include: [{
-                            model: models.Enlace,
-                            as: 'enlaces',
-                        },
-                    ],
-                    },
-                ],
+                    model: models.Seccion,
+                    as: 'secciones',
+                    include: [{
+                        model: models.Enlace,
+                        as: 'enlaces',
+                    }, ],
+                }, ],
             });
-            if(resultado==null){
-                throw  new Error()
+            if (resultado == null) {
+                throw new Error()
             }
             return resultado;
-        }catch(error){
-          throw error
-        }finally{
+        } catch (error) {
+            throw error
+        } finally {
             this.desconectar();
         }
     }
