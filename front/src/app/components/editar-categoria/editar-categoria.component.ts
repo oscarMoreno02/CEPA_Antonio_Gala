@@ -121,7 +121,7 @@ export class EditarCategoriaComponent implements OnInit  {
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Editar Categoria', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
-                  // window.location.reload()
+                  window.location.reload()
               }, 1000); 
             }, 1000); 
           
@@ -161,7 +161,7 @@ export class EditarCategoriaComponent implements OnInit  {
   }
   validarCampos():Boolean{
     let valido = true
-    if(this.categoria.nombre.trim().length<5){
+    if(this.categoria.nombre.split(' ').join('').length<5){
       
       this.estiloValidacionNombre='ng-invalid ng-dirty'
       valido=false
@@ -194,7 +194,7 @@ export class EditarCategoriaComponent implements OnInit  {
   checkUnico(nombre:string):Boolean{
     let valido=true
     for(const categoria of this.listaCategorias){
-      if(nombre.trim().toLowerCase() == categoria.nombre.trim().toLowerCase()){
+      if(nombre.split(' ').join('').toLowerCase() == categoria.nombre.split(' ').join('').toLowerCase()){
         if(categoria.id!=this.categoria.id){
           valido=false
         }

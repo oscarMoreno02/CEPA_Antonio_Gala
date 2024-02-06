@@ -96,7 +96,7 @@ export class NuevaCategoriaComponent implements OnInit  {
   }
   validarCampos():Boolean{
     let valido = true
-    if(this.nuevaCategoria.nombre.trim().length<5){
+    if(this.nuevaCategoria.nombre.split(' ').join('').length<5){
       
       this.estiloValidacionNombre='ng-invalid ng-dirty'
       valido=false
@@ -129,10 +129,11 @@ export class NuevaCategoriaComponent implements OnInit  {
   checkUnico(nombre:string):Boolean{
     let valido=true
     for(const categoria of this.listaCategorias){
-      if(nombre.trim().toLowerCase() == categoria.nombre.trim().toLowerCase()){
+
+      if(nombre.split(' ').join('').toLowerCase() == categoria.nombre.split(' ').join('').toLowerCase()){
         valido=false
-       
       }
+
     }
     return valido
   }
