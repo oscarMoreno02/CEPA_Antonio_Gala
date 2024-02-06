@@ -10,7 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.AulaHorario, {
+        foreignKey: 'idAula',
+        as: 'horariosAula'
+      })
+    }
+    static associate(models) {
+      this.hasMany(models.user, {
+        foreignKey: 'idProfesor',
+        as: 'profesoresAula'
+      })
+    }
+    static associate(models) {
+      this.hasMany(models.AulaReserva, {
+        foreignKey: 'idAula',
+        as: 'reservasAula'
+      })
     }
   }
   AulaEspecial.init({
@@ -18,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'AulaEspecial',
+    tableName: 'aulaespecials'
   });
   return AulaEspecial;
 };

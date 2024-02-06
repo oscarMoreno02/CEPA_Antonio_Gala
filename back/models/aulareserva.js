@@ -10,7 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.AulaEspecial, {
+        foreignKey: 'idAula',
+        as: 'aulaReserva'
+      })
+    }
+    static associate(models) {
+      this.belongsTo(models.AulaHorario, {
+        foreignKey: 'idHorario',
+        as: 'horarioReserva'
+      })
+    }
+    static associate(models) {
+      this.belongsTo(models.user, {
+        foreignKey: 'idProfesor',
+        as: 'profesorReserva'
+      })
     }
   }
   AulaReserva.init({
@@ -21,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'AulaReserva',
+    tableName: 'aulareservas'
   });
   return AulaReserva;
 };
