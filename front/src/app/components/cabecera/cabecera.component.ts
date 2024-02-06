@@ -21,6 +21,7 @@ import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.comp
   templateUrl: './cabecera.component.html',
   styleUrl: './cabecera.component.css',
   providers:[CategoriasService],
+  encapsulation: ViewEncapsulation.None
 })
 export class CabeceraComponent implements OnInit {
   constructor(

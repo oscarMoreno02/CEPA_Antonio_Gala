@@ -162,7 +162,6 @@ export class EditarCategoriaComponent implements OnInit  {
   validarCampos():Boolean{
     let valido = true
     if(this.categoria.nombre.split(' ').join('').length<5){
-      
       this.estiloValidacionNombre='ng-invalid ng-dirty'
       valido=false
       this.messageService.add({ severity: 'warn', summary: 'Crear Categoria', detail: 'Tamaño de nombre incorrecto', life: 3000 });
@@ -170,6 +169,7 @@ export class EditarCategoriaComponent implements OnInit  {
       this.estiloValidacionNombre=''
       if(!this.checkUnico(this.categoria.nombre)){
         valido=false
+        console.log('llega2')
         this.messageService.add({ severity: 'warn', summary: 'Crear Categoria', detail: 'Ya existe una categoria con ese nombre', life: 3000 });
       }else{
         this.estiloValidacionNombre=''
@@ -195,7 +195,10 @@ export class EditarCategoriaComponent implements OnInit  {
     let valido=true
     for(const categoria of this.listaCategorias){
       if(nombre.split(' ').join('').toLowerCase() == categoria.nombre.split(' ').join('').toLowerCase()){
+        console.log(nombre)
+        console.log(categoria.nombre)
         if(categoria.id!=this.categoria.id){
+          
           valido=false
         }
       }

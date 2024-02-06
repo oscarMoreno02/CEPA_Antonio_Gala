@@ -1,7 +1,7 @@
-@if(admin==false ){
+@if(admin==true ){
     
-    <p-menubar styleClass="background-color: blue;" [model]="items"></p-menubar>
+    <p-menubar  [model]="items"></p-menubar>
 }@else {
-    <p-menubar styleClass="background-color: blue;" [model]="adminItems"></p-menubar>
+    <p-menubar  [model]="adminItems"></p-menubar>
 }
 <app-nueva-categoria [tipo]="1" [visible]="modalVisible"></app-nueva-categoria>
