@@ -60,11 +60,11 @@ class ConexionNoticias {
             this.desconectar()
         }
     }
-    getNoticiaByCategoria = async (n) => {
+    getAllNoticiasByCategoria = async (n) => {
         try {
             let resultado = [];
             this.conectar();
-            resultado = await models.Noticia.findOne({
+            resultado = await models.Noticia.findAll({
                     where: {
                         idCategoria: n
                     },

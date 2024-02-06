@@ -30,7 +30,7 @@ const listNoticia = (req, res = response) => {
 }
 const listNoticiasByCategorias= (req, res = response) => {
     const conexion = new Conexion()
-    conexion.getNoticiaByCategoria(req.params.id)
+    conexion.getAllNoticiasByCategoria(req.params.id)
         .then(data => {
             res.status(200).json( data)
         })

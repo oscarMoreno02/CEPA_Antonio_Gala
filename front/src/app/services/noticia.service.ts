@@ -26,6 +26,13 @@ export class NoticiaService {
       })
     )
   }
+  getAllNoticiasByCategoria(categoria:number): Observable<any | undefined> {
+    return this.http.get<any>(this.baseUrl+'/categoria/'+categoria).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
   insertNoticia(noticia:Noticia): Observable<any | undefined> {
     let body={noticia:noticia}
   

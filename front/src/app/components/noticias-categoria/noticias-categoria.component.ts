@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CategoriasService } from '../../services/categorias.service';
 import { NoticiaService } from '../../services/noticia.service';
@@ -22,12 +22,14 @@ import { Subscription } from 'rxjs';
 export class NoticiasCategoriaComponent implements OnInit {
   constructor(
     private servicioNoticia:NoticiaService,
-    private router: Router
+    private router: Router,
+    private rutaActiva: ActivatedRoute,
   ){}
   listaNoticias:Array<Noticia>=[]
   subscripcionCategorias: Subscription=new Subscription;
   ngOnInit(): void {
-    this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasConSecciones().subscribe({
+    let id = this.rutaActiva.snapshot.params['id']
+    this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(id).subscribe({
       next: (data: Array<Noticia>) => {
         this.listaNoticias=data
         console.log(this.listaNoticias)
