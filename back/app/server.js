@@ -14,6 +14,10 @@ class Server {
         this.enlacesPath='/api/enlaces'
         this.noticiasPath='/api/noticias'
         this.seccionesPath='/api/secciones'
+        this.chatPath = '/api/chat';
+        this.eventoPath = '/api/evento';
+        this.mensajeChatPath = '/api/mensajeChat';
+        this.asistenciaPath = '/api/asistencia';
         this.middlewares();
         this.routes();
         
@@ -23,7 +27,10 @@ class Server {
         this.app.use(express.json());
     }
     routes(){
-        this.app.use(this.apiPath , require('../routes/routes'));
+        this.app.use(this.chatPath , require('../routes/chatRoutes'));
+        this.app.use(this.eventoPath , require('../routes/eventoRoutes'));
+        this.app.use(this.mensajeChatPath , require('../routes/mensajeChatRoutes'));
+        this.app.use(this.asistenciaPath , require('../routes/asistenciaRoutes'));
         this.app.use(this.apiUsuarios , require('../routes/usuarioRutas'))
         this.app.use(this.apiRoles , require('../routes/rolesRutas'))
         this.app.use(this.apiRoles , require('../routes/rolesAsignadosRutas'))

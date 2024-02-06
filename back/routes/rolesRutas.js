@@ -6,3 +6,5 @@ router.get('/', controlador.rolesGet)
 router.post('/', controlador.rolesPost)
 router.put('/:id', controlador.rolesPut)
 router.delete('/id', controlador.rolesDelete)
+
+module.exports = router;
