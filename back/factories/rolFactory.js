@@ -11,9 +11,6 @@ const rolFactory = async (ctos=4) => {
         let roles = 
             {
             nombre: lista[i].nombre,
-            email: lista[i].email,
-            password: lista[i].password,
-   
             createdAt: new Date(),
             updatedAt: new Date()
         }
