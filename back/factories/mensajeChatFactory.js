@@ -7,7 +7,7 @@ const mensajesChatFactory = async (ctos = 1) => {
         let mensaje = {
             idChat: faker.random.number({ min: 1, max: 10 }),
             idUsuario: faker.random.number({ min: 1, max: 10 }),
-            mensaje: `Mensaje ${i}`,
+            mensaje: 'Mensaje ${i}',
             createdAt: new Date(),
             updatedAt: new Date()
         };

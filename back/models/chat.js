@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Chats extends Model {
+  class Chat extends Model {
    
     static associate(models) {
       this.belongsTo(models.Eventos, {
@@ -16,13 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Chats.init({
+  Chat.init({
     idEvento: DataTypes.INTEGER,
     activo: DataTypes.BOOLEAN,
   }, {
     sequelize,
-    modelName: 'Chats',
+    modelName: 'Chat',
     tableName: 'chats'
   });
-  return Chats;
+  return Chat;
 };

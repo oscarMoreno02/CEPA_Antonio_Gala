@@ -26,4 +26,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return Asistencia;
 };
-

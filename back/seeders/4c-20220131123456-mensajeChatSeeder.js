@@ -8,4 +8,7 @@ module.exports = {
     await queryInterface.bulkInsert('mensajesChat', mensajesChat, {});
   },
 
-  async down(query
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('mensajesChat', null, {});
+  }
+};

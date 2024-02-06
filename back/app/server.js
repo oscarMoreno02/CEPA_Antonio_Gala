@@ -4,6 +4,10 @@ class Server {
     constructor() {
         this.app = express();
         this.apiPath = '/api';
+        this.chatPath = '/api/chat';
+        this.eventoPath = '/api/evento';
+        this.mensajeChatPath = '/api/mensajeChat';
+        this.asistenciaPath = '/api/asistencia';
         this.middlewares();
         this.routes();
         
@@ -13,7 +17,10 @@ class Server {
         this.app.use(express.json());
     }
     routes(){
-        this.app.use(this.apiPath , require('../routes/routes'));
+        this.app.use(this.chatPath , require('../routes/chatRoutes'));
+        this.app.use(this.eventoPath , require('../routes/eventoRoutes'));
+        this.app.use(this.mensajeChatPath , require('../routes/mensajeChatRoutes'));
+        this.app.use(this.asistenciaPath , require('../routes/asistenciaRoutes'));
     }
 
     listen() {
