@@ -2,10 +2,10 @@
 
 export interface Noticia {
     id:          number;
-    titulo:      NoticiaTitulo;
-    enlace?:      string;
+    titulo:      string;
+    enlace?:      string | null;
     idCategoria: number;
-    foto?:        string;
+    foto?:        string | null;
     createdAt:   string;
     updatedAt:   string;
     secciones?:   Seccion[];
@@ -14,9 +14,9 @@ export interface Noticia {
 export interface Seccion {
     id:        number;
     idNoticia: number;
-    titulo?:    string;
-    texto?:     string;
-    foto?:      string;
+    titulo?:    string | null;
+    texto?:     string | null;
+    foto?:      string | null;
     createdAt: string;
     updatedAt: string;
     enlaces?:   Enlace[];

@@ -6,6 +6,7 @@ import { CategoriasService } from '../../services/categorias.service';
 import { NoticiaService } from '../../services/noticia.service';
 import { Noticia, NoticiaTitulo } from '../../interface/noticia';
 import { Subscription } from 'rxjs';
+import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.component';
 
 @Component({
   selector: 'app-noticias-categoria',
@@ -14,6 +15,7 @@ import { Subscription } from 'rxjs';
     HttpClientModule,
     RouterLink,
     ButtonModule,
+    PreviewNoticiaComponent
   ],
   providers:[NoticiaService],
   templateUrl: './noticias-categoria.component.html',

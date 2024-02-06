@@ -4,5 +4,6 @@ import { NoticiasCategoriaComponent } from './components/noticias-categoria/noti
 
 export const routes: Routes = [
 {path:'admin/categorias',component: AdminCategoriasComponent},
-{path:'categoria/:id',component: NoticiasCategoriaComponent}
+{path:'categoria/:id',component: NoticiasCategoriaComponent},
+{path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},
 ];
