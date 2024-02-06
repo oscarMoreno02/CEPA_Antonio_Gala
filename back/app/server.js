@@ -3,6 +3,12 @@ const cors = require('cors');
 class Server {
     constructor() {
         this.app = express();
+
+
+        this.apiUsuarios = '/api/usuario';
+        this.apiRoles = '/api/roles'
+        this.apiRolesAsignados = '/api/rolesAsignados'
+
         // this.apiPath = '/api';
         this.categoriasPath = '/api/categorias';
         this.enlacesPath='/api/enlaces'
@@ -17,7 +23,12 @@ class Server {
         this.app.use(express.json());
     }
     routes(){
+        this.app.use(this.apiPath , require('../routes/routes'));
+        this.app.use(this.apiUsuarios , require('../routes/usuarioRutas'))
+        this.app.use(this.apiRoles , require('../routes/rolesRutas'))
+        this.app.use(this.apiRoles , require('../routes/rolesAsignadosRutas'))
         // this.app.use(this.apiPath , require('../routes/routes'));
+      
         this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
         this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
