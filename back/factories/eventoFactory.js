@@ -8,20 +8,20 @@ const eventosFactory = async (ctos = 18) => {
         let evento = {
             nombre: `Evento ${i}`,
             descripcion: `Descripción del evento ${i}`,
-            fecha: new Date().toLocaleDateString(),
-            hora: new Date().toLocaleTimeString(),
-            foto: `imagen_evento_${i}.jpg`,
-            mg: faker.random.number(100),
+            fecha: new Date().toString(),
+            hora: new Date().toString(),
+            foto: `https://picsum.photos/id/237/200/300`,
+            mg:0,
             visibilidad: Math.random() < 0.5 ? 'Público' : 'Privado',
             createdAt: new Date(),
             updatedAt: new Date()
         };
+        console.log(i)
         factory.push(evento);
     }
 
-    const eventos = await Evento.bulkCreate(factory);
 
-    return eventos;
+    return factory;
 };
 
 module.exports = {

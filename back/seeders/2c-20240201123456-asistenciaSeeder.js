@@ -1,10 +1,10 @@
 'use strict';
 
-const { asistenciasFactory } = require('../factories/asistenciasFactory');
+const { asistenciasFactory } = require('../factories/asistenciaFactory');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const asistencias = await asistenciasFactory(10);
+    const asistencias = await asistenciasFactory(3);
     await queryInterface.bulkInsert('asistencias', asistencias, {});
   },
 

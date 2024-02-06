@@ -1,14 +1,14 @@
 'use strict';
 
-const { mensajesChatFactory } = require('../factories/mensajesChatFactory');
+const { mensajesChatFactory } = require('../factories/mensajeChatFactory');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
     const mensajesChat = await mensajesChatFactory(1);
-    await queryInterface.bulkInsert('mensajesChat', mensajesChat, {});
+    await queryInterface.bulkInsert('mensajeChats', mensajesChat, {});
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('mensajesChat', null, {});
+    await queryInterface.bulkDelete('mensajeChats', null, {});
   }
 };
