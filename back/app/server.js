@@ -6,6 +6,7 @@ class Server {
         this.apiPath = '/api';
         this.apiUsuarios = '/api/usuario';
         this.apiRoles = '/api/roles'
+        this.apiRolesAsignados = '/api/rolesAsignados'
         this.middlewares();
         this.routes();
         
@@ -18,6 +19,7 @@ class Server {
         this.app.use(this.apiPath , require('../routes/routes'));
         this.app.use(this.apiUsuarios , require('../routes/usuarioRutas'))
         this.app.use(this.apiRoles , require('../routes/rolesRutas'))
+        this.app.use(this.apiRoles , require('../routes/rolesAsignadosRutas'))
     }
 
     listen() {
