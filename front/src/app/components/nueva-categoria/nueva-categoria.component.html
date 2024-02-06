@@ -1,0 +1,40 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
+  }
+  <p-dialog header="Crear nueva categoria" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false">
+
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="username1">Nombre</label>
+                <input class="{{estiloValidacionNombre}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="nuevaCategoria.nombre" />
+                <small id="username-help1">Introduce un nombre para la nueva categoria</small>
+            </div>
+            
+
+            <div class="flex flex-column">
+                <label for="username2">Subcategoria</label>
+                    <p-inputSwitch [(ngModel)]="subcategoria"></p-inputSwitch>
+                <small id="username-help2">Indíca si esta categoria va a depender de otra categoria</small>
+            </div>
+            @if(subcategoria){
+
+                <div class="flex flex-column subcategoria-seleccionada">
+                    <label for="username2">Categoria principal</label>
+                    <p-dropdown  class="{{estiloValidacionDependiente}}" [options]="listaCategorias" [(ngModel)]="categoriaDependiente" optionLabel="nombre" [showClear]="true" placeholder="Selecciona una categoria"></p-dropdown>
+                    <small id="username-help2">Indíca la categoria a la que pertenece esta subcategoria</small>
+                </div>
+            }
+            </div>
+        </div>
+        <div style="margin-top: 20px;" >
+
+            <app-confirm tipo="Crear" icono="plus" mensaje="¿Deseas crear esta nueva categoria?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+  </p-dialog>
+</div>
