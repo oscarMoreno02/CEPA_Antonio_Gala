@@ -91,18 +91,18 @@ class ConexionNoticias {
         }
     }
     insertNoticia = async (body) => {
-        let resultado = 0;
         this.conectar();
         try {
             const task = new models.Noticia(body);
             await task.save();
-            resultado = 1;
+            return task.id;
         } catch (error) {
+            console.log(error)
             throw error;
         } finally {
             this.desconectar();
         }
-        return resultado;
+       
     }
 
     deleteNoticia = async (id) => {

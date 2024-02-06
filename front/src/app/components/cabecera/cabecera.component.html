@@ -3,5 +3,6 @@
     <p-menubar  [model]="items"></p-menubar>
 }@else {
     <p-menubar  [model]="adminItems"></p-menubar>
+    <app-nueva-categoria [tipo]="1" [visible]="modalCategoriaNueva"></app-nueva-categoria>
+    <app-nueva-noticia [tipo]="1" [visible]="modalNoticiaNueva"></app-nueva-noticia>
 }
-<app-nueva-categoria [tipo]="1" [visible]="modalVisible"></app-nueva-categoria>
