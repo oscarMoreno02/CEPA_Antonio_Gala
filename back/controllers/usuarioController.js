@@ -1,5 +1,5 @@
 const {response,request} = require('express');
-const Conexion = require('../database/Conexion');
+const Conexion = require('../database/conexionUsuario');
 
 const usuariosGet =  (req, res = response) => {
     
