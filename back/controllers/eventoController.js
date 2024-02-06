@@ -1,5 +1,5 @@
 const { response, request } = require('express');
-const EventoConexion = require('../database/eventoConexion');
+const EventoConexion = require('../database/conexionEvento');
 
 const obtenerEventos = (req, res = response) => {
     const conx = new EventoConexion();
