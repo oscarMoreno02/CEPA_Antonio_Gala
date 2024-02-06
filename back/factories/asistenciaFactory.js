@@ -6,15 +6,14 @@ const asistenciasFactory = async (ctos = 1) => {
 
     for (let i = 1; i <= ctos; i++) {
         let asistencia = {
-            idEvento: faker.random.number({ min: 1, max: 10 }),
-            idUsuario: faker.random.number({ min: 1, max: 10 }),
+            idEvento: 1,
+            idUsuario: i,
             createdAt: new Date(),
             updatedAt: new Date()
         };
         factory.push(asistencia);
     }
-
-    return Asistencia.bulkCreate(factory);
+    return factory
 };
 
 module.exports = {

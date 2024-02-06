@@ -5,8 +5,8 @@ const mensajesChatFactory = async (ctos = 1) => {
 
     for (let i = 1; i <= ctos; i++) {
         let mensaje = {
-            idChat: faker.random.number({ min: 1, max: 10 }),
-            idUsuario: faker.random.number({ min: 1, max: 10 }),
+            idChat: 1,
+            idUsuario: i,
             mensaje: 'Mensaje ${i}',
             createdAt: new Date(),
             updatedAt: new Date()
@@ -14,9 +14,9 @@ const mensajesChatFactory = async (ctos = 1) => {
         factory.push(mensaje);
     }
 
-    const mensajes = await MensajeChat.bulkCreate(factory);
 
-    return mensajes;
+
+    return factory;
 };
 
 module.exports = {

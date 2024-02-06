@@ -1,6 +1,6 @@
 'use strict';
 
-const { chatsFactory } = require('../factories/chatsFactory');
+const { chatsFactory } = require('../factories/chatFactory');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
