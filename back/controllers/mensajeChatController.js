@@ -1,5 +1,5 @@
 const { response, request } = require('express');
-const mensajeChatConexion = require('../database/conexionMensajeCaht');
+const mensajeChatConexion = require('../database/conexionMensajeChat');
 
 const obtenerMensajes = (req, res = response) => {
     const conx = new mensajeChatConexion();

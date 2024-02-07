@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/charController');
+const controller = require('../controllers/chatController');
 
 router.get('/obtenerChats', controller.obtenerChats);
 router.get('/obtenerChatsId/:id', controller.obtenerChatsPorId);
