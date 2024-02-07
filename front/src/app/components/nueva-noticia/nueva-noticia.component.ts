@@ -84,7 +84,7 @@ export class NuevaNoticiaComponent implements OnInit  {
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
-                    this.router.navigate(['/noticia/',u.id])
+                    this.router.navigate(['/noticia/secciones',u.id])
 
               }, 1000); 
             }, 1000); 

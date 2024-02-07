@@ -16,7 +16,7 @@ import { Categoria } from '../../interface/categoria';
 import { NoticiaService } from '../../services/noticia.service';
 import { Noticia } from '../../interface/noticia';
 @Component({
-  selector: 'app-edit-noticia',
+  selector: 'app-edit-noticia-data',
   standalone: true,
   imports: [
     FormsModule,
@@ -26,13 +26,14 @@ import { Noticia } from '../../interface/noticia';
     InputTextModule,
     InputSwitchModule,
     ConfirmComponent,
-    DropdownModule
+    DropdownModule,
+    EditNoticiaDataComponent
   ],
   providers:[CategoriasService,NoticiaService,DialogService, MessageService,],
-  templateUrl: './edit-noticia.component.html',
-  styleUrl: './edit-noticia.component.css'
+  templateUrl: './edit-noticia-data.component.html',
+  styleUrl: './edit-noticia-data.component.css'
 })
-export class EditNoticiaComponent implements OnInit {
+export class EditNoticiaDataComponent implements OnInit {
   constructor(
     public messageService: MessageService,
     private servicioCategoria: CategoriasService,

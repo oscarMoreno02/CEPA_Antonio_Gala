@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditNoticiaComponent } from './edit-noticia.component';
+import { EditNoticiaComponent } from './edit-noticia-data.component';
 
 describe('EditNoticiaComponent', () => {
   let component: EditNoticiaComponent;

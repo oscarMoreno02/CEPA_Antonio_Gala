@@ -74,10 +74,10 @@ export class CabeceraComponent implements OnInit {
       }
     ]
   ngOnInit(): void {
-    console.log('llega')
     this.subscripcionCategorias = this.servicioCategoria.getAllCategoriasAgrupadas().subscribe({
       next: (data: any) => {
         this.listaCategorias=data
+  
         this.items=this.crearMenu(this.listaCategorias)
        this.items?.unshift({label:'Inicio',url:''})
        this.items?.push({label:'Login', url:'/login'})

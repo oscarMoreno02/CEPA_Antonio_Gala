@@ -48,6 +48,14 @@ export class NoticiaService {
       })
     )
   }
+  getNoticiaWithSecciones(id:number): Observable<any | undefined> {
+
+    return this.http.get<any>(this.baseUrl+'/secciones/'+id).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
   deleteNoticia(id:number): Observable<any | undefined> {
 
     return this.http.delete<any>(this.baseUrl+'/'+id).pipe(

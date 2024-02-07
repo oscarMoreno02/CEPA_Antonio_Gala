@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { Noticia } from '../../interface/noticia';
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../interface/categoria';
-import { EditNoticiaComponent } from '../edit-noticia/edit-noticia.component';
+import { EditNoticiaDataComponent } from '../edit-noticia-data/edit-noticia-data.component';
 
 @Component({
   selector: 'app-admin-noticia',
@@ -20,7 +20,8 @@ import { EditNoticiaComponent } from '../edit-noticia/edit-noticia.component';
     RouterLink,
     TableModule,
     ButtonModule,
-    EditNoticiaComponent
+    EditNoticiaDataComponent,
+    RouterLink
   ],
     providers:[NoticiaService, CategoriasService],
   templateUrl: './admin-noticia.component.html',
