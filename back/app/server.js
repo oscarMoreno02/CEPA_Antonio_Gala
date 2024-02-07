@@ -18,6 +18,7 @@ class Server {
         this.eventoPath = '/api/evento';
         this.mensajeChatPath = '/api/mensajeChat';
         this.asistenciaPath = '/api/asistencia';
+        this.galeriaPath = '/api/galeria';
         this.middlewares();
         this.routes();
         
@@ -34,12 +35,11 @@ class Server {
         this.app.use(this.apiUsuarios , require('../routes/usuarioRutas'))
         this.app.use(this.apiRoles , require('../routes/rolesRutas'))
         this.app.use(this.apiRoles , require('../routes/rolesAsignadosRutas'))
-        // this.app.use(this.apiPath , require('../routes/routes'));
-      
         this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
         this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
         this.app.use(this.seccionesPath, require('../routes/seccionesRoutes'))
+        this.app.use(this.galeriaPath,require('../routes/galeriaRoutes')) 
     }
 
     listen() {

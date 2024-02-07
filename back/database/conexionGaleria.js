@@ -3,7 +3,7 @@
 const { Sequelize, where } = require('sequelize');
 const models = require('../models/index');
 
-class ConexionMensajeChat {
+class ConexionGaleria {
 
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -41,81 +41,57 @@ class ConexionMensajeChat {
         });
     }
 
-    async getMensajesChats() {
+    async getGalerias() {
         this.conectar();
         let resultado = [];
         try {
-            resultado = await models.MensajeChat.findAll();
+            resultado = await models.Galeria.findAll();
         } catch (error) {
-            console.error('Error al obtener los mensajes: ', error);
+            console.error('Error al obtener la galeria: ', error);
         } finally {
             this.desconectar();
         }
         return resultado;
     }
 
-    async getMensajeChatPorId(id) {
+    async getGaleriaPorId(id) {
         this.conectar();
         let resultado;
         try {
-            resultado = await models.MensajeChat.findByPk(id);
+            resultado = await models.Galeria.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener el mensaje de un chat con ID ${id}: `, error);
+            console.error(`Error al obtener la galería con ID ${id}: `, error);
         } finally {
             this.desconectar();
         }
         return resultado;
     }
 
-    async postMensajeChat(body) {
+    async postGaleria(body) {
         this.conectar();
         let resultado;
         try {
-            resultado = await models.MensajeChat.create(body);
+            resultado = await models.Galeria.create(body);
         } catch (error) {
-            console.error('Error al crear el mensaje: ', error);
+            console.error('Error al crear la galeria: ', error);
         } finally {
             this.desconectar();
         }
         return resultado;
     }
 
-    async getMensajesChat(chatId) {
+    async deleteGaleria(id) {
         this.conectar();
         let resultado;
-    
         try {
-            const mensajes = await models.mensajesChat.findAll({
-                where: {
-                    idChat: chatId
-                }
-            });
-            if (!mensajes) {
-                throw new Error('Chat no encontrado');
+            const galeria = await models.Galeria.findByPk(id);
+            if (!galeria) {
+                throw new Error(`Galeria con ID ${id} no encontrado`);
             }
-            resultado = mensajes;
-            console.log(`Mensajes encontrados correctamente: ${mensajes}`);
+            resultado = await galeria.destroy();
+            console.log('Galeria eliminada correctamente');
         } catch (error) {
-            console.error('Error al obtener mensajes de chat:', error.message);
-            throw error;
-        } finally {
-            this.desconectar();
-        }
-        return resultado;
-    }    
-
-    async deleteMensajeChat(id) {
-        this.conectar();
-        let resultado;
-        try {
-            const chat = await models.MensajeChat.findByPk(id);
-            if (!chat) {
-                throw new Error(`Mensaje con ID ${id} no encontrado`);
-            }
-            resultado = await chat.destroy();
-            console.log('Mensaje eliminado correctamente');
-        } catch (error) {
-            console.error(`Error al eliminar mensaje con ID ${id}: `, error);
+            console.error(`Error al eliminar la galeria con ID ${id}: `, error);
         } finally {
             this.desconectar();
         }
@@ -123,4 +99,4 @@ class ConexionMensajeChat {
     }
 }
 
-module.exports = ConexionMensajeChat;
+module.exports = ConexionGaleria;

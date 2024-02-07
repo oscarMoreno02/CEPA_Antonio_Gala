@@ -4,25 +4,25 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class MensajeChat extends Model {
     static associate(models) {
-      /*this.belongsTo(models.Chat, {
+      this.hasMany(models.Chat, {
         foreignKey: 'idChat',
         as: 'chat'
       });
-      this.belongsTo(models.Usuarios, {
+      this.hasMany(models.user, {
         foreignKey: 'idUsuario',
         as: 'usuario'
-      });*/
+      });
     }
   }
 
   MensajeChat.init({
-    idChat: DataTypes.NUMBER,
-    idUsuario: DataTypes.NUMBER,
+    idChat: DataTypes.INTEGER,
+    idUsuario: DataTypes.INTEGER,
     mensaje: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'MensajeChat',
-    tableName: 'mensajesChat'
+    tableName: 'mensajesChats'
   });
 
   return MensajeChat;

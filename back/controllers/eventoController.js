@@ -11,7 +11,7 @@ const obtenerEventos = (req, res = response) => {
         })
         .catch((err) => {
             console.log('No hay registros');
-            res.status(203).json({ 'msg': 'No se han encontrado registros' });
+            res.status(404).json({ 'msg': 'No se han encontrado registros' });
         });
 }
 
@@ -25,7 +25,7 @@ const obtenerEventoPorId = (req, res = response) => {
         })
         .catch((err) => {
             console.log('No hay registro!');
-            res.status(203).json({ 'msg': 'No se ha encontrado el registro' });
+            res.status(404).json({ 'msg': 'No se ha encontrado el registro' });
         });
 }
 
@@ -35,11 +35,11 @@ const subirEvento = (req = request, res = response) => {
     conx.postEvento(req.body)
         .then((evento) => {
             console.log('Insertado correctamente!');
-            res.status(201).json(evento);
+            res.status(200).json(evento);
         })
         .catch((err) => {
             console.log('Fallo en el registro!');
-            res.status(203).json(err);
+            res.status(404).json(err);
         });
 }
 
@@ -49,11 +49,11 @@ const borrarEvento = (req, res = response) => {
     conx.deleteEvento(req.params.id)
         .then((evento) => {
             console.log('Eliminado correctamente!');
-            res.status(202).json(evento);
+            res.status(200).json(evento);
         })
         .catch((err) => {
             console.log('Fallo en la eliminación!');
-            res.status(203).json(err);
+            res.status(404).json(err);
         });
 }
 
@@ -63,11 +63,11 @@ const actualizarEvento = (req, res = response) => {
     conx.updateEvento(req.params.id, req.body)
         .then((evento) => {
             console.log('Modificado correctamente!');
-            res.status(202).json(evento);
+            res.status(200).json(evento);
         })
         .catch((err) => {
             console.log('Fallo en la modificación!');
-            res.status(203).json(err);
+            res.status(404).json(err);
         });
 }
 
