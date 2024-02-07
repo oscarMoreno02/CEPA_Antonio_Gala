@@ -4,15 +4,15 @@ module.exports = (sequelize, DataTypes) => {
   class Evento extends Model {
     static associate(models) {
       this.hasMany(models.Chat, {
-        foreignKey: 'eventoId',
+        foreignKey: 'id',
         as: 'chats'
       });
       this.hasMany(models.Asistencia, {
-        foreignKey:'eventoId',
+        foreignKey:'id',
         as:'asistencias'
       });
       this.hasMany(models.Galeria, { 
-        foreignKey:'eventoId',
+        foreignKey:'id',
         as:'galerias'
       });
     }
@@ -23,11 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     fecha: DataTypes.STRING,
     hora: DataTypes.STRING,
     foto: DataTypes.STRING,
-    mg: DataTypes.STRING,
+    mg: DataTypes.INTEGER,
     visibilidad: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Evento',
+    tableName: 'eventos'
   });
   return Evento;
 };
