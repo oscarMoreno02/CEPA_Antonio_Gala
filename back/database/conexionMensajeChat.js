@@ -3,7 +3,7 @@
 const { Sequelize, where } = require('sequelize');
 const models = require('../models/index');
 
-class ConexionChat {
+class ConexionMensajeChat {
 
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -123,4 +123,4 @@ class ConexionChat {
     }
 }
 
-module.exports = ConexionChat;
+module.exports = ConexionMensajeChat;

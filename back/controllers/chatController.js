@@ -57,24 +57,9 @@ const borrarChat = (req, res = response) => {
         });
 }
 
-const obtenerMensajesChat = (req = request, res = response) => {
-    const conx = new ChatConexion();
-    
-    conx.getMensajesChat(req.params.chatId)
-        .then((mensajes) => {
-            console.log('Obtenidos correctamente');
-            res.status(200).json(mensajes);
-        })
-        .catch((err) => {
-            console.log('Error al obtener los mensajes');
-            res.status(404).json(err);
-        });
-}
-
 module.exports = {
     obtenerChats,
     obtenerChatsPorId,
     borrarChat,
-    subirChat,
-    obtenerMensajesChat
+    subirChat
 }
