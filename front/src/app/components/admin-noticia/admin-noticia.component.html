@@ -19,7 +19,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-noticia>
             <tr>
-                <td></td>
+                <td><app-edit-noticia [listaCategorias]="listaCategorias" [id]="noticia.id"></app-edit-noticia></td>
                 <td>{{ noticia.titulo}}</td>
                 @for (categoria of listaCategorias; track categoria.id) {
                     @if(categoria.id==noticia.idCategoria){

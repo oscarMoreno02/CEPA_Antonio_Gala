@@ -37,7 +37,7 @@ class ConexionNoticias {
         try {
             let resultado = [];
             this.conectar();
-            resultado = await models.Noticia.findAll();
+            resultado = await models.Noticia.findAll({order:[['createdAt','DESC']]});
             return resultado;
         } catch (error) {
             throw error

@@ -50,11 +50,6 @@ export class CabeceraComponent implements OnInit {
             
           },
           {
-            label:'Editar categoria',
-            icon: 'pi pi-pencil',
-            command:()=>{this.router.navigate(['/admin/categorias/nueva'])},
-          },
-          {
             label:'Eliminar categoria',
             icon: 'pi pi-trash',
             command:()=>{this.router.navigate(['/admin/categorias/nueva'])},
@@ -69,11 +64,6 @@ export class CabeceraComponent implements OnInit {
             label:'Crear noticia',
             icon: 'pi pi-plus',
             command:()=>{this.modalNoticiaNueva=true},
-          },
-          {
-            label:'Editar categoria',
-            icon: 'pi pi-pencil',
-            command:()=>{this.router.navigate(['/admin/noticia/nueva'])},
           },
           {
             label:'Eliminar categoria',
