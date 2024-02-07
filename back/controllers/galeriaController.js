@@ -11,7 +11,7 @@ const obtenerGalerias = (req, res = response) => {
         })
         .catch((err) => {
             console.log('No hay registros');
-            res.status(203).json({ 'msg': 'No se han encontrado registros' });
+            res.status(404).json({ 'msg': 'No se han encontrado registros' });
         });
 }
 
@@ -25,7 +25,7 @@ const obtenerGaleriaPorId = (req, res = response) => {
         })
         .catch((err) => {
             console.log('No hay registro!');
-            res.status(203).json({ 'msg': 'No se ha encontrado el registro' });
+            res.status(404).json({ 'msg': 'No se ha encontrado el registro' });
         });
 }
 
@@ -35,11 +35,11 @@ const subirGaleria = (req = request, res = response) => {
     conx.postGaleria(req.body)
         .then((galeria) => {
             console.log('Insertado correctamente!');
-            res.status(201).json(galeria);
+            res.status(200).json(galeria);
         })
         .catch((err) => {
             console.log('Fallo en el registro!');
-            res.status(203).json(err);
+            res.status(404).json(err);
         });
 }
 
@@ -49,11 +49,11 @@ const borrarGaleria = (req, res = response) => {
     conx.deleteGaleria(req.params.id)
         .then((galeria) => {
             console.log('Eliminado correctamente!');
-            res.status(202).json(galeria);
+            res.status(200).json(galeria);
         })
         .catch((err) => {
             console.log('Fallo en la eliminación!');
-            res.status(203).json(err);
+            res.status(404).json(err);
         });
 }
 

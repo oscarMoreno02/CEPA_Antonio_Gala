@@ -10,7 +10,7 @@ const obtenerAsistencias = async (req, res = response) => {
         res.status(200).json(asistencias);
     } catch (err) {
         console.log('No hay registros');
-        res.status(203).json({ 'msg': 'No se han encontrado registros' });
+        res.status(404).json({ 'msg': 'No se han encontrado registros' });
     }
 }
 
@@ -23,7 +23,7 @@ const obtenerAsistenciaPorId = async (req, res = response) => {
         res.status(200).json(asistencia);
     } catch (err) {
         console.log('No hay registro!');
-        res.status(203).json({ 'msg': 'No se ha encontrado el registro' });
+        res.status(404).json({ 'msg': 'No se ha encontrado el registro' });
     }
 }
 
@@ -36,7 +36,7 @@ const obtenerAsistenciasDeUsuario = async (req, res = response) => {
         res.status(200).json(asistencias)
     } catch (err){
         console.log('No se han encontrado asistencias')
-        res.status(203).json({ 'msg':'No se han encontrado asistencias por el usuario introducido'});
+        res.status(404).json({ 'msg':'No se han encontrado asistencias por el usuario introducido'});
     }
 }
 
@@ -49,7 +49,7 @@ const obtenerUsuariosDeEvento = async (req, res = response) => {
         res.status(200).json(asistencias)
     } catch (err){
         console.log('No se han encontrado asistencias')
-        res.status(203).json({ 'msg':'No se han encontrado usuarios para el evento introducido'});
+        res.status(404).json({ 'msg':'No se han encontrado usuarios para el evento introducido'});
     }
 }
 
@@ -59,10 +59,10 @@ const subirAsistencia = async (req = request, res = response) => {
     try {
         const asistencia = await conx.postAsistencia(req.body);
         console.log('Insertado correctamente!');
-        res.status(201).json(asistencia);
+        res.status(200).json(asistencia);
     } catch (err) {
         console.log('Fallo en el registro!');
-        res.status(203).json(err);
+        res.status(404).json(err);
     }
 }
 
@@ -72,10 +72,10 @@ const borrarAsistencia = async (req, res = response) => {
     try {
         const asistencia = await conx.deleteAsistencia(req.params.id);
         console.log('Eliminado correctamente!');
-        res.status(202).json(asistencia);
+        res.status(200).json(asistencia);
     } catch (err) {
         console.log('Fallo en la eliminación!');
-        res.status(203).json(err);
+        res.status(404).json(err);
     }
 }
 
