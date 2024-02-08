@@ -45,7 +45,7 @@ class ConexionAulaHorario {
             this.desconectar()
         }
     }
-    getHorariosById = async (id) => {
+    getHorarioById = async (id) => {
         try {
             let resultado = [];
             this.conectar();
@@ -75,21 +75,21 @@ class ConexionAulaHorario {
         }
         return resultado
     }
-    updateHorario = async (id,body) => {
-        try{
+    updateHorario = async (id, body) => {
+        try {
             let resultado = 0
             this.conectar();
             let task = await models.AulaHorario.findByPk(id);
             await task.update(body)
             return resultado
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
     deleteHorario = async (id) => {
-        try{
+        try {
             this.conectar();
             let resultado = await models.AulaHorario.findByPk(id);
             if (!resultado) {
@@ -97,9 +97,9 @@ class ConexionAulaHorario {
             }
             await resultado.destroy();
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }

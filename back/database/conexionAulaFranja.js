@@ -75,21 +75,21 @@ class ConexionAulaFranja {
         }
         return resultado
     }
-    updateFranja = async (id,body) => {
-        try{
+    updateFranja = async (id, body) => {
+        try {
             let resultado = 0
             this.conectar();
             let task = await models.AulaFranja.findByPk(id);
             await task.update(body)
             return resultado
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
     deleteFranja = async (id) => {
-        try{
+        try {
             this.conectar();
             let resultado = await models.AulaFranja.findByPk(id);
             if (!resultado) {
@@ -97,9 +97,9 @@ class ConexionAulaFranja {
             }
             await resultado.destroy();
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }

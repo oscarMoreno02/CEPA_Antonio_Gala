@@ -45,7 +45,7 @@ class ConexionAulaEspecial {
             this.desconectar()
         }
     }
-    getAulasById = async (id) => {
+    getAulaById = async (id) => {
         try {
             let resultado = [];
             this.conectar();
@@ -75,21 +75,21 @@ class ConexionAulaEspecial {
         }
         return resultado
     }
-    updateAula = async (id,body) => {
-        try{
+    updateAula = async (id, body) => {
+        try {
             let resultado = 0
             this.conectar();
             let task = await models.AulaEspecial.findByPk(id);
             await task.update(body)
             return resultado
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
     deleteAula = async (id) => {
-        try{
+        try {
             this.conectar();
             let resultado = await models.AulaEspecial.findByPk(id);
             if (!resultado) {
@@ -97,9 +97,9 @@ class ConexionAulaEspecial {
             }
             await resultado.destroy();
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }

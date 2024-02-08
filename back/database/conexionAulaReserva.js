@@ -75,21 +75,21 @@ class ConexionAulaReserva {
         }
         return resultado
     }
-    updateReserva = async (id,body) => {
-        try{
+    updateReserva = async (id, body) => {
+        try {
             let resultado = 0
             this.conectar();
             let task = await models.AulaReserva.findByPk(id);
             await task.update(body)
             return resultado
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
     deleteReserva = async (id) => {
-        try{
+        try {
             this.conectar();
             let resultado = await models.AulaReserva.findByPk(id);
             if (!resultado) {
@@ -97,9 +97,9 @@ class ConexionAulaReserva {
             }
             await resultado.destroy();
             return resultado;
-        }catch(error){
+        } catch (error) {
             throw error
-        }finally{
+        } finally {
             this.desconectar()
         }
     }
