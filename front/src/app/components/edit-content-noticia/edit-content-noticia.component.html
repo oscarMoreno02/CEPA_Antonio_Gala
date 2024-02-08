@@ -81,7 +81,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
-            <p-button icon="pi pi-plus" label="Añadir enlace"></p-button>
+            <app-nuevo-enlace [seccion]="seccion"></app-nuevo-enlace>
             @if(seccion.enlaces){
                 @if(seccion.enlaces.length>0){
 
@@ -90,7 +90,7 @@
                        <br>
                         @for (enlace of seccion.enlaces; track enlace.id) {
                             <div class="enlace-container">
-                                <a href="{{enlace.url}}">{{enlace.textoClave}}</a>
+                                <a  target="_blank" href="{{enlace.url}}">{{enlace.textoClave}}</a>
                                 <p-button  icon="pi pi-pencil"></p-button>
                             </div>
                         }

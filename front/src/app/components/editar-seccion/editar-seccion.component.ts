@@ -81,10 +81,9 @@ export class EditarSeccionComponent {
                this.messageService.add({ severity: 'success', summary: 'Actualizar sección', detail: 'Completada', life: 3000 });
       
               for(let i=0 ;i< this.noticia!.secciones!.length;i++){
-                
                 if (this.noticia!.secciones![i].id==this.seccionEditar.id){
-                  console.log('llega')
                   this.noticia!.secciones![i]=this.seccionEditar
+                  this.visible=false
                 }
               }
            }, 1000); 
@@ -97,6 +96,7 @@ export class EditarSeccionComponent {
    }
  }
  }
+
  validarCampos():Boolean{
    let valido = true
    if(this.seccionEditar.titulo){

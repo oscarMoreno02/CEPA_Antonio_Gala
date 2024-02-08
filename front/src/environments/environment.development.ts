@@ -3,5 +3,6 @@ export const environment = {
     urlCategorias:'/categorias',
     urlNoticias:'/noticias',
     urlSecciones:'/secciones',
-    urlEventos: '/evento'
+    urlEventos: '/evento',
+    urlEnlace:'/enlaces'
 };

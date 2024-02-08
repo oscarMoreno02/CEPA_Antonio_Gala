@@ -11,11 +11,18 @@ import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../interface/categoria';
 import { NuevaSeccionComponent } from '../nueva-seccion/nueva-seccion.component';
 import { EditarSeccionComponent } from '../editar-seccion/editar-seccion.component';
+import { EnlaceService } from '../../services/enlace.service';
+import { NuevoEnlaceComponent } from '../nuevo-enlace/nuevo-enlace.component';
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,
-  imports: [TableModule,ButtonModule,EditNoticiaDataComponent, NuevaSeccionComponent,
-  EditarSeccionComponent,
+  imports: [
+    TableModule,
+    ButtonModule,
+    EditNoticiaDataComponent,
+    NuevaSeccionComponent,
+    EditarSeccionComponent,
+    NuevoEnlaceComponent
   ],
   templateUrl: './edit-content-noticia.component.html',
   styleUrl: './edit-content-noticia.component.css'
@@ -24,7 +31,8 @@ export class EditContentNoticiaComponent implements OnInit {
 constructor(
   private servicioNoticias:NoticiaService,
   private rutaActiva: ActivatedRoute,
-  private servicioCategorias:CategoriasService
+  private servicioCategorias:CategoriasService,
+
   ){}
   id = this.rutaActiva.snapshot.params['id']
   subscripcion:Subscription=new Subscription
