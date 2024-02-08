@@ -1,19 +1,19 @@
 .enlace-container {
-    display: inline-flex; /* Mostrar en línea horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    margin-right: 10px; /* Espacio entre cada enlace */
-    padding: 5px; /* Espacio interno dentro del contenedor */
-    border: 1px solid #ccc; /* Borde del contenedor */
-    border-radius: 5px; /* Borde redondeado */
-    background-color: #f5f5f5; /* Color de fondo */
+    display: inline-flex; 
+    align-items: center;
+    margin-right: 10px; 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    background-color: #f5f5f5; 
     margin-top:10px
 }
 
 .enlace-container a {
-    text-decoration: none; /* Quitar subrayado del enlace */
-    color: #333; /* Color del texto del enlace */
+    text-decoration: none; 
+    color: #333; 
 }
 
 .enlace-container p-button {
-    margin-left: 5px; /* Espacio entre el enlace y el botón */
+    margin-left: 5px; 
 }

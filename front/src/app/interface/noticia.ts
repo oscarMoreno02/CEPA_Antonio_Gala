@@ -13,12 +13,12 @@ export interface Noticia {
 
 export interface Seccion {
     id:        number;
-    idNoticia: number;
+    idNoticia: number | null;
     titulo?:    string | null;
     texto?:     string | null;
     foto?:      string | null;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
     enlaces?:   Enlace[];
 }
 
@@ -27,8 +27,8 @@ export interface Enlace {
     idSeccion:  number;
     textoClave: string;
     url:        string;
-    createdAt:  string;
-    updatedAt:  string;
+    createdAt?:  string;
+    updatedAt?:  string;
 }
 
 export enum Texto {

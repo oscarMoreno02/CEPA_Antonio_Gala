@@ -41,7 +41,7 @@
         </ng-template>
     </p-table>
 </div>
-<p-button icon="pi pi-plus" label="Añadir sección"></p-button>
+<app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
 
 @if(noticia.secciones){
    
@@ -67,9 +67,9 @@
         <ng-template pTemplate="body" let-seccion>
             <tr>
                 <td>{{ seccion.titulo }}</td>
-                @if(noticia.foto!=undefined){
+                @if(seccion.foto!=undefined){
                     
-                    <td><img [src]="noticia.foto" [alt]="noticia.titulo" width="100" class="shadow-4"></td>
+                    <td><img [src]="seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
                 }@else {
                     <td>[Sin foto]</td>
                 }

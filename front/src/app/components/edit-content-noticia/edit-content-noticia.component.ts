@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
 import { EditNoticiaDataComponent } from '../edit-noticia-data/edit-noticia-data.component';
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../interface/categoria';
+import { NuevaSeccionComponent } from '../nueva-seccion/nueva-seccion.component';
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,
-  imports: [TableModule,ButtonModule,EditNoticiaDataComponent],
+  imports: [TableModule,ButtonModule,EditNoticiaDataComponent, NuevaSeccionComponent],
   templateUrl: './edit-content-noticia.component.html',
   styleUrl: './edit-content-noticia.component.css'
 })
