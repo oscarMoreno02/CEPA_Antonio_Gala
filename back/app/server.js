@@ -9,6 +9,9 @@ class Server {
         this.noticiasPath='/api/noticias'
         this.seccionesPath='/api/secciones'
         this.aulasPath='/api/aulas'
+        this.aulasPath='/api/horarios'
+        this.aulasPath='/api/franjas'
+        this.aulasPath='/api/reservas'
         this.middlewares();
         this.routes();
         
@@ -23,7 +26,10 @@ class Server {
         this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
         this.app.use(this.seccionesPath, require('../routes/seccionesRoutes'))
-        this.app.use(this.aulasPath, require('../routes/aulasRoutes/'))
+        this.app.use(this.aulasPath, require('../routes/aulaEspecialRoutes'))
+        this.app.use(this.aulasPath, require('../routes/aulaHorarioRoutes'))
+        this.app.use(this.aulasPath, require('../routes/aulaFranjaRoutes'))
+        this.app.use(this.aulasPath, require('../routes/aulaReservaRoutes'))
     }
 
     listen() {
