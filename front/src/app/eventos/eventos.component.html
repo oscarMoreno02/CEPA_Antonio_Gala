@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let evento of eventos">
+            <tr @for(let evento of eventos)>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
             </tr>
