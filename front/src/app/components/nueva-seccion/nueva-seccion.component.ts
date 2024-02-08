@@ -70,13 +70,14 @@ export class NuevaSeccionComponent {
                this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
                this.nuevaSeccion.id=data.id
               
-              this.noticia?.secciones?.push({id: this.nuevaSeccion.id,idNoticia:this.noticia.id,titulo:this.nuevaSeccion.titulo,texto:this.nuevaSeccion.texto})
+              this.noticia?.secciones?.push({id: this.nuevaSeccion.id,idNoticia:this.noticia.id,titulo:this.nuevaSeccion.titulo,texto:this.nuevaSeccion.texto,foto:this.urlFoto})
               this.nuevaSeccion.id=0
               this.nuevaSeccion.enlaces=[]
               this.nuevaSeccion.foto=''
               this.nuevaSeccion.texto=''
               this.nuevaSeccion.titulo=''
               this.visible=false
+              this.urlFoto=''
            }, 1000); 
          
        },

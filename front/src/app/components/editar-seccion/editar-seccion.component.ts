@@ -10,9 +10,10 @@ import { ToastModule } from 'primeng/toast';
 import { FormsModule } from '@angular/forms';
 import { SeccionService } from '../../services/seccion.service';
 import { NoticiaService } from '../../services/noticia.service';
-import { Router } from 'express';
+
 import { Noticia, Seccion } from '../../interface/noticia';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-seccion',
@@ -26,7 +27,7 @@ import { Subscription } from 'rxjs';
     InputSwitchModule,
     ConfirmComponent,
     InputTextareaModule,],
-    providers:[MessageService]
+    providers:[MessageService, SeccionService],
   templateUrl: './editar-seccion.component.html',
   styleUrl: './editar-seccion.component.css'
 })
@@ -41,35 +42,56 @@ export class EditarSeccionComponent {
  @Input() visible: boolean = false;
  @Input() tipo?:number
  @Input() noticia?:Noticia
+ @Input() id :number=0
  subscripcionSeccion: Subscription=new Subscription;
- nuevaSeccion:Seccion={id:0,titulo:'',idNoticia:0}
- foto=null
+ seccionEditar:Seccion={id:0,titulo:'',idNoticia:0}
+
  estiloValidacionTitulo=''
  estiloValidacionTexto=''
   urlFoto=''
 
  ngOnInit(): void {
- }
+    this.subscripcionSeccion=this.servicioSeccion.getSeccion(this.id).subscribe({
+      next:(data:Seccion)=>{
+        this.seccionEditar=data
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
+ }  
  showDialog() {
+  this.subscripcionSeccion=this.servicioSeccion.getSeccion(this.id).subscribe({
+    next:(data:Seccion)=>{
+      this.seccionEditar=data
+    },
+    error:(err)=>{
+      console.log(err)
+    }
+  })
      this.visible = true;
  }
- crear(b:Boolean){
+ guardar(b:Boolean){
    if(b){
      if(this.validarCampos()){
-     this.messageService.add({ severity: 'info', summary: 'Crear seccion', detail: 'En curso', life: 3000 });
-     this.nuevaSeccion.idNoticia=this.noticia!.id
-     this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
+     this.messageService.add({ severity: 'info', summary: 'Actualizar sección', detail: 'En curso', life: 3000 });
+     this.servicioSeccion.updateSeccion(this.seccionEditar).subscribe({
        next: (data:any) => {
              setTimeout(() => {
-               this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
-               this.nuevaSeccion.id=data.id
-              this.noticia?.secciones?.push(this.nuevaSeccion)
+               this.messageService.add({ severity: 'success', summary: 'Actualizar sección', detail: 'Completada', life: 3000 });
+      
+              for(let i=0 ;i< this.noticia!.secciones!.length;i++){
+                
+                if (this.noticia!.secciones![i].id==this.seccionEditar.id){
+                  console.log('llega')
+                  this.noticia!.secciones![i]=this.seccionEditar
+                }
+              }
            }, 1000); 
-         
        },
        error: (err) => {
          console.log(err)
-         this.messageService.add({ severity:'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
+         this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
        }
      })
    }
@@ -77,31 +99,31 @@ export class EditarSeccionComponent {
  }
  validarCampos():Boolean{
    let valido = true
-   if(this.nuevaSeccion.titulo){
-    if(this.nuevaSeccion.titulo.split(' ').join('').length<5){
+   if(this.seccionEditar.titulo){
+    if(this.seccionEditar.titulo.split(' ').join('').length<5){
 
       this.estiloValidacionTitulo='ng-invalid ng-dirty'
       valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'Tamaño de titulo incorrecto', life: 3000 });
+      this.messageService.add({ severity: 'warn', summary: 'Actualizar Sección', detail: 'Tamaño de título incorrecto', life: 3000 });
     }else{
       this.estiloValidacionTitulo=''
     }
    }else{
      this.estiloValidacionTitulo='ng-invalid ng-dirty'
-     this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'El titulo de la seccion es obligatorio', life: 3000 });
+     this.messageService.add({ severity: 'warn', summary: 'Actualizar Sección', detail: 'El título de la seccion es obligatorio', life: 3000 });
     valido=false
    }
-   if(this.nuevaSeccion.texto){
-    if(this.nuevaSeccion.texto.split(' ').join('').length<5){
+   if(this.seccionEditar.texto){
+    if(this.seccionEditar.texto.split(' ').join('').length<5){
       this.estiloValidacionTexto='ng-invalid ng-dirty'
       valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de texto incorrecto', life: 3000 });
+      this.messageService.add({ severity: 'warn', summary: 'Actualizar Sección', detail: 'Tamaño de texto incorrecto', life: 3000 });
     }else{
       this.estiloValidacionTexto=''
     }
    }else{
      this.estiloValidacionTexto='ng-invalid ng-dirty'
-     this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'El texto de la seccion es obligatorio', life: 3000 });
+     this.messageService.add({ severity: 'warn', summary: 'Actualizar Sección', detail: 'El texto de la sección es obligatorio', life: 3000 });
     valido=false
    }
   

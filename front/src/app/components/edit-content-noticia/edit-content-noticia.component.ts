@@ -10,10 +10,13 @@ import { EditNoticiaDataComponent } from '../edit-noticia-data/edit-noticia-data
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../interface/categoria';
 import { NuevaSeccionComponent } from '../nueva-seccion/nueva-seccion.component';
+import { EditarSeccionComponent } from '../editar-seccion/editar-seccion.component';
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,
-  imports: [TableModule,ButtonModule,EditNoticiaDataComponent, NuevaSeccionComponent],
+  imports: [TableModule,ButtonModule,EditNoticiaDataComponent, NuevaSeccionComponent,
+  EditarSeccionComponent,
+  ],
   templateUrl: './edit-content-noticia.component.html',
   styleUrl: './edit-content-noticia.component.css'
 })

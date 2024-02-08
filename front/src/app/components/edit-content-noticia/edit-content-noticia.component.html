@@ -61,7 +61,7 @@
                 <th [width]="30">Titulo</th>
                 <th [width]="30">Foto</th>
                 <th [width]="20">Texto</th>
-                <th [width]="50"><app-edit-noticia-data [listaCategorias]="listaCategorias"  [id]="id"></app-edit-noticia-data></th>
+                <th [width]="50"><app-editar-seccion [tipo]="0" [id]="seccion.id" [noticia]="noticia"></app-editar-seccion></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-seccion>
