@@ -1,0 +1,17 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>NOMBRE DEL EVENTO</th>
+                <th>DESCRIPCION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let evento of eventos">
+                <td>{{ evento.nombre }}</td>
+                <td>{{ evento.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
