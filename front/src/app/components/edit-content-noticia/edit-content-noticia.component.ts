@@ -13,6 +13,9 @@ import { NuevaSeccionComponent } from '../nueva-seccion/nueva-seccion.component'
 import { EditarSeccionComponent } from '../editar-seccion/editar-seccion.component';
 import { EnlaceService } from '../../services/enlace.service';
 import { NuevoEnlaceComponent } from '../nuevo-enlace/nuevo-enlace.component';
+import { EditarEnlaceComponent } from '../editar-enlace/editar-enlace.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,
@@ -22,17 +25,20 @@ import { NuevoEnlaceComponent } from '../nuevo-enlace/nuevo-enlace.component';
     EditNoticiaDataComponent,
     NuevaSeccionComponent,
     EditarSeccionComponent,
-    NuevoEnlaceComponent
+    NuevoEnlaceComponent,
+    EditarEnlaceComponent,
+    ToastModule
   ],
   templateUrl: './edit-content-noticia.component.html',
-  styleUrl: './edit-content-noticia.component.css'
+  styleUrl: './edit-content-noticia.component.css',
+  providers:[MessageService]
 })
 export class EditContentNoticiaComponent implements OnInit {
 constructor(
   private servicioNoticias:NoticiaService,
   private rutaActiva: ActivatedRoute,
   private servicioCategorias:CategoriasService,
-
+  private messageService:MessageService
   ){}
   id = this.rutaActiva.snapshot.params['id']
   subscripcion:Subscription=new Subscription

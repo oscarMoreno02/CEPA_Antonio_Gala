@@ -60,6 +60,8 @@ export class NuevoEnlaceComponent implements OnInit {
                 setTimeout(() => {
                     this.nuevoEnlace.id=data.id
                     this.seccion.enlaces?.push(this.nuevoEnlace)
+                    this.nuevoEnlace={}
+                    this.visible=false
               }, 1000); 
             }, 1000); 
           

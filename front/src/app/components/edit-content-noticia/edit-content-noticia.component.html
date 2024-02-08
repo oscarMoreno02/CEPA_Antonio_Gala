@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <div class="card">
     <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem'}">
         <ng-template pTemplate="caption">
@@ -91,7 +91,7 @@
                         @for (enlace of seccion.enlaces; track enlace.id) {
                             <div class="enlace-container">
                                 <a  target="_blank" href="{{enlace.url}}">{{enlace.textoClave}}</a>
-                                <p-button  icon="pi pi-pencil"></p-button>
+                                <app-editar-enlace [seccion]="seccion" [id]="enlace.id" ></app-editar-enlace>
                             </div>
                         }
                     </div>
