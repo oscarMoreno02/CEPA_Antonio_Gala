@@ -1,0 +1,22 @@
+
+/* label{
+    color: green;
+} */
+
+.p-menuitem-text{
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}
+li {
+    list-style: none;
+}
+@media (max-width: 960px) {
+   .p-submenu-list {
+        display:block;
+    }
+}
+/* .p-menubar .p-menuitem {
+    background-color: rgb(63, 142, 26);
+}  */
+
+

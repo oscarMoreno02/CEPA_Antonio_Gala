@@ -1,0 +1,32 @@
+<p-card styleClass="mt10" [style]="{ width: '300px' }">
+    <ng-template pTemplate="title">
+        <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
+            <a style="text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;" href="{{noticia.enlace}}"><h2>{{noticia.titulo}}</h2></a>
+        </div>
+    </ng-template>
+
+    @if(noticia.secciones!.length>0){
+        <div class="mt-0" style="margin-top: -50px;">
+            @if(noticia.secciones![0].foto!=undefined){
+                <div style="display: flex; align-items: center; overflow: hidden; margin-top: -50px;">
+                    <p-image src="{{noticia.secciones![0].foto}}"  alt="Image" height="250" width="300" [preview]="true"></p-image>
+                    <br>
+                </div>
+            }
+            <p>{{noticia.secciones![0].texto}}</p>
+        </div>
+            @if(noticia.secciones!.length>1){
+                <ng-template pTemplate="footer">
+                    <a routerLink="/categorias/{{noticia.idCategoria}}/noticia/{{noticia.id}}">Leer mas</a>
+                </ng-template>
+            }@else {
+                @if(noticia.secciones![0].enlaces){
+                <ng-template pTemplate="footer">
+                    @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
+                        <a href="{{enlace.url}}">{{enlace.textoClave}}</a>&nbsp;
+                    }
+                </ng-template>
+                }
+            }
+    }
+</p-card>
