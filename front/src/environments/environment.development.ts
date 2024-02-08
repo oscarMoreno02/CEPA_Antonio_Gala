@@ -1,5 +1,7 @@
 export const environment = {
     baseUrl:'http://localhost:9090/api',
     urlCategorias:'/categorias',
-    urlEventos: '/evento',
+    urlNoticias:'/noticias',
+    urlSecciones:'/secciones',
+    urlEventos: '/evento'
 };

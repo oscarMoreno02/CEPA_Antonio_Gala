@@ -8,6 +8,7 @@ import { CategoriasService } from '../../services/categorias.service';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule,MenubarTemplates } from 'primeng/menubar';
 import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.component';
+import { NuevaNoticiaComponent } from '../nueva-noticia/nueva-noticia.component';
 @Component({
   selector: 'app-cabecera',
   standalone: true,
@@ -16,18 +17,21 @@ import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.comp
     RouterLink,
     FormsModule,
     MenubarModule,
-    NuevaCategoriaComponent
+    NuevaCategoriaComponent,
+    NuevaNoticiaComponent
    ],
   templateUrl: './cabecera.component.html',
   styleUrl: './cabecera.component.css',
   providers:[CategoriasService],
+  encapsulation: ViewEncapsulation.None
 })
 export class CabeceraComponent implements OnInit {
   constructor(
     private servicioCategoria:CategoriasService,
     private router: Router,
   ){}
-    modalVisible=false
+    modalCategoriaNueva=false
+    modalNoticiaNueva=false
 
   items: MenuItem[] | undefined;
   subscripcionCategorias: Subscription=new Subscription;
@@ -42,13 +46,8 @@ export class CabeceraComponent implements OnInit {
             label:'Crear categoria',
             icon: 'pi pi-plus',
 
-            command:()=>{this.modalVisible=true},
+            command:()=>{this.modalCategoriaNueva=true},
             
-          },
-          {
-            label:'Editar categoria',
-            icon: 'pi pi-pencil',
-            command:()=>{this.router.navigate(['/admin/categorias/nueva'])},
           },
           {
             label:'Eliminar categoria',
@@ -56,13 +55,29 @@ export class CabeceraComponent implements OnInit {
             command:()=>{this.router.navigate(['/admin/categorias/nueva'])},
           }
         ]
+      },
+      {
+        label:'Administrar noticias',
+        command:()=>{this.router.navigate(['/admin/noticias'])},
+        items:[
+          {
+            label:'Crear noticia',
+            icon: 'pi pi-plus',
+            command:()=>{this.modalNoticiaNueva=true},
+          },
+          {
+            label:'Eliminar categoria',
+            icon: 'pi pi-trash',
+            command:()=>{this.router.navigate(['/admin/noticias/nueva'])},
+          }
+        ]
       }
     ]
   ngOnInit(): void {
-    console.log('llega')
     this.subscripcionCategorias = this.servicioCategoria.getAllCategoriasAgrupadas().subscribe({
       next: (data: any) => {
         this.listaCategorias=data
+  
         this.items=this.crearMenu(this.listaCategorias)
        this.items?.unshift({label:'Inicio',url:''})
        this.items?.push({label:'Login', url:'/login'})

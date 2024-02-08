@@ -84,13 +84,12 @@ class ConexionSecciones{
         try {
             const task = new models.Seccion(body);
             await task.save();
-            resultado = 1;
+            return task.id
         } catch (error) {
             throw error;
         } finally {
             this.desconectar();
         }
-        return resultado;
     }
 
     deleteSeccion = async (id) => {

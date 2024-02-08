@@ -13,7 +13,8 @@ import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.c
 @Component({
   selector: 'app-admin-categorias',
   standalone: true,
-  imports: [ HttpClientModule,
+  imports: [ 
+    HttpClientModule,
     RouterLink,
     TableModule,
     ButtonModule,
