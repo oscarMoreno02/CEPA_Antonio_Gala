@@ -19,7 +19,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-noticia>
             <tr>
-                <td><p-button routerLink="/noticia/modificar/{{noticia.id}}" icon="pi pi-pencil"></p-button></td>
+                <td><p-button routerLink="/noticia/modificar/{{noticia.id}}" icon="pi pi-pencil" title="ggg"></p-button></td>
                 <td>{{ noticia.titulo}}</td>
                 @for (categoria of listaCategorias; track categoria.id) {
                     @if(categoria.id==noticia.idCategoria){

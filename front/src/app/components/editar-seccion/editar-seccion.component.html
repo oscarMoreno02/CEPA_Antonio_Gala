@@ -1,0 +1,36 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-plus" label="Añadir seccion"></p-button>
+  }
+  <p-dialog header="Crear nueva seccion" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false">
+
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="username1">Titulo</label>
+                <input  class="{{estiloValidacionTitulo}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="nuevaSeccion.titulo" />
+                <small id="username-help1">Introduce un titulo para la nueva seccion</small>
+            </div>
+        
+                <input class="{{estiloValidacionTitulo}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="urlFoto" />
+                <small id="username-help1">Selecciona una foto</small>
+            
+                <div class="flex flex-column subcategoria-seleccionada">
+                    <label for="username2">Categoria</label>
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="nuevaSeccion.texto" class="{{estiloValidacionTexto}}"></textarea>
+                    <small id="username-help2">Escribe el cuerpo de esta sección</small>
+                </div>
+             
+            </div>
+        </div>
+        <div style="margin-top: 20px;" >
+
+            <app-confirm tipo="Crear" icono="plus" mensaje="¿Deseas crear esta nueva seccion?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+  </p-dialog>
+
+</div>

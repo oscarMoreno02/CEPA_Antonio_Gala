@@ -1,26 +1,21 @@
-
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ToastModule } from 'primeng/toast';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { DialogModule } from 'primeng/dialog';
-import { FormsModule } from '@angular/forms';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { ConfirmComponent } from '../confirm/confirm.component';
-import { DropdownModule } from 'primeng/dropdown';
-import { CategoriasService } from '../../services/categorias.service';
-import { Subscription } from 'rxjs';
-import { Categoria } from '../../interface/categoria';
-import { Enlace, Noticia, Seccion } from '../../interface/noticia';
-import { NoticiaService } from '../../services/noticia.service';
-import { Router } from '@angular/router';
-import { SeccionService } from '../../services/seccion.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ConfirmComponent } from '../confirm/confirm.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { FormsModule } from '@angular/forms';
+import { SeccionService } from '../../services/seccion.service';
+import { NoticiaService } from '../../services/noticia.service';
+import { Router } from 'express';
+import { Noticia, Seccion } from '../../interface/noticia';
+import { Subscription } from 'rxjs';
+
 @Component({
-  selector: 'app-nueva-seccion',
+  selector: 'app-editar-seccion',
   standalone: true,
   imports: [    
     FormsModule,
@@ -30,13 +25,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputTextModule,
     InputSwitchModule,
     ConfirmComponent,
-    InputTextareaModule
-  ],
-  templateUrl: './nueva-seccion.component.html',
-  styleUrl: './nueva-seccion.component.css',
-  providers:[MessageService]
+    InputTextareaModule,],
+    providers:[MessageService]
+  templateUrl: './editar-seccion.component.html',
+  styleUrl: './editar-seccion.component.css'
 })
-export class NuevaSeccionComponent {
+export class EditarSeccionComponent {
   constructor(
     public messageService: MessageService,
     private servicioSeccion: SeccionService ,
@@ -113,6 +107,5 @@ export class NuevaSeccionComponent {
   
    return valido
  }
-
 
 }
