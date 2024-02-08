@@ -1,7 +1,7 @@
 const { Evento } = require('../models');
 const faker = require('@faker-js/faker');
 
-const eventosFactory = async (ctos = 18) => {
+const eventosFactory = async (ctos = 1) => {
     let factory = [];
 
     for (let i = 1; i <= ctos; i++) {
