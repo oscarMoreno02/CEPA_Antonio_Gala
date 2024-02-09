@@ -10,27 +10,28 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.AulaEspecial, {
-        foreignKey: 'idAula',
-        as: 'aulaHorario'
-      })
-    }
-    static associate(models) {
-      this.belongsTo(models.AulaFranja, {
-        foreignKey: 'idFranja',
-        as: 'franjaHorario'
-      })
-    }
-    static associate(models) {
-      this.belongsTo(models.AulaReserva, {
-        foreignKey: 'idHorario',
-        as: 'horarioReserva'
-      })
+      // define association here
     }
   }
   AulaHorario.init({
-    idAula: DataTypes.INTEGER,
-    idFranja: DataTypes.INTEGER
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    idAula: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: AulaEspecial,
+        key: 'id'
+      }
+    },
+    idFranja: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: AulaFranja,
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'AulaHorario',

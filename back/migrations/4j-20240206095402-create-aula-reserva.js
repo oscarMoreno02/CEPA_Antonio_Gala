@@ -57,6 +57,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('aulareservas');
+    await queryInterface.dropTable('aulareservas')
   }
-};
+}
