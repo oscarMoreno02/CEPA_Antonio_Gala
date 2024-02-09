@@ -74,6 +74,7 @@ export class EditarSeccionComponent {
  guardar(b:Boolean){
    if(b){
      if(this.validarCampos()){
+      this.seccionEditar.foto=this.urlFoto
      this.messageService.add({ severity: 'info', summary: 'Actualizar sección', detail: 'En curso', life: 3000 });
      this.servicioSeccion.updateSeccion(this.seccionEditar).subscribe({
        next: (data:any) => {
