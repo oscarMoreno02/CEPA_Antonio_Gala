@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 class Server {
     constructor() {
@@ -19,6 +20,7 @@ class Server {
         this.mensajeChatPath = '/api/mensajeChat';
         this.asistenciaPath = '/api/asistencia';
         this.galeriaPath = '/api/galeria';
+        this.uploadsPath  = '/api/uploads/noticias';
         this.middlewares();
         this.routes();
         
@@ -26,6 +28,11 @@ class Server {
     middlewares() {
         this.app.use(cors());
         this.app.use(express.json());
+        this.app.use( fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true  
+        }));
     }
     routes(){
         this.app.use(this.chatPath , require('../routes/chatRoutes'));
@@ -40,6 +47,7 @@ class Server {
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
         this.app.use(this.seccionesPath, require('../routes/seccionesRoutes'))
         this.app.use(this.galeriaPath,require('../routes/galeriaRoutes')) 
+        this.app.use(this.uploadsPath,  require('../routes/uploadsNoticiasRoutes'));
     }
 
     listen() {

@@ -16,6 +16,8 @@ import { NuevoEnlaceComponent } from '../nuevo-enlace/nuevo-enlace.component';
 import { EditarEnlaceComponent } from '../editar-enlace/editar-enlace.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { FotosNoticiasService} from '../../services/fotosNoticias.service';
+import { environment } from '../../../environments/environment.development';
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,
@@ -38,8 +40,10 @@ constructor(
   private servicioNoticias:NoticiaService,
   private rutaActiva: ActivatedRoute,
   private servicioCategorias:CategoriasService,
-  private messageService:MessageService
+  private messageService:MessageService,
+  private servicioFoto:FotosNoticiasService
   ){}
+  foto:string | null=null
   id = this.rutaActiva.snapshot.params['id']
   subscripcion:Subscription=new Subscription
   noticia:Noticia={id:null,titulo:'',idCategoria:null,secciones:[]}
@@ -51,6 +55,9 @@ ngOnInit(): void {
     next:(data:Noticia)=>{
       this.noticia=data
       console.log(this.noticia)
+      if(this.noticia.foto){
+        this.foto=environment.baseUrl+environment.urlFotos+'/'+this.noticia.foto
+      }
     },
     error:(err)=>{
       console.log(err)
