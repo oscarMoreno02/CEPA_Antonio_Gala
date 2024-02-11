@@ -20,7 +20,8 @@ class Server {
         this.mensajeChatPath = '/api/mensajeChat';
         this.asistenciaPath = '/api/asistencia';
         this.galeriaPath = '/api/galeria';
-        this.uploadsPath  = '/api/uploads/noticias';
+        this.uploadsNoticiasPath  = '/api/uploads/noticias';
+        this.uploadsSeccionesPath  = '/api/uploads/secciones';
         this.middlewares();
         this.routes();
         
@@ -47,7 +48,8 @@ class Server {
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
         this.app.use(this.seccionesPath, require('../routes/seccionesRoutes'))
         this.app.use(this.galeriaPath,require('../routes/galeriaRoutes')) 
-        this.app.use(this.uploadsPath,  require('../routes/uploadsNoticiasRoutes'));
+        this.app.use(this.uploadsNoticiasPath,  require('../routes/uploadsNoticiasRoutes'));
+        this.app.use(this.uploadsSeccionesPath,  require('../routes/updloadsSeccionesRoutes'));
     }
 
     listen() {
