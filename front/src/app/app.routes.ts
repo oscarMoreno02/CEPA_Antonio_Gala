@@ -9,7 +9,7 @@ export const routes: Routes = [
 {path:'admin/categorias',component: AdminCategoriasComponent},
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 {path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},
-{path:'noticia/modificar/:id',component: EditContentNoticiaComponent},
+{path:'noticia/contenido/:id',component: EditContentNoticiaComponent},
 {path:'admin/noticias',component: AdminNoticiaComponent},
 {path:'admin/categorias',component:AdminCategoriasComponent},
 {path:'eventos/mostrarEventos', component:EventosComponent}
