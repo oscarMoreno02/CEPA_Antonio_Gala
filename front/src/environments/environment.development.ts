@@ -5,5 +5,6 @@ export const environment = {
     urlSecciones:'/secciones',
     urlEventos: '/evento',
     urlEnlace:'/enlaces',
-    urlFotos:'/uploads/noticias'
+    urlFotosNoticias:'/uploads/noticias',
+    urlFotosSecciones:'/uploads/secciones'
 };

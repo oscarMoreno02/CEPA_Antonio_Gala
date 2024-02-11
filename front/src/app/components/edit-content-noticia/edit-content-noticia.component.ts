@@ -35,6 +35,7 @@ import { environment } from '../../../environments/environment.development';
   styleUrl: './edit-content-noticia.component.css',
   providers:[MessageService]
 })
+
 export class EditContentNoticiaComponent implements OnInit {
 constructor(
   private servicioNoticias:NoticiaService,
@@ -43,6 +44,7 @@ constructor(
   private messageService:MessageService,
   private servicioFoto:FotosNoticiasService
   ){}
+  env=environment
   foto:string | null=null
   id = this.rutaActiva.snapshot.params['id']
   subscripcion:Subscription=new Subscription
@@ -56,7 +58,7 @@ ngOnInit(): void {
       this.noticia=data
       console.log(this.noticia)
       if(this.noticia.foto){
-        this.foto=environment.baseUrl+environment.urlFotos+'/'+this.noticia.foto
+        this.foto=environment.baseUrl+environment.urlFotosNoticias+'/'+this.noticia.foto
       }
     },
     error:(err)=>{

@@ -83,7 +83,7 @@ export class EditNoticiaDataComponent implements OnInit {
           this.url = this.noticiaEditar.enlace
         }
         if (this.noticiaEditar.foto != null) {
-          this.fotoPreview = environment.baseUrl + environment.urlFotos + '/' + this.noticiaEditar.foto
+          this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
         }
       },
       error: (err) => {
@@ -104,6 +104,9 @@ export class EditNoticiaDataComponent implements OnInit {
         if (this.noticiaEditar.enlace != undefined) {
           this.enlace = true
           this.url = this.noticiaEditar.enlace
+        }
+        if (this.noticiaEditar.foto != null) {
+          this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
         }
       },
       error: (err) => {
