@@ -22,6 +22,7 @@ class Server {
         this.galeriaPath = '/api/galeria';
         this.uploadsNoticiasPath  = '/api/uploads/noticias';
         this.uploadsSeccionesPath  = '/api/uploads/secciones';
+        this.authPath  = '/api/auth';
         this.middlewares();
         this.routes();
         
@@ -50,6 +51,7 @@ class Server {
         this.app.use(this.galeriaPath,require('../routes/galeriaRoutes')) 
         this.app.use(this.uploadsNoticiasPath,  require('../routes/uploadsNoticiasRoutes'));
         this.app.use(this.uploadsSeccionesPath,  require('../routes/updloadsSeccionesRoutes'));
+        // this.app.use(this.authPath,  require('../routes/authRoutes'));
     }
 
     listen() {
