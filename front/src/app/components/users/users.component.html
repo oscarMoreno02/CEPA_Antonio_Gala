@@ -1,7 +1,7 @@
-<app-nueva-usuarios></app-nueva-usuarios>
+<!--<app-nueva-usuarios></app-nueva-usuarios>-->
 <div style="margin-top: 100px;" class="card">
     <p-table
-        [value]="listaUsuarios"
+        [value]="listaUsers"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
@@ -13,15 +13,15 @@
             <tr>
                 <th style="width:10%"></th>
                 <th style="width:40%">Nombre</th>
-                <th style="width:30%">Correo</th>
+                <th style="width:30%">Email</th>
                 <th style="width:20%">Acciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-usuarios>
             <tr>
-                <td><app-editar-usuarios [listaUsuarios]="listaUsuarios" [id]="usuarios.id"></app-editar-usuarios></td>
+                <!--<td><app-editar-usuarios [listaUsers]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>-->
                 <td>{{usuarios.nombre}}</td>
-                <td>{{usuarios.correo}}</td>
+                <td>{{usuarios.email}}</td>
                 <td><i class="pi-pencil"></i></td>
              
             </tr>

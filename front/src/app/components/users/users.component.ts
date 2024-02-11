@@ -25,5 +25,22 @@ import { Users } from '../../interface/users';
   providers: [UsersService]
 })
 export class UsersComponent {
-  
+  constructor(
+    private servicioUsers : UsersService,
+    private router : Router
+  ){}
+  subscriptionUsers: Subscription=new Subscription;
+  listaUsers:Array<Users>=[]
+  @Input() admin=true
+
+  ngOnInit(): void{
+    this.subscriptionUsers = this.servicioUsers.usuariosGet().subscribe({
+      next: (data: Array<Users>) => {
+        this.listaUsers=data
+      },
+      error: (e) => {
+        console.log(e)
+      }
+    })
+  }
 }
