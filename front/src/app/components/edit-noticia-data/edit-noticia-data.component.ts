@@ -15,6 +15,9 @@ import { Subscription } from 'rxjs';
 import { Categoria } from '../../interface/categoria';
 import { NoticiaService } from '../../services/noticia.service';
 import { Noticia } from '../../interface/noticia';
+import { FotosNoticiasService} from '../../services/fotosNoticias.service';
+import { environment } from '../../../environments/environment.development';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-noticia-data',
   standalone: true,
@@ -29,7 +32,7 @@ import { Noticia } from '../../interface/noticia';
     DropdownModule,
     EditNoticiaDataComponent
   ],
-  providers:[CategoriasService,NoticiaService,DialogService, MessageService,],
+  providers: [CategoriasService, NoticiaService, DialogService, MessageService,],
   templateUrl: './edit-noticia-data.component.html',
   styleUrl: './edit-noticia-data.component.css'
 })
@@ -37,43 +40,51 @@ export class EditNoticiaDataComponent implements OnInit {
   constructor(
     public messageService: MessageService,
     private servicioCategoria: CategoriasService,
-    private servicioNoticia:NoticiaService
-    ) {}
+    private servicioNoticia: NoticiaService,
+    private servicioFotos: FotosNoticiasService,
+    private router:Router
+  ) { }
 
 
   @Input() visible: boolean = false;
-  @Input() tipo=0
-  value=''
-   categoria:Categoria={id:0,nombre:'',dependiente:null}
-  @Input() id?:number
-  subscripcionCategorias: Subscription=new Subscription;
+  @Input() tipo = 0
+  value = ''
+  categoria: Categoria = { id: 0, nombre: '', dependiente: null }
+  @Input() id?: number
+  subscripcionCategorias: Subscription = new Subscription;
 
- @Input() listaCategorias:Array<Categoria>=[]
-  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ ;
-  categoriaDependiente?:Categoria
+  @Input() listaCategorias: Array<Categoria> = []
+  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  categoriaDependiente?: Categoria
 
-  noticiaEditar:Noticia={id:null,titulo:'',idCategoria:null,}
-  estiloValidacionNombre=''
-  estiloValidacionDependiente=''
-  estiloValidacionUrl=''
-  
-    enlace?:boolean
-    url=''
+  noticiaEditar: Noticia = { id: null, titulo: '', idCategoria: null, }
+  estiloValidacionNombre = ''
+  estiloValidacionDependiente = ''
+  estiloValidacionUrl = ''
+
+  enlace?: boolean
+  url = ''
+
+  formularioFoto: FormData | null = null
+  fotoPreview: string | null = null
 
   ngOnInit(): void {
-    this.enlace=false
+    this.enlace = false
     this.servicioNoticia.getNoticia(this.id!).subscribe({
-      next: (n:Noticia) => {
-        this.noticiaEditar=n
-          for(const categoria of this.listaCategorias){
-            if(categoria.id==this.noticiaEditar.idCategoria){
-              this.categoriaDependiente=categoria
-            }
+      next: (n: Noticia) => {
+        this.noticiaEditar = n
+        for (const categoria of this.listaCategorias) {
+          if (categoria.id == this.noticiaEditar.idCategoria) {
+            this.categoriaDependiente = categoria
           }
-          if(this.noticiaEditar.enlace!=undefined){
-            this.enlace=true
-            this.url=this.noticiaEditar.enlace
-          }
+        }
+        if (this.noticiaEditar.enlace != undefined) {
+          this.enlace = true
+          this.url = this.noticiaEditar.enlace
+        }
+        if (this.noticiaEditar.foto != null) {
+          this.fotoPreview = environment.baseUrl + environment.urlFotos + '/' + this.noticiaEditar.foto
+        }
       },
       error: (err) => {
         console.log(err)
@@ -81,116 +92,189 @@ export class EditNoticiaDataComponent implements OnInit {
     })
   }
   showDialog() {
-    this.enlace=false
+    this.enlace = false
     this.servicioNoticia.getNoticia(this.id!).subscribe({
-      next: (n:Noticia) => {
-        this.noticiaEditar=n
-          for(const categoria of this.listaCategorias){
-            if(categoria.id==this.noticiaEditar.idCategoria){
-              this.categoriaDependiente=categoria
-            }
+      next: (n: Noticia) => {
+        this.noticiaEditar = n
+        for (const categoria of this.listaCategorias) {
+          if (categoria.id == this.noticiaEditar.idCategoria) {
+            this.categoriaDependiente = categoria
           }
-          if(this.noticiaEditar.enlace!=undefined){
-            this.enlace=true
-            this.url=this.noticiaEditar.enlace
-          }
+        }
+        if (this.noticiaEditar.enlace != undefined) {
+          this.enlace = true
+          this.url = this.noticiaEditar.enlace
+        }
       },
       error: (err) => {
         console.log(err)
       }
     })
-    this.visible=true
+    this.visible = true
   }
-  guardar(b:Boolean){
+  guardar(b: Boolean) {
     console.log(this.categoriaDependiente)
-    if(b){
-      if(this.validarCampos()){
-      this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
-      this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
-        next: (u:any) => {
-          console.log(u)
-              setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
+    if (b) {
+      if (this.validarCampos()) {
+        if (this.formularioFoto) {
+          this.servicioFotos.updateFoto(this.noticiaEditar.foto!,this.formularioFoto).subscribe({
+            next: (data:any) => {
+              this.noticiaEditar.foto = data.url
+              this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
+              this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
+                next: (u: any) => {
+                  console.log(this.noticiaEditar)
+                  setTimeout(() => {
+                    this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
+                    setTimeout(() => {
+
+                    }, 1000);
+                  }, 1000);
+
+                },
+                error: (err) => {
+                  console.log(err)
+                  this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
+                }
+              })
+            }
+          })
+        } else {
+          if (this.fotoPreview==null && this.noticiaEditar != null) {
+           let f=this.noticiaEditar.foto
+           console.log(f)
+            this.servicioFotos.deleteFoto(f!).subscribe({
+              next: (data: any) => {
+                this.noticiaEditar.foto = null
+                this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
+                this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
+                  next: (u: any) => {
+
+                    setTimeout(() => {
+                      this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
+                      setTimeout(() => {
+                        window.location.reload()
+                      }, 1000);
+                    }, 1000);
+
+                  },
+                  error: (err) => {
+                    console.log(err)
+                    this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
+                  }
+                })
+              }
+            })
+
+          } else {
+            this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
+            this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
+              next: (u: any) => {
+
                 setTimeout(() => {
-                  window.location.reload()
-              }, 1000); 
-            }, 1000); 
-          
-        },
-        error: (err) => {
-          console.log(err)
-          this.messageService.add({ severity:'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
+                  this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
+                  setTimeout(() => {
+                    window.location.reload()
+                  }, 1000);
+                }, 1000);
+
+              },
+              error: (err) => {
+                console.log(err)
+                this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
+              }
+            })
+          }
         }
-      })
+
+
+      }
     }
   }
-  }
-  eliminar(b:Boolean){
+  eliminar(b: Boolean) {
 
-    if(b){
+    if (b) {
 
       this.messageService.add({ severity: 'info', summary: 'Borrar Noticia', detail: 'En curso', life: 3000 });
-      let id=this.noticiaEditar.id as number
+      let id = this.noticiaEditar.id as number
       this.servicioNoticia.deleteNoticia(id).subscribe({
-        next: (u:any) => {
+        next: (u: any) => {
           console.log(u)
-              setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Borrar Noticia', detail: 'Completada', life: 3000 });
-                setTimeout(() => {
-                  // window.location.reload()
-              }, 1000); 
-            }, 1000); 
-          
+          setTimeout(() => {
+            this.messageService.add({ severity: 'success', summary: 'Borrar Noticia', detail: 'Completada', life: 3000 });
+            setTimeout(() => {
+              this.router.navigate(['/admin/noticias'])
+            }, 1000);
+          }, 1000);
+
         },
         error: (err) => {
           console.log(err)
-          this.messageService.add({ severity:'error', summary: 'Borrar Noticia', detail: 'Cancelada', life: 3000 });
+          this.messageService.add({ severity: 'error', summary: 'Borrar Noticia', detail: 'Cancelada', life: 3000 });
         }
       })
-    
+
+    }
   }
-  }
-  validarCampos():Boolean{
-    this.noticiaEditar.enlace=null
+  validarCampos(): Boolean {
+    this.noticiaEditar.enlace = null
     let valido = true
-    if(this.noticiaEditar.titulo.split(' ').join('').length<5){
-      this.estiloValidacionNombre='ng-invalid ng-dirty'
-      valido=false
+    if (this.noticiaEditar.titulo.split(' ').join('').length < 5) {
+      this.estiloValidacionNombre = 'ng-invalid ng-dirty'
+      valido = false
       this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de titulo incorrecto', life: 3000 });
-    }else{
-      this.estiloValidacionNombre=''
+    } else {
+      this.estiloValidacionNombre = ''
     }
-    
-    if(this.categoriaDependiente==undefined){
-      this.estiloValidacionDependiente='ng-invalid ng-dirty'
-      valido=false
+
+    if (this.categoriaDependiente == undefined) {
+      this.estiloValidacionDependiente = 'ng-invalid ng-dirty'
+      valido = false
       this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'No se ha seleccionado una categoria', life: 3000 });
-     
-    }else{
-    this.noticiaEditar.idCategoria=this.categoriaDependiente.id
-    this.estiloValidacionDependiente=''
+
+    } else {
+      this.noticiaEditar.idCategoria = this.categoriaDependiente.id
+      this.estiloValidacionDependiente = ''
     }
-    if(this.enlace){
-      if(this.url!=undefined){
-        if(!this.httpRegex.test(this.url)){
-          this.estiloValidacionUrl='ng-invalid ng-dirty'
-          valido=false
+    if (this.enlace) {
+      if (this.url != undefined) {
+        if (!this.httpRegex.test(this.url)) {
+          this.estiloValidacionUrl = 'ng-invalid ng-dirty'
+          valido = false
           this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Dirección URL inválida ', life: 3000 });
-        }else{
-          this.noticiaEditar.enlace=this.url
-          this.estiloValidacionUrl=''
+        } else {
+          this.noticiaEditar.enlace = this.url
+          this.estiloValidacionUrl = ''
         }
-      }else{
-          valido=false
-          this.estiloValidacionUrl='ng-invalid ng-dirty'
-          this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Direccion URL no introducida ', life: 3000 });
+      } else {
+        valido = false
+        this.estiloValidacionUrl = 'ng-invalid ng-dirty'
+        this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Direccion URL no introducida ', life: 3000 });
       }
-    }else{
-      this.estiloValidacionUrl=''
-      this.noticiaEditar.enlace=null
+    } else {
+      this.estiloValidacionUrl = ''
+      this.noticiaEditar.enlace = null
     }
 
     return valido
   }
+
+  uplodadFoto(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      this.formularioFoto = new FormData()
+      this.formularioFoto.append('archivo', file)
+      this.fotoPreview = URL.createObjectURL(file);
+      console.log(this.formularioFoto)
+    } else {
+      this.formularioFoto = null
+    }
   }
+  limpiarFoto(archivo: any) {
+    console.log(archivo)
+    archivo.value = null
+    this.formularioFoto = null
+    this.fotoPreview=null
+  }
+}
 

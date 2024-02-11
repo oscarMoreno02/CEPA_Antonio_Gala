@@ -25,9 +25,9 @@
                         <td>{{ categoria.nombre }}</td>
                     }
                 }
-                @if(noticia.foto!=undefined){
+                @if(noticia.foto){
+                    <td><img [src]="foto" width="100" class="shadow-4"></td>
 
-                    <td><img [src]="noticia.foto" [alt]="noticia.titulo" width="100" class="shadow-4"></td>
                 }@else {
                     <td>[Sin foto]</td>
                 }

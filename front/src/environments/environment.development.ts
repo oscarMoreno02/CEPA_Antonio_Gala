@@ -4,5 +4,6 @@ export const environment = {
     urlNoticias:'/noticias',
     urlSecciones:'/secciones',
     urlEventos: '/evento',
-    urlEnlace:'/enlaces'
+    urlEnlace:'/enlaces',
+    urlFotos:'/uploads/noticias'
 };
