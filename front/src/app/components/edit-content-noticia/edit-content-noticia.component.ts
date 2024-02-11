@@ -56,7 +56,7 @@ ngOnInit(): void {
       this.noticia=data
       console.log(this.noticia)
       if(this.noticia.foto){
-        this.foto=environment.baseUrl+environment.urlFotos+'/'+this.noticia.foto
+        this.foto=environment.baseUrl+environment.urlFotosNoticias+'/'+this.noticia.foto
       }
     },
     error:(err)=>{

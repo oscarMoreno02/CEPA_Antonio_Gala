@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable, catchError, of } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FotosNoticiasService {
+export class FotosSeccionesService {
 
-  baseUrl=environment.baseUrl+environment.urlFotosNoticias
+ 
+  baseUrl=environment.baseUrl+environment.urlFotosSecciones
   constructor(private http:HttpClient) { }
 
  
