@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, KeyValueDiffers } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ConfirmComponent } from '../confirm/confirm.component';
@@ -12,8 +12,10 @@ import { SeccionService } from '../../services/seccion.service';
 import { NoticiaService } from '../../services/noticia.service';
 
 import { Noticia, Seccion } from '../../interface/noticia';
-import { Subscription } from 'rxjs';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { FotosSeccionesService } from '../../services/fotos-secciones.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-editar-seccion',
@@ -31,12 +33,14 @@ import { Router } from '@angular/router';
   templateUrl: './editar-seccion.component.html',
   styleUrl: './editar-seccion.component.css'
 })
+
 export class EditarSeccionComponent {
   constructor(
     public messageService: MessageService,
     private servicioSeccion: SeccionService ,
     private servicioNoticia: NoticiaService,
-    private router:Router
+    private router:Router,
+    private servicioFoto:FotosSeccionesService
     ) {}
 
  @Input() visible: boolean = false;
@@ -48,12 +52,18 @@ export class EditarSeccionComponent {
 
  estiloValidacionTitulo=''
  estiloValidacionTexto=''
-  urlFoto=''
+
+
+  formularioFoto: FormData | null = null
+  fotoPreview: string | null = null
 
  ngOnInit(): void {
     this.subscripcionSeccion=this.servicioSeccion.getSeccion(this.id).subscribe({
       next:(data:Seccion)=>{
         this.seccionEditar=data
+        if (this.seccionEditar.foto != null) {
+          this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+        }
       },
       error:(err)=>{
         console.log(err)
@@ -64,6 +74,9 @@ export class EditarSeccionComponent {
   this.subscripcionSeccion=this.servicioSeccion.getSeccion(this.id).subscribe({
     next:(data:Seccion)=>{
       this.seccionEditar=data
+      if (this.seccionEditar.foto != null) {
+        this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+      }
     },
     error:(err)=>{
       console.log(err)
@@ -71,29 +84,55 @@ export class EditarSeccionComponent {
   })
      this.visible = true;
  }
- guardar(b:Boolean){
+ async guardar(b:Boolean){
    if(b){
      if(this.validarCampos()){
-      this.seccionEditar.foto=this.urlFoto
-     this.messageService.add({ severity: 'info', summary: 'Actualizar sección', detail: 'En curso', life: 3000 });
-     this.servicioSeccion.updateSeccion(this.seccionEditar).subscribe({
-       next: (data:any) => {
-             setTimeout(() => {
-               this.messageService.add({ severity: 'success', summary: 'Actualizar sección', detail: 'Completada', life: 3000 });
-      
-              for(let i=0 ;i< this.noticia!.secciones!.length;i++){
-                if (this.noticia!.secciones![i].id==this.seccionEditar.id){
-                  this.noticia!.secciones![i]=this.seccionEditar
-                  this.visible=false
-                }
-              }
-           }, 1000); 
-       },
-       error: (err) => {
-         console.log(err)
-         this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
-       }
-     })
+      await this.evaluarFoto()
+      .then(data=>{
+        this.seccionEditar.foto=data
+        this.messageService.add({ severity: 'info', summary: 'Actualizar sección', detail: 'En curso', life: 3000 });
+        this.servicioSeccion.updateSeccion(this.seccionEditar).subscribe({
+          next: (data:any) => {
+                setTimeout(() => {
+                  this.messageService.add({ severity: 'success', summary: 'Actualizar sección', detail: 'Completada', life: 3000 });
+         
+                 for(let i=0 ;i< this.noticia!.secciones!.length;i++){
+                   if (this.noticia!.secciones![i].id==this.seccionEditar.id){
+                     this.noticia!.secciones![i]=this.seccionEditar
+                     this.visible=false
+                   }
+                 }
+              }, 1000); 
+          },
+          error: (err) => {
+            console.log(err)
+            this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
+          }
+        })
+      })
+      .catch(err=>{
+        this.seccionEditar.foto=null
+        this.messageService.add({ severity: 'info', summary: 'Actualizar sección', detail: 'En curso', life: 3000 });
+        this.servicioSeccion.updateSeccion(this.seccionEditar).subscribe({
+          next: (data:any) => {
+                setTimeout(() => {
+                  this.messageService.add({ severity: 'success', summary: 'Actualizar sección', detail: 'Completada', life: 3000 });
+         
+                 for(let i=0 ;i< this.noticia!.secciones!.length;i++){
+                   if (this.noticia!.secciones![i].id==this.seccionEditar.id){
+                     this.noticia!.secciones![i]=this.seccionEditar
+                     this.visible=false
+                   }
+                 }
+              }, 1000); 
+          },
+          error: (err) => {
+            console.log(err)
+            this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
+          }
+        })
+      })
+   
    }
  }
  }
@@ -130,5 +169,46 @@ export class EditarSeccionComponent {
   
    return valido
  }
-
+  uplodadFoto(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      this.formularioFoto = new FormData()
+      this.formularioFoto.append('archivo', file)
+      this.fotoPreview = URL.createObjectURL(file);
+      console.log(this.formularioFoto)
+    } else {
+      this.formularioFoto = null
+    }
+  }
+  limpiarFoto(archivo: any) {
+    archivo.value = null
+    this.formularioFoto = null
+    this.fotoPreview = null
+  }
+  async evaluarFoto(): Promise<null | string | undefined> {
+    let id: string | null = this.seccionEditar.foto!;
+    if (this.formularioFoto == null) {
+      if(this.fotoPreview==null){
+        if (this.seccionEditar.foto != null) {
+          try {
+            const data: any = await lastValueFrom(this.servicioFoto.deleteFoto(this.seccionEditar.foto));
+            id = null;
+          } catch (err) {
+            id=null
+            return id;
+          }
+        }
+      }else{
+        return id;
+      }
+    } else {
+        try {
+            const data: any = await lastValueFrom(this.servicioFoto.updateFoto(this.seccionEditar.foto!, this.formularioFoto));
+            id = data.url;
+        } catch (err) {
+            return id;
+        }
+    }
+    return id;
+}
 }

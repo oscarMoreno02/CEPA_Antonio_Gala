@@ -46,7 +46,7 @@
 @if(noticia.secciones){
    
     
-    @if(noticia.secciones.length>1){
+    @if(noticia.secciones.length>0){
         @for (seccion of noticia.secciones; track seccion.id) {
            
             <div class="card" style="margin-top: 10px;">
@@ -69,7 +69,7 @@
                 <td>{{ seccion.titulo }}</td>
                 @if(seccion.foto!=undefined){
                     
-                    <td><img [src]="seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
                 }@else {
                     <td>[Sin foto]</td>
                 }

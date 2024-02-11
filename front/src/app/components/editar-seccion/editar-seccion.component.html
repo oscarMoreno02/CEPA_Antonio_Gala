@@ -16,9 +16,18 @@
                 <small id="username-help1">Introduce un título para la sección</small>
             </div>
         
-                <input class="{{estiloValidacionTitulo}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="urlFoto" />
-                <small id="username-help1">Selecciona una foto</small>
-            
+               
+            <div class="flex flex-column">
+                <label for="username2">Foto</label>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="username-help2">Subir una foto para esta sección</small>
+            </div>
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
                 <div class="flex flex-column subcategoria-seleccionada">
                     <label for="username2">Cuerpo</label>
                     <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="seccionEditar.texto" class="{{estiloValidacionTexto}}"></textarea>

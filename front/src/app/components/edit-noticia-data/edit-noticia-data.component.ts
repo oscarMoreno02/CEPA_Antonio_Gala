@@ -105,6 +105,9 @@ export class EditNoticiaDataComponent implements OnInit {
           this.enlace = true
           this.url = this.noticiaEditar.enlace
         }
+        if (this.noticiaEditar.foto != null) {
+          this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
+        }
       },
       error: (err) => {
         console.log(err)
