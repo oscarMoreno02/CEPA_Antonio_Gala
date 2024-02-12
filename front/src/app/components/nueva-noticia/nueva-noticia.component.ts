@@ -1,6 +1,6 @@
 
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -50,6 +50,7 @@ export class NuevaNoticiaComponent implements OnInit {
 
   @Input() visible: boolean = false;
   @Input() tipo = 0
+  @Output() cerrarModal = new EventEmitter<void>();
   value = ''
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   subscripcionNoticia: Subscription = new Subscription;
@@ -78,6 +79,9 @@ export class NuevaNoticiaComponent implements OnInit {
   }
   showDialog() {
     this.visible = true;
+  }
+  cerrar(): void {
+    this.cerrarModal.emit();
   }
   crear(b: Boolean) {
     if (b) {
