@@ -1,0 +1,38 @@
+<app-nueva-noticia></app-nueva-noticia>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaNoticias"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} categorias"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:10%"></th>
+                <th style="width:40%">Nombre</th>
+                <th style="width:20%">Categoria</th>
+                <th style="width:30%">Enlace</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-noticia>
+            <tr>
+                <td><p-button routerLink="/noticia/contenido/{{noticia.id}}" icon="pi pi-pencil" title=""></p-button></td>
+                <td>{{ noticia.titulo}}</td>
+                @for (categoria of listaCategorias; track categoria.id) {
+                    @if(categoria.id==noticia.idCategoria){
+                        <td>{{categoria.nombre}}</td>
+                    }
+                }
+                <td>{{ noticia.enlace }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            
+        </ng-template>
+    </p-table>
+</div>

@@ -1,1 +1,8 @@
-<p>cabecera works!</p>
+@if(admin==true ){
+    <p-menubar  [model]="items"></p-menubar>
+    <app-login  [tipo]="1" [visible]="modalLogin" (cerrarModal)="modalLogin = false"></app-login>
+}@else {
+    <p-menubar  [model]="adminItems"></p-menubar>
+    <app-nueva-categoria [tipo]="1" [visible]="modalCategoriaNueva" (cerrarModal)="modalCategoriaNueva = false"></app-nueva-categoria>
+    <app-nueva-noticia [tipo]="1" [visible]="modalNoticiaNueva" (cerrarModal)="modalNoticiaNueva = false"></app-nueva-noticia>
+}
