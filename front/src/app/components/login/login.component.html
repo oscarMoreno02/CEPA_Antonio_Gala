@@ -1,0 +1,35 @@
+
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
+  }
+  <p-dialog header="Crear nueva noticia" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false" (onHide)="cerrar()">
+
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+            <div class="flex flex-column">
+                <label for="username1">Email</label>
+             <input type="email" [(ngModel)]="email" >
+                <small id="username-help1">Introduce el email de usuario</small>
+            </div>
+            <div class="flex flex-column">
+                <label for="username1">Contraseña</label>
+             <input type="password" [(ngModel)]="password" >
+                <small id="username-help1">Introduce la contraseña de usuario</small>
+            </div>
+    
+        </div>
+        @if(error!=null){
+
+            <div class="flex flex-row gap-4">
+                <span>{{error}}</span>
+            </div>
+        }
+        <div style="margin-top: 20px;" >
+          <button (click)="login()">Login</button>
+        </div>
+    </div>
+    </p-dialog>
+</div>

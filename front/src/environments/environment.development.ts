@@ -6,5 +6,8 @@ export const environment = {
     urlEventos: '/evento',
     urlEnlace:'/enlaces',
     urlFotosNoticias:'/uploads/noticias',
-    urlFotosSecciones:'/uploads/secciones'
+    urlFotosSecciones:'/uploads/secciones',
+    urlAuth:'/auth',
+    urlLogin:'/login',
+    urlRegistro:'/register'
 };

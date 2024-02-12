@@ -1,6 +1,6 @@
 
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -42,6 +42,7 @@ export class NuevaCategoriaComponent implements OnInit  {
 
   @Input() visible: boolean = false;
   @Input() tipo=0
+  @Output() cerrarModal = new EventEmitter<void>();
   value=''
 
   subscripcionCategorias: Subscription=new Subscription;
@@ -68,6 +69,10 @@ export class NuevaCategoriaComponent implements OnInit  {
   showDialog() {
       this.visible = true;
   }
+
+cerrar(): void {
+  this.cerrarModal.emit();
+}
   crear(b:Boolean){
     if(b){
 
