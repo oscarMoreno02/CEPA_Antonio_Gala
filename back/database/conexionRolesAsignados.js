@@ -50,10 +50,11 @@ class ConexionRolesAsignados{
         let resultado = 0;
         this.conectar();
         try {
-            const task = new models.rolAsignados(body);
+            const task = new models.rolAsignado(body);
             await task.save();
             resultado = 1;
         } catch (error) {
+            console.log(error)
             throw error;
         } finally {
             this.desconectar();
