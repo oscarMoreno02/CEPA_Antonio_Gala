@@ -51,7 +51,7 @@ class Server {
         this.app.use(this.galeriaPath,require('../routes/galeriaRoutes')) 
         this.app.use(this.uploadsNoticiasPath,  require('../routes/uploadsNoticiasRoutes'));
         this.app.use(this.uploadsSeccionesPath,  require('../routes/updloadsSeccionesRoutes'));
-        // this.app.use(this.authPath,  require('../routes/authRoutes'));
+        this.app.use(this.authPath,  require('../routes/authRoutes'));
     }
 
     listen() {

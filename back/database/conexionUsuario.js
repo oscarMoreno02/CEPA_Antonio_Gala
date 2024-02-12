@@ -108,7 +108,56 @@ class ConexionUser{
             this.desconectar()
         }
     }
-   
+    //Óscar
+    checkLogin = async (email) => {
+
+        this.conectar();
+        let user = await models.user.findOne(({
+            where: {
+                email
+            }
+        }));
+
+        this.desconectar();
+        if (!user) {
+            throw new Error('Email no registrado');
+        }
+
+        return user;
+    }
+        //Óscar
+    getRolUserId = async (idU) => {
+        try {
+
+            let resultado = [];
+            this.conectar();
+            resultado = await models.user.findOne({
+                attributes: ['id','nombre','email','createdAt','updatedAt'],
+                where: {
+                    id: {
+                        [Op.eq]: idU
+                    }
+                },
+                include: [{
+                    model: models.rolAsignado,
+                    as: 'rolesAsignados',
+                    include: [{
+                            model: models.rol,
+                            as: 'rol',
+                            attributes: ['nombre'],
+                        },
+
+                    ],
+                    attributes: ['id'],
+                }, ],
+            });
+            this.desconectar();
+            return resultado;
+        } catch (err) {
+            console.log(err)
+            this.desconectar()
+        }
+    }
 }
 
 module.exports = ConexionUser;
