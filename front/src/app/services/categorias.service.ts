@@ -29,7 +29,7 @@ export class CategoriasService {
   insertCategoria(categoria:Categoria): Observable<any | undefined> {
     let body={categoria:categoria}
   
-     return this.http.post<any>(this.baseUrl,categoria).pipe(
+     return this.http.post<any>(this.baseUrl,categoria,{params: {auth: true}}).pipe(
      
      )
    }
@@ -43,14 +43,14 @@ export class CategoriasService {
   }
   deleteCategoria(id:number): Observable<any | undefined> {
 
-    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
     )
   }
   updateCategoria(categoria:Categoria): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+categoria.id,categoria,).pipe(
+     return this.http.put<any>(this.baseUrl+'/'+categoria.id,categoria,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
