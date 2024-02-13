@@ -6,11 +6,12 @@ import { AdminNoticiaComponent } from './components/admin-noticia/admin-noticia.
 import { EditContentNoticiaComponent } from './components/edit-content-noticia/edit-content-noticia.component';
 
 export const routes: Routes = [
-{path:'admin/categorias',component: AdminCategoriasComponent},
+{path:'administrador',component: AdminCategoriasComponent},
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 {path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},
 {path:'noticia/contenido/:id',component: EditContentNoticiaComponent},
 {path:'admin/noticias',component: AdminNoticiaComponent},
 {path:'admin/categorias',component:AdminCategoriasComponent},
-{path:'eventos/mostrarEventos', component:EventosComponent}
+{path:'eventos/mostrarEventos', component:EventosComponent},
+
 ];

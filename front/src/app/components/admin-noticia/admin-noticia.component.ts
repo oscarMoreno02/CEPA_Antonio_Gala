@@ -50,12 +50,12 @@ export class AdminNoticiaComponent implements OnInit {
 
           },
           error:(err)=>{
-            console.log(err);
+
           }
         })
       },
       error: (err) => {
-        console.log(err);
+
       }
     });
   }

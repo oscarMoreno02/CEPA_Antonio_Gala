@@ -5,7 +5,7 @@ const esAdmin = (req, res, next) => {
     if (!req.uid){ 
         return res.status(500).json({'msg':'No es posible el acceso como administrador.'})
     }
-        console.log(req.abilities)
+
         if(req.abilities.includes('admin')){
             next()
         }else{

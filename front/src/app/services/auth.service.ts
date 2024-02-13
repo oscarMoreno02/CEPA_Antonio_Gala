@@ -1,8 +1,9 @@
 import {  HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { Observable, catchError } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { Usuario } from '../interface/usuario';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,49 +14,90 @@ export class AuthService  {
     private http:HttpClient
   ) { 
    this.t=this.getToken()
-  //  this.payload=jwtDecode<any>(this.t)
-  //  this.abilities=this.payload.abilities
+   if(this.t.length>1){
+     this.payload=jwtDecode<any>(this.t)
+     this.abilities=this.payload.abilities
+    }
   }
+  private _isLoggedIn: boolean = false;
  t?
-//  payload?
-//  abilities?
+ payload?
+ abilities?
  login(email:string,password:string): Observable<any | undefined> {
   let body={email:email,password:password}
   return this.http.put<any>(this.baseUrl+environment.urlLogin,body)
 }
-registro(email:string,password:string,nombre:string): Observable<any | undefined> {
-  let body={email:email,password:password,nombre:nombre}
-  return this.http.put<any>(this.baseUrl+environment.urlLogin,body)
+registro(usuario:Usuario): Observable<any | undefined> {
+  let body={nombre:usuario.nombre,password:usuario.password,email:usuario.email}
+  return this.http.post<any>(this.baseUrl+environment.urlRegistro,body)
 }
 
-  // hasRol(rol:Array<String>):boolean{
-  //   console.log(rol)
-  //   console.log(this.t)
-  //   let pasa=false
-  //   for (let i =0;i<rol.length;i++){
-  //     if(this.abilities!.includes(rol[i])){      
-  //       pasa=true
-  //     }
-  //   }
-  //   return pasa
-  // }
+  hasRol(rol:Array<String>):boolean{
+  
+    let pasa=false
+    for (let i =0;i<rol.length;i++){
+      if(this.abilities.includes(rol[i])){      
+        console.log('llega')
+        pasa=true
+      }
+    }
+    return pasa
+  }
 
   getToken(): string   {
     const serializedObj = sessionStorage.getItem('token');
+ 
     if (serializedObj) {
       return serializedObj
     }else{
       return ''
     }
   }
-  // getRoles(){
-  //     return this.abilities
-  // }
-  // getUid(){
-  //   return this.payload.uid
-  // }
-  // getName(){
-  //   console.log(this.payload.uname)
-  //   return this.payload.uname
-  // }
+  getRoles(){
+    this.t=this.getToken()
+    this.payload=jwtDecode<any>(this.t)
+    this.abilities=this.payload.abilities
+   
+      return this.abilities
+  }
+  getUid(){
+    return this.payload.uid
+  }
+  getName(){
+    this.t=this.getToken()
+    this.payload=jwtDecode<any>(this.t)
+    this.abilities=this.payload.abilities
+
+    return this.payload.uname
+  }
+  loginOn() {
+    this._isLoggedIn = true;
+  }
+changeAccess(acceso:string){
+  sessionStorage.setItem('access',acceso)
+}
+clearAccess(){
+  sessionStorage.removeItem('access')
+}
+get getAccess():string{
+  const serializedObj = sessionStorage.getItem('access');
+
+  if (serializedObj) {
+    return serializedObj
+  }else{
+    return ''
+  }
+ 
+}
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('access')
+  }
+  get isLoggedIn(): boolean {
+   if(this.getToken().length>1){
+    return true
+   }else{
+    return false
+   }
+  }
 }

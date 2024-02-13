@@ -66,7 +66,7 @@ export class EditarSeccionComponent {
         }
       },
       error:(err)=>{
-        console.log(err)
+      
       }
     })
  }  
@@ -79,7 +79,7 @@ export class EditarSeccionComponent {
       }
     },
     error:(err)=>{
-      console.log(err)
+    
     }
   })
      this.visible = true;
@@ -105,7 +105,7 @@ export class EditarSeccionComponent {
               }, 1000); 
           },
           error: (err) => {
-            console.log(err)
+ 
             this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
           }
         })
@@ -127,7 +127,7 @@ export class EditarSeccionComponent {
               }, 1000); 
           },
           error: (err) => {
-            console.log(err)
+
             this.messageService.add({ severity:'error', summary: 'Actualizar seccion', detail: 'Cancelada', life: 3000 });
           }
         })
