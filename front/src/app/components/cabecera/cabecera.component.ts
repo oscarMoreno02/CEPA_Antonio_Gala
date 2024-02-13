@@ -94,7 +94,7 @@ userroles:Array<string>=[]
         this.listaCategorias = data
 
         this.items = this.crearMenu(this.listaCategorias)
-        this.items?.unshift({ label: 'Inicio', url: '' })
+        this.items?.unshift({ label: 'Inicio',command: () => { this.router.navigate(['']) }, })
       },
       error: (err) => {
     
@@ -111,7 +111,7 @@ userroles:Array<string>=[]
 
       let item: MenuItem = {
         label: elemento.nombre,
-        url: '/categoria/' + elemento.id,
+        command: () => { this.router.navigate(['/categoria/' + elemento.id]) },
         items: [] as MenuItem[]
       }
       if (elemento.subcategorias!.length > 0) {
