@@ -29,9 +29,7 @@ export class CategoriasService {
   insertCategoria(categoria:Categoria): Observable<any | undefined> {
     let body={categoria:categoria}
   
-     return this.http.post<any>(this.baseUrl,categoria,{params: {auth: true}}).pipe(
-     
-     )
+     return this.http.post<any>(this.baseUrl,categoria,{params: {auth: true}})
    }
    getCategoria(id:number): Observable<any | undefined> {
 

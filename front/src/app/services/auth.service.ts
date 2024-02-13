@@ -42,7 +42,6 @@ registro(usuario:Usuario): Observable<any | undefined> {
     let pasa=false
     for (let i =0;i<rol.length;i++){
       if(this.abilities?.includes(rol[i])){      
-        console.log('llega')
         pasa=true
       }
     }
