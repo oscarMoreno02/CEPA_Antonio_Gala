@@ -5,9 +5,13 @@ import { NoticiasCategoriaComponent } from './components/noticias-categoria/noti
 import { AdminNoticiaComponent } from './components/admin-noticia/admin-noticia.component';
 import { EditContentNoticiaComponent } from './components/edit-content-noticia/edit-content-noticia.component';
 import { accesoGuard } from './guards/acceso.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
-    {path: 'administrador', pathMatch: 'full', redirectTo: '/admin'},
+    {path: '', component:HomeComponent },
+{path: 'administrador', pathMatch: 'full', redirectTo: '/admin'},
 {path:'admin',component: AdminCategoriasComponent ,
  canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 
@@ -24,5 +28,5 @@ canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
  canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 
 {path:'eventos/mostrarEventos', component:EventosComponent},
-
+{path: '**', component: NotFoundComponent},
 ];

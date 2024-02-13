@@ -13,12 +13,17 @@ export class AuthService  {
   constructor(
     private http:HttpClient
   ) { 
-   this.t=this.getToken()
-   if(this.t.length>1){
-     this.payload=jwtDecode<any>(this.t)
-     this.abilities=this.payload.abilities
+    try{
+      this.t=this.getToken()
+      if(this.t.length>1){
+        this.payload=jwtDecode<any>(this.t)
+        this.abilities=this.payload.abilities
+      }
+    }catch(e){
+      sessionStorage.clear()
+      window.location.href=''
     }
-  }
+    }
   private _isLoggedIn: boolean = false;
  t?
  payload?
