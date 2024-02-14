@@ -1,0 +1,78 @@
+
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-user" label="Login"></p-button>
+        @if(register==false){
+        
+        <p-dialog header="Início de sesión" [(visible)]="visible" [modal]="true" 
+        [draggable]="false" [resizable]="false" (onHide)="cerrar()">
+        
+        
+        <div class="card flex justify-content-center" class="custom-dialog">
+            <div class="flex flex-row gap-4">
+                <div class="flex flex-column">
+                    <label for="username1">Email</label>
+                    <input [(ngModel)]="email" >
+                    <small id="username-help1">Introduce el email de usuario</small>
+                </div>
+            <div class="flex flex-column">
+                <label for="username1">Contraseña</label>
+             <input type="password" [(ngModel)]="password" >
+                <small id="username-help1">Introduce la contraseña de usuario</small>
+            </div>
+    
+        </div>
+        @if(error!=null){
+            
+            <div style="margin-top: 10px;" class="flex flex-row gap-4">
+                <div [innerHTML]="error"></div>
+            </div>
+        }
+        <div style="margin-top: 20px;" >
+            <button (click)="login()">Login</button>
+            <button (click)="changeType(true)">Crear una cuenta</button>
+        </div>
+    </div>
+</p-dialog>
+}@else{
+   
+        
+        <p-dialog header="Registro" [(visible)]="visible" [modal]="true" 
+        [draggable]="false" [resizable]="false" (onHide)="cerrar()">
+        
+        <div class="card flex justify-content-center" class="custom-dialog">
+            <div class="flex flex-row gap-4">
+                <div class="flex flex-column">
+                    <label for="username1">Nombre</label>
+                    <input type="email" [(ngModel)]="nombre" >
+                    <small id="username-help1">Introduce tu nombre</small>
+                </div>
+                <div class="flex flex-column">
+                    <label for="username1">Email</label>
+                    <input type="email" [(ngModel)]="email" >
+                    <small id="username-help1">Introduce el email de usuario</small>
+                </div>
+            <div class="flex flex-column">
+                <label for="username1">Contraseña</label>
+             <input type="password" [(ngModel)]="password" >
+                <small id="username-help1">Introduce la contraseña de usuario</small>
+            </div>
+            <div class="flex flex-column">
+                <label for="username1">Confirmar contraseña</label>
+             <input type="password" [(ngModel)]="password2" >
+                <small id="username-help1">Confirma la contraseña de usuario</small>
+            </div>
+    
+        </div>
+        <div style="margin-top: 10px;" class="flex flex-row gap-4">
+            <div [innerHTML]="error"></div>
+        </div>
+        <div style="margin-top: 20px;" >
+            <button (click)="registro()">Registrarse</button>
+            <button (click)="changeType(false)">Iniciar sesión</button>
+        </div>
+    </div>
+</p-dialog>
+
+}
+
+</div>

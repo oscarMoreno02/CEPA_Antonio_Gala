@@ -37,7 +37,7 @@ export class SeccionService {
   insertSeccion(seccion:Seccion): Observable<any | undefined> {
     let body={seccion:seccion}
   
-     return this.http.post<any>(this.baseUrl,seccion).pipe(
+     return this.http.post<any>(this.baseUrl,seccion,{params: {auth: true}}).pipe(
      
      )
    }
@@ -50,14 +50,14 @@ export class SeccionService {
   }
   deleteSeccion(id:number): Observable<any | undefined> {
 
-    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
     )
   }
   updateSeccion(seccion:Seccion): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+seccion.id,seccion,).pipe(
+     return this.http.put<any>(this.baseUrl+'/'+seccion.id,seccion,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })

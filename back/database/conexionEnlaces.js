@@ -79,18 +79,18 @@ class ConexionEnlaces{
         }
     }
     insertEnlace = async (body) => {
-        let resultado = 0;
+
         this.conectar();
         try {
             const task = new models.Enlace(body);
             await task.save();
-            resultado = 1;
+           return task.id
         } catch (error) {
             throw error;
         } finally {
             this.desconectar();
         }
-        return resultado;
+        
     }
 
     deleteEnlace = async (id) => {

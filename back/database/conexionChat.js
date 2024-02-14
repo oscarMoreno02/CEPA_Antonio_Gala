@@ -80,30 +80,6 @@ class ConexionChat {
         return resultado;
     }
 
-    async getMensajesChat(chatId) {
-        this.conectar();
-        let resultado;
-    
-        try {
-            const chat = await Chat.findByPk(chatId, {
-                include: [{
-                    model: MensajeChat,
-                    as: 'mensajesChat',
-                }],
-            });
-            if (!chat) {
-                throw new Error('Chat no encontrado');
-            }
-            resultado = chat.mensajesChat;
-        } catch (error) {
-            console.error('Error al obtener mensajes de chat:', error.message);
-            throw error;
-        } finally {
-            this.desconectar();
-        }
-        return resultado;
-    }
-
     async deleteChat(id) {
         this.conectar();
         let resultado;

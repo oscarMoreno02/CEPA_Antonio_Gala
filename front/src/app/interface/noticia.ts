@@ -23,10 +23,10 @@ export interface Seccion {
 }
 
 export interface Enlace {
-    id:         number;
-    idSeccion:  number;
-    textoClave: string;
-    url:        string;
+    id?:         number;
+    idSeccion?:  number;
+    textoClave?: string;
+    url?:        string;
     createdAt?:  string;
     updatedAt?:  string;
 }

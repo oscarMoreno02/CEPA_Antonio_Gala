@@ -19,10 +19,12 @@ import { NoticiaService } from '../../services/noticia.service';
 import { Router } from '@angular/router';
 import { SeccionService } from '../../services/seccion.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+
+import { FotosSeccionesService } from '../../services/fotos-secciones.service';
 @Component({
   selector: 'app-nueva-seccion',
   standalone: true,
-  imports: [    
+  imports: [
     FormsModule,
     ToastModule,
     DialogModule,
@@ -30,90 +32,149 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     InputTextModule,
     InputSwitchModule,
     ConfirmComponent,
-    DropdownModule,
     InputTextareaModule
   ],
   templateUrl: './nueva-seccion.component.html',
   styleUrl: './nueva-seccion.component.css',
-  providers:[MessageService]
+  providers: [MessageService]
 })
 export class NuevaSeccionComponent {
   constructor(
     public messageService: MessageService,
-    private servicioSeccion: SeccionService ,
+    private servicioSeccion: SeccionService,
     private servicioNoticia: NoticiaService,
-    private router:Router
-    ) {}
+    private router: Router,
+    private servicioFotos: FotosSeccionesService
+  ) { }
 
- @Input() visible: boolean = false;
- @Input() tipo?:number
- @Input() noticia?:Noticia
- subscripcionSeccion: Subscription=new Subscription;
- nuevaSeccion:Seccion={id:0,titulo:'',idNoticia:0}
- foto=null
- estiloValidacionTitulo=''
- estiloValidacionTexto=''
-  urlFoto=''
+  @Input() visible: boolean = false;
+  @Input() tipo?: number
+  @Input() noticia?: Noticia
+  subscripcionSeccion: Subscription = new Subscription;
+  nuevaSeccion: Seccion = { id: 0, titulo: '', idNoticia: 0 }
+  foto = null
+  estiloValidacionTitulo = ''
+  estiloValidacionTexto = ''
+  urlFoto = ''
 
- ngOnInit(): void {
- }
- showDialog() {
-     this.visible = true;
- }
- crear(b:Boolean){
-   if(b){
-     if(this.validarCampos()){
-     this.messageService.add({ severity: 'info', summary: 'Crear seccion', detail: 'En curso', life: 3000 });
-     this.nuevaSeccion.idNoticia=this.noticia!.id
-     this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
-       next: (data:any) => {
-             setTimeout(() => {
-               this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
-               this.nuevaSeccion.id=data.id
-              this.noticia?.secciones?.push(this.nuevaSeccion)
-           }, 1000); 
-         
-       },
-       error: (err) => {
-         console.log(err)
-         this.messageService.add({ severity:'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
-       }
-     })
-   }
- }
- }
- validarCampos():Boolean{
-   let valido = true
-   if(this.nuevaSeccion.titulo){
-    if(this.nuevaSeccion.titulo.split(' ').join('').length<5){
+  formularioFoto: FormData | null = null
+  fotoPreview: string | null = null
+  ngOnInit(): void {
+  }
+  showDialog() {
+    this.visible = true;
+  }
+  crear(b: Boolean) {
+    if (b) {
+      if (this.validarCampos()) {
+        if (this.formularioFoto != null) {
+          this.servicioFotos.uploadFoto(this.formularioFoto).subscribe({
+            next: (data: any) => {
+              this.nuevaSeccion.foto = data.url
+              this.messageService.add({ severity: 'info', summary: 'Crear seccion', detail: 'En curso', life: 3000 });
+              this.nuevaSeccion.idNoticia = this.noticia!.id
+              this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
+                next: (data: any) => {
+                  setTimeout(() => {
+                    this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
+                    this.nuevaSeccion.id = data.id
 
-      this.estiloValidacionTitulo='ng-invalid ng-dirty'
-      valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'Tamaño de titulo incorrecto', life: 3000 });
-    }else{
-      this.estiloValidacionTitulo=''
+                    this.noticia?.secciones?.push({ id: this.nuevaSeccion.id, idNoticia: this.noticia.id, titulo: this.nuevaSeccion.titulo, texto: this.nuevaSeccion.texto, foto: this.urlFoto })
+                    this.nuevaSeccion.id = 0
+                    this.nuevaSeccion.enlaces = []
+                    this.nuevaSeccion.foto = ''
+                    this.nuevaSeccion.texto = ''
+                    this.nuevaSeccion.titulo = ''
+                    this.visible = false
+                    this.urlFoto = ''
+                  }, 1000);
+
+                },
+                error: (err) => {
+
+                  this.messageService.add({ severity: 'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
+                }
+              })
+
+
+            }
+          })
+        } else {
+          this.nuevaSeccion.foto=null
+          this.messageService.add({ severity: 'info', summary: 'Crear seccion', detail: 'En curso', life: 3000 });
+          this.nuevaSeccion.idNoticia = this.noticia!.id
+          this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
+            next: (data: any) => {
+              setTimeout(() => {
+                this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
+                this.nuevaSeccion.id = data.id
+                this.noticia?.secciones?.push({ id: this.nuevaSeccion.id, idNoticia: this.noticia.id, titulo: this.nuevaSeccion.titulo, texto: this.nuevaSeccion.texto, foto: this.urlFoto })
+                this.nuevaSeccion.id = 0
+                this.nuevaSeccion.enlaces = []
+                this.nuevaSeccion.foto = ''
+                this.nuevaSeccion.texto = ''
+                this.nuevaSeccion.titulo = ''
+                this.visible = false
+                this.urlFoto = ''
+              }, 1000);
+
+            },
+            error: (err) => {
+   
+              this.messageService.add({ severity: 'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
+            }
+          })
+        }
+      }
     }
-   }else{
-     this.estiloValidacionTitulo='ng-invalid ng-dirty'
-     this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'El titulo de la seccion es obligatorio', life: 3000 });
-    valido=false
-   }
-   if(this.nuevaSeccion.texto){
-    if(this.nuevaSeccion.texto.split(' ').join('').length<5){
-      this.estiloValidacionTexto='ng-invalid ng-dirty'
-      valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de texto incorrecto', life: 3000 });
-    }else{
-      this.estiloValidacionTexto=''
-    }
-   }else{
-     this.estiloValidacionTexto='ng-invalid ng-dirty'
-     this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'El texto de la seccion es obligatorio', life: 3000 });
-    valido=false
-   }
-  
-   return valido
- }
+  }
+  validarCampos(): Boolean {
+    let valido = true
+    if (this.nuevaSeccion.titulo) {
+      if (this.nuevaSeccion.titulo.split(' ').join('').length < 5) {
 
+        this.estiloValidacionTitulo = 'ng-invalid ng-dirty'
+        valido = false
+        this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'Tamaño de titulo incorrecto', life: 3000 });
+      } else {
+        this.estiloValidacionTitulo = ''
+      }
+    } else {
+      this.estiloValidacionTitulo = 'ng-invalid ng-dirty'
+      this.messageService.add({ severity: 'warn', summary: 'Crear Seccion', detail: 'El titulo de la seccion es obligatorio', life: 3000 });
+      valido = false
+    }
+    if (this.nuevaSeccion.texto) {
+      if (this.nuevaSeccion.texto.split(' ').join('').length < 5) {
+        this.estiloValidacionTexto = 'ng-invalid ng-dirty'
+        valido = false
+        this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de texto incorrecto', life: 3000 });
+      } else {
+        this.estiloValidacionTexto = ''
+      }
+    } else {
+      this.estiloValidacionTexto = 'ng-invalid ng-dirty'
+      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'El texto de la seccion es obligatorio', life: 3000 });
+      valido = false
+    }
+
+    return valido
+  }
+  uplodadFoto(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      this.formularioFoto = new FormData()
+      this.formularioFoto.append('archivo', file)
+      this.fotoPreview = URL.createObjectURL(file);
+    
+    } else {
+      this.formularioFoto = null
+    }
+  }
+  limpiarFoto(archivo: any) {
+    archivo.value = null
+    this.formularioFoto = null
+    this.fotoPreview = null
+  }
 
 }

@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <div class="card">
     <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem'}">
         <ng-template pTemplate="caption">
@@ -25,9 +25,9 @@
                         <td>{{ categoria.nombre }}</td>
                     }
                 }
-                @if(noticia.foto!=undefined){
+                @if(noticia.foto){
+                    <td><img [src]="foto" width="100" class="shadow-4"></td>
 
-                    <td><img [src]="noticia.foto" [alt]="noticia.titulo" width="100" class="shadow-4"></td>
                 }@else {
                     <td>[Sin foto]</td>
                 }
@@ -46,7 +46,7 @@
 @if(noticia.secciones){
    
     
-    @if(noticia.secciones.length>1){
+    @if(noticia.secciones.length>0){
         @for (seccion of noticia.secciones; track seccion.id) {
            
             <div class="card" style="margin-top: 10px;">
@@ -61,7 +61,7 @@
                 <th [width]="30">Titulo</th>
                 <th [width]="30">Foto</th>
                 <th [width]="20">Texto</th>
-                <th [width]="50"><app-edit-noticia-data [listaCategorias]="listaCategorias"  [id]="id"></app-edit-noticia-data></th>
+                <th [width]="50"><app-editar-seccion [tipo]="0" [id]="seccion.id" [noticia]="noticia"></app-editar-seccion></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-seccion>
@@ -69,7 +69,7 @@
                 <td>{{ seccion.titulo }}</td>
                 @if(seccion.foto!=undefined){
                     
-                    <td><img [src]="seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
                 }@else {
                     <td>[Sin foto]</td>
                 }
@@ -81,7 +81,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
-            <p-button icon="pi pi-plus" label="Añadir enlace"></p-button>
+            <app-nuevo-enlace [seccion]="seccion"></app-nuevo-enlace>
             @if(seccion.enlaces){
                 @if(seccion.enlaces.length>0){
 
@@ -90,8 +90,8 @@
                        <br>
                         @for (enlace of seccion.enlaces; track enlace.id) {
                             <div class="enlace-container">
-                                <a href="{{enlace.url}}">{{enlace.textoClave}}</a>
-                                <p-button  icon="pi pi-pencil"></p-button>
+                                <a  target="_blank" href="{{enlace.url}}">{{enlace.textoClave}}</a>
+                                <app-editar-enlace [seccion]="seccion" [id]="enlace.id" ></app-editar-enlace>
                             </div>
                         }
                     </div>

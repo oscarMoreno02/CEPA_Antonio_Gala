@@ -1,6 +1,6 @@
 
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -18,6 +18,7 @@ import { Categoria } from '../../interface/categoria';
 import { Noticia } from '../../interface/noticia';
 import { NoticiaService } from '../../services/noticia.service';
 import { Router } from '@angular/router';
+import { FotosNoticiasService } from '../../services/fotosNoticias.service';
 @Component({
   selector: 'app-nueva-noticia',
   standalone: true,
@@ -29,116 +30,168 @@ import { Router } from '@angular/router';
     InputTextModule,
     InputSwitchModule,
     ConfirmComponent,
-    DropdownModule
-  
+    DropdownModule,
+
+
   ],
   templateUrl: './nueva-noticia.component.html',
   styleUrl: './nueva-noticia.component.css',
   providers: [DialogService, MessageService, CategoriasService, NoticiaService]
 })
 
-export class NuevaNoticiaComponent implements OnInit  {
+export class NuevaNoticiaComponent implements OnInit {
   constructor(
-     public messageService: MessageService,
-     private servicioCategoria: CategoriasService,
-     private servicioNoticia: NoticiaService,
-     private router:Router
-     ) {}
+    public messageService: MessageService,
+    private servicioCategoria: CategoriasService,
+    private servicioNoticia: NoticiaService,
+    private router: Router,
+    private servicioFotos: FotosNoticiasService
+  ) { }
 
   @Input() visible: boolean = false;
-  @Input() tipo=0
-  value=''
-  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ ;
-  subscripcionNoticia: Subscription=new Subscription;
-  listaCategorias:Array<Categoria>=[]
-  categoriaDependiente?:Categoria
-  enlace=false
-  url?:string
-  nuevaNoticia:Noticia={id:null,titulo:'',idCategoria:null}
+  @Input() tipo = 0
+  @Output() cerrarModal = new EventEmitter<void>();
+  value = ''
+  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  subscripcionNoticia: Subscription = new Subscription;
+  listaCategorias: Array<Categoria> = []
+  categoriaDependiente?: Categoria
+  enlace = false
+  url?: string
+  nuevaNoticia: Noticia = { id: null, titulo: '', idCategoria: null }
 
-  estiloValidacionNombre=''
-  estiloValidacionDependiente=''
-  estiloValidacionUrl=''
+  estiloValidacionNombre = ''
+  estiloValidacionDependiente = ''
+  estiloValidacionUrl = ''
+
+  formularioFoto: FormData | null = null
+  fotoPreview: string | null = null
 
   ngOnInit(): void {
     this.subscripcionNoticia = this.servicioCategoria.getAllCategorias().subscribe({
       next: (data: any) => {
-        this.listaCategorias=data
+        this.listaCategorias = data
       },
       error: (err) => {
-        console.log(err);
+
       }
     });
   }
   showDialog() {
-      this.visible = true;
+    this.visible = true;
   }
-  crear(b:Boolean){
-    if(b){
+  cerrar(): void {
+    this.cerrarModal.emit();
+  }
+  crear(b: Boolean) {
+    if (b) {
 
-      if(this.validarCampos()){
-      this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
-      this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
-        next: (u:any) => {
-          console.log(u)
+      if (this.validarCampos()) {
+        if (this.formularioFoto != null) {
+          this.servicioFotos.uploadFoto(this.formularioFoto).subscribe({
+            next: (data: any) => {
+              this.nuevaNoticia.foto = data.url
+              this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
+              this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
+                next: (u: any) => {
+    
+                  setTimeout(() => {
+                    this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
+                    setTimeout(() => {
+                      this.router.navigate(['/noticia/contenido', u.id])
+
+                    }, 1000);
+                  }, 1000);
+
+                },
+                error: (err) => {
+            
+                  this.messageService.add({ severity: 'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
+                }
+              })
+            }
+          })
+
+        }else{
+          this.nuevaNoticia.foto=null
+          this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
+          this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
+            next: (u: any) => {
+   
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
-                    this.router.navigate(['/noticia/secciones',u.id])
+                  this.router.navigate(['/noticia/contenido', u.id])
 
-              }, 1000); 
-            }, 1000); 
-          
-        },
-        error: (err) => {
-          console.log(err)
-          this.messageService.add({ severity:'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
+                }, 1000);
+              }, 1000);
+
+            },
+            error: (err) => {
+      
+              this.messageService.add({ severity: 'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
+            }
+          })
         }
-      })
-    }
-  }
-  }
-  validarCampos():Boolean{
-    this.nuevaNoticia.enlace=null
-    let valido = true
-    if(this.nuevaNoticia.titulo.split(' ').join('').length<5){
-      this.estiloValidacionNombre='ng-invalid ng-dirty'
-      valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de titulo incorrecto', life: 3000 });
-    }else{
-      this.estiloValidacionNombre=''
-    }
-    
-    if(this.categoriaDependiente==undefined){
-      this.estiloValidacionDependiente='ng-invalid ng-dirty'
-      valido=false
-      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'No se ha seleccionado una categoria', life: 3000 });
-     
-    }else{
-    this.nuevaNoticia.idCategoria=this.categoriaDependiente.id
-    this.estiloValidacionDependiente=''
-    }
-    if(this.enlace){
-      if(this.url!=undefined){
-        if(!this.httpRegex.test(this.url)){
-          this.estiloValidacionUrl='ng-invalid ng-dirty'
-          valido=false
-          this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Dirección URL inválida ', life: 3000 });
-        }else{
-          this.nuevaNoticia.enlace=this.url
-          this.estiloValidacionUrl=''
-        }
-      }else{
-          valido=false
-          this.estiloValidacionUrl='ng-invalid ng-dirty'
-          this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Direccion URL no introducida ', life: 3000 });
       }
-    }else{
-      this.estiloValidacionUrl=''
+    }
+  }
+  validarCampos(): Boolean {
+    this.nuevaNoticia.enlace = null
+    let valido = true
+    if (this.nuevaNoticia.titulo.split(' ').join('').length < 5) {
+      this.estiloValidacionNombre = 'ng-invalid ng-dirty'
+      valido = false
+      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Tamaño de titulo incorrecto', life: 3000 });
+    } else {
+      this.estiloValidacionNombre = ''
+    }
+
+    if (this.categoriaDependiente == undefined) {
+      this.estiloValidacionDependiente = 'ng-invalid ng-dirty'
+      valido = false
+      this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'No se ha seleccionado una categoria', life: 3000 });
+
+    } else {
+      this.nuevaNoticia.idCategoria = this.categoriaDependiente.id
+      this.estiloValidacionDependiente = ''
+    }
+    if (this.enlace) {
+      if (this.url != undefined) {
+        if (!this.httpRegex.test(this.url)) {
+          this.estiloValidacionUrl = 'ng-invalid ng-dirty'
+          valido = false
+          this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Dirección URL inválida ', life: 3000 });
+        } else {
+          this.nuevaNoticia.enlace = this.url
+          this.estiloValidacionUrl = ''
+        }
+      } else {
+        valido = false
+        this.estiloValidacionUrl = 'ng-invalid ng-dirty'
+        this.messageService.add({ severity: 'warn', summary: 'Crear Noticia', detail: 'Direccion URL no introducida ', life: 3000 });
+      }
+    } else {
+      this.estiloValidacionUrl = ''
     }
 
     return valido
   }
 
+  uplodadFoto(event: any) {
+    const file = event.target.files[0]
+    if (file) {
+      this.formularioFoto = new FormData()
+      this.formularioFoto.append('archivo', file)
+      this.fotoPreview = URL.createObjectURL(file);
 
+    } else {
+      this.formularioFoto = null
+    }
+  }
+  limpiarFoto(archivo: any) {
+    archivo.value = null
+    this.formularioFoto = null
+    this.fotoPreview = null
+  }
 }

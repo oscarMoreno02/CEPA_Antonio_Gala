@@ -4,7 +4,8 @@ const router = Router();
 const { check } = require('express-validator');
 const {validateValues}=require('../helpers/validar-campos')
 const validator=require('../helpers/secciones-validators')
-
+const authMid=require('../middlewares/validarJWT')
+const accessMid=require('../middlewares/validarRoles')
 const controller=require('../controllers/seccionesController')
 
     router.get('/noticia/:id',controller.listSeccionesByNoticia)
@@ -19,13 +20,13 @@ const controller=require('../controllers/seccionesController')
         check('texto', 'Tamaño de texto incorrecto').trim().isLength({ min: 5 }),
         check('idNoticia').custom(validator.noticiaExiste),
         validateValues
-    ],controller.editSeccion)
+    ],authMid.validarJWT,accessMid.esAdmin,controller.editSeccion)
 
     router.post('',   
     [
         check('texto', 'Tamaño de texto incorrecto').trim().isLength({ min: 5 }),
         check('idNoticia').custom(validator.noticiaExiste),
         validateValues
-    ],controller.createSeccion)
+    ],authMid.validarJWT,accessMid.esAdmin,controller.createSeccion)
 
     module.exports = router;

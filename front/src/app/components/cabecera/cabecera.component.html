@@ -1,7 +1,32 @@
-@if(admin==false ){
-    <p-menubar  [model]="items"></p-menubar>
-}@else {
-    <p-menubar  [model]="adminItems"></p-menubar>
-    <app-nueva-categoria [tipo]="1" [visible]="modalCategoriaNueva"></app-nueva-categoria>
-    <app-nueva-noticia [tipo]="1" [visible]="modalNoticiaNueva"></app-nueva-noticia>
+
+@switch (servicioAutenticacion.getAccess) {
+    @case ('administrador') {
+        @if(servicioAutenticacion.hasRol(['Administrador'])){
+            <p-menubar  [model]="adminItems">
+                <ng-template pTemplate="end">
+                    @if(servicioAutenticacion.isLoggedIn){
+                        <app-profile-icon [nombre]="username"></app-profile-icon>
+                    }@else {
+                        <app-login  [tipo]="1" [visible]="modalLogin" (cerrarModal)="modalLogin = false" ></app-login>
+                    }
+                </ng-template>
+            </p-menubar>
+        }@else{
+            {{servicioAutenticacion.clearAccess()}}
+        }
+        
+        <app-nueva-categoria [tipo]="1" [visible]="modalCategoriaNueva" (cerrarModal)="modalCategoriaNueva = false"></app-nueva-categoria>
+        <app-nueva-noticia [tipo]="1" [visible]="modalNoticiaNueva" (cerrarModal)="modalNoticiaNueva = false"></app-nueva-noticia>
+    }
+    @default {
+        <p-menubar  [model]="items">
+            <ng-template pTemplate="end">
+            @if(servicioAutenticacion.isLoggedIn){
+                   <app-profile-icon [nombre]="username"></app-profile-icon>
+            }@else {
+                    <app-login  [tipo]="1" [visible]="modalLogin" (cerrarModal)="modalLogin = false" ></app-login>
+                }
+            </ng-template>
+            </p-menubar>
+    }
 }

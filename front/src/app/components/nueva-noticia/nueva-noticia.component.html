@@ -4,7 +4,7 @@
   <p-button (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
   }
   <p-dialog header="Crear nueva noticia" [(visible)]="visible" [modal]="true" 
-    [draggable]="false" [resizable]="false">
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
 
 
     <div class="card flex justify-content-center" class="custom-dialog">
@@ -32,6 +32,17 @@
                 </div>
              
             </div>
+            <div class="flex flex-column">
+                <label for="username2">Foto</label>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="username-help2">Subir una foto para esta noticia</small>
+            </div>
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
         </div>
         <div style="margin-top: 20px;" >
 
