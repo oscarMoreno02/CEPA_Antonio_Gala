@@ -1,0 +1,7 @@
+<div class="galeria">
+
+    @for (noticia of listaNoticias; track noticia.id) {
+        <app-preview-noticia [noticia]="noticia"></app-preview-noticia>
+        
+    }
+</div>

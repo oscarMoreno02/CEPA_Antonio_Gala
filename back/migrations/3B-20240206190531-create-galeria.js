@@ -12,7 +12,9 @@ module.exports = {
       idEvento: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'eventos',
+          model:{
+            tableName:'eventos'
+          },
           key: 'id'
         },
         onDelete: 'CASCADE'
@@ -31,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Galeria');
+    await queryInterface.dropTable('galerias');
   }
 };

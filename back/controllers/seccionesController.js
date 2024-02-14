@@ -58,7 +58,7 @@ const createSeccion= (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertSeccion(req.body)
         .then(data => {
-            res.status(201).json('Noticia registrado correctamente')
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)

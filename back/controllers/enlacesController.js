@@ -58,7 +58,7 @@ const createEnlace = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertEnlace(req.body)
         .then(data => {
-            res.status(201).json('Enlace registrado correctamente')
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)

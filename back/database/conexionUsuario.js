@@ -69,15 +69,25 @@ class ConexionUser{
         let resultado = 0;
         this.conectar();
         try {
-            const task = new models.user(body);
-            await task.save();
-            resultado = 1;
+            const password = await bcrypt.hash(body.password, 10);
+            const usuarioNuevo = new models.user(body);
+            usuarioNuevo.password = password
+            await usuarioNuevo.save();
+            resultado = usuarioNuevo.id; 
+            console.log(resultado)
+            return resultado
         } catch (error) {
+            if (error instanceof Sequelize.UniqueConstraintError) {
+                console.log(`El id ${body.id} ya existe en la base de datos.`);
+            } else {
+                console.log('Ocurrió un error desconocido: ', error);
+            }
             throw error;
         } finally {
             this.desconectar();
         }
-        return resultado;
+
+     
     }
 
     UsuariosDelete = async (id) => {
@@ -108,7 +118,56 @@ class ConexionUser{
             this.desconectar()
         }
     }
-   
+    //Óscar
+    checkLogin = async (email) => {
+
+        this.conectar();
+        let user = await models.user.findOne(({
+            where: {
+                email
+            }
+        }));
+
+        this.desconectar();
+        if (!user) {
+            throw new Error('Email no registrado');
+        }
+
+        return user;
+    }
+        //Óscar
+    getRolUserId = async (idU) => {
+        try {
+
+            let resultado = [];
+            this.conectar();
+            resultado = await models.user.findOne({
+                attributes: ['id','nombre','email','createdAt','updatedAt'],
+                where: {
+                    id: {
+                        [Op.eq]: idU
+                    }
+                },
+                include: [{
+                    model: models.rolAsignado,
+                    as: 'rolesAsignados',
+                    include: [{
+                            model: models.rol,
+                            as: 'rol',
+                            attributes: ['nombre'],
+                        },
+
+                    ],
+                    attributes: ['id'],
+                }, ],
+            });
+            this.desconectar();
+            return resultado;
+        } catch (err) {
+            console.log(err)
+            this.desconectar()
+        }
+    }
 }
 
 module.exports = ConexionUser;
