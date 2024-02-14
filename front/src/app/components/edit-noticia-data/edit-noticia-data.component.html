@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-pencil" label=""></p-button>
+  }
+  <p-dialog header="Editar la noticia" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="username1">Titulo</label>
+                <input  class="{{estiloValidacionNombre}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="noticiaEditar.titulo" />
+                <small id="username-help1">Introduce un titulo para la nueva noticia</small>
+            </div>
+            <div class="flex flex-column">
+                <label for="username2">Enlace</label>
+                    <p-inputSwitch [(ngModel)]="enlace"></p-inputSwitch>
+                <small id="username-help2">Indíca si esta noticia va a tener un enlace en el titulo</small>
+            </div>
+           
+            @if(enlace){
+                <label for="username1">URL</label>
+                <input class="{{estiloValidacionUrl}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="url" />
+                <small id="username-help1">Introduce una URL para el enlace</small>
+            }
+                <div class="flex flex-column subcategoria-seleccionada">
+                    <label for="username2">Categoria</label>
+                    <p-dropdown  class="{{estiloValidacionDependiente}}" [options]="listaCategorias" [(ngModel)]="categoriaDependiente" optionLabel="nombre" [showClear]="true" placeholder="Selecciona una categoria"></p-dropdown>
+                    <small id="username-help2">Indíca la categoria a la que pertenece esta noticia</small>
+                </div>
+            </div>
+            <div class="flex flex-column">
+                <label for="username2">Foto</label>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="username-help2">Subir una foto para esta noticia</small>
+            </div>
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
+           
+        </div>
+        <div style="margin-top: 5px;" >
+
+            <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+        </div>
+        <div style="margin-top: 20px;" >
+
+            <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar esta noticia?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+        </div>
+  </p-dialog>
+</div>
