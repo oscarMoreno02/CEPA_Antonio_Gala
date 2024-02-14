@@ -1,17 +1,33 @@
 <p-toast></p-toast>
-<div class="card flex justify-content-center">
-    <table class="styled-table">
-        <thead>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="eventos"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
             <tr>
-                <th>NOMBRE DEL EVENTO</th>
-                <th>DESCRIPCION</th>
+                <th style="width:10%"></th>
+                <th style="width:40%">Nombre</th>
+                <th style="width:50%">Descripción</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr @for(let evento of eventos)>
-                <td>{{ evento.nombre }}</td>
-                <td>{{ evento.descripcion }}</td>
+        </ng-template>
+        <ng-template pTemplate="body">
+            <tr @for( let eventos of eventos ) >   
+                <td></td>
+                <td>{{ eventos.nombre }}</td>
+                <td>{{ eventos.descripcion }}</td>
             </tr>
-        </tbody>
-    </table>
+        </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
 </div>

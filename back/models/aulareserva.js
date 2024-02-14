@@ -1,7 +1,17 @@
+/*
+Jaime -> creación del model
+Laura -> arreglo de importaciones para la funcionalidad del model
+*/
+
 'use strict';
 const {
   Model
 } = require('sequelize');
+
+const AulaEspecial = require('./aulaespecial'); 
+const AulaHorario = require('./aulahorario'); 
+const user = require('./user'); 
+
 module.exports = (sequelize, DataTypes) => {
   class AulaReserva extends Model {
     /**

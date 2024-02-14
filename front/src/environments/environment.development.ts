@@ -9,6 +9,6 @@ export const environment = {
     urlFotosSecciones:'/uploads/secciones',
     urlAuth:'/auth',
     urlLogin:'/login',
-    urlRegistro:'/register'
+    urlRegistro:'/register',
     urlUsers:'/usuarios'
 };
