@@ -10,4 +10,5 @@ export const environment = {
     urlAuth:'/auth',
     urlLogin:'/login',
     urlRegistro:'/register'
+    urlUsers:'/usuarios'
 };
