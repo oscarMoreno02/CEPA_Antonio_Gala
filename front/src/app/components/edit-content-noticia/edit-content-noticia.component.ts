@@ -56,22 +56,22 @@ ngOnInit(): void {
  this.subscripcion= this.servicioNoticias.getNoticiaWithSecciones(this.id).subscribe({
     next:(data:Noticia)=>{
       this.noticia=data
-      console.log(this.noticia)
+
       if(this.noticia.foto){
         this.foto=environment.baseUrl+environment.urlFotosNoticias+'/'+this.noticia.foto
       }
     },
     error:(err)=>{
-      console.log(err)
+
     }
   })
   this.subscripcion=this.servicioCategorias.getAllCategorias().subscribe({
     next:(data:Array<Categoria>)=>{
       this.listaCategorias=data
-      console.log(data)
+
     },
     error:(err)=>{
-      console.log(err)
+
     }
   })
 }

@@ -4,7 +4,8 @@ const router = Router();
 const { check } = require('express-validator');
 const {validateValues}=require('../helpers/validar-campos')
 const validator=require('../helpers/noticia-validators')
-
+const authMid=require('../middlewares/validarJWT')
+const accessMid=require('../middlewares/validarRoles')
 const controller=require('../controllers/noticiasController')
 
     router.get('/categoria/:id',controller.listNoticiasByCategorias)
@@ -12,20 +13,21 @@ const controller=require('../controllers/noticiasController')
     router.get('/secciones',controller.listAllNoticiasWithSecciones)
     router.get('/:id',controller.listNoticia)
     router.get('/',controller.listAllNoticias)
-    router.delete('/:id',controller.removeNoticia)
+
+    router.delete('/:id',authMid.validarJWT,accessMid.esAdmin,controller.removeNoticia)
 
     router.put('/:id',
     [
         check('titulo', 'Tamaño de titulo incorrecto').trim().isLength({ min: 5 }),
         check('idCategoria').custom(validator.categoriaExiste),
         validateValues
-    ],controller.editNoticia)
+    ],authMid.validarJWT,accessMid.esAdmin,controller.editNoticia)
 
     router.post('',   
     [
         check('titulo', 'Tamaño de titulo incorrecto').trim().isLength({ min: 5 }),
         check('idCategoria').custom(validator.categoriaExiste),
         validateValues
-    ],controller.createNoticia)
+    ],authMid.validarJWT,accessMid.esAdmin,controller.createNoticia)
 
     module.exports = router;

@@ -91,7 +91,7 @@ export class NuevaSeccionComponent {
 
                 },
                 error: (err) => {
-                  console.log(err)
+
                   this.messageService.add({ severity: 'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
                 }
               })
@@ -120,7 +120,7 @@ export class NuevaSeccionComponent {
 
             },
             error: (err) => {
-              console.log(err)
+   
               this.messageService.add({ severity: 'error', summary: 'Crear seccion', detail: 'Cancelada', life: 3000 });
             }
           })
@@ -166,7 +166,7 @@ export class NuevaSeccionComponent {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+    
     } else {
       this.formularioFoto = null
     }

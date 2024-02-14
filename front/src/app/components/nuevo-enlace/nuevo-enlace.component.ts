@@ -67,7 +67,7 @@ export class NuevoEnlaceComponent implements OnInit {
           
         },
         error: (err) => {
-          console.log(err)
+      
           this.messageService.add({ severity:'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
         }
       })

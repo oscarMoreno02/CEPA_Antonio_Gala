@@ -72,7 +72,7 @@ export class EditarCategoriaComponent implements OnInit  {
           }
       },
       error: (err) => {
-        console.log(err)
+
       }
       
     })
@@ -102,14 +102,14 @@ export class EditarCategoriaComponent implements OnInit  {
           this.visible = true;
       },
       error: (err) => {
-        console.log(err)
+  
       }
       
     })
   }
  
   guardar(b:Boolean){
-    console.log(this.categoriaDependiente)
+
     if(b){
 
       if(this.validarCampos()){
@@ -117,7 +117,7 @@ export class EditarCategoriaComponent implements OnInit  {
       this.messageService.add({ severity: 'info', summary: 'Editar Categoria', detail: 'En curso', life: 3000 });
       this.servicioCategoria.updateCategoria(this.categoria).subscribe({
         next: (u:any) => {
-          console.log(u)
+
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Editar Categoria', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
@@ -127,7 +127,7 @@ export class EditarCategoriaComponent implements OnInit  {
           
         },
         error: (err) => {
-          console.log(err)
+   
           this.messageService.add({ severity:'error', summary: 'Editar Categoria', detail: 'Cancelada', life: 3000 });
         }
       })
@@ -135,14 +135,14 @@ export class EditarCategoriaComponent implements OnInit  {
   }
   }
   eliminar(b:Boolean){
-    console.log(this.categoriaDependiente)
+
     if(b){
 
       this.messageService.add({ severity: 'info', summary: 'Borrar Categoria', detail: 'En curso', life: 3000 });
       let i=this.categoria.id as number
       this.servicioCategoria.deleteCategoria(i).subscribe({
         next: (u:any) => {
-          console.log(u)
+
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Borrar Categoria', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
@@ -152,7 +152,7 @@ export class EditarCategoriaComponent implements OnInit  {
           
         },
         error: (err) => {
-          console.log(err)
+
           this.messageService.add({ severity:'error', summary: 'Borrar Categoria', detail: 'Cancelada', life: 3000 });
         }
       })
@@ -169,7 +169,6 @@ export class EditarCategoriaComponent implements OnInit  {
       this.estiloValidacionNombre=''
       if(!this.checkUnico(this.categoria.nombre)){
         valido=false
-        console.log('llega2')
         this.messageService.add({ severity: 'warn', summary: 'Crear Categoria', detail: 'Ya existe una categoria con ese nombre', life: 3000 });
       }else{
         this.estiloValidacionNombre=''
@@ -195,8 +194,7 @@ export class EditarCategoriaComponent implements OnInit  {
     let valido=true
     for(const categoria of this.listaCategorias){
       if(nombre.split(' ').join('').toLowerCase() == categoria.nombre.split(' ').join('').toLowerCase()){
-        console.log(nombre)
-        console.log(categoria.nombre)
+  
         if(categoria.id!=this.categoria.id){
           
           valido=false
