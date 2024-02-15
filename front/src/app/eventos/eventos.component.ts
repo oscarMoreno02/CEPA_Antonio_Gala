@@ -9,23 +9,34 @@ import { Evento } from '../interface/evento';
 @Component({
   selector: 'app-eventos',
   standalone: true,
-  imports: [ToastModule,
+  imports: [
+    ToastModule,
     TableModule,
-    ButtonModule],
+    ButtonModule
+  ],
   templateUrl: './eventos.component.html',
   styleUrl: './eventos.component.css',
-  providers: [MessageService,  EventosService]
+  providers: [
+    MessageService, 
+    EventosService
+  ]
 })
+
 export class EventosComponent implements OnInit {
 
-  eventos:any;
+  eventos:Array<Evento>=[]
 
   constructor(private servicioEventos : EventosService) {}
 
   ngOnInit(): void {
-    this.servicioEventos.getAllEventos().subscribe(eventos => {
-      this.eventos = eventos;
-    })
-}
-
+    this.servicioEventos.getAllEventos().subscribe({
+      next:(eventos: Array<Evento>) => {
+        this.eventos = eventos;
+        console.log("Llegan los eventos: "+eventos)
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    });
+  }
 }

@@ -16,18 +16,18 @@
                 <th style="width:50%">Descripción</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body">
-            <tr @for( let eventos of eventos ) >   
+        <ng-template pTemplate="body" let-evento>
+            <tr>
                 <td></td>
-                <td>{{ eventos.nombre }}</td>
-                <td>{{ eventos.descripcion }}</td>
+                <td>{{ evento.nombre }}</td>
+                <td>{{ evento.descripcion }}</td>
             </tr>
         </ng-template>
-    <ng-template pTemplate="paginatorleft">
-        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-    </ng-template>
-    <ng-template pTemplate="paginatorright">
-        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-    </ng-template>
-</p-table>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
 </div>
