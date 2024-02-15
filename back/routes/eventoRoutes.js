@@ -13,7 +13,7 @@ router.post('/eventos', [
     check('hora').isString().notEmpty(),
     check('fotoCartel').isString().notEmpty(),
     check('mg').isInt(),
-    check('visibilidad').isBoolean().notEmpty(),
+    check('visibilidad').isBoolean(),
 ], controller.subirEvento);
 router.delete('/eventos/:id', controller.borrarEvento);
 router.put('/eventos/:id', controller.actualizarEvento);

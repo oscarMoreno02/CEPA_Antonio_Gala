@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './nuevo-eventos.component.html',
   styleUrl: './nuevo-eventos.component.css'
 })
-export class NuevoEventosComponent {
+export class NuevoEventosComponent{
 
 }
