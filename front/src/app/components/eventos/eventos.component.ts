@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { EventosService } from '../services/eventos.service';
+import { EventosService } from '../../services/eventos.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { Evento } from '../interface/evento';
+import { Evento } from '../../interface/evento';
 
 @Component({
   selector: 'app-eventos',
