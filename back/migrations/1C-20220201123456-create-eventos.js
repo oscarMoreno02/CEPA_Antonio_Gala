@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      foto: {
+      fotoCartel: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false
       },
       visibilidad: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         allowNull: false
       },
       createdAt: {
