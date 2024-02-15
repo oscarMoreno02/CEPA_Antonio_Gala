@@ -12,5 +12,5 @@ export const routes: Routes = [
 {path:'noticia/contenido/:id',component: EditContentNoticiaComponent},
 {path:'admin/noticias',component: AdminNoticiaComponent},
 {path:'admin/categorias',component:AdminCategoriasComponent},
-{path:'eventos/mostrarEventos', component:EventosComponent}
+{path:'admin/eventos', component:EventosComponent}
 ];
