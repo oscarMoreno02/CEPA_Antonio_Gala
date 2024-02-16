@@ -14,7 +14,7 @@ const noticiasFactory = async (ctos,categorias) => {
                 titulo: ejemplo.titulo,
                 idCategoria: i,
                 enlace: 'https://github.com/oscarMoreno02/CEPA_Antonio_Gala',
-                foto: 'https://picsum.photos/id/237/200/300',
+                foto: '4ce3d1e6-dfbe-4d7e-90e3-dc20fd5fdc72.jpeg',
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
