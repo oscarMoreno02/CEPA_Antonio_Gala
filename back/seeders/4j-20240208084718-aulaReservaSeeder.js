@@ -4,10 +4,10 @@ const {aulaReservaFactory}=require('../factories/aulaReservaFactory')
 module.exports = {
   async up (queryInterface, Sequelize) {
     const aulareservas = await aulaReservaFactory(1);
-    await queryInterface.bulkInsert('aulareservas', aulareservas, {});
+    await queryInterface.bulkInsert('aulasReservas', aulareservas, {});
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('aulareservas', null, {});
+    await queryInterface.bulkDelete('aulasReservas', null, {});
   }
 };

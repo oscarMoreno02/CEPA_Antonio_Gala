@@ -24,23 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     idHorario: {
       type: DataTypes.INTEGER,
-      // references: {
-      //   model: AulaHorario,
-      //   key: 'id'
-      // }
+
     },
     idProfesor: {
       type: DataTypes.INTEGER,
-      // references: {
-      //   model: user,
-      //   key: 'id'
-      // }
+ 
     },
     fecha: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'AulaReserva',
-    tableName: 'aulareservas'
+    tableName: 'aulasReservas'
   });
   return AulaReserva;
 };
