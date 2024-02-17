@@ -126,7 +126,7 @@ export class EditNoticiaDataComponent implements OnInit {
               this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
               this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
                 next: (u: any) => {
-           
+    
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
                     setTimeout(() => {

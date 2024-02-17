@@ -9,6 +9,7 @@ export const environment = {
     urlFotosSecciones:'/uploads/secciones',
     urlAuth:'/auth',
     urlLogin:'/login',
-    urlRegistro:'/register'
-    urlUsers:'/usuarios'
+    urlRegistro:'/register',
+    urlUsers:'/usuarios',
+    urlNoticiasSocket:'http://localhost:8090'
 };
