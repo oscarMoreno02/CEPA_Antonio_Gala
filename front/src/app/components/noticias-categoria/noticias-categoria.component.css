@@ -1,11 +1,12 @@
 .galeria{
     display: grid;
-    gap: 1rem;
-    grid-auto-rows: 22rem;
+    gap: 16px;
+   
     grid-template-columns: 
     repeat(
         auto-fit,
         minmax(300px, 1fr)
     );
+
 }
 

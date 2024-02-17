@@ -1,9 +1,21 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
+const { noticiasSocketController } = require('../controllers/noticiasSocketController');
 class Server {
     constructor() {
         this.app = express();
+        this.serverExpress = require('http').createServer(this.app);
+        this.serverWebSocket = require('http').createServer(this.app);
+             this.io = require('socket.io')(this.serverWebSocket, {
+                cors: {
+                    origin: process.env.URLCLIENTE,
+                    methods: ["*"],
+                    allowedHeaders: [""],
+                    credentials: true 
+                  }
+        });
+    
 
 
         this.apiUsuarios = '/api/usuario';
@@ -29,7 +41,7 @@ class Server {
         this.authPath  = '/api/auth';
         this.middlewares();
         this.routes();
-        
+        this.sockets();
     }
     middlewares() {
         this.app.use(cors());
@@ -61,10 +73,19 @@ class Server {
         this.app.use(this.uploadsSeccionesPath,  require('../routes/updloadsSeccionesRoutes'));
         this.app.use(this.authPath,  require('../routes/authRoutes'));
     }
+    sockets(){
+        this.io.on('connection', noticiasSocketController);
+    }
 
+ 
     listen() {
-        this.app.listen(process.env.PORT, () => {
-        })
+        this.serverExpress.listen(process.env.PORT, () => {
+            console.log(`Servidor Express escuchando en: ${process.env.PORT}`);
+            });
+
+        this.serverWebSocket.listen(process.env.WEBSOCKETPORT, () => {
+            console.log(`Servidor de WebSockets escuchando en: ${process.env.WEBSOCKETPORT}`);
+        });
     }
 }
 

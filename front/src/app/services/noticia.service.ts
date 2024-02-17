@@ -36,7 +36,7 @@ export class NoticiaService {
   insertNoticia(noticia:Noticia): Observable<any | undefined> {
     let body={noticia:noticia}
   
-     return this.http.post<any>(this.baseUrl,noticia).pipe(
+     return this.http.post<any>(this.baseUrl,noticia,{params: {auth: true}}).pipe(
      
      )
    }
@@ -58,14 +58,14 @@ export class NoticiaService {
   }
   deleteNoticia(id:number): Observable<any | undefined> {
 
-    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
     )
   }
   updateNoticia(noticia:Noticia): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+noticia.id,noticia,).pipe(
+     return this.http.put<any>(this.baseUrl+'/'+noticia.id,noticia,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })

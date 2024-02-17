@@ -35,14 +35,14 @@ export class AdminCategoriasComponent implements OnInit {
     @Input() admin=true
   
   ngOnInit(): void {
-    console.log('llega')
+
     this.subscripcionCategorias = this.servicioCategoria.getAllCategorias().subscribe({
       next: (data: Array<Categoria>) => {
         this.listaCategorias=data
-        console.log(this.listaCategorias)
+     
       },
       error: (err) => {
-        console.log(err);
+
       }
       
     });
