@@ -12,13 +12,17 @@ import { MessageService } from 'primeng/api';
 export class WebSocketService  {
 socket?:any
   private url=environment.urlNoticiasSocket
+
 constructor(private message:MessageService) {
-    this.socket = io('http://localhost:8090', {
-  withCredentials: true
-});
+    this.socket = io(this.url, {
+
+})
+;
 this.socket.on("connect", () => {
   console.log(this.socket.id);
 });
+
+
 this.socket.on("recibir-notificacion", (data:Noticia) => {
   console.log(data)
   this.message.add({ severity: 'info', id:'unique-message-id', summary: 'Nueva noticia', detail:`<a href="${data.titulo}" target="_blank">${data.titulo}</a>`, life: 6000 });
