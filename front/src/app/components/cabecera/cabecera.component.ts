@@ -57,38 +57,26 @@ userroles:Array<string>=[]
     {
       label: 'Administrar categorias',
       command: () => { this.router.navigate(['/admin/categorias']) },
-      items: [
-        {
-          label: 'Crear categoria',
-          icon: 'pi pi-plus',
-
-          command: () => { this.modalCategoriaNueva = true },
-
-        },
-        {
-          label: 'Eliminar categoria',
-          icon: 'pi pi-trash',
-          command: () => { this.router.navigate(['/admin/categorias/nueva']) },
-        }
-      ]
     },
     {
       label: 'Administrar noticias',
       command: () => { this.router.navigate(['/admin/noticias']) },
-      items: [
-        {
-          label: 'Crear noticia',
-          icon: 'pi pi-plus',
-          command: () => { this.modalNoticiaNueva = true },
-        },
-        {
-          label: 'Eliminar categoria',
-          icon: 'pi pi-trash',
-          command: () => { this.router.navigate(['/admin/noticias/nueva']) },
-        }
-      ]
+
     }
   ]
+
+  dtoItems: MenuItem[] | undefined = [
+    {
+      label: 'Aulas',
+      command: () => { this.router.navigate(['/aulas']) },
+    },
+    {
+      label: 'Reservas',
+      command: () => { this.router.navigate(['/admin/noticias']) },
+    }
+  ]
+
+
   ngOnInit(): void {
 
     this.subscripcionCategorias = this.servicioCategoria.getAllCategoriasAgrupadas().subscribe({

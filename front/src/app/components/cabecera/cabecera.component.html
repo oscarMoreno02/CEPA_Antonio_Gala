@@ -18,6 +18,21 @@
         <app-nueva-categoria [tipo]="1" [visible]="modalCategoriaNueva" (cerrarModal)="modalCategoriaNueva = false"></app-nueva-categoria>
         <app-nueva-noticia [tipo]="1" [visible]="modalNoticiaNueva" (cerrarModal)="modalNoticiaNueva = false"></app-nueva-noticia>
     }
+    @case ('jefedeestudios') {
+        @if(servicioAutenticacion.hasRol(['Jefe de estudios'])){
+            <p-menubar  [model]="dtoItems">
+                <ng-template pTemplate="end">
+                    @if(servicioAutenticacion.isLoggedIn){
+                        <app-profile-icon [nombre]="username"></app-profile-icon>
+                    }@else {
+                        <app-login  [tipo]="1" [visible]="modalLogin" (cerrarModal)="modalLogin = false" ></app-login>
+                    }
+                </ng-template>
+            </p-menubar>
+        }@else{
+            {{servicioAutenticacion.clearAccess()}}
+        }
+    }
     @default {
         <p-menubar  [model]="items">
             <ng-template pTemplate="end">

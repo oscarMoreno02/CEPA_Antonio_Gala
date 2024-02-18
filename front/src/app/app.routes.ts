@@ -8,12 +8,15 @@ import { accesoGuard } from './guards/acceso.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.component';
 
 export const routes: Routes = [
-    {path: '', component:HomeComponent },
+{path: '', component:HomeComponent },
 {path: 'administrador', pathMatch: 'full', redirectTo: '/admin'},
 {path:'admin',component: AdminCategoriasComponent ,
  canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
+ {path: 'jefedeestudios', pathMatch: 'full', redirectTo: '/aulas'},
+{path:'aulas',component:ListaAulasComponent, canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
