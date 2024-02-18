@@ -12,6 +12,7 @@ import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.comp
 import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.component';
 import { AulaService } from '../../services/aula.service';
 import { Aula } from '../../interface/aula';
+import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 @Component({
   selector: 'app-lista-aulas',
   standalone: true,
@@ -21,7 +22,8 @@ import { Aula } from '../../interface/aula';
     TableModule,
     ButtonModule,
     NuevaCategoriaComponent,
-    EditarCategoriaComponent
+    EditarCategoriaComponent,
+    NuevaAulaComponent
   ],
   providers:[AulaService],
   templateUrl: './lista-aulas.component.html',
