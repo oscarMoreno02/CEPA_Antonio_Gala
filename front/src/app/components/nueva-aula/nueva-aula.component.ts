@@ -6,7 +6,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { MessageService } from 'primeng/api';
-import { Enlace, Seccion } from '../../interface/noticia';
 import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 

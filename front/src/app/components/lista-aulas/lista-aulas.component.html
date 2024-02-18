@@ -20,7 +20,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-aula>
             <tr>
-                <td><button>editar</button></td>
+                <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
                 <td>{{ aula.id}}</td>
                 <td>{{ aula.nombre}}</td>
                 <td>horarios</td>

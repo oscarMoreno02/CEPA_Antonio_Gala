@@ -1,18 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { CategoriasService } from '../../services/categorias.service';
 import { Subscription } from 'rxjs';
-import { Categoria } from '../../interface/categoria';
-import { EditableColumn, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.component';
 import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.component';
 import { AulaService } from '../../services/aula.service';
 import { Aula } from '../../interface/aula';
 import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
+import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
 @Component({
   selector: 'app-lista-aulas',
   standalone: true,
@@ -23,7 +20,8 @@ import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
     ButtonModule,
     NuevaCategoriaComponent,
     EditarCategoriaComponent,
-    NuevaAulaComponent
+    NuevaAulaComponent,
+    EditarAulaComponent
   ],
   providers:[AulaService],
   templateUrl: './lista-aulas.component.html',
