@@ -1,1 +1,35 @@
-<p>lista-aulas works!</p>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaAulas"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} aulas"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th style="width:10%">Nº</th>
+                <th style="width:40%">Nombre</th>
+                <th style="width:30%"></th>
+                <th style="width:20%"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-aula>
+            <tr>
+                <td><button>editar</button></td>
+                <td>{{ aula.id}}</td>
+                <td>{{ aula.nombre}}</td>
+                <td>horarios</td>
+                <td>reservas</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            
+        </ng-template>
+    </p-table>
+</div>
