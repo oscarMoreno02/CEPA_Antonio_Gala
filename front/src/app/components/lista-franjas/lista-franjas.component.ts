@@ -12,6 +12,7 @@ import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
 import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
+import { NuevaFranjaComponent } from '../nueva-franja/nueva-franja.component';
 @Component({
   selector: 'app-lista-franjas',
   standalone: true,
@@ -23,7 +24,8 @@ import { FranjaService } from '../../services/franja.service';
     NuevaCategoriaComponent,
     EditarCategoriaComponent,
     NuevaAulaComponent,
-    EditarAulaComponent
+    EditarAulaComponent,
+    NuevaFranjaComponent
   ],
   providers:[AulaService],
   templateUrl: './lista-franjas.component.html',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Franja } from '../interface/franja';
 
 @Injectable({
@@ -19,16 +19,32 @@ export class FranjaService {
   insertFranja(franja:Franja): Observable<any | undefined> {
     let body={franja:franja}
   
-     return this.http.post<any>(this.baseUrl,franja,{params: {auth: true}})
+     return this.http.post<any>(this.baseUrl,franja,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        throw error
+      })
+    )
    }
    getFranja(id:number): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}})
+    return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        throw error
+      })
+    )
   }
   deleteFranja(id:number): Observable<any | undefined> {
 
-    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}})
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        throw error
+      })
+    )
   }
   updateFranja(franja:Franja): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+franja.id,franja,{params: {auth: true}})
+     return this.http.put<any>(this.baseUrl+'/'+franja.id,franja,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        throw error
+      })
+    )
    }
 }

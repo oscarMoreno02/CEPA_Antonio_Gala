@@ -37,7 +37,7 @@ const createAula = (req, res = response) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(203).json('Error en el registro')
+            res.status(400).json('Error en el registro')
         })
 }
 
@@ -62,7 +62,7 @@ const removeAula = (req, res = response) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(203).json('Error en la eliminacion')
+            res.status(500).json('Error en la eliminacion')
         })
 }
 

@@ -15,11 +15,11 @@ module.exports = {
       },
       horaInicio: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.TIME(4)
       },
       horaFin: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.TIME(4)
       },
       createdAt: {
         allowNull: false,
