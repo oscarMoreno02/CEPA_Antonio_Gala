@@ -71,6 +71,10 @@ userroles:Array<string>=[]
       command: () => { this.router.navigate(['/aulas']) },
     },
     {
+      label: 'Franjas horarias',
+      command: () => { this.router.navigate(['/aulas/franjas']) },
+    },
+    {
       label: 'Reservas',
       command: () => { this.router.navigate(['/admin/noticias']) },
     }

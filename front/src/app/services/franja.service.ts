@@ -13,7 +13,7 @@ export class FranjaService {
 
 
   getAllFranjas(): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl)
+    return this.http.get<any>(this.baseUrl,{params: {auth: true}})
   }
 
   insertFranja(franja:Franja): Observable<any | undefined> {
@@ -22,7 +22,7 @@ export class FranjaService {
      return this.http.post<any>(this.baseUrl,franja,{params: {auth: true}})
    }
    getFranja(id:number): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl+'/'+id)
+    return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}})
   }
   deleteFranja(id:number): Observable<any | undefined> {
 

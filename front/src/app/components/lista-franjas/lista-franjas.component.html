@@ -1,0 +1,35 @@
+
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaFranjas"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} franjas"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th style="width:10%">Nº</th>
+                <th style="width:40%">Turno</th>
+                <th style="width:30%">Hora Inicio</th>
+                <th style="width:20%">Hora fin</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-franja>
+            <tr>
+                <td></td>
+                <td>{{ franja.id}}</td>
+                <td>{{ franja.turno}}</td>
+                <td>{{ franja.horaInicio}}</td>
+                <td>{{ franja.horaFin}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+    </p-table>
+</div>
