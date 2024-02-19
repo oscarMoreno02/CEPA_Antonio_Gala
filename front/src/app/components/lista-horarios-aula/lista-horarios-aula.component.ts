@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -13,8 +13,11 @@ import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
 import { NuevaFranjaComponent } from '../nueva-franja/nueva-franja.component';
 import { EditarFranjaComponent } from '../editar-franja/editar-franja.component';
+import { HorarioService } from '../../services/horario.service';
+import { Horario } from '../../interface/horario';
+import { Aula } from '../../interface/aula';
 @Component({
-  selector: 'app-lista-franjas',
+  selector: 'app-lista-horarios-aula',
   standalone: true,
   imports: [ 
     HttpClientModule,
@@ -28,20 +31,34 @@ import { EditarFranjaComponent } from '../editar-franja/editar-franja.component'
     NuevaFranjaComponent,
     EditarFranjaComponent
   ],
-  providers:[AulaService],
-  templateUrl: './lista-franjas.component.html',
-  styleUrl: './lista-franjas.component.css'
+  providers:[HorarioService],
+  templateUrl: './lista-horarios-aula.component.html',
+  styleUrl: './lista-horarios-aula.component.css'
 })
-export class ListaFranjasComponent implements OnInit {
+export class ListaHorariosAulaComponent implements OnInit {
   constructor(    
-    private servicioFranja:FranjaService,
-    private router: Router){}
-    subscripcionFranjas: Subscription=new Subscription;
-    listaFranjas:Array<Franja>=[]
+    private servicioHorario:HorarioService,
+    private router: Router,
+    private rutaActiva: ActivatedRoute,
+    private servicioAulas:AulaService
+    ){}
+    subscripcionHorarios: Subscription=new Subscription;
+    listaHorarios:Array<Horario>=[]
+    idAula = this.rutaActiva.snapshot.params['id']
+    @Input() aula?:Aula
+    
     ngOnInit(): void {
-      this.subscripcionFranjas = this.servicioFranja.getAllFranjas().subscribe({
-        next: (data: Array<Franja>) => {
-          this.listaFranjas=data
+      this.subscripcionHorarios = this.servicioHorario.getAllHorariosOfAula(this.idAula).subscribe({
+        next: (data: Array<Horario>) => {
+          this.listaHorarios=data
+        },
+        error: (err) => {
+        }
+
+      });
+      this.subscripcionHorarios = this.servicioHorario.getAllHorariosOfAula(this.idAula).subscribe({
+        next: (data: Array<Horario>) => {
+          this.listaHorarios=data
         },
         error: (err) => {
         }
