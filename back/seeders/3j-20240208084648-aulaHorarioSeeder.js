@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {aulaHorarioFactory}=require('../factories/aulaHorarioFactory')
 /** @type {import('sequelize-cli').Migration} */

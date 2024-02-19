@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {aulaReservaFactory}=require('../factories/aulaReservaFactory')
 /** @type {import('sequelize-cli').Migration} */

@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {
   Model

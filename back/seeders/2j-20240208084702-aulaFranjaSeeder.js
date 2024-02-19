@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {aulaFranjaFactory}=require('../factories/aulaFranjaFactory')
 /** @type {import('sequelize-cli').Migration} */

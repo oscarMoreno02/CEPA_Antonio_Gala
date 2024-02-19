@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {
   Model
@@ -20,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     idAula: {
       type: DataTypes.INTEGER,
-   
+
     },
     idHorario: {
       type: DataTypes.INTEGER,
@@ -28,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     idProfesor: {
       type: DataTypes.INTEGER,
- 
+
     },
     fecha: DataTypes.DATE
   }, {
