@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -13,9 +13,8 @@ import { Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
-
 @Component({
-  selector: 'app-nueva-franja',
+  selector: 'app-editar-franja',
   standalone: true,
   imports: [
     FormsModule,
@@ -27,10 +26,10 @@ import { FranjaService } from '../../services/franja.service';
    DropdownModule,
   ],
   providers:[DialogService, MessageService, AulaService],
-  templateUrl: './nueva-franja.component.html',
-  styleUrl: './nueva-franja.component.css'
+  templateUrl: './editar-franja.component.html',
+  styleUrl: './editar-franja.component.css'
 })
-export class NuevaFranjaComponent implements OnInit {
+export class EditarFranjaComponent {
 
   constructor(
     public messageService: MessageService,
@@ -38,19 +37,24 @@ export class NuevaFranjaComponent implements OnInit {
     private router: Router,
    
   ) { }
-  horaInicio={hora:{valor:'00',numero:0},minuto:{valor:'00',numero:0}}
+  horaInicio={hora:{valor:'03',numero:0},minuto:{valor:'00',numero:0}}
   horaFin={hora:{valor:'00',numero:0},minuto:{valor:'00',numero:0}}
   horas=[{valor:'00',numero:0}]
   minutos=[{valor:'00',numero:0}]
   turnosDisponibles=[{nombre:'Diurno'},{nombre:'Nocturno'}]
   turnoElegido={nombre:'Diurno'}
-  nuevaFranja:Franja={horaInicio:'',horaFin:'',turno:''}
+
+  editarFranja:Franja={horaInicio:'',horaFin:'',turno:''}
   listaFranjas:Array<Franja>=[]
+
   estiloValidacionHoras=''
   estiloValidacionMinutos=''
   estiloValidacioneTurno=''
+
   @Input() visible: boolean = false;
   @Input() tipo=0
+  @Input() id=0
+
   subscripcionFranjas: Subscription=new Subscription;
   showDialog() {
       this.visible = true;
@@ -83,35 +87,42 @@ export class NuevaFranjaComponent implements OnInit {
         }
 
       });
+
+      this.subscripcionFranjas=this.servicioFranja.getFranja(this.id).subscribe({
+        next:(data:Franja)=>{
+          this.editarFranja=data
+          this.parsearDatos(data.horaInicio,data.horaFin,data.turno)
+        }
+      })
    
   }
-  crear(b:Boolean){
+  modificar(b:Boolean){
     if(b){
 
       if(this.validarCampos()){
-        this.nuevaFranja.horaFin=this.horaFin.hora.valor+':'+this.horaFin.minuto.valor
-        this.nuevaFranja.horaInicio=this.horaInicio.hora.valor+':'+this.horaInicio.minuto.valor
-        this.nuevaFranja.turno=this.turnoElegido.nombre
+        this.editarFranja.horaFin=this.horaFin.hora.valor+':'+this.horaFin.minuto.valor
+        this.editarFranja.horaInicio=this.horaInicio.hora.valor+':'+this.horaInicio.minuto.valor
+        this.editarFranja.turno=this.turnoElegido.nombre
         if(this.comprobrarRegistradas()){
 
-          this.messageService.add({ severity: 'info', summary: 'Crear Franja', detail: 'En curso', life: 3000 });
-          this.servicioFranja.insertFranja(this.nuevaFranja).subscribe({
+          this.messageService.add({ severity: 'info', summary: 'Editar Franja', detail: 'En curso', life: 3000 });
+          this.servicioFranja.updateFranja(this.editarFranja).subscribe({
             next: (data:any) => {
               setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Crear Franja', detail: 'Completada', life: 3000 });
+                this.messageService.add({ severity: 'success', summary: 'Editar Franja', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
-                  console.log(data)
+                  window.location.reload()
                 }, 1000); 
               }, 1000); 
               
             },
             error: (err) => {
               
-              this.messageService.add({ severity:'error', summary: 'Crear Franja', detail: 'Cancelada', life: 3000 });
+              this.messageService.add({ severity:'error', summary: 'Editar Franja', detail: 'Cancelada', life: 3000 });
             }
           })
         }else{
-          this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Horarios de franja ya registrados anteriormente', life: 3000 });
+          this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Horarios de franja ya registrados anteriormente', life: 3000 });
         }
     }
   }
@@ -123,27 +134,27 @@ export class NuevaFranjaComponent implements OnInit {
     if(this.horaInicio.hora==null || this.horaFin.hora==null){
       this.estiloValidacionHoras='ng-invalid ng-dirty'
         valido=false
-        this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Horas introdudas incorrectamente', life: 3000 });
+        this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Horas introdudas incorrectamente', life: 3000 });
     }
     if(this.horaInicio.minuto==null || this.horaFin.minuto==null){
       this.estiloValidacionHoras='ng-invalid ng-dirty'
         valido=false
-        this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Minutos introducidos incorrectamente', life: 3000 });
+        this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Minutos introducidos incorrectamente', life: 3000 });
     }
       if(this.horaInicio.hora.numero>this.horaFin.hora.numero){
         this.estiloValidacionHoras='ng-invalid ng-dirty'
         valido=false
-        this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Horas introdudas incorrectamente', life: 3000 });
+        this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Horas introdudas incorrectamente', life: 3000 });
       }else{
         if(this.horaInicio.hora.numero==this.horaFin.hora.numero && this.horaInicio.minuto.numero>this.horaFin.minuto.numero){
           this.estiloValidacionMinutos='ng-invalid ng-dirty'
           valido=false
-          this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Minutos introdudos incorrectamente', life: 3000 });
+          this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Minutos introdudos incorrectamente', life: 3000 });
         }else{
           if(this.horaInicio.hora.numero==this.horaFin.hora.numero && this.horaInicio.minuto.numero==this.horaFin.minuto.numero){
             this.estiloValidacionMinutos='ng-invalid ng-dirty'
             valido=false
-            this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Minutos introdudos incorrectamente', life: 3000 });
+            this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Minutos introdudos incorrectamente', life: 3000 });
           }else{
             this.estiloValidacionMinutos=''
             this.estiloValidacionHoras=''
@@ -153,7 +164,7 @@ export class NuevaFranjaComponent implements OnInit {
       if(valido){
         if(this.turnoElegido==null){
           this.estiloValidacioneTurno='ng-invalid ng-dirty'
-          this.messageService.add({ severity: 'warn', summary: 'Crear Franja', detail: 'Debe de elegir un turno para esta franja', life: 3000 });
+          this.messageService.add({ severity: 'warn', summary: 'Editar Franja', detail: 'Debe de elegir un turno para esta franja', life: 3000 });
         }else{
           this.estiloValidacioneTurno=''
         }
@@ -161,18 +172,46 @@ export class NuevaFranjaComponent implements OnInit {
     
     return valido
   }
+  eliminar(b:Boolean){
+    this.messageService.add({ severity: 'info', summary: 'Eliminar Franja', detail: 'En curso', life: 3000 });
+    this.servicioFranja.deleteFranja(this.id).subscribe({
+      next:(data:any)=>{
+        setTimeout(() => {
+                this.visible=false
+                this.messageService.add({ severity: 'success', summary: 'Eliminar Franja', detail: 'Completado', life: 3000 });
+                setTimeout(() => {
+                window.location.reload()
+              }, 1000);
+            }, 1000); 
+      },
+        error: (err) => {
+          this.messageService.add({ severity:'error', summary: 'Eliminar Franja', detail: 'Cancelado', life: 3000 });
+        }
+    })
+  }
   comprobrarRegistradas():boolean{
     let valido = true
     let i = 0
     while(i<this.listaFranjas.length && valido==true){
 
-      if(this.nuevaFranja.horaInicio==this.listaFranjas[i].horaInicio.substring(0, 5) && 
-        this.nuevaFranja.horaFin==this.listaFranjas[i].horaFin.substring(0, 5)){
-  
+      if(this.editarFranja.horaInicio==this.listaFranjas[i].horaInicio.substring(0, 5) 
+        && 
+        this.editarFranja.horaFin==this.listaFranjas[i].horaFin.substring(0, 5) 
+        && this.editarFranja.id!=this.listaFranjas[i].id
+        ){  
           valido=false
       }
       i++
     }
     return valido
+  }
+  parsearDatos(horaInicio:string,horaFin:string,turno:string){
+
+    this.turnoElegido={nombre:turno}
+
+    this.horaInicio.hora={valor:horaInicio.substring(0,2),numero:parseInt(horaInicio.substring(0,2))}
+    this.horaInicio.minuto={valor:horaInicio.substring(3,5),numero:parseInt(horaInicio.substring(3,5))}
+    this.horaFin.hora={valor:horaFin.substring(0,2),numero:parseInt(horaFin.substring(0,2))}
+    this.horaFin.minuto={valor:horaFin.substring(3,5),numero:parseInt(horaFin.substring(3,5))}
   }
 }

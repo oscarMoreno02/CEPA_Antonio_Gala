@@ -20,7 +20,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-franja>
             <tr>
-                <td></td>
+                <td><app-editar-franja [id]="franja.id"></app-editar-franja></td>
                 <td>{{ franja.id}}</td>
                 <td>{{ franja.turno}}</td>
                 <td>{{ franja.horaInicio}}</td>
