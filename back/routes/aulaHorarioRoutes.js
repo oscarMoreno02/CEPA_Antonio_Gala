@@ -6,6 +6,7 @@ const controller = require('../controllers/aulaHorarioController')
 
 router.get('/', controller.listAllHorarios)
 router.get('/:id', controller.listHorario)
+router.get('/aula/:id', controller.listAllHorariosOfAula)
 router.post('/', controller.createHorario)
 router.put('/:id', controller.editHorario)
 router.delete('/:id', controller.removeHorario)

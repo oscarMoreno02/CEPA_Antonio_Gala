@@ -30,6 +30,18 @@ const listHorario = (req, res = response) => {
             res.status(404).json('No exite un horario con ese id')
         })
 }
+//Oscar
+const listAllHorariosOfAula = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllHorariosOfAula(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 
 const createHorario = (req, res = response) => {
     const conexion = new Conexion()
@@ -74,4 +86,5 @@ module.exports = {
     createHorario,
     editHorario,
     removeHorario,
+    listAllHorariosOfAula
 }

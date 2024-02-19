@@ -7,13 +7,17 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class AulaHorario extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+ 
+    //Óscar - Asociaciones
     static associate(models) {
-      // define association here
+      this.belongsTo(models.AulaEspecial, {
+        foreignKey: 'idAula',
+        as: 'aula'
+      });
+      this.belongsTo(models.AulaFranja, {
+        foreignKey: 'idFranja',
+        as: 'franja'
+      });
     }
   }
   AulaHorario.init({
