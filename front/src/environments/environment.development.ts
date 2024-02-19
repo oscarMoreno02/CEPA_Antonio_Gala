@@ -13,5 +13,6 @@ export const environment = {
     urlUsers:'/usuarios',
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
-    urlFranjas:'/franjas'
+    urlFranjas:'/franjas',
+    urlHorarios:'/horarios'
 };
