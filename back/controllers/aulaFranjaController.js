@@ -39,7 +39,7 @@ const createFranja = (req, res = response) => {
         })
         .catch(err => {
             console.log(err)
-            res.status(203).json('Error en el registro')
+            res.status(400).json('Error en el registro')
         })
 }
 

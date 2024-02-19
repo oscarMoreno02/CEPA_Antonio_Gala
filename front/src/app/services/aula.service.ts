@@ -14,7 +14,7 @@ export class AulaService {
 
 
   getAllAulas(): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl)
+    return this.http.get<any>(this.baseUrl,{params: {auth: true}})
   }
 
   insertAula(aula:Aula): Observable<any | undefined> {
@@ -23,7 +23,7 @@ export class AulaService {
      return this.http.post<any>(this.baseUrl,aula,{params: {auth: true}})
    }
    getAula(id:number): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl+'/'+id)
+    return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}})
   }
   deleteAula(id:number): Observable<any | undefined> {
 

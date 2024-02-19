@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     turno: DataTypes.STRING,
-    horaInicio: DataTypes.DATE,
-    horaFin: DataTypes.DATE
+    horaInicio: DataTypes.TIME(4),
+    horaFin: DataTypes.TIME(4)
   }, {
     sequelize,
     modelName: 'AulaFranja',
