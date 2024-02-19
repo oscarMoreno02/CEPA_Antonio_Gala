@@ -23,7 +23,7 @@
                 <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
                 <td>{{ aula.id}}</td>
                 <td>{{ aula.nombre}}</td>
-                <td>horarios</td>
+                <td>    <button routerLink="{{aula.id}}/horarios">Horarios</button></td>
                 <td>reservas</td>
             </tr>
         </ng-template>

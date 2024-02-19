@@ -16,6 +16,9 @@ import { EditarFranjaComponent } from '../editar-franja/editar-franja.component'
 import { HorarioService } from '../../services/horario.service';
 import { Horario } from '../../interface/horario';
 import { Aula } from '../../interface/aula';
+import { ConfirmComponent } from '../confirm/confirm.component';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-lista-horarios-aula',
   standalone: true,
@@ -29,9 +32,11 @@ import { Aula } from '../../interface/aula';
     NuevaAulaComponent,
     EditarAulaComponent,
     NuevaFranjaComponent,
-    EditarFranjaComponent
+    EditarFranjaComponent,
+    ConfirmComponent,
+    ToastModule
   ],
-  providers:[HorarioService],
+  providers:[HorarioService,MessageService],
   templateUrl: './lista-horarios-aula.component.html',
   styleUrl: './lista-horarios-aula.component.css'
 })
@@ -40,29 +45,51 @@ export class ListaHorariosAulaComponent implements OnInit {
     private servicioHorario:HorarioService,
     private router: Router,
     private rutaActiva: ActivatedRoute,
-    private servicioAulas:AulaService
+    private servicioAulas:AulaService,
+    private messageService:MessageService
     ){}
     subscripcionHorarios: Subscription=new Subscription;
-    listaHorarios:Array<Horario>=[]
+    
     idAula = this.rutaActiva.snapshot.params['id']
-    @Input() aula?:Aula
+    aula:Aula={nombre:''}
     
     ngOnInit(): void {
-      this.subscripcionHorarios = this.servicioHorario.getAllHorariosOfAula(this.idAula).subscribe({
-        next: (data: Array<Horario>) => {
-          this.listaHorarios=data
+  
+      this.subscripcionHorarios = this.servicioAulas.getAulaWithData(this.idAula).subscribe({
+        next: (data: Aula) => {
+          this.aula=data
+          console.log(data)
         },
         error: (err) => {
         }
 
       });
-      this.subscripcionHorarios = this.servicioHorario.getAllHorariosOfAula(this.idAula).subscribe({
-        next: (data: Array<Horario>) => {
-          this.listaHorarios=data
-        },
-        error: (err) => {
-        }
+    }
+    eliminar(b: Boolean,id:number) {
 
-      });
+      if (b) {
+  
+        this.messageService.add({ severity: 'info', summary: 'Borrar Horario', detail: 'En curso', life: 3000 });
+      
+        this.servicioHorario.deleteHorario(id).subscribe({
+          next: (u: any) => {
+     
+            setTimeout(() => {
+              this.messageService.add({ severity: 'success', summary: 'Borrar Horario', detail: 'Completada', life: 3000 });
+              setTimeout(() => {
+                
+                this.aula.horarios=this.aula.horarios!.filter(data => data.id !== id);
+                
+              }, 1000);
+            }, 1000);
+  
+          },
+          error: (err) => {
+          
+            this.messageService.add({ severity: 'error', summary: 'Borrar Horario', detail: 'Cancelada', life: 3000 });
+          }
+        })
+  
+      }
     }
 }
