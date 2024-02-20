@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.component';
 import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.component';
 import { AulaService } from '../../services/aula.service';
-import { Aula } from '../../interface/aula';
 import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
 import { Franja } from '../../interface/franja';
@@ -33,7 +32,7 @@ import { EditarFranjaComponent } from '../editar-franja/editar-franja.component'
   templateUrl: './lista-franjas.component.html',
   styleUrl: './lista-franjas.component.css'
 })
-export class ListaFranjasComponent {
+export class ListaFranjasComponent implements OnInit {
   constructor(    
     private servicioFranja:FranjaService,
     private router: Router){}

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.component';
 import { ListaFranjasComponent } from './components/lista-franjas/lista-franjas.component';
+import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lista-horarios-aula.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -22,6 +23,9 @@ export const routes: Routes = [
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
 
  {path:'aulas/franjas',component:ListaFranjasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
+
+ {path:'aulas/:id/horarios',component:ListaHorariosAulaComponent,
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},

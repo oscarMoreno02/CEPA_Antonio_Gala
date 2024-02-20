@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   AulaHorario.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     idAula: {
       type: DataTypes.INTEGER,
     },

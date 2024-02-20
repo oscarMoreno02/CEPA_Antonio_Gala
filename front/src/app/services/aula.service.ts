@@ -25,6 +25,9 @@ export class AulaService {
    getAula(id:number): Observable<any | undefined> {
     return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}})
   }
+  getAulaWithData(id:number): Observable<any | undefined> {
+    return this.http.get<any>(this.baseUrl+'/data/'+id,{params: {auth: true}})
+  }
   deleteAula(id:number): Observable<any | undefined> {
 
     return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}})
