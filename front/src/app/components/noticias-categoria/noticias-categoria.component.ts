@@ -34,10 +34,10 @@ export class NoticiasCategoriaComponent implements OnInit {
     this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(id).subscribe({
       next: (data: Array<Noticia>) => {
         this.listaNoticias=data
-        console.log(this.listaNoticias)
+
       },
       error: (err) => {
-        console.log(err);
+
       }
       
     });

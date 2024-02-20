@@ -1,8 +1,11 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('aulahorarios', {
+    await queryInterface.createTable('aulasHorarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'aulaespecials'
+            tableName: 'aulasEspeciales'
           },
           key: 'id'
         },
@@ -25,7 +28,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'aulafranjas'
+            tableName: 'aulaFranjas'
           },
           key: 'id'
         },
@@ -42,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('aulahorarios');
+    await queryInterface.dropTable('aulasHorarios');
   }
 };

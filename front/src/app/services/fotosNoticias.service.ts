@@ -13,7 +13,7 @@ export class FotosNoticiasService {
 
  
   uploadFoto(formdata:FormData): Observable<any> {
-     return this.http.post<any>(this.baseUrl,formdata)
+     return this.http.post<any>(this.baseUrl,formdata,{params: {auth: true}})
    }
    getFotoURL(id:string): Observable<any | undefined> {
 
@@ -24,9 +24,9 @@ export class FotosNoticiasService {
     )
   }
   deleteFoto(foto:string): Observable<any> {
-    return this.http.delete<any>(this.baseUrl+'/'+foto)
+    return this.http.delete<any>(this.baseUrl+'/'+foto,{params: {auth: true}})
   }
   updateFoto(previa:string,formdata:FormData): Observable<any> {
-    return this.http.put<any>(this.baseUrl+'/'+previa,formdata)
+    return this.http.put<any>(this.baseUrl+'/'+previa,formdata,{params: {auth: true}})
   }
 }

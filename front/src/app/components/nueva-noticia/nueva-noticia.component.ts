@@ -19,6 +19,7 @@ import { Noticia } from '../../interface/noticia';
 import { NoticiaService } from '../../services/noticia.service';
 import { Router } from '@angular/router';
 import { FotosNoticiasService } from '../../services/fotosNoticias.service';
+import { WebSocketService } from '../../services/websocket.service';
 @Component({
   selector: 'app-nueva-noticia',
   standalone: true,
@@ -45,7 +46,8 @@ export class NuevaNoticiaComponent implements OnInit {
     private servicioCategoria: CategoriasService,
     private servicioNoticia: NoticiaService,
     private router: Router,
-    private servicioFotos: FotosNoticiasService
+    private servicioFotos: FotosNoticiasService,
+    private ws: WebSocketService
   ) { }
 
   @Input() visible: boolean = false;
@@ -73,7 +75,7 @@ export class NuevaNoticiaComponent implements OnInit {
         this.listaCategorias = data
       },
       error: (err) => {
-        console.log(err);
+
       }
     });
   }
@@ -94,7 +96,7 @@ export class NuevaNoticiaComponent implements OnInit {
               this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
               this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
                 next: (u: any) => {
-                  console.log(u)
+                    this.ws.sendNoticifacion(this.nuevaNoticia)
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                     setTimeout(() => {
@@ -105,7 +107,7 @@ export class NuevaNoticiaComponent implements OnInit {
 
                 },
                 error: (err) => {
-                  console.log(err)
+            
                   this.messageService.add({ severity: 'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
                 }
               })
@@ -117,8 +119,9 @@ export class NuevaNoticiaComponent implements OnInit {
           this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
           this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
             next: (u: any) => {
-              console.log(u)
+   
               setTimeout(() => {
+                this.ws.sendNoticifacion(this.nuevaNoticia)
                 this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
                   this.router.navigate(['/noticia/contenido', u.id])
@@ -128,7 +131,7 @@ export class NuevaNoticiaComponent implements OnInit {
 
             },
             error: (err) => {
-              console.log(err)
+      
               this.messageService.add({ severity: 'error', summary: 'Crear Noticia', detail: 'Cancelada', life: 3000 });
             }
           })
@@ -184,7 +187,7 @@ export class NuevaNoticiaComponent implements OnInit {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+
     } else {
       this.formularioFoto = null
     }

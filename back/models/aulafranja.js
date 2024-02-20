@@ -1,16 +1,19 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class AulaFranja extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+ 
+        //Óscar - Asociaciones
     static associate(models) {
-      // define association here
+      this.hasMany(models.AulaHorario, {
+        foreignKey: 'idFranja',
+        as: 'horarios'
+      });
     }
   }
   AulaFranja.init({
@@ -19,12 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     turno: DataTypes.STRING,
-    horaInicio: DataTypes.DATE,
-    horaFin: DataTypes.DATE
+    horaInicio: DataTypes.TIME(4),
+    horaFin: DataTypes.TIME(4)
   }, {
     sequelize,
     modelName: 'AulaFranja',
-    tableName: 'aulafranjas'
+    tableName: 'aulaFranjas'
   });
   return AulaFranja;
 };

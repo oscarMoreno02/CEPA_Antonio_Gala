@@ -61,7 +61,7 @@ export class NuevaCategoriaComponent implements OnInit  {
         this.listaCategorias=data
       },
       error: (err) => {
-        console.log(err);
+
       }
       
     });
@@ -76,13 +76,13 @@ cerrar(): void {
   crear(b:Boolean){
     if(b){
 
-      console.log(this.categoriaDependiente)
+
       if(this.validarCampos()){
      
       this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
       this.servicioCategoria.insertCategoria(this.nuevaCategoria).subscribe({
         next: (u:any) => {
-          console.log(u)
+
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Crear Categoria', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
@@ -92,7 +92,7 @@ cerrar(): void {
           
         },
         error: (err) => {
-          console.log(err)
+     
           this.messageService.add({ severity:'error', summary: 'Crear Categoria', detail: 'Cancelada', life: 3000 });
         }
       })

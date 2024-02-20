@@ -1,8 +1,11 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('aulafranjas', {
+    await queryInterface.createTable('aulaFranjas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -15,11 +18,11 @@ module.exports = {
       },
       horaInicio: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.TIME(4)
       },
       horaFin: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.TIME(4)
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('aulafranjas');
+    await queryInterface.dropTable('aulaFranjas');
   }
 };

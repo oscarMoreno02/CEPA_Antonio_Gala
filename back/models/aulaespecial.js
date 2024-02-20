@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {
   Model
@@ -9,8 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+       //Óscar - Asociaciones
     static associate(models) {
-      // define association here
+      this.hasMany(models.AulaHorario, {
+        foreignKey: 'idAula',
+        as: 'horarios'
+      });
     }
   }
   AulaEspecial.init({
@@ -22,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'AulaEspecial',
-    tableName: 'aulaespecials'
+    tableName: 'aulasEspeciales'
   });
   return AulaEspecial;
 };

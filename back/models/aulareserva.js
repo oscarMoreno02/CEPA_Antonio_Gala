@@ -1,3 +1,6 @@
+//Jaime
+//Oscar (cambiado nombre de tablas)
+
 'use strict';
 const {
   Model
@@ -20,29 +23,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     idAula: {
       type: DataTypes.INTEGER,
-      references: {
-        model: AulaEspecial,
-        key: 'id'
-      }
+
     },
     idHorario: {
       type: DataTypes.INTEGER,
-      references: {
-        model: AulaHorario,
-        key: 'id'
-      }
+
     },
     idProfesor: {
       type: DataTypes.INTEGER,
-      references: {
-        model: user,
-        key: 'id'
-      }},
+
+    },
     fecha: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'AulaReserva',
-    tableName: 'aulareservas'
+    tableName: 'aulasReservas'
   });
   return AulaReserva;
 };
