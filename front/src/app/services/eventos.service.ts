@@ -18,4 +18,12 @@ export class EventosService {
       })
     )
   }
+
+  insertEvento(evento:Evento): Observable<any | undefined> {
+    let body={evento:evento}
+  
+     return this.http.post<any>(this.baseUrl,evento).pipe(
+     
+     )
+  }
 }

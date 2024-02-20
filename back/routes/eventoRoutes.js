@@ -6,7 +6,7 @@ const controller = require('../controllers/eventoController');
 
 router.get('/obtenerEventos', controller.obtenerEventos);
 router.get('/eventos/:id', controller.obtenerEventoPorId);
-router.post('/eventos', [
+router.post('', [
     check('nombre').isString().notEmpty().isLength({ min: 2, max: 50 }),
     check('descripcion').isString().notEmpty(),
     check('fecha').isString().notEmpty(),

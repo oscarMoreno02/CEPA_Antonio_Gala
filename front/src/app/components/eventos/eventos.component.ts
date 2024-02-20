@@ -5,21 +5,23 @@ import { EventosService } from '../../services/eventos.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { Evento } from '../../interface/evento';
+import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component";
 
 @Component({
-  selector: 'app-eventos',
-  standalone: true,
-  imports: [
-    ToastModule,
-    TableModule,
-    ButtonModule
-  ],
-  templateUrl: './eventos.component.html',
-  styleUrl: './eventos.component.css',
-  providers: [
-    MessageService, 
-    EventosService
-  ]
+    selector: 'app-eventos',
+    standalone: true,
+    templateUrl: './eventos.component.html',
+    styleUrl: './eventos.component.css',
+    providers: [
+        MessageService,
+        EventosService
+    ],
+    imports: [
+        ToastModule,
+        TableModule,
+        ButtonModule,
+        NuevoEventosComponent
+    ]
 })
 
 export class EventosComponent implements OnInit {

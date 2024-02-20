@@ -3,7 +3,7 @@ export const environment = {
     urlCategorias:'/categorias',
     urlNoticias:'/noticias',
     urlSecciones:'/secciones',
-    urlEventos: '/evento',
+    urlEventos: '/eventos',
     urlEnlace:'/enlaces',
     urlFotosNoticias:'/uploads/noticias',
     urlFotosSecciones:'/uploads/secciones',

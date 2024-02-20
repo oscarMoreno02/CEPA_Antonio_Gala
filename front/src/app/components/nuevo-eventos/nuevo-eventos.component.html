@@ -1,1 +1,45 @@
-<p>nuevo-eventos works!</p>
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="titulo">sTitulo</label>
+                <input  class="{{ validacionTitulo }}" pInputText id="titulo" aria-describedby="titulo" [(ngModel)]="nuevoEvento.titulo" />
+                <small id="titulo">Introduce un titulo para el nuevo evento</small>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="descripcion">Descripción</label>
+                <input  class="{{ validacionDescripcion }}" pInputText id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion" />
+                <small id="descripcion">Introduce una descripcion para la nueva noticia</small>
+            </div>
+
+            <div class="flex felx-column">
+                <label for="visibilidad">Visibilidad</label>
+                <input class="{{ visibilidad }}" pIntutCheckbox id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visilidad"/>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="fotoCartel">Foto de cartel</label>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="fotoCartel">Subir una foto para esta noticia</small>
+            </div>
+
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
+
+        </div>
+        <div style="margin-top: 20px;" >
+            <app-confirm tipo="Crear" icono="plus" mensaje="¿Deseas crear este evento?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+    </p-dialog>
+</div>
