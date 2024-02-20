@@ -1,0 +1,47 @@
+
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.gap-4 {
+    gap: 20px; 
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+small {
+    font-size: 12px;
+    color: #666;
+}
+
+@media screen and (max-width: 950px) {
+    .custom-dialog {
+        width: 80vw; 
+    }
+}
+.custom-dialog {
+    width: 30vw; 
+}
+.flex-row {
+        flex-direction: column; 
+}
+.subcategoria-seleccionada{
+    
+    margin-bottom: 100px;
+}

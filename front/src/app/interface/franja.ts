@@ -5,4 +5,5 @@ export interface Franja {
     turno:string
     createdAt?:Date
     updatedAt?:Date
+    formateado?:String
 }

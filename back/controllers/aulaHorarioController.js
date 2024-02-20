@@ -47,7 +47,8 @@ const createHorario = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertHorario(req.body)
         .then(data => {
-            res.status(201).json('Horario registrado correctamente')
+            console.log(data)
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)

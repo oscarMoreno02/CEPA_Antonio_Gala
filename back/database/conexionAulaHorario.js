@@ -98,13 +98,16 @@ class ConexionAulaHorario {
         try {
             const task = new models.AulaHorario(body)
             await task.save()
-            resultado = 1
+          return task.id
+            console.log(resultado)
+            console.log(task)
+            return resultado
+           
         } catch (error) {
             throw error
         } finally {
             this.desconectar()
         }
-        return resultado
     }
     updateHorario = async (id, body) => {
         try {

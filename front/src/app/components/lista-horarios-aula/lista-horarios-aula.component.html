@@ -18,13 +18,14 @@
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
                    <button> Añade el primer horario</button>
+                   <app-nuevo-horario [aula]="aula"></app-nuevo-horario>
                 </div>
             </ng-template>
         }@else {
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th></th>
+                    <th> <app-nuevo-horario [aula]="aula"></app-nuevo-horario></th>
                     <th style="width:30%">Hora Inicio</th>
                     <th style="width:20%">Hora fin</th>
                     <th style="width:40%">Turno</th>

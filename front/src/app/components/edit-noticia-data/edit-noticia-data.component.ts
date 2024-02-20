@@ -50,12 +50,12 @@ export class EditNoticiaDataComponent implements OnInit {
   @Input() tipo = 0
   value = ''
   categoria: Categoria = { id: 0, nombre: '', dependiente: null }
+  categoriaDependiente?: Categoria
+  @Input() listaCategorias: Array<Categoria> = []
   @Input() id?: number
   subscripcionCategorias: Subscription = new Subscription;
 
-  @Input() listaCategorias: Array<Categoria> = []
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
-  categoriaDependiente?: Categoria
 
   noticiaEditar: Noticia = { id: null, titulo: '', idCategoria: null, }
   estiloValidacionNombre = ''

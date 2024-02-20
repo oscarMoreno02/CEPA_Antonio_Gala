@@ -19,6 +19,7 @@ import { Aula } from '../../interface/aula';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { NuevoHorarioComponent } from '../nuevo-horario/nuevo-horario.component';
 @Component({
   selector: 'app-lista-horarios-aula',
   standalone: true,
@@ -34,7 +35,8 @@ import { ToastModule } from 'primeng/toast';
     NuevaFranjaComponent,
     EditarFranjaComponent,
     ConfirmComponent,
-    ToastModule
+    ToastModule,
+    NuevoHorarioComponent
   ],
   providers:[HorarioService,MessageService],
   templateUrl: './lista-horarios-aula.component.html',
