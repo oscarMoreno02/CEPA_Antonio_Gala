@@ -8,6 +8,7 @@ import { accesoGuard } from './guards/acceso.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { UsersComponent } from './components/users/users.component';
 import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.component';
 import { ListaFranjasComponent } from './components/lista-franjas/lista-franjas.component';
 
@@ -20,6 +21,9 @@ export const routes: Routes = [
 
 {path:'aulas',component:ListaAulasComponent,
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
+
+ {path:'users',component:UsersComponent,
+ canActivate: [accesoGuard],data: { rol: ['Administrador'] } },
 
  {path:'aulas/franjas',component:ListaFranjasComponent,
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
