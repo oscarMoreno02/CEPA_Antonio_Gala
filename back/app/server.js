@@ -20,7 +20,7 @@ class Server {
         this.franjasPath='/api/franjas'
         this.reservasPath='/api/reservas'
         this.chatPath = '/api/chat';
-        this.eventoPath = '/api/evento';
+        this.eventoPath = '/api/eventos';
         this.mensajeChatPath = '/api/mensajeChat';
         this.asistenciaPath = '/api/asistencia';
         this.galeriaPath = '/api/galeria';
