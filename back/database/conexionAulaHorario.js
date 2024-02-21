@@ -109,6 +109,47 @@ class ConexionAulaHorario {
             this.desconectar()
         }
     }
+    getReservaByIdAulaOfDay = async (id,day,month,year) => {
+            try {
+                const parsedDay = parseInt(day, 10);
+                const parsedMonth = parseInt(month, 10);
+                const parsedYear = parseInt(year, 10);
+                const fecha = new Date(parsedYear, parsedMonth - 1, parsedDay);
+                this.conectar();
+
+                const horarios = await models.AulaHorario.findAll({
+                    include: [
+                        {
+                            model: models.AulaFranja,
+                            as: 'franja',
+                        }
+                    ],
+                    where: {
+                        idAula: id
+                    }
+                });
+                for(const h of horarios){
+                    const reservas = await models.AulaReserva.findAll({
+                        where: {
+                            idHorario: h.id,
+                            fecha: fecha
+                        }
+                    });
+                    if(reservas.length>0){
+                        h.dataValues.reservas=reservas
+                    }else{
+                        h.dataValues.reservas=null
+                    }
+
+                }
+                return horarios;
+            } catch (error) {
+                throw error;
+            } finally {
+                this.desconectar();
+            }
+        }
+    
     updateHorario = async (id, body) => {
         try {
             let resultado = 0

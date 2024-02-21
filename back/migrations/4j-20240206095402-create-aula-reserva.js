@@ -47,7 +47,7 @@ module.exports = {
       },
       fecha: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,

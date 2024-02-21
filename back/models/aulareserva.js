@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.AulaHorario, {
+        foreignKey: 'idHorario',
+        as: 'horario'
+      });
+      this.belongsTo(models.AulaEspecial, {
+        foreignKey: 'idAula',
+        as: 'aula'
+      });
     }
   }
   AulaReserva.init({
@@ -33,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
 
     },
-    fecha: DataTypes.DATE
+    fecha: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'AulaReserva',
