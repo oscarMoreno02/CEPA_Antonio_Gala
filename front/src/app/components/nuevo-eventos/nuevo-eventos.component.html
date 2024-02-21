@@ -8,38 +8,48 @@
         <div class="flex flex-row gap-4">
 
             <div class="flex flex-column">
-                <label for="titulo">sTitulo</label>
-                <input  class="{{ validacionTitulo }}" pInputText id="titulo" aria-describedby="titulo" [(ngModel)]="nuevoEvento.titulo" />
-                <small id="titulo">Introduce un titulo para el nuevo evento</small>
+                <label for="titulo">Nombre</label><br>
+                <input  class="{{ validacionNombre }}" pInputText id="titulo" aria-describedby="titulo" [(ngModel)]="nuevoEvento.nombre" /><br>
+                <small id="titulo">Introduce un nombre para el nuevo evento</small><br><br>
             </div>
 
             <div class="flex flex-column">
-                <label for="descripcion">Descripción</label>
-                <input  class="{{ validacionDescripcion }}" pInputText id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion" />
-                <small id="descripcion">Introduce una descripcion para la nueva noticia</small>
-            </div>
+                <label for="descripcion">Descripción</label><br>
+                <input  class="{{ validacionDescripcion }}" pInputText id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion" /><br>
+                <small id="descripcion">Introduce una descripción para la nueva noticia</small><br><br>
+            </div><br>
+
+            <div class="datepicker-container" cdkOverlayContainer>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle disabled matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker ></mat-datepicker>
+                </mat-form-field>
+            </div><br>
 
             <div class="flex felx-column">
                 <label for="visibilidad">Visibilidad</label>
-                <input class="{{ visibilidad }}" pIntutCheckbox id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visilidad"/>
+                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="'YES'" ng-false-value="'NO'" class="{{ visibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
             </div>
 
             <div class="flex flex-column">
-                <label for="fotoCartel">Foto de cartel</label>
-                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                <label for="fotoCartel">Foto de cartel</label><br><br>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
                     @if(fotoPreview){
                         <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
                     }
-                <small id="fotoCartel">Subir una foto para esta noticia</small>
+                <small id="fotoCartel">Subir una foto para esta noticia</small><br>
             </div>
-
+            <br>
             @if(fotoPreview){
                 <img [src]="fotoPreview">
             }
 
-        </div>
+        </div><br>
         <div style="margin-top: 20px;" >
             <app-confirm tipo="Crear" icono="plus" mensaje="¿Deseas crear este evento?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
         </div>
     </p-dialog>
 </div>

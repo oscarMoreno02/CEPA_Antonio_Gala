@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
@@ -11,10 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { CategoriasService } from '../../services/categorias.service';
-import { NoticiaService } from '../../services/noticia.service';
 import { Router } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
+import { Evento } from '../../interface/evento';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+
 
 @Component({
   selector: 'app-nuevo-eventos',
@@ -28,10 +32,19 @@ import { EventosService } from '../../services/eventos.service';
     InputSwitchModule,
     ConfirmComponent,
     DropdownModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatDatepickerModule, 
+    MatCardModule, 
+    MatDatepickerModule
   ],
   templateUrl: './nuevo-eventos.component.html',
   styleUrl: './nuevo-eventos.component.css',
-  providers:[DialogService, MessageService, EventosService]
+  providers:[
+    DialogService, 
+    MessageService, 
+    EventosService, 
+    provideNativeDateAdapter()]
 })
 export class NuevoEventosComponent implements OnInit{
   constructor(
@@ -46,9 +59,20 @@ export class NuevoEventosComponent implements OnInit{
   @Input() visible: boolean = false;
   @Output() cerrarModal = new EventEmitter<void>();
   value = ''
-  validacionTitulo = ''
+  validacionNombre = ''
   validacionDescripcion = ''
-  visibiliad = false
+  visibilidad = ''
+
+  nuevoEvento : Evento = {
+    id: null,
+    nombre: '',
+    descripcion: '',
+    fecha: '',
+    hora: '',
+    fotoCartel: '',
+    mg: 0,
+    visibilidad: false
+  }
 
   formularioFoto: FormData | null = null
   fotoPreview: string | null = null
@@ -78,4 +102,5 @@ export class NuevoEventosComponent implements OnInit{
   crear(b:Boolean){
 
   }
+
 }
