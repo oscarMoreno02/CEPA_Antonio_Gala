@@ -143,6 +143,7 @@ class ConexionAulaReserva {
             this.desconectar()
         }
     }
+        //Óscar
     getAllReservasWithData = async () => {
         try {
             let resultado = []

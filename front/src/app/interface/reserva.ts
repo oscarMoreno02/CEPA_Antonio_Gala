@@ -3,6 +3,7 @@ import { Horario } from "./horario"
 import { Usuario } from "./usuario"
 
 
+  //Estado 0 => pendiente  1=> Vencido  2=> En curso
 export interface Reserva {
     id?:number,
     fecha:string,
@@ -14,4 +15,5 @@ export interface Reserva {
     aula?:Aula,
     profesor?:Usuario,
     horario:Horario,
+    estado?:number,
 }

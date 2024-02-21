@@ -15,14 +15,21 @@ export class ReservaService {
 
 
   getAllReservas(): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl).pipe(
+    return this.http.get<any>(this.baseUrl,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
     )
   }
   getAllReservasByClaseWithData(idAula:number): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl+'/aula/'+idAula).pipe(
+    return this.http.get<any>(this.baseUrl+'/aula/'+idAula,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
+  getAllReservasWithData(): Observable<any | undefined> {
+    return this.http.get<any>(this.baseUrl+'/data/',{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
@@ -33,7 +40,7 @@ export class ReservaService {
      )
    }
    getReserva(id:number): Observable<any | undefined> {
-    return this.http.get<any>(this.baseUrl+'/'+id).pipe(
+    return this.http.get<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })

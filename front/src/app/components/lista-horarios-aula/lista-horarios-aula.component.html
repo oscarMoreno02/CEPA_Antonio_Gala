@@ -17,8 +17,10 @@
 
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
-                   <button> Añade el primer horario</button>
-                   <app-nuevo-horario [aula]="aula"></app-nuevo-horario>
+                    <h2>Sin horarios
+                    </h2>
+
+                        <app-nuevo-horario [aula]="aula"></app-nuevo-horario>
                 </div>
             </ng-template>
         }@else {
@@ -43,6 +45,7 @@
             </tr>
             
         </ng-template>
+        
         <ng-template pTemplate="paginatorleft">
         </ng-template>
         <ng-template pTemplate="paginatorright">

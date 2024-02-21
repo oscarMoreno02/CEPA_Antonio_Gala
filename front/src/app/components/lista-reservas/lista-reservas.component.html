@@ -1,0 +1,57 @@
+<p-toast></p-toast>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaReservas"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} aulas"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+  
+        <ng-template pTemplate="header">
+            <tr>
+             
+                <th style="width:10%">Aula</th>
+                <th style="width:10%">Fecha</th>
+                <th style="width:10%">Hora Inicio</th>
+                <th style="width:10%">Hora Fin</th>
+                <th style="width:10%">Profesor</th>
+                <th style="width:20%">Email</th>
+                <th style="width:20%">estado</th>
+                <th></th>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="body" let-reserva>
+            <tr>
+                <td>{{reserva.aula.nombre}}</td>
+                <td>{{ reserva.fecha}}</td>
+                <td>{{ reserva.horario.franja.horaInicio}}</td>
+                <td>{{ reserva.horario.franja.horaFin}}</td>
+                <td> {{reserva.profesor.nombre}}  </td>
+                <td>{{reserva.profesor.email}}</td>
+               @switch (reserva.estado) {
+                 @case (0) {
+                    <td style="color: red;">Pendiente</td>
+                    <td> <app-confirm tipo="Anular" icono="trash" mensaje="¿Deseas anular esta reserva?" color="danger" (confirmacion)="eliminar($event,reserva.id)"></app-confirm></td>
+                 }
+                 @case (1) {
+                    <td colspan="2" style="color: green;">Vencida</td>
+                 }
+                 @case (2) {
+                    <td colspan="2" style="color: orange;">En curso</td>
+                 }
+               }
+            </tr>
+        </ng-template>
+
+            <ng-template pTemplate="paginatorleft">
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                
+            </ng-template>
+
+    </p-table>
+</div>

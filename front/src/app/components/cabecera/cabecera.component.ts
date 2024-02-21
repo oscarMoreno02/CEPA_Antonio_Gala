@@ -76,7 +76,7 @@ userroles:Array<string>=[]
     },
     {
       label: 'Reservas',
-      command: () => { this.router.navigate(['/admin/noticias']) },
+      command: () => { this.router.navigate(['/aulas/reservas']) },
     }
   ]
 
