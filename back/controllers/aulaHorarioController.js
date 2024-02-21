@@ -80,6 +80,7 @@ const removeHorario = (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
+//Óscar
 const listReservaOfAulaOnDay = (req, res = response) => {
     const conexion = new Conexion()
     let day=req.params.day

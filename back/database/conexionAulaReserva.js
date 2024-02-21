@@ -105,6 +105,49 @@ class ConexionAulaReserva {
             this.desconectar()
         }
     }
+    getAllReservasOfAulaWithData = async (id) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaReserva.findAll({
+
+                include: [
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    }
+                ],
+                include: [
+                    {
+                        model: models.AulaHorario,
+                        as: 'horario',
+                        include:[{
+                            model:models.AulaFranja,
+                            as:'franja'
+                        }]
+                    }
+                ],
+                include: [
+                    {
+                        model: models.user,
+                        as: 'profesor',
+                        attributes:['id','nombre','email']
+                    }
+
+                    
+                ],
+                where: {
+                    idAula: id
+                }
+            }
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
 }
 
 module.exports = ConexionAulaReserva

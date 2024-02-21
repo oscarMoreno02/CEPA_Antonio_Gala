@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idAula',
         as: 'aula'
       });
+      this.belongsTo(models.user, {
+        foreignKey: 'idProfesor',
+        as: 'profesor'
+      });
     }
   }
   AulaReserva.init({

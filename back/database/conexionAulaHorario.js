@@ -109,6 +109,7 @@ class ConexionAulaHorario {
             this.desconectar()
         }
     }
+    //Óscar
     getReservaByIdAulaOfDay = async (id,day,month,year) => {
             try {
                 const parsedDay = parseInt(day, 10);
@@ -128,20 +129,18 @@ class ConexionAulaHorario {
                         idAula: id
                     }
                 });
-                for(const h of horarios){
-                    const reservas = await models.AulaReserva.findAll({
-                        where: {
-                            idHorario: h.id,
-                            fecha: fecha
-                        }
-                    });
-                    if(reservas.length>0){
-                        h.dataValues.reservas=reservas
-                    }else{
-                        h.dataValues.reservas=null
+                const idHorarios = horarios.map(horario => horario.id);
+                const reservas = await models.AulaReserva.findAll({
+                    where: {
+                        idHorario: idHorarios,
+                        fecha: fecha
                     }
-
+                });
+                for(const horario of horarios){
+                    const reservasDelHorario = reservas.filter(reserva => reserva.idHorario == horario.id);
+                    horario.dataValues.reservado = reservasDelHorario.length > 0 ? reservasDelHorario[0] : null;
                 }
+             
                 return horarios;
             } catch (error) {
                 throw error;
