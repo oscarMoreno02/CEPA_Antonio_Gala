@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/aulaReservaController')
 
+router.get('/data/', controller.listAllReservasWithData)
 router.get('/', controller.listAllReservas)
 router.get('/:id', controller.listReserva)
 router.get('/aula/:id', controller.listAllReservasOfClaseWithData)

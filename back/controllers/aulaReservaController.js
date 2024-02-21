@@ -78,7 +78,17 @@ const listAllReservasOfClaseWithData = (req, res = response) => {
             res.status(404).json()
         })
 }
-
+const listAllReservasWithData = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllReservasWithData()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 
 module.exports = {
     listAllReservas,
@@ -86,5 +96,6 @@ module.exports = {
     createReserva,
     editReserva,
     removeReserva,
-    listAllReservasOfClaseWithData
+    listAllReservasOfClaseWithData,
+    listAllReservasWithData
 }
