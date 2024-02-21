@@ -20,12 +20,13 @@
             </div><br>
 
             <div class="datepicker-container" cdkOverlayContainer>
+                <label for="descripcion">Fecha del evento</label><br><br>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
                     <mat-datepicker-toggle disabled matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker ></mat-datepicker>
-                </mat-form-field>
+                </mat-form-field><br>
+                <small id="descripcion"></small>
             </div><br>
 
             <div class="flex felx-column">
