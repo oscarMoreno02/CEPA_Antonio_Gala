@@ -36,6 +36,11 @@ export const routes: Routes = [
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
 
 
+ {path:'reservas',component:ListaReservasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
+ {path: 'profesor', pathMatch: 'full', redirectTo: '/reservas'},
+
+ 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
 {path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},

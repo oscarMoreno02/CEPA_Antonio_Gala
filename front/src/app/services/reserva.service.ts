@@ -28,6 +28,13 @@ export class ReservaService {
       })
     )
   }
+  getAllReservasByProfesorWithData(idProfesor:number): Observable<any | undefined> {
+    return this.http.get<any>(this.baseUrl+'/profesor/'+idProfesor,{params: {auth: true}}).pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
   getAllReservasWithData(): Observable<any | undefined> {
     return this.http.get<any>(this.baseUrl+'/data/',{params: {auth: true}}).pipe(
       catchError((error) =>{

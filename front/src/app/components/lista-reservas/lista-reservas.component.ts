@@ -15,6 +15,7 @@ import { Reserva } from '../../interface/reserva';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { ToastModule } from 'primeng/toast';
 import { Message, MessageService } from 'primeng/api';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class ListaReservasComponent implements OnInit {
     private servicioReservas:ReservaService,
     private router: Router,
     private rutaActiva:ActivatedRoute ,
-    private messageService:MessageService
+    private messageService:MessageService,
+    public authService:AuthService
     ){}
     subscripcionReservas: Subscription=new Subscription;
     listaReservas:Array<Reserva>=[]
@@ -70,16 +72,31 @@ console.log(this.fecha)
             }
           });
         }else{
+          let acceso=this.authService.getAccess
+          if(acceso=='profesor'){
+            this.id=this.authService.getUid()
+            console.log(this.id)
+            this.subscripcionReservas = this.servicioReservas.getAllReservasByProfesorWithData(this.id).subscribe({
+              next: (data: Array<Reserva>) => {
+                this.listaReservas=data
+                this.evaluarFechas()
+                console.log(this.listaReservas.length)
+              },
+              error: (err) => {
+              }
+            });
+          }else{
 
-          this.subscripcionReservas = this.servicioReservas.getAllReservasWithData().subscribe({
-            next: (data: Array<Reserva>) => {
-              this.listaReservas=data
-              this.evaluarFechas()
-              console.log(this.listaReservas.length)
-            },
-            error: (err) => {
-            }
-          });
+            this.subscripcionReservas = this.servicioReservas.getAllReservasWithData().subscribe({
+              next: (data: Array<Reserva>) => {
+                this.listaReservas=data
+                this.evaluarFechas()
+                console.log(this.listaReservas.length)
+              },
+              error: (err) => {
+              }
+            });
+          }
         }
     }
     eliminar(b:Boolean,id:number){
@@ -88,7 +105,7 @@ console.log(this.fecha)
         next:(data:any)=>{
           setTimeout(() => {
                   this.messageService.add({ severity: 'success', summary: 'Anular Reserva', detail: 'Completado', life: 3000 });
-                  setTimeout(() => {
+                  setTimeout(() => { 
                     this.listaReservas=this.listaReservas.filter(data => data.id !== id);
                  
                 }, 1000);
