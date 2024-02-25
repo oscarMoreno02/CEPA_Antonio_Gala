@@ -9,23 +9,19 @@
 
             <div class="flex flex-column">
                 <label for="titulo">Nombre</label><br>
-                <input  class="{{ validacionNombre }}" pInputText id="titulo" aria-describedby="titulo" [(ngModel)]="nuevoEvento.nombre" /><br>
+                <input  class="{{ validacionNombre }}" pInputText id="nombre" aria-describedby="nombre" [(ngModel)]="nuevoEvento.nombre" /><br>
                 <small id="titulo">Introduce un nombre para el nuevo evento</small><br><br>
             </div>
 
             <div class="flex flex-column">
                 <label for="descripcion">Descripción</label><br>
-                <textarea  class="{{ validacionDescripcion }}" rows="20" cols="60" id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion"></textarea><br>
+                <textarea  class="{{ validacionDescripcion }}" rows="20" cols="60" id="descripcion" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion"></textarea><br>
                 <small id="descripcion">Introduce una descripción para el nuevo evento</small><br><br>
             </div><br>
 
             <div class="datepicker-container" cdkOverlayContainer>
                 <label for="descripcion">Fecha</label><br><br>
-                <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY" class="{{ validacionFecha }}">
-                    <mat-datepicker-toggle disabled matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker ></mat-datepicker>
-                </mat-form-field><br>
+                <input class="{{ validacionFecha }}" pInputText id="fecha" placeholder="DD/MM/YYYY" aria-describedby="fecha" [(ngModel)]="nuevoEvento.fecha"/><br>
                 <small id="descripcion">Introduce una fecha para el evento con formato DIA/MES/AÑO con números completos</small>
             </div><br>
 

@@ -13,7 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../interface/evento';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
@@ -36,7 +36,6 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule, 
     MatDatepickerModule, 
     MatCardModule, 
-    MatDatepickerModule
   ],
   templateUrl: './nuevo-eventos.component.html',
   styleUrl: './nuevo-eventos.component.css',
@@ -44,7 +43,8 @@ import {MatCardModule} from '@angular/material/card';
     DialogService, 
     MessageService, 
     EventosService, 
-    provideNativeDateAdapter()]
+    provideNativeDateAdapter()
+  ]
 })
 export class NuevoEventosComponent implements OnInit{
   constructor(
@@ -66,7 +66,7 @@ export class NuevoEventosComponent implements OnInit{
   validacionFecha = ''
 
   nuevoEvento : Evento = {
-    id: null,
+    id: 0,
     nombre: '',
     descripcion: '',
     fecha: '',
@@ -104,6 +104,7 @@ export class NuevoEventosComponent implements OnInit{
   validarCampos():Boolean{
     let validacion=true
     let fechaRegex = /^\d{2}\/\d{2}\/\d{4}$/
+    let horaRegex = /^[0-2][0-9]:[0-5][0-9]$/
    
     if (this.nuevoEvento.nombre){
       if ((this.nuevoEvento.nombre).length<3){
@@ -134,27 +135,63 @@ export class NuevoEventosComponent implements OnInit{
     }
 
     if(this.nuevoEvento.fecha){
+      
       var fechaTest = fechaRegex.test(this.nuevoEvento.fecha)
       if (fechaTest == false){
         this.validacionFecha = 'ng-invalid ng-dirty'
         validacion=false
         this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La fecha debe de tener formato DD/MM/YYYY', life:3000})
+      } else {
+        this.validacionFecha = ''
       }
     } else {
-      this.validacionFecha = ''
+      this.validacionFecha = 'ng-invalid ng-dirty'
       validacion = false
       this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La fecha del evento es obligatoria', life:3000})
     }
-
     
+    if(this.nuevoEvento.hora){
+      var horaTest = horaRegex.test(this.nuevoEvento.hora)
+        if (horaTest==false){
+          this.validacionHora = 'ng-invalid ng-dirty'
+          validacion=false
+          this.messageService.add({severity:'warn', summary:'Crear Evento', detail:'La hora del evento debe de estar completa', life:3000})
+        } else {
+          this.validacionHora=''
+        }
+      } else {
+        this.validacionHora = 'ng-invalid ng-dirty'
+        validacion = false
+        this.messageService.add({severity:'warn', summary:'Crear Evento', detail:'La hora del evento es obligatoria', life:3000})
+      }
     return validacion
   }
   crear(b:Boolean){
     if (b){
       if(this.validarCampos()){
-
+       // if(this.formularioFoto != null){
+          this.messageService.add({ severity: 'info', summary:'Crear evento', detail:'En curso', life:3000});
+          console.log(this.nuevoEvento)
+          this.servicioEvento.insertEvento(this.nuevoEvento).subscribe({
+            next: (data: any) => {
+              console.log('Respuesta del servidor:', data)
+              setTimeout(() => {
+                this.messageService.add({severity: 'success', summary:'Crear evento', detail:'Completado', life:3000});
+                this.nuevoEvento.id = data.id
+                this.nuevoEvento.nombre= ''
+                this.nuevoEvento.descripcion= ''
+                this.nuevoEvento.fecha= ''
+                this.nuevoEvento.hora=''
+                this.nuevoEvento.fotoCartel= ''
+                this.nuevoEvento.visibilidad= false;
+              });
+            },
+            error: (error) => {
+              this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});
+            }
+          });
+       // }
       }
     }
   }
-
 }
