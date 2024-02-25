@@ -12,8 +12,9 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:10%"></th>
-                <th style="width:20%">Nombre</th>
-                <th style="width:25%">Descripción</th>
+                <th style="width:10%"></th>
+                <th style="width:15%">Nombre</th>
+                <th style="width:20%">Descripción</th>
                 <th style="width:15%">Fecha</th>
                 <th style="width:15%">Hora</th>
                 <th style="width:15%">Visibilidad</th>
@@ -22,6 +23,7 @@
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
+                <td>Ver asistencias</td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>
