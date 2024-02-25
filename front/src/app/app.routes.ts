@@ -12,6 +12,7 @@ import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.compon
 import { ListaFranjasComponent } from './components/lista-franjas/lista-franjas.component';
 import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lista-horarios-aula.component';
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
+import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -36,11 +37,16 @@ export const routes: Routes = [
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
 
 
+ {path: 'profesor', pathMatch: 'full', redirectTo: '/reservas'},
  {path:'reservas',component:ListaReservasComponent,
  canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
- {path: 'profesor', pathMatch: 'full', redirectTo: '/reservas'},
 
+ {path:'reservas/aulas',component:ListaAulasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
  
+ {path:'reservas/aulas/:id/horarios',component:ReservarAulaComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
+
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
 {path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},

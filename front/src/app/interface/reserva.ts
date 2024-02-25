@@ -14,6 +14,6 @@ export interface Reserva {
     updatedAt?:Date,
     aula?:Aula,
     profesor?:Usuario,
-    horario:Horario,
+    horario?:Horario,
     estado?:number,
 }

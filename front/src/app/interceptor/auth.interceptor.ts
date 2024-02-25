@@ -9,6 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
       let peticion = request.clone()
       const param = request.params.get('auth')
       if(param){
+        console.log(peticion)
         let t=sessionStorage.getItem('token')
           if(t){
             peticion = request.clone({

@@ -119,7 +119,7 @@ console.log(this.fecha)
 
   evaluarFechas=()=>{
     for(let i =0;i<this.listaReservas.length;i++){
-      this.listaReservas[i].estado=this.checkVencimiento( this.listaReservas[i].fecha, this.listaReservas[i].horario.franja!.horaInicio, this.listaReservas[i].horario.franja!.horaFin)
+      this.listaReservas[i].estado=this.checkVencimiento( this.listaReservas[i].fecha, this.listaReservas[i].horario!.franja!.horaInicio, this.listaReservas[i].horario!.franja!.horaFin)
       console.log( this.listaReservas[i].estado)
       console.log('llega')
     }
