@@ -6,6 +6,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { Evento } from '../../interface/evento';
 import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component";
+import { EditarEventoComponent } from "../editar-evento/editar-evento.component";
 
 @Component({
     selector: 'app-eventos',
@@ -20,7 +21,8 @@ import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component"
         ToastModule,
         TableModule,
         ButtonModule,
-        NuevoEventosComponent
+        NuevoEventosComponent,
+        EditarEventoComponent
     ]
 })
 
@@ -29,7 +31,7 @@ export class EventosComponent implements OnInit {
   eventos:Array<Evento>=[]
 
   constructor(private servicioEventos : EventosService) {}
-  
+
   ngOnInit(): void {
     this.servicioEventos.getAllEventos().subscribe({
       next:(eventos: Array<Evento>) => {

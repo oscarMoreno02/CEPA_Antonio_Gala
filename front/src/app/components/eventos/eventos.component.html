@@ -21,7 +21,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-evento>
             <tr>
-                <td></td>
+                <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>
