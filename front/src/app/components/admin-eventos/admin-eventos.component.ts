@@ -11,8 +11,8 @@ import { EditarEventoComponent } from "../editar-evento/editar-evento.component"
 @Component({
     selector: 'app-eventos',
     standalone: true,
-    templateUrl: './eventos.component.html',
-    styleUrl: './eventos.component.css',
+    templateUrl: './admin-eventos.component.html',
+    styleUrl: './admin-eventos.component.css',
     providers: [
         MessageService,
         EventosService

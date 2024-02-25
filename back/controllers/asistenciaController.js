@@ -53,6 +53,18 @@ const obtenerUsuariosDeEvento = async (req, res = response) => {
     }
 }
 
+const obtenerAsistenciaEventoUsuario = async (req, res) => {
+    const conx = new ConexionAsistencia();
+    try {
+        const asistencia = await conx.getAsistencia(req.params.eventoId, req.params.usuarioId)
+        console.log('Asistencia obtenidas'+asistencia)
+        res.status(200).json(asistencia)
+    }catch(err){
+        console.log('No se ha encontrado ninguna asistencia para el usuario en el evento especificado');
+        res.status(404).json({'msg':'No se ha encontrado ninguna asistencia para el usuario en el evento especificado'});
+    }
+}
+
 const subirAsistencia = async (req = request, res = response) => {
     const conx = new ConexionAsistencia();
 
@@ -85,5 +97,6 @@ module.exports = {
     borrarAsistencia,
     subirAsistencia,
     obtenerAsistenciasDeUsuario,
-    obtenerUsuariosDeEvento
+    obtenerUsuariosDeEvento,
+    obtenerAsistenciaEventoUsuario
 };

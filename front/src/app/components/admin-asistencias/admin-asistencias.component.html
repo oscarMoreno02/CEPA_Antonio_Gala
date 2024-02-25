@@ -1,1 +1,33 @@
 <p-toast></p-toast>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="usuarios"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%"></th>
+                <th style="width:40%">Nombre</th>
+                <th style="width:40%">Email</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-evento>
+            <tr>
+                <td>Borrar usuario</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>

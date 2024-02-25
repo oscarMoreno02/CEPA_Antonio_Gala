@@ -123,6 +123,24 @@ class ConexionAsistencia {
         return resultado;
     }
 
+    async getAsistenciaEventoUsuario(eventoId, usuarioId){
+        this.conectar();
+        let resultado;
+        try {
+            resultado = await models.Asistencia.findAll({
+                where: {
+                    idEvento: eventoId,
+                    idUsuario: usuarioId
+                }
+            })
+        } catch (error){
+            console.error('Error al obtener los usuarios: ', error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+
     async deleteAsistencia(id) {
         this.conectar();
         let resultado;
