@@ -3,6 +3,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
 const controller = require('../controllers/eventoController');
+const { validateValues } = require('../helpers/validar-campos');
 
 router.get('/obtenerEventos', controller.obtenerEventos);
 router.get('/eventos/:id', controller.obtenerEventoPorId);
@@ -14,6 +15,7 @@ router.post('', [
     check('fotoCartel').isString().notEmpty(),
     check('mg').isInt(),
     check('visibilidad').isBoolean(),
+    validateValues
 ], controller.subirEvento);
 router.delete('/eventos/:id', controller.borrarEvento);
 router.put('/eventos/:id', controller.actualizarEvento);

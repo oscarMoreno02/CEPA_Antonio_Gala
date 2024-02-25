@@ -29,7 +29,7 @@ export class EventosComponent implements OnInit {
   eventos:Array<Evento>=[]
 
   constructor(private servicioEventos : EventosService) {}
-
+  
   ngOnInit(): void {
     this.servicioEventos.getAllEventos().subscribe({
       next:(eventos: Array<Evento>) => {
