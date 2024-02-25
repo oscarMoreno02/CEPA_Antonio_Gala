@@ -63,6 +63,7 @@ export class NuevoEventosComponent implements OnInit{
   validacionDescripcion = ''
   validacionHora = ''
   validacionVisibilidad = ''
+  validacionFecha = ''
 
   nuevoEvento : Evento = {
     id: null,
@@ -102,7 +103,7 @@ export class NuevoEventosComponent implements OnInit{
   }
   validarCampos():Boolean{
     let validacion=true
-    let fechaRegex 
+    let fechaRegex = /^\d{2}\/\d{2}\/\d{4}$/
    
     if (this.nuevoEvento.nombre){
       if ((this.nuevoEvento.nombre).length<3){
@@ -132,6 +133,18 @@ export class NuevoEventosComponent implements OnInit{
       this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La descripcion del evento es obligatoria', life:3000})
     }
 
+    if(this.nuevoEvento.fecha){
+      var fechaTest = fechaRegex.test(this.nuevoEvento.fecha)
+      if (fechaTest == false){
+        this.validacionFecha = 'ng-invalid ng-dirty'
+        validacion=false
+        this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La fecha debe de tener formato DD/MM/YYYY', life:3000})
+      }
+    } else {
+      this.validacionFecha = ''
+      validacion = false
+      this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La fecha del evento es obligatoria', life:3000})
+    }
 
     
     return validacion

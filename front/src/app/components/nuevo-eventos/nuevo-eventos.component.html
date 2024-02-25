@@ -22,7 +22,7 @@
             <div class="datepicker-container" cdkOverlayContainer>
                 <label for="descripcion">Fecha</label><br><br>
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
+                    <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY" class="{{ validacionFecha }}">
                     <mat-datepicker-toggle disabled matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker ></mat-datepicker>
                 </mat-form-field><br>
