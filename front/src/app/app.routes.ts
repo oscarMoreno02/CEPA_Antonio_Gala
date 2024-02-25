@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminCategoriasComponent } from './components/admin-categorias/admin-categorias.component';
-import { EventosComponent } from './components/admin-eventos/eventos.component';
+import { EventosComponent } from './components/admin-eventos/admin-eventos.component';
 import { NoticiasCategoriaComponent } from './components/noticias-categoria/noticias-categoria.component';
 import { AdminNoticiaComponent } from './components/admin-noticia/admin-noticia.component';
 import { EditContentNoticiaComponent } from './components/edit-content-noticia/edit-content-noticia.component';
@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.component';
 import { ListaFranjasComponent } from './components/lista-franjas/lista-franjas.component';
 import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lista-horarios-aula.component';
+import { AdminAsistenciasComponent } from './components/admin-asistencias/admin-asistencias.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -42,6 +43,9 @@ canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
  canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 
 {path:'admin/eventos', component:EventosComponent,
+canActivate:[accesoGuard], data:{rol:['Administrador']}},
+
+{path:'admin/asistencias', component:AdminAsistenciasComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
 {path: '**', component: NotFoundComponent},
