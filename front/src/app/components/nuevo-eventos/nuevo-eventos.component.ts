@@ -61,7 +61,8 @@ export class NuevoEventosComponent implements OnInit{
   value = ''
   validacionNombre = ''
   validacionDescripcion = ''
-  visibilidad = ''
+  validacionHora = ''
+  validacionVisibilidad = ''
 
   nuevoEvento : Evento = {
     id: null,
@@ -99,8 +100,48 @@ export class NuevoEventosComponent implements OnInit{
     this.formularioFoto = null
     this.fotoPreview = null
   }
-  crear(b:Boolean){
+  validarCampos():Boolean{
+    let validacion=true
+    let fechaRegex 
+   
+    if (this.nuevoEvento.nombre){
+      if ((this.nuevoEvento.nombre).length<3){
+        this.validacionNombre = 'ng-invalid ng-dirty'
+        validacion = false
+        this.messageService.add({ severity: 'warn', summary: 'Crear Evento', detail: 'El nombre debe de contener al menos 3 caracteres', life: 3000 })
+      } else {
+        this.validacionNombre = ''
+      }
+    } else {
+      this.validacionNombre = 'ng-invalid ng-dirty'
+      this.messageService.add({ severity: 'warn', summary: 'Crear Evento', detail: 'El nombre del evento es obligatorio', life: 3000 });
+      validacion = false
+    }
+    
+    if (this.nuevoEvento.descripcion){
+      if((this.nuevoEvento.descripcion).length<15){
+        this.validacionDescripcion='ng-invalid ng-dirty'
+        validacion = false
+        this.messageService.add({ severity: 'warn', summary:'Crear Evento', detail:'La descripción debe de contener al menos 15 caracteres', life:3000})
+      } else {
+        this.validacionDescripcion = ''
+      }
+    } else {
+      this.validacionDescripcion = 'ng-invalid ng-dirty'
+      validacion=false
+      this.messageService.add({severity: 'warn', summary:'Crear Evento', detail:'La descripcion del evento es obligatoria', life:3000})
+    }
 
+
+    
+    return validacion
+  }
+  crear(b:Boolean){
+    if (b){
+      if(this.validarCampos()){
+
+      }
+    }
   }
 
 }

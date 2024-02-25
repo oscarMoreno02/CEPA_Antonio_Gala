@@ -15,23 +15,29 @@
 
             <div class="flex flex-column">
                 <label for="descripcion">Descripción</label><br>
-                <input  class="{{ validacionDescripcion }}" pInputText id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion" /><br>
-                <small id="descripcion">Introduce una descripción para la nueva noticia</small><br><br>
+                <textarea  class="{{ validacionDescripcion }}" rows="20" cols="60" id="evento" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion"></textarea><br>
+                <small id="descripcion">Introduce una descripción para el nuevo evento</small><br><br>
             </div><br>
 
             <div class="datepicker-container" cdkOverlayContainer>
-                <label for="descripcion">Fecha del evento</label><br><br>
+                <label for="descripcion">Fecha</label><br><br>
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
                     <mat-datepicker-toggle disabled matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker ></mat-datepicker>
                 </mat-form-field><br>
-                <small id="descripcion"></small>
+                <small id="descripcion">Introduce una fecha para el evento con formato DIA/MES/AÑO con números completos</small>
             </div><br>
 
             <div class="flex felx-column">
+                <label for="hora">Hora</label><br>
+                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>
+                <small id="hora">Introduce una hora para el nuevo evento</small>
+            </div><br>
+
+            <div class="flex flex-column">
                 <label for="visibilidad">Visibilidad</label>
-                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="'YES'" ng-false-value="'NO'" class="{{ visibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
+                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
             </div>
 
             <div class="flex flex-column">
@@ -40,7 +46,7 @@
                     @if(fotoPreview){
                         <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
                     }
-                <small id="fotoCartel">Subir una foto para esta noticia</small><br>
+                <small id="fotoCartel">Sube la foto del cartel del nuevo evento</small><br>
             </div>
             <br>
             @if(fotoPreview){
