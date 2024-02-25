@@ -4,13 +4,13 @@ const router = express.Router();
 const controller = require('../controllers/chatController');
 const { validateValues } = require('../helpers/validar-campos');
 
-router.get('/obtenerChats', controller.obtenerChats);
-router.get('/obtenerChatsId/:id', controller.obtenerChatsPorId);
+router.get('/obtener', controller.obtenerChats);
+router.get('/obtener/:id', controller.obtenerChatsPorId);
 router.post('/subirChat',[
     check('idEvento').isInt(),
     check('activo').isBoolean(),
     validateValues
 ], controller.subirChat);
-router.delete('/borrarChat/:id', controller.borrarChat);
+router.delete('/borrar/:id', controller.borrarChat);
 
 module.exports = router;

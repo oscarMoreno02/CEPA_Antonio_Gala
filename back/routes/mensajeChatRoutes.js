@@ -4,14 +4,14 @@ const router = express.Router();
 const controller = require ('../controllers/mensajeChatController');
 const { validateValues } = require('../helpers/validar-campos');
 
-router.get('/obtenerMensajes', controller.obtenerMensajes);
-router.get('/obtenerMensajeCharId/:id', controller.obtenerMensajeChatPorId);
+router.get('/obtener', controller.obtenerMensajes);
+router.get('/obtenerId/:id', controller.obtenerMensajeChatPorId);
 router.post('/subirMensajeChat', [
     check('idChat').isInt(),
     check('idUsuario').isInt(),
     check('mensaje').isString().notEmpty().isLength({ min: 1, max: 250 }),
     validateValues
 ], controller.subirMensajeChat);
-router.delete('/borrarMensajeChat/:id', controller.borrarMensajeChat);
+router.delete('/borrar/:id', controller.borrarMensajeChat);
 
 module.exports = router;
