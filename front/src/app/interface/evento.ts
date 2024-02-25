@@ -4,8 +4,9 @@ export interface Evento {
     descripcion:    string;
     fecha:          string;
     hora:           string;
-    foto:           string;
-    mg:             number;    
+    fotoCartel:     string;
+    mg:             number;
+    visibilidad:    boolean;    
     createdAt?:     string;
     updatedAt?:     string;
 }

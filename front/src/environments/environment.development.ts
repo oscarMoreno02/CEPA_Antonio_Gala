@@ -3,7 +3,7 @@ export const environment = {
     urlCategorias:'/categorias',
     urlNoticias:'/noticias',
     urlSecciones:'/secciones',
-    urlEventos: '/evento',
+    urlEventos: '/eventos',
     urlEnlace:'/enlaces',
     urlFotosNoticias:'/uploads/noticias',
     urlFotosSecciones:'/uploads/secciones',
@@ -14,5 +14,5 @@ export const environment = {
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',
-    urlHorarios:'/horarios'
+    urlHorarios:'/horarios'0
 };

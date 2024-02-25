@@ -1,0 +1,3 @@
+.datepicker-container .mat-datepicker-content cdkOverlayContainer{
+    z-index:  1000; 
+  }
