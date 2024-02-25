@@ -23,7 +23,7 @@ export class EnlaceService {
   insertEnlace(enlace:Enlace): Observable<any | undefined> {
     let body={enlace:enlace}
   
-     return this.http.post<any>(this.baseUrl,enlace).pipe(
+     return this.http.post<any>(this.baseUrl,enlace,{params: {auth: true}}).pipe(
      
      )
    }
@@ -36,14 +36,14 @@ export class EnlaceService {
   }
   deleteEnlace(id:number): Observable<any | undefined> {
 
-    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
     )
   }
   updateEnlace(enlace:Enlace): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+enlace.id,enlace,).pipe(
+     return this.http.put<any>(this.baseUrl+'/'+enlace.id,enlace,{params: {auth: true}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })

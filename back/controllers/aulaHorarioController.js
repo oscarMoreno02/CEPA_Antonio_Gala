@@ -1,3 +1,5 @@
+//Jaime
+
 const {
     response,
     request
@@ -28,12 +30,25 @@ const listHorario = (req, res = response) => {
             res.status(404).json('No exite un horario con ese id')
         })
 }
+//Oscar
+const listAllHorariosOfAula = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllHorariosOfAula(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 
 const createHorario = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertHorario(req.body)
         .then(data => {
-            res.status(201).json('Horario registrado correctamente')
+            console.log(data)
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)
@@ -72,4 +87,5 @@ module.exports = {
     createHorario,
     editHorario,
     removeHorario,
+    listAllHorariosOfAula
 }

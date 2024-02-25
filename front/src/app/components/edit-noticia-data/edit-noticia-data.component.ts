@@ -50,12 +50,12 @@ export class EditNoticiaDataComponent implements OnInit {
   @Input() tipo = 0
   value = ''
   categoria: Categoria = { id: 0, nombre: '', dependiente: null }
+  categoriaDependiente?: Categoria
+  @Input() listaCategorias: Array<Categoria> = []
   @Input() id?: number
   subscripcionCategorias: Subscription = new Subscription;
 
-  @Input() listaCategorias: Array<Categoria> = []
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
-  categoriaDependiente?: Categoria
 
   noticiaEditar: Noticia = { id: null, titulo: '', idCategoria: null, }
   estiloValidacionNombre = ''
@@ -87,7 +87,7 @@ export class EditNoticiaDataComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err)
+  
       }
     })
   }
@@ -110,13 +110,13 @@ export class EditNoticiaDataComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err)
+    
       }
     })
     this.visible = true
   }
   guardar(b: Boolean) {
-    console.log(this.categoriaDependiente)
+
     if (b) {
       if (this.validarCampos()) {
         if (this.formularioFoto) {
@@ -126,7 +126,7 @@ export class EditNoticiaDataComponent implements OnInit {
               this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
               this.servicioNoticia.updateNoticia(this.noticiaEditar).subscribe({
                 next: (u: any) => {
-                  console.log(this.noticiaEditar)
+    
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Editar Noticia', detail: 'Completada', life: 3000 });
                     setTimeout(() => {
@@ -136,7 +136,7 @@ export class EditNoticiaDataComponent implements OnInit {
 
                 },
                 error: (err) => {
-                  console.log(err)
+  
                   this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
                 }
               })
@@ -145,7 +145,7 @@ export class EditNoticiaDataComponent implements OnInit {
         } else {
           if (this.fotoPreview==null && this.noticiaEditar != null) {
            let f=this.noticiaEditar.foto
-           console.log(f)
+       
             this.servicioFotos.deleteFoto(f!).subscribe({
               next: (data: any) => {
                 this.noticiaEditar.foto = null
@@ -162,7 +162,7 @@ export class EditNoticiaDataComponent implements OnInit {
 
                   },
                   error: (err) => {
-                    console.log(err)
+          
                     this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
                   }
                 })
@@ -183,7 +183,7 @@ export class EditNoticiaDataComponent implements OnInit {
 
               },
               error: (err) => {
-                console.log(err)
+     
                 this.messageService.add({ severity: 'error', summary: 'Editar Noticia', detail: 'Cancelada', life: 3000 });
               }
             })
@@ -202,7 +202,7 @@ export class EditNoticiaDataComponent implements OnInit {
       let id = this.noticiaEditar.id as number
       this.servicioNoticia.deleteNoticia(id).subscribe({
         next: (u: any) => {
-          console.log(u)
+   
           setTimeout(() => {
             this.messageService.add({ severity: 'success', summary: 'Borrar Noticia', detail: 'Completada', life: 3000 });
             setTimeout(() => {
@@ -212,7 +212,7 @@ export class EditNoticiaDataComponent implements OnInit {
 
         },
         error: (err) => {
-          console.log(err)
+        
           this.messageService.add({ severity: 'error', summary: 'Borrar Noticia', detail: 'Cancelada', life: 3000 });
         }
       })
@@ -268,13 +268,13 @@ export class EditNoticiaDataComponent implements OnInit {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+
     } else {
       this.formularioFoto = null
     }
   }
   limpiarFoto(archivo: any) {
-    console.log(archivo)
+
     archivo.value = null
     this.formularioFoto = null
     this.fotoPreview=null

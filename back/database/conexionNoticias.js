@@ -30,7 +30,7 @@ class ConexionNoticias {
         });
     }
     desconectar = () => {
-        process.on('SIGINT', () => conn.close())
+        process.on('SIGINT', () => this.close())
     }
 
     getAllNoticias = async () => {

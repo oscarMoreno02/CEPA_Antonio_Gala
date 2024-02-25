@@ -21,9 +21,11 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "jwt-decode": "^4.0.0",
+    "ngx-socket-io": "^4.6.1",
     "primeicons": "^6.0.1",
     "primeng": "^17.5.0",
     "rxjs": "~7.8.0",
+    "socket.io-client": "^4.7.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },

@@ -48,7 +48,7 @@ export class EditarEnlaceComponent implements OnInit {
         this.editarEnlace=data
       },
       error:(err)=>{
-        console.log(err)
+ 
       }
     })
   }
@@ -59,7 +59,7 @@ export class EditarEnlaceComponent implements OnInit {
         this.visible = true;
       },
       error:(err)=>{
-        console.log(err)
+
       }
     })
   }
@@ -76,7 +76,7 @@ export class EditarEnlaceComponent implements OnInit {
                 this.messageService.add({ severity: 'success', summary: 'Actualizar Enlace', detail: 'Completado', life: 3000 });
                 for(let i=0;i<this.seccion.enlaces!.length;i++){
                   if(this.editarEnlace.id==this.seccion.enlaces![i].id){
-                    console.log('llega enlace editado')
+                 
                     this.seccion.enlaces![i]=this.editarEnlace
                   }
                  }
@@ -84,7 +84,7 @@ export class EditarEnlaceComponent implements OnInit {
           
         },
         error: (err) => {
-          console.log(err)
+       
           this.messageService.add({ severity:'error', summary: 'Actualizar Noticia', detail: 'Cancelado', life: 3000 });
         }
       })
@@ -115,7 +115,7 @@ export class EditarEnlaceComponent implements OnInit {
       
       },
         error: (err) => {
-          console.log(err)
+
           this.messageService.add({ severity:'error', summary: 'Eliminar Noticia', detail: 'Cancelado', life: 3000 });
         }
     })

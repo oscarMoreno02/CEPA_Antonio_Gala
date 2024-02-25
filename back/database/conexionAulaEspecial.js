@@ -1,3 +1,5 @@
+//Jaime
+
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const {
@@ -50,6 +52,35 @@ class ConexionAulaEspecial {
             let resultado = [];
             this.conectar();
             resultado = await models.AulaEspecial.findByPk(id)
+            if (!resultado) {
+                throw new Error('error')
+            }
+            return resultado;
+        } catch (error) {
+            throw error
+        }
+        finally {
+            this.desconectar()
+        }
+    }
+
+    //Óscar
+    getAulaByIdWithData = async (id) => {
+        try {
+            let resultado = [];
+            this.conectar();
+            resultado = await models.AulaEspecial.findByPk(id,
+                {
+                    include: [{
+                        model: models.AulaHorario,
+                        as: 'horarios',
+                        include: [{
+                            model: models.AulaFranja,
+                            as: 'franja',
+                        }, ]
+                    }, ],
+                }
+                )
             if (!resultado) {
                 throw new Error('error')
             }

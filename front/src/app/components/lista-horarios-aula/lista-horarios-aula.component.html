@@ -1,0 +1,66 @@
+<p-toast></p-toast>
+<button routerLink="/aulas/">Volver atras</button>
+@if(aula.horarios){
+
+    <div style="margin-top: 100px;" class="card">
+        
+        <p-table
+        [value]="aula.horarios"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} horarios"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        >
+        @if(aula.horarios.length==0){
+
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                   <button> Añade el primer horario</button>
+                   <app-nuevo-horario [aula]="aula"></app-nuevo-horario>
+                </div>
+            </ng-template>
+        }@else {
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th> <app-nuevo-horario [aula]="aula"></app-nuevo-horario></th>
+                    <th style="width:30%">Hora Inicio</th>
+                    <th style="width:20%">Hora fin</th>
+                    <th style="width:40%">Turno</th>
+                </tr>
+            </ng-template>
+        }
+        <ng-template pTemplate="body" let-horario>
+            
+            
+            <tr>
+                <td> <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar este horario?" color="danger" (confirmacion)="eliminar($event,horario.id)"></app-confirm></td>
+                <td>{{ horario.franja.horaInicio}}</td>
+                <td>{{ horario.franja.horaFin}}</td>
+                <td>{{ horario.franja.turno}}</td>
+            </tr>
+            
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+        </ng-template>
+        
+    </p-table>
+</div>
+
+}@else{
+
+    <div class="card" style="margin-top: 10px;">
+        <p-table [value]="aula.horarios!" [tableStyle]="{ 'min-width': '50rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                Añade la primera seccion
+                
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+}

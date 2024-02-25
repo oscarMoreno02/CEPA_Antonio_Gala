@@ -1,3 +1,5 @@
+//Jaime
+
 const { AulaReserva } = require('../models')
 const faker = require('@faker-js/faker')
 
@@ -9,7 +11,7 @@ const aulaReservaFactory = async (ctos = 1) => {
             idAula: i,
             idHorario: i,
             idProfesor: i,
-            horaInicio: new Date(),
+            fecha: new Date(),
             createdAt: new Date(),
             updatedAt: new Date()
         }

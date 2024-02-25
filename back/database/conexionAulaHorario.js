@@ -1,3 +1,5 @@
+//Jaime
+
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const {
@@ -45,6 +47,35 @@ class ConexionAulaHorario {
             this.desconectar()
         }
     }
+    
+    //Oscar
+    getAllHorariosOfAula = async (id) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaHorario.findAll({where:{idAula:id},    
+              
+                include: [{
+                        model: models.AulaFranja,
+                        as: 'franja',
+                    },
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    }
+                ],
+        
+
+            },
+            
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
     getHorarioById = async (id) => {
         try {
             let resultado = [];
@@ -67,13 +98,16 @@ class ConexionAulaHorario {
         try {
             const task = new models.AulaHorario(body)
             await task.save()
-            resultado = 1
+          return task.id
+            console.log(resultado)
+            console.log(task)
+            return resultado
+           
         } catch (error) {
             throw error
         } finally {
             this.desconectar()
         }
-        return resultado
     }
     updateHorario = async (id, body) => {
         try {
