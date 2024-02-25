@@ -11,9 +11,11 @@ export class UsersService {
   baseUrl=environment.baseUrl+environment.urlUsers
   constructor(private http:HttpClient) { }
 
-  usuariosGet(): Observable<any | undefined> {
+  usuariosGet(): Observable<any  | undefined> {
     return this.http.get<any>(this.baseUrl).pipe(
       catchError((error) =>{
+        console.log(this.baseUrl)
+        console.log(error)
         return of(undefined)
       })
     )

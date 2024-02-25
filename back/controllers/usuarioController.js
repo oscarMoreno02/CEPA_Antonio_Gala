@@ -6,12 +6,11 @@ const usuariosGet =  (req, res = response) => {
     const conx = new Conexion();
     conx.getUsuarios()    
         .then( msg => {
-            console.log('Listado correcto!');
             res.status(200).json(msg);
         })
         .catch( err => {
-            console.log('No hay registros');
-            res.status(200).json({'msg':'No se han encontrado registros'});
+            console.log(err)
+            res.status(404).json()
         });
 }
 
@@ -30,7 +29,7 @@ const usuarioGet =  (req, res = response) => {
 
 const usuariosPost =  (req = request, res = response) => {
     const conx = new Conexion();
-    conx.registrarUsuario(req.body.id, req.body.nombre, req.body.email, req.body.password)    
+    conx.postUsuarios(req.body.id, req.body.nombre, req.body.email, req.body.password)    
         .then( msg => {
             console.log('Insertado correctamente!');
             res.status(201).json(msg);
@@ -43,7 +42,7 @@ const usuariosPost =  (req = request, res = response) => {
 
 const usuariosDelete =  (req, res) => {
     const conx = new Conexion();
-    conx.borrarUsuario(req.params.id)    
+    conx.deleteUsuarios(req.params.id)    
         .then( msg => {
             console.log('Borrado correctamente!');  //Podemos acceder a este valor de req porque lo hemos almacenado en el middleware validarHWT extrayendo la información del token.
             res.status(202).json(msg);

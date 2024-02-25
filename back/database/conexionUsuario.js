@@ -33,7 +33,7 @@ class ConexionUser{
         process.on('SIGINT', () => conn.close())
     }
 
-    UsuariosGet = async () => {
+    getUsuarios = async () => {
         try{
             let resultado = [];
             this.conectar();
@@ -46,11 +46,11 @@ class ConexionUser{
         }
     }
 
-    UsuarioGet = async (id) => {
+    getUsuario = async (id) => {
         try{
             let resultado = [];
             this.conectar();
-            resultado = await models.Categoria.findByPk(id);
+            resultado = await models.user.findByPk(id);
             if (!resultado) {
                 console.log(resultado)
                 throw new Error('error');
@@ -65,7 +65,7 @@ class ConexionUser{
         }
     }
 
-    UsuariosPost = async (body) => {
+    postUsuarios = async (body) => {
         let resultado = 0;
         this.conectar();
         try {
@@ -90,7 +90,7 @@ class ConexionUser{
      
     }
 
-    UsuariosDelete = async (id) => {
+    deleteUsuarios = async (id) => {
         try{
             this.conectar();
             let resultado = await models.user.findByPk(id);
@@ -105,7 +105,7 @@ class ConexionUser{
             this.desconectar()
         }
     }
-    UsuariosPut = async (id,body) => {
+    putUsuarios = async (id,body) => {
         try{
             let resultado = 0
             this.conectar();
