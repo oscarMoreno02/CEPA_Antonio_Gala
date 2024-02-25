@@ -36,7 +36,8 @@ export class EditarEventoComponent implements OnInit{
   ){}
   @Input() eventos?: any 
   @Input() tipo=0
-  @Input() id?:number
+  @Input()
+  id!: number;
   @Input() visible: boolean = false
   @Output() cerrarModal = new EventEmitter<void>();
   evento!: Evento;
@@ -169,10 +170,30 @@ export class EditarEventoComponent implements OnInit{
       }  
     })
   }
-  guardar(evento:any){
-
+  async guardar(b:Boolean){
+    if(b){
+      if(this.validarCampos()){
+         this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
+          next: (data:any)=> {
+            setTimeout(()=>{
+              this.messageService.add({severity:'sucess', summary:'Actualizar evento', detail:'Completada', life:3000})
+              for(let i=0;i<this.eventos.length;i++){
+                if(this.eventos[i].id == this.eventoModal.id){
+                  this.eventos[i]=this.evento
+                  this.visible=false
+                }
+              }
+            }, 1000)
+          },
+          error: (err) => {
+            console.log(err)
+            this.messageService.add({ severity:'error', summary: 'Actualizar evento', detail: 'Error al actualizar el evento, inténtelo de nuevo', life: 3000 });
+          }
+        })
+      }
+    }
   }
-  eliminar(evento:any){
+  eliminar(b:Boolean){
 
   }
  

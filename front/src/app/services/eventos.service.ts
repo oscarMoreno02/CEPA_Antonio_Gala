@@ -30,9 +30,15 @@ export class EventosService {
 
   insertEvento(evento:Evento): Observable<any | undefined> {
     let body={evento:evento}
-  
      return this.http.post<any>(this.baseUrl,evento).pipe(
      
      )
+  }
+
+  updateEvento(evento:Evento, id:number):Observable<any|undefined>{
+    let body={evento:evento}
+    return this.http.put<any>(this.baseUrl+'/'+id,evento).pipe(
+
+    )
   }
 }
