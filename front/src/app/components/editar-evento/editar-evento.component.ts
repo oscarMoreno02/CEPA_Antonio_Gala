@@ -176,7 +176,7 @@ export class EditarEventoComponent implements OnInit{
          this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
           next: (data:any)=> {
             setTimeout(()=>{
-              this.messageService.add({severity:'sucess', summary:'Actualizar evento', detail:'Completada', life:3000})
+              this.messageService.add({severity:'success', summary:'Actualizar evento', detail:'Completada', life:3000})
               for(let i=0;i<this.eventos.length;i++){
                 if(this.eventos[i].id == this.eventoModal.id){
                   this.eventos[i]=this.evento
@@ -193,8 +193,24 @@ export class EditarEventoComponent implements OnInit{
       }
     }
   }
-  eliminar(b:Boolean){
-
+  async eliminar(b:Boolean){
+     this.servicioEvento.deleteEvento(this.id).subscribe({
+      next:(data: any) => {
+        setTimeout(()=>{
+          this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
+          for(let i=0;i<this.eventos.length;i++){
+            if(this.eventos[i].id == this.eventoModal.id){
+            this.eventos[i]=this.evento
+            this.visible=false
+          }
+        }
+      }, 1000)
+    },
+    error: (err) => {
+      console.log(err)
+      this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
+    }
+    })
   }
  
 }

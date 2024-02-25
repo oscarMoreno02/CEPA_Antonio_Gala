@@ -41,4 +41,10 @@ export class EventosService {
 
     )
   }
+
+  deleteEvento(id:number):Observable<any|undefined>{
+    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
+      
+    )
+  }
 }

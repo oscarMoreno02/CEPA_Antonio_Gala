@@ -12,7 +12,7 @@ router.post('', [
     check('descripcion').isString().notEmpty(),
     check('fecha').isString().notEmpty(),
     check('hora').isString().notEmpty(),
-    check('fotoCartel').isString().notEmpty(),
+    check('fotoCartel').isString(),
     check('mg').isInt(),
     check('visibilidad').isBoolean(),
     validateValues
@@ -23,7 +23,7 @@ router.put('/:id', [
     check('descripcion').isString().notEmpty(),
     check('fecha').isString().notEmpty(),
     check('hora').isString().notEmpty(),
-    check('fotoCartel').isString().notEmpty(),
+    check('fotoCartel').isString(),
     check('mg').isInt(),
     check('visibilidad').isBoolean(),
     validateValues
