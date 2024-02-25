@@ -1,10 +1,13 @@
 //Jaime
 //Oscar (cambiado nombre de tablas)
-
 'use strict';
 const {
   Model
 } = require('sequelize');
+
+const AulaEspecial = require('./aulaespecial'); 
+const AulaFranja = require('./aulafranja'); 
+
 module.exports = (sequelize, DataTypes) => {
   class AulaHorario extends Model {
  

@@ -10,9 +10,9 @@ const eventosFactory = async (ctos = 1) => {
             descripcion: `Descripción del evento ${i}`,
             fecha: new Date().toString(),
             hora: new Date().toString(),
-            foto: `https://picsum.photos/id/237/200/300`,
+            fotoCartel: `https://picsum.photos/id/237/200/300`,
             mg:0,
-            visibilidad: Math.random() < 0.5 ? 'Público' : 'Privado',
+            visibilidad: Math.random() < 0.5 ? true : false,
             createdAt: new Date(),
             updatedAt: new Date()
         };
