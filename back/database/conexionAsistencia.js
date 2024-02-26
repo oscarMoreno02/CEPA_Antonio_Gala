@@ -110,11 +110,10 @@ class ConexionAsistencia {
                   idEvento: eventoId
                 },
                 include: [{
-                    model: models.Usuarios,
-                    as: 'usuario'
+                    model:models.user,
+                    as:'usuario'
                 }]
               });
-            
         } catch (error){
             console.error('Error al obtener los usuarios: ', error);
         } finally {

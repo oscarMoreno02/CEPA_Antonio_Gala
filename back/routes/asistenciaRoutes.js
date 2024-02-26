@@ -7,15 +7,15 @@ const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
 const asistenciaMid=require('../middlewares/asistenciaMid');
 
-router.get('/obtener', controller.obtenerAsistencias);
-router.get('/obtener/:id', controller.obtenerAsistenciaPorId);
-router.get('/obtenerUsuario/:userId', controller.obtenerAsistenciasDeUsuario);
-router.get('/obtenerUsuariosDeEvento/:eventoId', controller.obtenerUsuariosDeEvento);
+router.get('/', controller.obtenerAsistencias);
+router.get('/:id', controller.obtenerAsistenciaPorId);
+router.get('/asistenciasUsuario/:userId', controller.obtenerAsistenciasDeUsuario);
+router.get('/asistenciasEvento/:eventoId', controller.obtenerUsuariosDeEvento);
 router.post('/subirAsistencia',[
     check('idEvento').isInt(),
     check('idUsuario').isInt(),
     validateValues
 ],authMid.validarJWT,accessMid.esAdmin, asistenciaMid.asistenciaExiste(), controller.subirAsistencia);
-router.delete('/borrarAsistencia/:id',authMid.validarJWT,accessMid.esAdmin, controller.borrarAsistencia);
-router.get('/obtener/:eventoId/:usuarioId', controller.obtenerAsistenciaEventoUsuario)
+router.delete('/:id',authMid.validarJWT,accessMid.esAdmin, controller.borrarAsistencia);
+router.get('/asistenciaEventoUsuario/:eventoId/:usuarioId', controller.obtenerAsistenciaEventoUsuario)
 module.exports = router;

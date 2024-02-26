@@ -42,9 +42,9 @@ const obtenerAsistenciasDeUsuario = async (req, res = response) => {
 
 const obtenerUsuariosDeEvento = async (req, res = response) => {
     const conx = new ConexionAsistencia();
-
+    const eventoId = req.params.eventoId;
     try{
-        const asistencias = await conx.getUsuariosEventos(req.params.eventoId);
+        const asistencias = await conx.getUsuariosEvento(eventoId);
         console.log('Asistencias obtenidas');
         res.status(200).json(asistencias)
     } catch (err){

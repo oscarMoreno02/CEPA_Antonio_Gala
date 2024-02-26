@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { Evento } from '../../interface/evento';
 import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component";
 import { EditarEventoComponent } from "../editar-evento/editar-evento.component";
+import { AdminAsistenciasComponent } from "../admin-asistencias/admin-asistencias.component";
 
 @Component({
     selector: 'app-eventos',
@@ -22,7 +23,8 @@ import { EditarEventoComponent } from "../editar-evento/editar-evento.component"
         TableModule,
         ButtonModule,
         NuevoEventosComponent,
-        EditarEventoComponent
+        EditarEventoComponent,
+        AdminAsistenciasComponent
     ]
 })
 

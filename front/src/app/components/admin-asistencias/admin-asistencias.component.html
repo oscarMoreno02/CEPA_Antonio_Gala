@@ -1,4 +1,8 @@
 <p-toast></p-toast>
+<p-button (click)="showDialog()" icon="pi pi-eye" label="Ver asistencias"></p-button>
+<p-dialog header="Asistentes" [(visible)]="visible" [modal]="true" 
+  [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="usuarios"
@@ -6,7 +10,7 @@
         [rows]="5"
         [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} asistentes"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
         <ng-template pTemplate="header">
@@ -16,11 +20,11 @@
                 <th style="width:40%">Email</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-evento>
+        <ng-template pTemplate="body" let-usuario>
             <tr>
-                <td>Borrar usuario</td>
-                <td>{{ user.nombre }}</td>
-                <td>{{ user.email }}</td>
+                <td></td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.email }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
@@ -31,3 +35,4 @@
         </ng-template>
     </p-table>
 </div>
+</p-dialog>
