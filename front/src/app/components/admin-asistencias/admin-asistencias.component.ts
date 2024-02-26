@@ -34,16 +34,19 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   providers: [MessageService, AsistenciaService, DialogService, provideNativeDateAdapter()]
 })
 export class AdminAsistenciasComponent implements OnInit {
-  usuarios: Array<Users> = []
+  usuarios: Array<any> = []
   @Input() id!:number
 
   constructor(private asistenciaServicio : AsistenciaService){}
 
   ngOnInit(): void {
     this.asistenciaServicio.getAsistenciasEvento(this.id).subscribe({
-      next:(usuarios:any)=>{
-        this.usuarios=usuarios;
-        console.log("Llegan los usuarios",usuarios)
+      next:(eventos:any)=>{
+        for (var i=0; i < eventos.length;i++){
+          this.usuarios.push(eventos[i].usuario)
+        }
+        
+        console.log("Llegan los usuarios",this.usuarios)
       },
       error:(err)=>{
         console.log(err)
