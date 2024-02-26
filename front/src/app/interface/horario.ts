@@ -1,5 +1,6 @@
 import { Aula } from "./aula"
 import { Franja } from "./franja"
+import { Reserva } from "./reserva"
 
 export interface Horario {
     id?:number,
@@ -8,5 +9,6 @@ export interface Horario {
     idAula?:number,
     idFranja?:number
     aula?:Aula,
-    franja?:Franja
+    franja?:Franja,
+    reservado?:null | Reserva
 }

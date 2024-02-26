@@ -93,9 +93,9 @@ class ConexionNoticias {
     insertNoticia = async (body) => {
         this.conectar();
         try {
-            const task = new models.Noticia(body);
-            await task.save();
-            return task.id;
+            const noticia = new models.Noticia(body);
+            await noticia.save();
+            return noticia.id;
         } catch (error) {
             console.log(error)
             throw error;
@@ -124,8 +124,8 @@ class ConexionNoticias {
         try {
             let resultado = 0
             this.conectar();
-            let task = await models.Noticia.findByPk(id);
-            await task.update(body)
+            let noticia = await models.Noticia.findByPk(id);
+            await noticia.update(body)
             return resultado
         } catch (error) {
             throw error

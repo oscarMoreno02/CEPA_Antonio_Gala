@@ -9,12 +9,9 @@ import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.c
 import { AulaService } from '../../services/aula.service';
 import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
-import { Franja } from '../../interface/franja';
-import { FranjaService } from '../../services/franja.service';
 import { NuevaFranjaComponent } from '../nueva-franja/nueva-franja.component';
 import { EditarFranjaComponent } from '../editar-franja/editar-franja.component';
 import { HorarioService } from '../../services/horario.service';
-import { Horario } from '../../interface/horario';
 import { Aula } from '../../interface/aula';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { MessageService } from 'primeng/api';

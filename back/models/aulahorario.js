@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idFranja',
         as: 'franja'
       });
+      this.hasMany(models.AulaReserva, {
+        foreignKey: 'idHorario',
+        as: 'reservas'
+      });
     }
   }
   AulaHorario.init({

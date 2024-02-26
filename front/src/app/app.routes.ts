@@ -12,6 +12,8 @@ import { UsersComponent } from './components/users/users.component';
 import { ListaAulasComponent } from './components/lista-aulas/lista-aulas.component';
 import { ListaFranjasComponent } from './components/lista-franjas/lista-franjas.component';
 import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lista-horarios-aula.component';
+import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
+import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -31,6 +33,23 @@ export const routes: Routes = [
 
  {path:'aulas/:id/horarios',component:ListaHorariosAulaComponent,
  canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
+
+ {path:'aulas/reservas',component:ListaReservasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
+
+ {path:'aulas/:id/reservas',component:ListaReservasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Jefe de estudios'] } },
+
+
+ {path: 'profesor', pathMatch: 'full', redirectTo: '/reservas'},
+ {path:'reservas',component:ListaReservasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
+
+ {path:'reservas/aulas',component:ListaAulasComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
+ 
+ {path:'reservas/aulas/:id/horarios',component:ReservarAulaComponent,
+ canActivate: [accesoGuard],data: { rol: ['Profesor'] } },
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 

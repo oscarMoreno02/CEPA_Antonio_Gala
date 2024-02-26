@@ -14,5 +14,6 @@ export const environment = {
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',
-    urlHorarios:'/horarios'
+    urlHorarios:'/horarios',
+    urlReservas:'/reservas'
 };
