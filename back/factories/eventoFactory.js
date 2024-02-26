@@ -8,8 +8,8 @@ const eventosFactory = async (ctos = 1) => {
         let evento = {
             nombre: `Evento ${i}`,
             descripcion: `Descripción del evento ${i}`,
-            fecha: new Date().getDay.toString+'/'+new Date().getMonth.toString+'/'+new Date().getFullYear.toString,
-            hora: new Date().getHours+':'+new Date().getMinutes,
+            fecha: new Date().getDay().toString()+'/'+new Date().getMonth().toString()+'/'+new Date().getFullYear().toString(),
+            hora: new Date().getHours().toString()+':'+new Date().getMinutes().toString(),
             fotoCartel: `https://picsum.photos/id/237/200/300`,
             mg:0,
             visibilidad: Math.random() < 0.5 ? true : false,

@@ -16,7 +16,7 @@ router.post('/subirAsistencia',[
     check('idEvento').isInt(),
     check('idUsuario').isInt(),
     validateValues
-],authMid.validarJWT,accessMid.esAdmin, asistenciaMid.asistenciaExiste(), controller.subirAsistencia);
-router.delete('/:id',authMid.validarJWT,accessMid.esAdmin, controller.borrarAsistencia);
+],authMid.validarJWT, asistenciaMid.asistenciaExiste(), controller.subirAsistencia);
+router.delete('/:id',authMid.validarJWT, controller.borrarAsistencia);
 router.get('/asistenciaEventoUsuario/:eventoId/:usuarioId', controller.obtenerAsistenciaEventoUsuario)
 module.exports = router;
