@@ -16,7 +16,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { ToastModule } from 'primeng/toast';
 import { Message, MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
-
+//Óscar
 
 @Component({
   selector: 'app-lista-reservas',

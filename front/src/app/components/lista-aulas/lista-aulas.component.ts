@@ -11,6 +11,7 @@ import { Aula } from '../../interface/aula';
 import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
 import { AuthService } from '../../services/auth.service';
+//Óscar
 @Component({
   selector: 'app-lista-aulas',
   standalone: true,

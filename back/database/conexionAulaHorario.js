@@ -48,7 +48,7 @@ class ConexionAulaHorario {
         }
     }
     
-    //Oscar
+//Óscar
     getAllHorariosOfAula = async (id) => {
         try {
             let resultado = []

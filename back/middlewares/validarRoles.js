@@ -1,5 +1,5 @@
 const {response,request} = require('express');
-
+//Óscar
 
 const esAdmin = (req, res, next) => {
     if (!req.uid){ 

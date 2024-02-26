@@ -7,7 +7,7 @@ const {
     where
 } = require('sequelize');
 const models = require('../models/index.js');
-
+//Óscar
 class ConexionEnlaces{
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {

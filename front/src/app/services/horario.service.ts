@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError } from 'rxjs';
 
 import { Horario } from '../interface/horario';
-
+//Óscar
 @Injectable({
   providedIn: 'root'
 })

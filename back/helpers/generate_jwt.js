@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-
+//Óscar
 const generarJWT = (uid,abilities,uname) => {
     
     console.log("UID:" + uid)

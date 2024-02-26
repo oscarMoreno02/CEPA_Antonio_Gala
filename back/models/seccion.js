@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+//Óscar
 module.exports = (sequelize, DataTypes) => {
   class Seccion extends Model {
   

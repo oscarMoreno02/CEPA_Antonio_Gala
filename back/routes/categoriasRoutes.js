@@ -8,7 +8,7 @@ const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
 const midCategoria=require('../middlewares/categoriasMid')
 const controller=require('../controllers/categoriasController')
-
+//Óscar
     router.get('/agrupadas',controller.listAllCategoriasAgrupadas)
     router.get('/agrupadas/:id',controller.listCategoriaAgrupada)
     router.get('/nombre/:nombre',controller.listCategoriaByNombre)

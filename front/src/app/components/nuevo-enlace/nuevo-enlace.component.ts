@@ -10,7 +10,7 @@ import { Enlace, Seccion } from '../../interface/noticia';
 import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EnlaceService } from '../../services/enlace.service';
-
+//Óscar
 @Component({
   selector: 'app-nuevo-enlace',
   standalone: true,

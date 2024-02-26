@@ -5,7 +5,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from 'primeng/toast';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
-
+//Óscar
 @Component({
   selector: 'app-profile-icon',
   standalone: true,

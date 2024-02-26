@@ -7,3 +7,4 @@ export interface Franja {
     updatedAt?:Date
     formateado?:String
 }
+//Óscar

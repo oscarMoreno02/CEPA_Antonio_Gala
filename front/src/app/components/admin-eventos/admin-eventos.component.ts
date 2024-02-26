@@ -39,6 +39,7 @@ export class EventosComponent implements OnInit {
     this.servicioEventos.getAllEventos().subscribe({
       next:(eventos: Array<Evento>) => {
         this.eventos = eventos;
+        console.log(eventos)
         console.log("Llegan los eventos: "+eventos)
       },
       error:(err)=>{

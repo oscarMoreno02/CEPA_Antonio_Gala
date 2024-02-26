@@ -16,7 +16,7 @@ import { Subscription, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { FotosSeccionesService } from '../../services/fotos-secciones.service';
 import { environment } from '../../../environments/environment.development';
-
+//Óscar
 @Component({
   selector: 'app-editar-seccion',
   standalone: true,

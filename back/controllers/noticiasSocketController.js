@@ -1,3 +1,4 @@
+//Óscar
 const noticiasSocketController = (socket) => {
     console.log("Cliente conectado: ", socket.id); 
     
@@ -7,7 +8,7 @@ const noticiasSocketController = (socket) => {
 
     socket.on('enviar-notificacion', (payload, callback) => {
         socket.broadcast.emit('recibir-notificacion', payload);
-    }); 
+    });
 }
 
 module.exports = {

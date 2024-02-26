@@ -1,5 +1,5 @@
 //Jaime
-//Oscar (cambiado nombre de tablas)
+//Óscar (cambiado nombre de tablas y asociaciones)
 
 'use strict';
 const {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+//Óscar
 @Component({
   selector: 'app-not-found',
   standalone: true,

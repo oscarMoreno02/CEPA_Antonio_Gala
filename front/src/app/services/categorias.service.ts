@@ -7,6 +7,7 @@ import { Categoria } from '../interface/categoria';
 @Injectable({
   providedIn: 'root'
 })
+//Óscar
 export class CategoriasService {
   baseUrl=environment.baseUrl+environment.urlCategorias
   constructor(private http:HttpClient) { }

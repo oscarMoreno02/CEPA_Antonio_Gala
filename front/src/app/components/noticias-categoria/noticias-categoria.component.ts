@@ -21,6 +21,7 @@ import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.comp
   templateUrl: './noticias-categoria.component.html',
   styleUrl: './noticias-categoria.component.css'
 })
+//Óscar
 export class NoticiasCategoriaComponent implements OnInit, OnChanges {
   constructor(
     private servicioNoticia:NoticiaService,

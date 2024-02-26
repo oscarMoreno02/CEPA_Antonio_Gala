@@ -1,5 +1,5 @@
 //Jaime
-//Oscar (cambiado nombre de tablas)
+//Óscar (cambiado nombre de tablas y asociaciones)
 
 'use strict';
 const {
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-       //Óscar - Asociaciones
+       
     static associate(models) {
       this.hasMany(models.AulaHorario, {
         foreignKey: 'idAula',

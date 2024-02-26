@@ -12,3 +12,4 @@ export interface Horario {
     franja?:Franja,
     reservado?:null | Reserva
 }
+//Óscar

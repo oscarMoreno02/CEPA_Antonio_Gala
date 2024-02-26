@@ -5,7 +5,7 @@ const { cargarArchivo, actualizarImagen, obtenerImagen, borrarImagen } = require
 const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
 
-
+//Óscar
 const router = Router();
 
 

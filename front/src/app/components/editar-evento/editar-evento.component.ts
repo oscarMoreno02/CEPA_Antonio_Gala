@@ -151,7 +151,7 @@ export class EditarEventoComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
   showDialog() {
     this.servicioEvento.getEvento(this.id!).subscribe({

@@ -20,6 +20,7 @@ import { NoticiaService } from '../../services/noticia.service';
 import { Router } from '@angular/router';
 import { FotosNoticiasService } from '../../services/fotosNoticias.service';
 import { WebSocketService } from '../../services/websocket.service';
+//Óscar
 @Component({
   selector: 'app-nueva-noticia',
   standalone: true,
