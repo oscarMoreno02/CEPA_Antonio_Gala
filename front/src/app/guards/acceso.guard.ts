@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 export const accesoGuard: CanActivateFn = (route, state) => {
-
+//Óscar
   let router = inject(Router)
   let authservice=inject(AuthService)
   let rol=route.data['rol']

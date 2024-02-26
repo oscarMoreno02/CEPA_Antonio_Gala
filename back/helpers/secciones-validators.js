@@ -1,6 +1,6 @@
 const {response,request} = require('express');
 const ConexionNoticias= require('../database/conexionNoticias');
-
+//Óscar
    const noticiaExiste = (idNoticia) => {
       return new Promise((resolve, reject) => {
         const conx = new ConexionNoticias();

@@ -12,6 +12,7 @@ import { NuevaNoticiaComponent } from '../nueva-noticia/nueva-noticia.component'
 import { LoginComponent } from '../login/login.component';
 import { ProfileIconComponent } from '../profile-icon/profile-icon.component';
 import { AuthService } from '../../services/auth.service';
+//Óscar
 @Component({
   selector: 'app-cabecera',
   standalone: true,
@@ -62,6 +63,12 @@ userroles:Array<string>=[]
     {
       label: 'Administrar noticias',
       command: () => { this.router.navigate(['/admin/noticias']) },
+
+    }
+    ,
+    {
+      label: 'Administrar Eventos',
+      command: () => { this.router.navigate(['/admin/eventos']) },
 
     }
   ]

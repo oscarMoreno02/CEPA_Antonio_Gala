@@ -16,6 +16,7 @@ import { Aula } from '../../interface/aula';
 import { FranjaService } from '../../services/franja.service';
 import { Franja } from '../../interface/franja';
 import { DropdownModule } from 'primeng/dropdown';
+//Óscar
 @Component({
   selector: 'app-nuevo-horario',
   standalone: true,

@@ -2,7 +2,7 @@ import { Aula } from "./aula"
 import { Horario } from "./horario"
 import { Usuario } from "./usuario"
 
-
+//Óscar
   //Estado 0 => pendiente  1=> Vencido  2=> En curso
 export interface Reserva {
     id?:number,

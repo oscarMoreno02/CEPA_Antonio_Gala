@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
   styleUrl: './confirm.component.css',
   providers: [ConfirmationService, MessageService]
 })
+//Óscar
 export class ConfirmComponent implements OnInit {
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
   @Output() confirmacion = new EventEmitter<boolean>();

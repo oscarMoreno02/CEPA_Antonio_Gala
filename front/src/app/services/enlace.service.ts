@@ -7,6 +7,7 @@ import { Enlace } from '../interface/noticia';
 @Injectable({
   providedIn: 'root'
 })
+//Óscar
 export class EnlaceService {
   baseUrl=environment.baseUrl+environment.urlEnlace
   constructor(private http:HttpClient) { }

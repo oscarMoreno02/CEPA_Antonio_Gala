@@ -2,6 +2,7 @@
 const {categoriasFactory}=require('../factories/categoriasFactory')
 
 /** @type {import('sequelize-cli').Migration} */
+//Óscar
 module.exports = {
   async up (queryInterface, Sequelize) {
     const categorias = await categoriasFactory(18);

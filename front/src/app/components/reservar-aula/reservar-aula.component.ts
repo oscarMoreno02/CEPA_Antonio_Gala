@@ -22,6 +22,7 @@ import { FechaReservasComponent } from '../fecha-reservas/fecha-reservas.compone
 import { ReservaService } from '../../services/reserva.service';
 import { AuthService } from '../../services/auth.service';
 import { Reserva } from '../../interface/reserva';
+//Óscar
 @Component({
   selector: 'app-reservar-aula',
   standalone: true,

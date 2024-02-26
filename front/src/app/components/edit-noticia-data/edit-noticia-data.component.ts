@@ -18,6 +18,7 @@ import { Noticia } from '../../interface/noticia';
 import { FotosNoticiasService} from '../../services/fotosNoticias.service';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
+//Óscar
 @Component({
   selector: 'app-edit-noticia-data',
   standalone: true,

@@ -1,5 +1,5 @@
 import { Horario } from "./horario";
-
+//Óscar
 export interface Aula {
     id?:number,
     nombre:string,

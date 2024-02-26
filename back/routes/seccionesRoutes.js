@@ -8,6 +8,7 @@ const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
 const controller=require('../controllers/seccionesController')
 
+//Óscar
     router.get('/noticia/:id',controller.listSeccionesByNoticia)
     router.get('/enlaces/:id',controller.listSeccionWithEnlaces)
     router.get('/enlaces',controller.listAllSeccionesWithEnlaces)

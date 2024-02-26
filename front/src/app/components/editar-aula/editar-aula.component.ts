@@ -12,6 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AulaService } from '../../services/aula.service';
 import { Router } from '@angular/router';
 import { Aula } from '../../interface/aula';
+//Óscar
 @Component({
   selector: 'app-editar-aula',
   standalone: true,

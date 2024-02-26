@@ -1,6 +1,6 @@
 const {response,request} = require('express');
 const ConexionSecciones = require('../database/conexionSecciones');
-
+//Óscar
    const seccionExiste = (idSeccion) => {
       return new Promise((resolve, reject) => {
         const conx = new ConexionSecciones();

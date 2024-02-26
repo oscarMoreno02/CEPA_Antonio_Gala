@@ -17,6 +17,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { NuevoHorarioComponent } from '../nuevo-horario/nuevo-horario.component';
+//Óscar
 @Component({
   selector: 'app-lista-horarios-aula',
   standalone: true,

@@ -4,7 +4,7 @@ const {
 } = require('express');
 const Conexion = require('../database/conexionNoticias');
 const bcrypt = require('bcrypt');
-
+//Óscar
 const listAllNoticias= (req, res = response) => {
     const conexion = new Conexion()
     conexion.getAllNoticias()

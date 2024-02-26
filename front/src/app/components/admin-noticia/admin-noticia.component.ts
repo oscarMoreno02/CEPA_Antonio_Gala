@@ -10,7 +10,7 @@ import { Noticia } from '../../interface/noticia';
 import { CategoriasService } from '../../services/categorias.service';
 import { Categoria } from '../../interface/categoria';
 import { EditNoticiaDataComponent } from '../edit-noticia-data/edit-noticia-data.component';
-
+//Óscar
 @Component({
   selector: 'app-admin-noticia',
   standalone: true,

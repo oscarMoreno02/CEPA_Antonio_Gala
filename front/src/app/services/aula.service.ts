@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Aula } from '../interface/aula';
-
+//Óscar
 @Injectable({
   providedIn: 'root'
 })

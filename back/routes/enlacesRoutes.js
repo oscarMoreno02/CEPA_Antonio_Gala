@@ -8,7 +8,7 @@ const validator=require('../helpers/enlaces-validators')
 const controller=require('../controllers/enlacesController')
 const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
-
+//Óscar
     router.get('/seccion/:id',controller.listEnlacesBySeccion)
     router.get('/:id',controller.listEnlace)
     router.get('',controller.listAllEnlaces)

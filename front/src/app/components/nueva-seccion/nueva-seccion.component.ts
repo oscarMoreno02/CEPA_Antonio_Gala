@@ -21,6 +21,7 @@ import { SeccionService } from '../../services/seccion.service';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { FotosSeccionesService } from '../../services/fotos-secciones.service';
+//Óscar
 @Component({
   selector: 'app-nueva-seccion',
   standalone: true,

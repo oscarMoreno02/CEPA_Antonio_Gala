@@ -4,7 +4,7 @@ const {
 } = require('express');
 const Conexion = require('../database/conexionEnlaces');
 const bcrypt = require('bcrypt');
-
+//Óscar
 const listAllEnlaces= (req, res = response) => {
     const conexion = new Conexion()
     conexion.getAllEnlaces()

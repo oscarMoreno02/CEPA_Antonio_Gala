@@ -10,7 +10,6 @@ import { HeaderService } from './services/header.service';
 import { WebSocketService } from './services/websocket.service';
 import { ToastModule } from 'primeng/toast';
 import { PrimeNGConfig } from 'primeng/api';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   standalone: true,

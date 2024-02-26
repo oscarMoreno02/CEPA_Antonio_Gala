@@ -13,6 +13,7 @@ import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
 import { NuevaFranjaComponent } from '../nueva-franja/nueva-franja.component';
 import { EditarFranjaComponent } from '../editar-franja/editar-franja.component';
+//Óscar
 @Component({
   selector: 'app-lista-franjas',
   standalone: true,

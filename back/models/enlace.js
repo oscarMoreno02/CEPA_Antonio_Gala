@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+  //Óscar
   class Enlace extends Model {
     /**
      * Helper method for defining associations.
