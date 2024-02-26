@@ -1,3 +1,4 @@
+/*Laura María Pedraza Gómez* */
 const { response, request } = require('express');
 const GaleriaConexion = require('../database/conexionGaleria');
 

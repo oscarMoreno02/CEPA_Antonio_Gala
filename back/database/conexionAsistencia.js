@@ -1,5 +1,5 @@
 'use strict';
-
+/*Laura María Pedraza Gómez* */
 const { Sequelize } = require('sequelize');
 const models = require('../models/index');
 
@@ -110,11 +110,28 @@ class ConexionAsistencia {
                   idEvento: eventoId
                 },
                 include: [{
-                    model: models.Usuarios,
-                    as: 'usuario'
+                    model:models.user,
+                    as:'usuario'
                 }]
               });
-            
+        } catch (error){
+            console.error('Error al obtener los usuarios: ', error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+
+    async getAsistenciaEventoUsuario(eventoId, usuarioId){
+        this.conectar();
+        let resultado;
+        try {
+            resultado = await models.Asistencia.findAll({
+                where: {
+                    idEvento: eventoId,
+                    idUsuario: usuarioId
+                }
+            })
         } catch (error){
             console.error('Error al obtener los usuarios: ', error);
         } finally {

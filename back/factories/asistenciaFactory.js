@@ -1,6 +1,6 @@
 const { Asistencia } = require('../models');
 const faker = require('@faker-js/faker');
-
+/*Laura María Pedraza Gómez* */
 const asistenciasFactory = async (ctos = 1) => {
     let factory = [];
 

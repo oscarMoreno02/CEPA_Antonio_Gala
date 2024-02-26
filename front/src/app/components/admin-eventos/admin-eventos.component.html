@@ -12,20 +12,24 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:10%"></th>
-                <th style="width:20%">Nombre</th>
-                <th style="width:25%">Descripción</th>
-                <th style="width:15%">Fecha</th>
-                <th style="width:15%">Hora</th>
-                <th style="width:15%">Visibilidad</th>
+                <th style="width:10%"></th>
+                <th style="width:13.33%">Nombre</th>
+                <th style="width:13.33%">Descripción</th>
+                <th style="width:13.33%">Fecha</th>
+                <th style="width:13.33%">Hora</th>
+                <th style="width:13.33%">Me gusta</th>
+                <th style="width:13.33%">Visibilidad</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
+                <td><app-admin-asistencias [id]="evento.id"></app-admin-asistencias></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>
                 <td>{{ evento.hora }}</td>
+                <td>{{ evento.mg }}</td>
                 <td >{{ evento.visibilidad ? 'Si' : 'No' }}</td>
             </tr>
         </ng-template>

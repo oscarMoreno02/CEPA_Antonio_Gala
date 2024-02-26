@@ -1,3 +1,4 @@
+/*Laura María Pedraza Gómez* */
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -7,12 +8,13 @@ import { ButtonModule } from 'primeng/button';
 import { Evento } from '../../interface/evento';
 import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component";
 import { EditarEventoComponent } from "../editar-evento/editar-evento.component";
+import { AdminAsistenciasComponent } from "../admin-asistencias/admin-asistencias.component";
 
 @Component({
     selector: 'app-eventos',
     standalone: true,
-    templateUrl: './eventos.component.html',
-    styleUrl: './eventos.component.css',
+    templateUrl: './admin-eventos.component.html',
+    styleUrl: './admin-eventos.component.css',
     providers: [
         MessageService,
         EventosService
@@ -22,7 +24,8 @@ import { EditarEventoComponent } from "../editar-evento/editar-evento.component"
         TableModule,
         ButtonModule,
         NuevoEventosComponent,
-        EditarEventoComponent
+        EditarEventoComponent,
+        AdminAsistenciasComponent
     ]
 })
 

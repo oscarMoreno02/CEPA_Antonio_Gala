@@ -1,5 +1,5 @@
 'use strict';
-
+/*Laura María Pedraza Gómez* */
 const { Sequelize, where } = require('sequelize');
 const models = require('../models/index');
 

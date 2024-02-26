@@ -1,3 +1,4 @@
+/*Laura María Pedraza Gómez* */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
@@ -30,21 +31,21 @@ export class EventosService {
 
   insertEvento(evento:Evento): Observable<any | undefined> {
     let body={evento:evento}
-     return this.http.post<any>(this.baseUrl,evento).pipe(
+     return this.http.post<any>(this.baseUrl,evento,{params: {auth: true}}).pipe(
      
      )
   }
 
   updateEvento(evento:Evento, id:number):Observable<any|undefined>{
     let body={evento:evento}
-    return this.http.put<any>(this.baseUrl+'/'+id,evento).pipe(
+    return this.http.put<any>(this.baseUrl+'/'+id,evento,{params: {auth: true}}).pipe(
 
     )
   }
 
   deleteEvento(id:number):Observable<any|undefined>{
-    return this.http.delete<any>(this.baseUrl+'/'+id).pipe(
-      
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
+
     )
   }
 }

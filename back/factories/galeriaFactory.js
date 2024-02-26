@@ -1,5 +1,5 @@
 const { Galeria } = require('../models');
-
+/*Laura María Pedraza Gómez* */
 const galeriaFactory = async (ctos = 1) => {
     let factory = [];
 
