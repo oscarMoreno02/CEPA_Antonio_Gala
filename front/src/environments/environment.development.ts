@@ -10,10 +10,11 @@ export const environment = {
     urlAuth:'/auth',
     urlLogin:'/login',
     urlRegistro:'/register',
-    urlUsers:'/usuarios',
+    urlUsers:'/usuario',
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',
     urlHorarios:'/horarios',
-    urlAsistencias:'/asistencia'
+    urlAsistencias:'/asistencia',
+    urlReservas:'/reservas'
 };

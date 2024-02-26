@@ -84,7 +84,7 @@ export class NuevoHorarioComponent implements OnInit {
                     this.visible=false
               }, 1000); 
             }, 1000); 
-          
+          1
         },
         error: (err) => {
       

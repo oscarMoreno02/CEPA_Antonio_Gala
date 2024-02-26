@@ -10,6 +10,7 @@ import { AulaService } from '../../services/aula.service';
 import { Aula } from '../../interface/aula';
 import { NuevaAulaComponent } from '../nueva-aula/nueva-aula.component';
 import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-lista-aulas',
   standalone: true,
@@ -30,7 +31,9 @@ import { EditarAulaComponent } from '../editar-aula/editar-aula.component';
 export class ListaAulasComponent implements OnInit{
 constructor(    
   private servicioAulas:AulaService,
-  private router: Router){}
+  private router: Router,
+  public authService:AuthService
+  ){}
   subscripcionAulas: Subscription=new Subscription;
   listaAulas:Array<Aula>=[]
   ngOnInit(): void {

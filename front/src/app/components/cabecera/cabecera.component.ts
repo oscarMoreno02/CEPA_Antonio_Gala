@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, ignoreElements } from 'rxjs';
 import { Categoria } from '../../interface/categoria';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CategoriasService } from '../../services/categorias.service';
@@ -36,6 +36,7 @@ export class CabeceraComponent implements OnInit {
   constructor(
     private servicioCategoria: CategoriasService,
     private router: Router,
+    private activeRouter:ActivatedRoute,
     public servicioAutenticacion:AuthService,
     
   ) { }
@@ -76,7 +77,17 @@ userroles:Array<string>=[]
     },
     {
       label: 'Reservas',
-      command: () => { this.router.navigate(['/admin/noticias']) },
+      command: () => { this.router.navigate(['/aulas/reservas']) },
+    }
+  ]
+  profItems: MenuItem[] | undefined = [
+    {
+      label: 'Tus Reservas',
+      command: () => { this.router.navigate(['/reservas']) },
+    },
+    {
+      label: 'Reservar Aula',
+      command: () => { this.router.navigate(['/reservas/aulas']) },
     }
   ]
 
@@ -105,9 +116,9 @@ userroles:Array<string>=[]
 
       let item: MenuItem = {
         label: elemento.nombre,
-        url:'/categoria/' + elemento.id,
+        command: () => { this.router.navigate(['/categoria/' + elemento.id])},
         replaceUrl:true,
-        // command: () => { this.router.navigateByUrl('/categoria/' + elemento.id) },
+       
         items: [] as MenuItem[]
       }
       if (elemento.subcategorias!.length > 0) {

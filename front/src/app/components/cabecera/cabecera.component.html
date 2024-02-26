@@ -33,6 +33,21 @@
             {{servicioAutenticacion.clearAccess()}}
         }
     }
+    @case ('profesor') {
+        @if(servicioAutenticacion.hasRol(['Profesor'])){
+            <p-menubar  [model]="profItems">
+                <ng-template pTemplate="end">
+                    @if(servicioAutenticacion.isLoggedIn){
+                        <app-profile-icon [nombre]="username"></app-profile-icon>
+                    }@else {
+                        <app-login  [tipo]="1" [visible]="modalLogin" (cerrarModal)="modalLogin = false" ></app-login>
+                    }
+                </ng-template>
+            </p-menubar>
+        }@else{
+            {{servicioAutenticacion.clearAccess()}}
+        }
+    }
     @default {
         <p-menubar  [model]="items">
             <ng-template pTemplate="end">

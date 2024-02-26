@@ -82,9 +82,9 @@ class ConexionEnlaces{
 
         this.conectar();
         try {
-            const task = new models.Enlace(body);
-            await task.save();
-           return task.id
+            const enlace = new models.Enlace(body);
+            await enlace.save();
+           return enlace.id
         } catch (error) {
             throw error;
         } finally {
@@ -112,8 +112,8 @@ class ConexionEnlaces{
         try{
             let resultado = 0
             this.conectar();
-            let task = await models.Enlace.findByPk(id);
-            await task.update(body)
+            let enlace = await models.Enlace.findByPk(id);
+            await enlace.update(body)
             return resultado
         }catch(error){
             throw error
