@@ -23,7 +23,8 @@ import { AuthService } from '../../services/auth.service';
     NuevaCategoriaComponent,
     NuevaNoticiaComponent,
     LoginComponent,
-    ProfileIconComponent
+    ProfileIconComponent,
+    RouterLink
   ],
 
   templateUrl: './cabecera.component.html',
@@ -35,7 +36,8 @@ export class CabeceraComponent implements OnInit {
   constructor(
     private servicioCategoria: CategoriasService,
     private router: Router,
-    public servicioAutenticacion:AuthService
+    public servicioAutenticacion:AuthService,
+    
   ) { }
   @Output() eventoLogin = new EventEmitter<boolean>();
   modalCategoriaNueva = false
@@ -55,38 +57,30 @@ userroles:Array<string>=[]
     {
       label: 'Administrar categorias',
       command: () => { this.router.navigate(['/admin/categorias']) },
-      items: [
-        {
-          label: 'Crear categoria',
-          icon: 'pi pi-plus',
-
-          command: () => { this.modalCategoriaNueva = true },
-
-        },
-        {
-          label: 'Eliminar categoria',
-          icon: 'pi pi-trash',
-          command: () => { this.router.navigate(['/admin/categorias/nueva']) },
-        }
-      ]
     },
     {
       label: 'Administrar noticias',
       command: () => { this.router.navigate(['/admin/noticias']) },
-      items: [
-        {
-          label: 'Crear noticia',
-          icon: 'pi pi-plus',
-          command: () => { this.modalNoticiaNueva = true },
-        },
-        {
-          label: 'Eliminar categoria',
-          icon: 'pi pi-trash',
-          command: () => { this.router.navigate(['/admin/noticias/nueva']) },
-        }
-      ]
+
     }
   ]
+
+  dtoItems: MenuItem[] | undefined = [
+    {
+      label: 'Aulas',
+      command: () => { this.router.navigate(['/aulas']) },
+    },
+    {
+      label: 'Franjas horarias',
+      command: () => { this.router.navigate(['/aulas/franjas']) },
+    },
+    {
+      label: 'Reservas',
+      command: () => { this.router.navigate(['/admin/noticias']) },
+    }
+  ]
+
+
   ngOnInit(): void {
 
     this.subscripcionCategorias = this.servicioCategoria.getAllCategoriasAgrupadas().subscribe({
@@ -111,7 +105,9 @@ userroles:Array<string>=[]
 
       let item: MenuItem = {
         label: elemento.nombre,
-        command: () => { this.router.navigate(['/categoria/' + elemento.id]) },
+        url:'/categoria/' + elemento.id,
+        replaceUrl:true,
+        // command: () => { this.router.navigateByUrl('/categoria/' + elemento.id) },
         items: [] as MenuItem[]
       }
       if (elemento.subcategorias!.length > 0) {

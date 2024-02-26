@@ -1,0 +1,36 @@
+<!--<app-nuevo-usuarios></app-nuevo-usuarios>-->
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="listaUsers"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuarios"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <!--<th style="width:10%"></th>-->
+                <th style="width:40%">Nombre</th>
+                <th style="width:30%">Email</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-usuarios>
+            <tr>
+                <!--<td><app-editar-usuarios [listaUsers]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>-->
+                <td>{{usuarios.nombre}}</td>
+                <td>{{usuarios.email}}</td>
+                <!--<td><i class="pi-pencil"></i></td>-->
+             
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>
+
