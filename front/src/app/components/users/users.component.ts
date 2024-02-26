@@ -6,8 +6,8 @@ import { EditableColumn, TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { NuevoUsuariosComponent } from '../nuevo-usuarios/nuevo-usuarios.component';
-import { EditarUsuariosComponent } from '../editar-usuarios/editar-usuarios.component';
+//import { NuevoUsuariosComponent } from '../nuevo-usuarios/nuevo-usuarios.component';
+//import { EditarUsuariosComponent } from '../editar-usuarios/editar-usuarios.component';
 import { UsersService } from '../../services/users.service';
 import { Users } from '../../interface/users';
 
@@ -17,9 +17,7 @@ import { Users } from '../../interface/users';
   imports: [HttpClientModule,
     RouterLink,
     TableModule,
-    ButtonModule,
-    NuevoUsuariosComponent,
-    EditarUsuariosComponent],
+    ButtonModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
   providers: [UsersService]
@@ -37,6 +35,7 @@ export class UsersComponent {
     this.subscriptionUsers = this.servicioUsers.usuariosGet().subscribe({
       next: (data: Array<Users>) => {
         this.listaUsers=data
+        console.log(data)
       },
       error: (e) => {
         console.log(e)
