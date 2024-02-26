@@ -1,6 +1,6 @@
 const {response,request} = require('express');
 const Conexion = require('../database/conexionAsistencia');
-
+/*Laura María Pedraza Gómez* */
 const asistenciaExiste = () => {
     return async (req, res, next) => {
         const { idEvento, idUsuario } = req.body;

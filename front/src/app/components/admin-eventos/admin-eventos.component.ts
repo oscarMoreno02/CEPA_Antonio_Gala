@@ -1,3 +1,4 @@
+/*Laura María Pedraza Gómez* */
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';

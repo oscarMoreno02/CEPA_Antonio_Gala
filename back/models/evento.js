@@ -1,4 +1,4 @@
-'use strict';
+'use strict';/*Laura María Pedraza Gómez* */
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Evento extends Model {

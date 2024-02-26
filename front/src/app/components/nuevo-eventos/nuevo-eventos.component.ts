@@ -1,4 +1,4 @@
-
+/*Laura María Pedraza Gómez* */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
