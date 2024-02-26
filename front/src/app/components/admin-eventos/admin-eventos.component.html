@@ -11,8 +11,8 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:10%"></th>
-                <th style="width:10%"></th>
+                <th style="width:10%">Editar</th>
+                <th style="width:10%">Ver asistentes</th>
                 <th style="width:13.33%">Nombre</th>
                 <th style="width:13.33%">Descripción</th>
                 <th style="width:13.33%">Fecha</th>
@@ -24,7 +24,7 @@
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
-                <td><app-admin-asistencias [id]="evento.id"></app-admin-asistencias></td>
+                <td><p-button routerLink="/admin/asistencias/{{evento.id}}" icon="pi pi-eye" title=""></p-button></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>

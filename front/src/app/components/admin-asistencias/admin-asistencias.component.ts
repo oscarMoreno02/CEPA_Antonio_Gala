@@ -1,5 +1,4 @@
 /*Laura María Pedraza Gómez* */
-import { ToastModule } from 'primeng/toast';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { EventosService } from '../../services/eventos.service';
@@ -15,54 +14,59 @@ import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { NuevoAsistenteEventoComponent } from "../nuevo-asistente-evento/nuevo-asistente-evento.component";
+import { ToastModule } from 'primeng/toast';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-admin-asistencias',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ToastModule,
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    ConfirmComponent,
-    DialogModule
-  ],
-  templateUrl: './admin-asistencias.component.html',
-  styleUrl: './admin-asistencias.component.css',
-  providers: [MessageService, AsistenciaService, DialogService, provideNativeDateAdapter()]
+    selector: 'app-admin-asistencias',
+    standalone: true,
+    templateUrl: './admin-asistencias.component.html',
+    styleUrl: './admin-asistencias.component.css',
+    providers: [MessageService, AsistenciaService, DialogService, provideNativeDateAdapter()],
+    imports: [
+        FormsModule,
+        TableModule,
+        ButtonModule,
+        InputTextModule,
+        ConfirmComponent,
+        DialogModule,
+        NuevoAsistenteEventoComponent,
+        ToastModule
+    ]
 })
 export class AdminAsistenciasComponent implements OnInit {
-  usuarios: Array<any> = []
-  @Input() id!:number
+  usuarios: Array<any> = [];
+  eventoId!: number;
 
-  constructor(private asistenciaServicio : AsistenciaService){}
+  constructor(
+    private asistenciaServicio: AsistenciaService, 
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
-    this.asistenciaServicio.getAsistenciasEvento(this.id).subscribe({
-      next:(eventos:any)=>{
-        for (var i=0; i < eventos.length;i++){
-          this.usuarios.push(eventos[i].usuario)
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam) {
+      this.eventoId = +idParam;
+      this.asistenciaServicio.getAsistenciasEvento(this.eventoId).subscribe({
+        next: (eventos: any) => {
+          for (var i =   0; i < eventos.length; i++) {
+            this.usuarios.push(eventos[i].usuario);
+          }
+          console.log("Llegan los usuarios", this.usuarios);
+        },
+        error: (err) => {
+          console.log(err);
         }
-        
-        console.log("Llegan los usuarios",this.usuarios)
-      },
-      error:(err)=>{
-        console.log(err)
-      }
-    })
+      });
+    } else {
+      console.error('El parámetro id es requerido');
+    }
   }
 
-  @Input() visible: boolean = false
+  eliminar(b:Boolean){
 
-  showDialog(){
-    this.visible=true
-  }
-
-  @Output() cerrarModal = new EventEmitter<void>();
-  cerrar(): void {
-    this.cerrarModal.emit();
   }
   
 }

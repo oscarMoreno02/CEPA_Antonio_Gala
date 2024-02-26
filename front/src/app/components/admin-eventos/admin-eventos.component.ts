@@ -9,31 +9,37 @@ import { Evento } from '../../interface/evento';
 import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component";
 import { EditarEventoComponent } from "../editar-evento/editar-evento.component";
 import { AdminAsistenciasComponent } from "../admin-asistencias/admin-asistencias.component";
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-eventos',
     standalone: true,
     templateUrl: './admin-eventos.component.html',
     styleUrl: './admin-eventos.component.css',
-    providers: [
-        MessageService,
-        EventosService
-    ],
     imports: [
         ToastModule,
         TableModule,
         ButtonModule,
         NuevoEventosComponent,
         EditarEventoComponent,
-        AdminAsistenciasComponent
-    ]
+        AdminAsistenciasComponent,
+        RouterLink,
+        RouterModule
+    ],
+    providers: [
+      MessageService,
+      EventosService
+  ]
 })
 
 export class EventosComponent implements OnInit {
 
   eventos:Array<Evento>=[]
 
-  constructor(private servicioEventos : EventosService) {}
+  constructor(
+    private servicioEventos : EventosService,
+    private router:Router
+    ) {}
 
   ngOnInit(): void {
     this.servicioEventos.getAllEventos().subscribe({

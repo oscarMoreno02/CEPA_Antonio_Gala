@@ -1,0 +1,17 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label id="alumno">Añade un alumno</label>
+                
+            </div>
+        </div>
+    </div>
+</p-dialog>
+</div>
