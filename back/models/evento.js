@@ -1,4 +1,4 @@
-'use strict';
+'use strict';/*Laura María Pedraza Gómez* */
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Evento extends Model {
@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     descripcion: DataTypes.STRING,
     fecha: DataTypes.STRING,
     hora: DataTypes.STRING,
-    foto: DataTypes.STRING,
+    fotoCartel: DataTypes.STRING,
     mg: DataTypes.INTEGER,
-    visibilidad: DataTypes.STRING
+    visibilidad: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Evento',

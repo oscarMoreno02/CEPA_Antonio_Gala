@@ -105,6 +105,118 @@ class ConexionAulaReserva {
             this.desconectar()
         }
     }
+    //Óscar
+    getAllReservasOfAulaWithData = async (id) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaReserva.findAll({
+                include: [
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    },
+                    {
+                        model: models.AulaHorario,
+                        as: 'horario',
+                        include:[{
+                            model:models.AulaFranja,
+                            as:'franja'
+                        }]
+                    },
+                    {
+                        model: models.user,
+                        as: 'profesor',
+                        attributes:['id','nombre','email']
+                    }
+                ],
+                where: {
+                    idAula: id
+                },
+                order:[['fecha','DESC']]
+            }
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
+    //Óscar
+    getAllReservasOfProfesorWithData = async (id) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaReserva.findAll({
+                include: [
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    },
+                    {
+                        model: models.AulaHorario,
+                        as: 'horario',
+                        include:[{
+                            model:models.AulaFranja,
+                            as:'franja'
+                        }]
+                    },
+                    {
+                        model: models.user,
+                        as: 'profesor',
+                        attributes:['id','nombre','email']
+                    }
+                ],
+                where: {
+                    idProfesor: id
+                },
+                order:[['fecha','DESC']]
+            }
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
+        //Óscar
+    getAllReservasWithData = async () => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaReserva.findAll({
+                include: [
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    },
+                    {
+                        model: models.AulaHorario,
+                        as: 'horario',
+                        include:[{
+                            model:models.AulaFranja,
+                            as:'franja'
+                        }]
+                    },
+                    {
+                        model: models.user,
+                        as: 'profesor',
+                        attributes:['id','nombre','email']
+                    }
+                ],
+        
+                order:[['fecha','DESC']]
+            }
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
 }
 
 module.exports = ConexionAulaReserva

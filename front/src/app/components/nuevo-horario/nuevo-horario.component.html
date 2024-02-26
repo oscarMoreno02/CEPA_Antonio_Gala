@@ -1,0 +1,27 @@
+<p-toast></p-toast>
+<!-- //Óscar -->
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-plus" label="Añadir"></p-button>
+  }
+  <p-dialog header="Añadir nuevo horario" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false" >
+
+
+    <div class="card flex justify-content-center" style="width: 250px;" class="custom-dialog">
+   
+
+            <div class="flex flex-column">
+                <label for="username1">Selecciona la franja horaria</label>
+                <p-dropdown  class="{{estiloValidacionFranja}}" [options]="listaFranjas" [(ngModel)]="franja" optionLabel="formateado" [showClear]="true" placeholder="Selecciona una franja"></p-dropdown>
+                
+            </div>
+    
+         
+        </div>
+        <div style="margin-top: 125px;" >
+
+            <app-confirm tipo="Añadir" icono="pi pi-plus" mensaje="¿Deseas añadir este horario?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+  </p-dialog>
+</div>

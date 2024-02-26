@@ -1,6 +1,6 @@
 const { Evento } = require('../models');
 const faker = require('@faker-js/faker');
-
+/*Laura María Pedraza Gómez* */
 const eventosFactory = async (ctos = 1) => {
     let factory = [];
 
@@ -8,11 +8,11 @@ const eventosFactory = async (ctos = 1) => {
         let evento = {
             nombre: `Evento ${i}`,
             descripcion: `Descripción del evento ${i}`,
-            fecha: new Date().toString(),
-            hora: new Date().toString(),
-            foto: `https://picsum.photos/id/237/200/300`,
+            fecha: "26/02/2023",
+            hora: "08:40",
+            fotoCartel: `https://picsum.photos/id/237/200/300`,
             mg:0,
-            visibilidad: Math.random() < 0.5 ? 'Público' : 'Privado',
+            visibilidad: Math.random() < 0.5 ? true : false,
             createdAt: new Date(),
             updatedAt: new Date()
         };

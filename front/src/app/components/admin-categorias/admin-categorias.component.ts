@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NuevaCategoriaComponent } from '../nueva-categoria/nueva-categoria.component';
 import { EditarCategoriaComponent } from '../editar-categoria/editar-categoria.component';
+//Óscar
 @Component({
   selector: 'app-admin-categorias',
   standalone: true,

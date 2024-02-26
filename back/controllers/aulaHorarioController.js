@@ -30,7 +30,7 @@ const listHorario = (req, res = response) => {
             res.status(404).json('No exite un horario con ese id')
         })
 }
-//Oscar
+//Óscar
 const listAllHorariosOfAula = (req, res = response) => {
     const conexion = new Conexion()
     conexion.getAllHorariosOfAula(req.params.id)
@@ -47,7 +47,8 @@ const createHorario = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertHorario(req.body)
         .then(data => {
-            res.status(201).json('Horario registrado correctamente')
+            console.log(data)
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)
@@ -79,12 +80,28 @@ const removeHorario = (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
-
+//Óscar
+const listReservaOfAulaOnDay = (req, res = response) => {
+    const conexion = new Conexion()
+    let day=req.params.day
+    let month=req.params.month
+    let year=req.params.year
+    let id = req.params.id
+    conexion.getReservaByIdAulaOfDay(id,day,month,year)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json('No exite una reserva con ese id')
+        })
+}
 module.exports = {
     listAllHorarios,
     listHorario,
     createHorario,
     editHorario,
     removeHorario,
-    listAllHorariosOfAula
+    listAllHorariosOfAula,
+    listReservaOfAulaOnDay
 }

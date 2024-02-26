@@ -1,0 +1,36 @@
+<p-toast></p-toast>
+<!-- //Óscar -->
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button (click)="showDialog()" icon="pi pi-calendar" label="{{day+'/'+month+'/'+year}}"></p-button>
+  }
+  <p-dialog header="Consultar reservas" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" [resizable]="false">
+
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="username1">Fecha</label>
+                
+                <div class="card flex justify-content-center">
+                    <p-calendar [(ngModel)]="date" lass="max-w-full" [(ngModel)]="date" [inline]="true"   [minDate]="minDate!"  [maxDate]="maxDate!"></p-calendar>
+                </div>
+                <small id="username-help1">Selecciona una fecha</small>
+            </div>
+        
+
+        </div>
+        <div style="margin-top: 20px; display: flex ;gap: 20px;" >
+            <p-button severity="danger" label="Cancelar" (onClick)="cerrar()"></p-button>
+            <p-button label="Buscar" (onClick)="buscar()" icon="pi pi-search"></p-button>
+        </div>
+        <div style="margin-top: 20px;" >
+            
+        </div>
+  
+        </div>
+  </p-dialog>
+
+</div>

@@ -67,6 +67,42 @@ const removeReserva = (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
+//Óscar
+const listAllReservasOfClaseWithData = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllReservasOfAulaWithData(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
+//Óscar
+const listAllReservasOfProfesorWithData = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllReservasOfProfesorWithData(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
+//Óscar
+const listAllReservasWithData = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAllReservasWithData()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 
 module.exports = {
     listAllReservas,
@@ -74,4 +110,7 @@ module.exports = {
     createReserva,
     editReserva,
     removeReserva,
+    listAllReservasOfClaseWithData,
+    listAllReservasWithData,
+    listAllReservasOfProfesorWithData
 }

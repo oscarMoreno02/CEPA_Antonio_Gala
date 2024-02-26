@@ -7,7 +7,7 @@ const validator=require('../helpers/noticia-validators')
 const authMid=require('../middlewares/validarJWT')
 const accessMid=require('../middlewares/validarRoles')
 const controller=require('../controllers/noticiasController')
-
+//Óscar
     router.get('/categoria/:id',controller.listNoticiasByCategorias)
     router.get('/secciones/:id',controller.listNoticiaWithSecciones)
     router.get('/secciones',controller.listAllNoticiasWithSecciones)

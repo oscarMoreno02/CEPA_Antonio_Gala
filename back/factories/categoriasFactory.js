@@ -1,5 +1,5 @@
 const categoriasFactory = async (ctos=18) => {
-    
+    //Óscar
     let factory = []
     let lista=[
         {nombre:'EL CENTRO', dependiente: null},

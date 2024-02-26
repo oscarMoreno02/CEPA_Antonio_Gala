@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CategoriasService } from '../../services/categorias.service';
@@ -21,25 +21,32 @@ import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.comp
   templateUrl: './noticias-categoria.component.html',
   styleUrl: './noticias-categoria.component.css'
 })
-export class NoticiasCategoriaComponent implements OnInit {
+//Óscar
+export class NoticiasCategoriaComponent implements OnInit, OnChanges {
   constructor(
     private servicioNoticia:NoticiaService,
     private router: Router,
     private rutaActiva: ActivatedRoute,
   ){}
+  id=new Subscription
   listaNoticias:Array<Noticia>=[]
   subscripcionCategorias: Subscription=new Subscription;
   ngOnInit(): void {
-    let id = this.rutaActiva.snapshot.params['id']
-    this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(id).subscribe({
-      next: (data: Array<Noticia>) => {
-        this.listaNoticias=data
-
-      },
-      error: (err) => {
-
-      }
-      
-    });
+    this.id = this.rutaActiva.params.subscribe(params => {
+      this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(params['id']).subscribe({
+        next: (data: Array<Noticia>) => {
+          this.listaNoticias=data
+  
+        },
+        error: (err) => {
+  
+        }
+        
+      });
+    })
+   
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    
   }
 }

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenubarModule } from 'primeng/menubar';
 import { Usuario } from '../../interface/usuario';
-
+//Óscar
 @Component({
   selector: 'app-login',
   standalone: true,

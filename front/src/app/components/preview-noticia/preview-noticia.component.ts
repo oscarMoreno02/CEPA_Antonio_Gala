@@ -3,6 +3,7 @@ import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { Noticia } from '../../interface/noticia';
 import { Router, RouterLink } from '@angular/router';
+//Óscar
 @Component({
   selector: 'app-preview-noticia',
   standalone: true,

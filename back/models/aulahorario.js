@@ -1,14 +1,17 @@
 //Jaime
-//Oscar (cambiado nombre de tablas)
-
+//Óscar(cambiado nombre de tablas y asociaciones)
 'use strict';
 const {
   Model
 } = require('sequelize');
+
+const AulaEspecial = require('./aulaespecial'); 
+const AulaFranja = require('./aulafranja'); 
+
 module.exports = (sequelize, DataTypes) => {
   class AulaHorario extends Model {
  
-    //Óscar - Asociaciones
+
     static associate(models) {
       this.belongsTo(models.AulaEspecial, {
         foreignKey: 'idAula',
@@ -18,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idFranja',
         as: 'franja'
       });
+      this.hasMany(models.AulaReserva, {
+        foreignKey: 'idHorario',
+        as: 'reservas'
+      });
     }
   }
   AulaHorario.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
     idAula: {
       type: DataTypes.INTEGER,
     },

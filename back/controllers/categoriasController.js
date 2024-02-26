@@ -5,6 +5,8 @@ const {
 const Conexion = require('../database/conexionCategorias');
 const bcrypt = require('bcrypt');
 
+
+//Óscar
 const listAllCategorias = (req, res = response) => {
     const conexion = new Conexion()
     conexion.getAllCategorias()

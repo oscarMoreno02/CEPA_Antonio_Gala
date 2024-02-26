@@ -1,5 +1,5 @@
 const noticiasFactory = async (ctos,categorias) => {
-    
+    //Óscar
     let factory = []
     let ejemplo={
         titulo: 'noticia',

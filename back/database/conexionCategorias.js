@@ -7,7 +7,7 @@ const {
     where
 } = require('sequelize');
 const models = require('../models/index.js');
-
+//Óscar
 class ConexionCategorias{
     constructor() {
         this.db = new Sequelize(process.env.DB_DEV, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -134,8 +134,8 @@ class ConexionCategorias{
         let resultado = 0;
         this.conectar();
         try {
-            const task = new models.Categoria(body);
-            await task.save();
+            const categoria = new models.Categoria(body);
+            await categoria.save();
             resultado = 1;
         } catch (error) {
             throw error;
@@ -164,8 +164,8 @@ class ConexionCategorias{
         try{
             let resultado = 0
             this.conectar();
-            let task = await models.Categoria.findByPk(id);
-            await task.update(body)
+            let categoria = await models.Categoria.findByPk(id);
+            await categoria.update(body)
             return resultado
         }catch(error){
             throw error

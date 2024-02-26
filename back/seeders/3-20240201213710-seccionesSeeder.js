@@ -1,5 +1,6 @@
 'use strict';
 const {seccionesFactory}=require('../factories/seccionesFactory')
+//Óscar
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {

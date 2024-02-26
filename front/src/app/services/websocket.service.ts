@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { io } from "socket.io-client";
 import { Noticia } from '../interface/noticia';
 import { MessageService } from 'primeng/api';
-
+//Óscar
 @Injectable({
   providedIn: 'root',
 

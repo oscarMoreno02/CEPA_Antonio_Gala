@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
-
+//Óscar
 @Component({
   selector: 'app-nueva-franja',
   standalone: true,

@@ -48,7 +48,7 @@ class ConexionAulaHorario {
         }
     }
     
-    //Oscar
+//Óscar
     getAllHorariosOfAula = async (id) => {
         try {
             let resultado = []
@@ -98,14 +98,57 @@ class ConexionAulaHorario {
         try {
             const task = new models.AulaHorario(body)
             await task.save()
-            resultado = 1
+          return task.id
+            console.log(resultado)
+            console.log(task)
+            return resultado
+           
         } catch (error) {
             throw error
         } finally {
             this.desconectar()
         }
-        return resultado
     }
+    //Óscar
+    getReservaByIdAulaOfDay = async (id,day,month,year) => {
+            try {
+                const parsedDay = parseInt(day, 10);
+                const parsedMonth = parseInt(month, 10);
+                const parsedYear = parseInt(year, 10);
+                const fecha = new Date(parsedYear, parsedMonth - 1, parsedDay);
+                this.conectar();
+
+                const horarios = await models.AulaHorario.findAll({
+                    include: [
+                        {
+                            model: models.AulaFranja,
+                            as: 'franja',
+                        }
+                    ],
+                    where: {
+                        idAula: id
+                    }
+                });
+                const idHorarios = horarios.map(horario => horario.id);
+                const reservas = await models.AulaReserva.findAll({
+                    where: {
+                        idHorario: idHorarios,
+                        fecha: fecha
+                    }
+                });
+                for(const horario of horarios){
+                    const reservasDelHorario = reservas.filter(reserva => reserva.idHorario == horario.id);
+                    horario.dataValues.reservado = reservasDelHorario.length > 0 ? reservasDelHorario[0] : null;
+                }
+             
+                return horarios;
+            } catch (error) {
+                throw error;
+            } finally {
+                this.desconectar();
+            }
+        }
+    
     updateHorario = async (id, body) => {
         try {
             let resultado = 0

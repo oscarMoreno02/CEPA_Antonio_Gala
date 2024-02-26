@@ -1,5 +1,5 @@
 //Jaime
-//Oscar (cambiado nombre de tablas)
+//Óscar(cambiado nombre de tablas y asociaciones)
 
 'use strict';
 const {
@@ -8,7 +8,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class AulaFranja extends Model {
  
-        //Óscar - Asociaciones
+
+    
     static associate(models) {
       this.hasMany(models.AulaHorario, {
         foreignKey: 'idFranja',

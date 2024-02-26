@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CategoriasService } from '../../services/categorias.service';
 import { Subscription } from 'rxjs';
 import { Categoria } from '../../interface/categoria';
+//Óscar
 @Component({
   selector: 'app-nueva-categoria',
   standalone: true,

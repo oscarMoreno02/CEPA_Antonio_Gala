@@ -10,7 +10,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmComponent } from '../confirm/confirm.component';
-
+//Óscar
 @Component({
   selector: 'app-editar-enlace',
   standalone: true,

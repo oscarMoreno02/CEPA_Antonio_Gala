@@ -1,0 +1,58 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="titulo">Nombre</label><br>
+                <input  class="{{ validacionNombre }}" pInputText id="nombre" aria-describedby="nombre" [(ngModel)]="nuevoEvento.nombre" /><br>
+                <small id="titulo">Introduce un nombre para el nuevo evento</small><br><br>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="descripcion">Descripción</label><br>
+                <textarea  class="{{ validacionDescripcion }}" rows="20" cols="60" id="descripcion" aria-describedby="descripcion" [(ngModel)]="nuevoEvento.descripcion"></textarea><br>
+                <small id="descripcion">Introduce una descripción para el nuevo evento</small><br><br>
+            </div><br>
+
+            <div class="datepicker-container" cdkOverlayContainer>
+                <label for="descripcion">Fecha</label><br><br>
+                <input class="{{ validacionFecha }}" pInputText id="fecha" placeholder="DD/MM/YYYY" aria-describedby="fecha" [(ngModel)]="nuevoEvento.fecha"/><br>
+                <small id="descripcion">Introduce una fecha para el evento con formato DIA/MES/AÑO con números completos</small>
+            </div><br>
+
+            <div class="flex felx-column">
+                <label for="hora">Hora</label><br>
+                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>
+                <small id="hora">Introduce una hora para el nuevo evento</small>
+            </div><br>
+
+            <div class="flex flex-column">
+                <label for="visibilidad">Visibilidad</label>
+                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="fotoCartel">Foto de cartel</label><br><br>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="fotoCartel">Sube la foto del cartel del nuevo evento</small><br>
+            </div>
+            <br>
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
+
+        </div><br>
+        <div style="margin-top: 20px;" >
+            <app-confirm tipo="Crear" icono="plus" mensaje="¿Deseas crear este evento?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+        </div>
+    </p-dialog>
+</div>

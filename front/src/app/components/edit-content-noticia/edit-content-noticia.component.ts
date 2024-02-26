@@ -18,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FotosNoticiasService} from '../../services/fotosNoticias.service';
 import { environment } from '../../../environments/environment.development';
+//Óscar
 @Component({
   selector: 'app-edit-noticia-content',
   standalone: true,

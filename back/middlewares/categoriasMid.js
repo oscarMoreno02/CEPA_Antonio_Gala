@@ -3,7 +3,7 @@ const {
     request
 } = require('express');
 const Conexion = require('../database/conexionCategorias');
-
+//Óscar
 const mismoDependiente = (req, res, next) => {
 
     if (req.params.id == req.body.dependiente) {

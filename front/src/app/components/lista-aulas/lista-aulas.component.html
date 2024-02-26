@@ -1,4 +1,9 @@
-<app-nueva-aula></app-nueva-aula>
+@if(authService.getAccess=='jefedeestudios'){
+
+    <app-nueva-aula></app-nueva-aula>
+}
+<!-- //Óscar -->
+
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="listaAulas"
@@ -20,11 +25,19 @@
         </ng-template>
         <ng-template pTemplate="body" let-aula>
             <tr>
-                <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
+                @if(authService.getAccess=='jefedeestudios'){
+
+                    <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
+                }@else {<td></td>}
                 <td>{{ aula.id}}</td>
                 <td>{{ aula.nombre}}</td>
-                <td>horarios</td>
-                <td>reservas</td>
+                @if(authService.getAccess=='jefedeestudios'){
+
+                    <td>    <button routerLink="{{aula.id}}/horarios">Horarios</button></td>
+                    <td><button routerLink="{{aula.id}}/reservas">Reservas</button></td>
+                }@else {
+                    <td><button routerLink="{{aula.id}}/horarios">Horarios</button></td>
+                }
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">

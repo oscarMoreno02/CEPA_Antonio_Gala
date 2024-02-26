@@ -30,7 +30,18 @@ const listAula = (req, res = response) => {
             res.status(404).json('No exite un aula especial con ese id')
         })
 }
-
+//Óscar
+const listAulaWithData = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getAulaByIdWithData(req.params.id)
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json('No exite un aula especial con ese id')
+        })
+}
 const createAula = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertAula(req.body)
@@ -74,4 +85,5 @@ module.exports = {
     createAula,
     editAula,
     removeAula,
+    listAulaWithData
 }

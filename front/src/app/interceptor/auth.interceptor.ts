@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+//Óscar
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     constructor() { }
@@ -9,6 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
       let peticion = request.clone()
       const param = request.params.get('auth')
       if(param){
+        console.log(peticion)
         let t=sessionStorage.getItem('token')
           if(t){
             peticion = request.clone({

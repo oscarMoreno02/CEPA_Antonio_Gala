@@ -1,5 +1,5 @@
 //Jaime
-//Oscar (cambiado nombre de tablas)
+//Óscar(cambiado nombre de tablas)
 
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
@@ -47,7 +47,7 @@ module.exports = {
       },
       fecha: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       createdAt: {
         allowNull: false,

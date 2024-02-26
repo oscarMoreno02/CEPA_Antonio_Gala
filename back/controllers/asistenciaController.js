@@ -1,3 +1,4 @@
+/*Laura María Pedraza Gómez* */
 const { response, request } = require('express');
 const ConexionAsistencia = require('../database/conexionAsistencia');
 
@@ -42,14 +43,26 @@ const obtenerAsistenciasDeUsuario = async (req, res = response) => {
 
 const obtenerUsuariosDeEvento = async (req, res = response) => {
     const conx = new ConexionAsistencia();
-
+    const eventoId = req.params.eventoId;
     try{
-        const asistencias = await conx.getUsuariosEventos(req.params.eventoId);
+        const asistencias = await conx.getUsuariosEvento(eventoId);
         console.log('Asistencias obtenidas');
         res.status(200).json(asistencias)
     } catch (err){
         console.log('No se han encontrado asistencias')
         res.status(404).json({ 'msg':'No se han encontrado usuarios para el evento introducido'});
+    }
+}
+
+const obtenerAsistenciaEventoUsuario = async (req, res) => {
+    const conx = new ConexionAsistencia();
+    try {
+        const asistencia = await conx.getAsistencia(req.params.eventoId, req.params.usuarioId)
+        console.log('Asistencia obtenidas'+asistencia)
+        res.status(200).json(asistencia)
+    }catch(err){
+        console.log('No se ha encontrado ninguna asistencia para el usuario en el evento especificado');
+        res.status(404).json({'msg':'No se ha encontrado ninguna asistencia para el usuario en el evento especificado'});
     }
 }
 
@@ -85,5 +98,6 @@ module.exports = {
     borrarAsistencia,
     subirAsistencia,
     obtenerAsistenciasDeUsuario,
-    obtenerUsuariosDeEvento
+    obtenerUsuariosDeEvento,
+    obtenerAsistenciaEventoUsuario
 };
