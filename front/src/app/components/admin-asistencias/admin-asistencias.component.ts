@@ -1,13 +1,10 @@
 /*Laura María Pedraza Gómez* */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { EventosService } from '../../services/eventos.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { Evento } from '../../interface/evento';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { Usuario } from '../../interface/usuario';
-import { Users } from '../../interface/users';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
