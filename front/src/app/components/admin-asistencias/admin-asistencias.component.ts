@@ -47,7 +47,7 @@ export class AdminAsistenciasComponent implements OnInit {
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
-      this.eventoId = +idParam;
+      this.eventoId = +idParam
       this.asistenciaServicio.getAsistenciasEvento(this.eventoId).subscribe({
         next: (asistencias: any) => {
           for (var i =   0; i < asistencias.length; i++) {
@@ -72,7 +72,7 @@ export class AdminAsistenciasComponent implements OnInit {
 
     for (var i =  0; i < this.asistencias.length; i++) {
         if (this.asistencias[i].usuario.id == id) {
-            idAsistencia = this.asistencias[i];
+            idAsistencia = this.asistencias[i].id;
         } else {
             asistenciasActualizadas.push(this.asistencias[i]);
         }
