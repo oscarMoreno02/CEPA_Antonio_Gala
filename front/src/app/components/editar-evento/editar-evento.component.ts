@@ -1,7 +1,6 @@
 /*Laura María Pedraza Gómez* */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
@@ -28,7 +27,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   styleUrl: './editar-evento.component.css',
   providers: [DialogService, MessageService, EventosService, provideNativeDateAdapter()]
 })
-export class EditarEventoComponent implements OnInit{
+export class EditarEventoComponent{
   
   
   constructor(
@@ -148,10 +147,6 @@ export class EditarEventoComponent implements OnInit{
     archivo.value = null
     this.formularioFoto = null
     this.fotoPreview = null
-  }
-
-  ngOnInit(): void {
-
   }
   showDialog() {
     this.servicioEvento.getEvento(this.id!).subscribe({

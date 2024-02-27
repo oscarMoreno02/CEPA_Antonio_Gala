@@ -19,7 +19,7 @@
         <ng-template pTemplate="body" let-usuario>
             <tr>
                 <td>
-                    <app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar este asistente?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+                    <app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar este asistente?" color="danger" (confirmacion)="eliminar(usuario.id)"></app-confirm>
                 </td>
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.email }}</td>

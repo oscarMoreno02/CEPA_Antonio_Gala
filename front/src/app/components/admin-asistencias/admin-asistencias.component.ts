@@ -37,12 +37,14 @@ import { ActivatedRoute } from '@angular/router';
     ]
 })
 export class AdminAsistenciasComponent implements OnInit {
-  usuarios: Array<any> = [];
+  usuarios: Array<Usuario> = [];
+  asistencias:Array<any> = [];
   eventoId!: number;
 
   constructor(
     private asistenciaServicio: AsistenciaService, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService:MessageService
     ) {}
 
   ngOnInit(): void {
@@ -50,10 +52,11 @@ export class AdminAsistenciasComponent implements OnInit {
     if (idParam) {
       this.eventoId = +idParam;
       this.asistenciaServicio.getAsistenciasEvento(this.eventoId).subscribe({
-        next: (eventos: any) => {
-          for (var i =   0; i < eventos.length; i++) {
-            this.usuarios.push(eventos[i].usuario);
+        next: (asistencias: any) => {
+          for (var i =   0; i < asistencias.length; i++) {
+            this.usuarios.push(asistencias[i].usuario);
           }
+          this.asistencias = asistencias
           console.log("Llegan los usuarios", this.usuarios);
         },
         error: (err) => {
@@ -65,8 +68,39 @@ export class AdminAsistenciasComponent implements OnInit {
     }
   }
 
-  eliminar(b:Boolean){
+  async eliminar(id: number) {
+    var idAsistencia;
+    var asistenciasActualizadas = [];
+    var usuariosActualizados = [];
 
-  }
+    for (var i =  0; i < this.asistencias.length; i++) {
+        if (this.asistencias[i].usuario.id == id) {
+            idAsistencia = this.asistencias[i];
+        } else {
+            asistenciasActualizadas.push(this.asistencias[i]);
+        }
+    }
+
+    for (var i =  0; i < this.usuarios.length; i++) {
+        if (this.usuarios[i].id != id) {
+            usuariosActualizados.push(this.usuarios[i]);
+        }
+    }
+
+    this.asistencias = asistenciasActualizadas;
+    this.usuarios = usuariosActualizados;
+
+    this.asistenciaServicio.deleteAsistencia(idAsistencia).subscribe({
+        next: (data: any) => {
+            setTimeout(() => {
+                this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
+            },  1000)
+        },
+        error: (err) => {
+            console.log(err);
+            this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
+        }
+    });
+}
   
 }
