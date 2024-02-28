@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
   class Asistencia extends Model {
     static associate(models) {
       this.belongsTo(models.Evento, {
-        foreignKey: 'id',
+        foreignKey: 'idEvento',
         as: 'evento'
       });
       this.belongsTo(models.user, {
-        foreignKey: 'id',
+        foreignKey: 'idUsuario',
         as: 'usuario'
       });
     }

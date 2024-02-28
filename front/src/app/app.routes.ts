@@ -68,7 +68,7 @@ canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 {path:'admin/eventos', component:EventosComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
-{path:'admin/asistencias', component:AdminAsistenciasComponent,
+{path:'admin/asistencias/:id', component:AdminAsistenciasComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
 {path: '**', component: NotFoundComponent},

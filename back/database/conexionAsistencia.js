@@ -82,23 +82,24 @@ class ConexionAsistencia {
 
     async getAsistenciasUsuario(userId){
         this.conectar();
-        let resultado;
+        let usuarios = [];
         try {
-            resultado = await models.Asistencia.findAll({
-                where: {
-                  idUsuario: userId
-                },
+            usuarios = await models.Usuario.findAll({
                 include: [{
-                  model: models.Eventos,
-                  as: 'evento'
+                    model: models.Asistencia,
+                    where: { idUsuario: userId },
+                    include: [{
+                        model: models.Eventos,
+                        as: 'evento'
+                    }]
                 }]
-              });
+            });
         } catch (error){
             console.error('Error al obtener las asistencias: ', error);
         } finally {
             this.desconectar();
         }
-        return resultado;
+        return usuarios;
     }
 
     async getUsuariosEvento(eventoId){

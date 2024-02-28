@@ -1,9 +1,5 @@
-
 <p-toast></p-toast>
-<p-button (click)="showDialog()" icon="pi pi-eye" label="Ver asistencias"></p-button>
-<p-dialog header="Asistentes" [(visible)]="visible" [modal]="true" 
-  [draggable]="false" (onHide)="cerrar();" [resizable]="false">
-
+<app-nuevo-asistente-evento></app-nuevo-asistente-evento>
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="usuarios"
@@ -16,14 +12,16 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:20%"></th>
+                <th style="width:20%">Eliminar</th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:40%">Email</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-usuario>
             <tr>
-                <td></td>
+                <td>
+                    <app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar este asistente?" color="danger" (confirmacion)="eliminar(usuario.id)"></app-confirm>
+                </td>
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.email }}</td>
             </tr>
@@ -36,4 +34,3 @@
         </ng-template>
     </p-table>
 </div>
-</p-dialog>
