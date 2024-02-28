@@ -11,14 +11,15 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:10%">Editar</th>
-                <th style="width:10%">Ver asistentes</th>
-                <th style="width:13.33%">Nombre</th>
-                <th style="width:13.33%">Descripción</th>
-                <th style="width:13.33%">Fecha</th>
-                <th style="width:13.33%">Hora</th>
-                <th style="width:13.33%">Me gusta</th>
-                <th style="width:13.33%">Visibilidad</th>
+                <th style="width:5%">Editar</th>
+                <th style="width:5%">Ver asistentes</th>
+                <th style="width:11%">Nombre</th>
+                <th style="width:11%">Descripción</th>
+                <th style="width:11%">Fecha</th>
+                <th style="width:11%">Hora</th>
+                <th style="width:11%">Me gusta</th>
+                <th style="width:11%">Visibilidad</th>
+                <th style="width:24%">Foto Cartel</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-evento>
@@ -30,7 +31,8 @@
                 <td>{{ evento.fecha }}</td>
                 <td>{{ evento.hora }}</td>
                 <td>{{ evento.mg }}</td>
-                <td >{{ evento.visibilidad ? 'Si' : 'No' }}</td>
+                <td>{{ evento.visibilidad ? 'Si' : 'No' }}</td>
+                <td>{{ evento.fotoCartel }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
