@@ -26,4 +26,11 @@ export class AsistenciaService {
 
     )
   }
+
+  insertAsistencia(asistencia:Asistencia):Observable<any|undefined>{
+    let body={asistencia:asistencia}
+    return this.http.post<any>(this.baseUrl+'/',asistencia,{params:{auth:true}}).pipe(
+
+    )
+  }
 }
