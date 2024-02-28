@@ -98,6 +98,5 @@ export class AdminAsistenciasComponent implements OnInit {
             this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
         }
     });
-}
-  
+  }
 }
