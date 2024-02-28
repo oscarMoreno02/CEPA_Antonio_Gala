@@ -100,14 +100,14 @@ export class NuevoAsistenteEventoComponent implements OnInit {
             next: (data: any) => {
               console.log('Respuesta del servidor:', data)
               setTimeout(() => {
-                this.messageService.add({severity: 'success', summary:'Crear evento', detail:'Completado', life:3000});
+                this.messageService.add({severity: 'success', summary:'Crear Asistencia', detail:'Completado', life:3000});
                 this.asistencia.id = data.id
                 this.asistencia.idUsuario = 0
                 this.asistencia.idEvento = 0
               });
             },
             error: (error) => {
-              this.messageService.add({severity: 'error', summary:'Crear evento', detail:'El usuario introducido ya se encuentra apuntado al evento o no está registrado', life:3000});
+              this.messageService.add({severity: 'error', summary:'Crear Asistencia', detail:'El usuario introducido ya se encuentra apuntado al evento o no está registrado', life:3000});
             }
           });
         } else {
