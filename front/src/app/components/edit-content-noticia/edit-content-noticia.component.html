@@ -77,6 +77,13 @@
                 @if(seccion.foto!=undefined){
                     
                     <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    @if(esUrl(seccion.foto)){
+                        <td><img [src]="seccion.foto" width="100" class="shadow-4"></td>
+
+                    }@else {
+
+                        <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    }
                 }@else {
                     <td>[Sin foto]</td>
                 }

@@ -2,14 +2,13 @@ const path = require('path');
 const fs   = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const { response } = require('express');
-const { subirArchivo } = require('../helpers/subir-archivo');
+const { subirArchivoRemote } = require('../helpers/subir-archivo');
 const cloudinary = require('cloudinary').v2
 cloudinary.config( process.env.CLOUDINARY_URL);
 //Óscar
 const cargarArchivo = async(req, res = response) => {
 
     try {
-        
         if(!req.files || Object.keys(req.files).length === 0){
             res.status(404).send("No hay archivos para subir");
             return;
@@ -18,8 +17,11 @@ const cargarArchivo = async(req, res = response) => {
             res.status(404).send("No hay archivos para subir");
             return;
         }
-        const nombre = await subirArchivo( req.files, undefined, process.env.CARPETAFOTOSSECCIONES );
-        res.json({ url:nombre });
+
+          const nombre = await subirArchivoRemote(req.files, undefined, process.env.CARPETAFOTOSSECCIONES);
+        res.json({
+            url: nombre.secure_url
+        });
 
 
     } catch (msg) {
@@ -30,27 +32,58 @@ const cargarArchivo = async(req, res = response) => {
 
 
 const borrarImagen = async(req, res = response ) => {
-    const  idborrado = req.params.id;
-  
-    const pathImagen = path.join( __dirname, '../uploads', process.env.CARPETAFOTOSSECCIONES, idborrado );
-    if (fs.existsSync(pathImagen)) {
-        fs.unlinkSync(pathImagen);
-        res.status(200).json({ msg: "Borrado" });
-    } else {
-        res.status(404).json({ msg: "Archivo no encontrado" });
+    let idborrado = req.params.id;
+    idborrado = idborrado.split('.')
+    console.log(idborrado);
+    try {
+        const uploaded = await cloudinary.uploader.destroy(process.env.CARPETAFOTOSSECCIONES + '/' + idborrado[0]);
+
+        res.json(uploaded);
+
+    } catch (error) {
+        res.status(400).json({
+            msg: "Error al borrar la imagen en Cloudinary"
+        });
     }
 }
 
 
 const actualizarImagen = async(req, res = response ) => {
 
-        const pathImagen = path.join( __dirname, '../uploads', process.env.CARPETAFOTOSSECCIONES,req.params.id);
-        if ( fs.existsSync( pathImagen ) ) {
-            fs.unlinkSync( pathImagen );
-        }
+    let idborrado = req.params.id;
+    idborrado = idborrado.split('.')
+    console.log(idborrado);
+    try {
+        const uploaded = await cloudinary.uploader.destroy(process.env.CARPETAFOTOSSECCIONES + '/' + idborrado[0]);
+    } catch (error) {
+        
+    } finally {
 
-    const nombre = await subirArchivo( req.files, undefined, process.env.CARPETAFOTOSSECCIONES );
-    res.status(200).json({url:nombre});
+        try {
+
+            if (!req.files || Object.keys(req.files).length === 0) {
+                res.status(404).send("No hay archivos para subir");
+                return;
+            }
+
+            if (!req.files.archivo) {
+                res.status(404).send("No hay archivos para subir");
+                return;
+            }
+
+            const nombre = await subirArchivoRemote(req.files, undefined, process.env.CARPETAFOTOSSECCIONES);
+            res.json({
+                url: nombre.secure_url
+            });
+
+
+        } catch (msg) {
+            console.log(msg)
+            res.status(400).json({
+                msg
+            });
+        }
+    }
 }
 
 
