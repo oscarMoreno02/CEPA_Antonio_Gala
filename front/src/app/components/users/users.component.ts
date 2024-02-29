@@ -28,7 +28,6 @@ import { Users } from '../../interface/users';
 export class UsersComponent {
   constructor(
     private servicioUsers : UsersService,
-    private router : Router
   ){}
   subscriptionUsers: Subscription=new Subscription;
   listaUsers:Array<Users>=[]

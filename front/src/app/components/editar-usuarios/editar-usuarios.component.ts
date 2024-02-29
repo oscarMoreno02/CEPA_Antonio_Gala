@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, EventEmitter ,Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -40,7 +40,18 @@ export class EditarUsuariosComponent implements OnInit {
   @Input() id?: number
   subscripcionUsuarios: Subscription = new Subscription;
 
+  @Input() visible: boolean = false
+
+  @Output() cerrarModal = new EventEmitter<void>();
+
+  @Input() usuario?: any
+
+  us!:Users
+
   @Input() listaUsuarios: Array<Users> = []
+
+  @Input() tipo=0
+  
 
   nuevaUsuarios: Users = {
     id: 0,
@@ -60,7 +71,7 @@ export class EditarUsuariosComponent implements OnInit {
     let validado = true
     let nombreRegex = /^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+([\s-][A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$/
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    //let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
     //validar nombre
     if (this.usuarios.nombre){
@@ -105,7 +116,7 @@ export class EditarUsuariosComponent implements OnInit {
     }
 
     //validar password
-    if (this.usuarios.password){
+    /*if (this.usuarios.password){
 
       var passwordPrueba = passwordRegex.test(this.usuarios.password)
       
@@ -123,11 +134,77 @@ export class EditarUsuariosComponent implements OnInit {
       validado = false
       this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'El contraseña es obligatorio', life:3000})
 
-    }
+    }*/
     return validado
   }
 
   ngOnInit(): void {
 
   }
+
+  cerrar(): void {
+    this.cerrarModal.emit();
+  }
+
+  //revisar el .length
+  async guardar(b:Boolean){
+    if(b){
+      if(this.validaciones()){
+         this.servicioUsers.usuariosPut(this.usuarios).subscribe({
+          next: (data:any)=> {
+            setTimeout(()=>{
+              this.messageService.add({severity:'success', summary:'Actualizar usuario', detail:'Completada', life:3000})
+              console.log(this.usuarios)
+              for(let i=0;i<this.usuario.length;i++){
+                if(this.usuario[i].id == this.usuarios.id){
+                  this.usuario[i]=this.us
+                  this.visible=false
+                }
+              }
+            }, 1000)
+          },
+          error: (err) => {
+            console.log(err)
+            this.messageService.add({ severity:'error', summary: 'Actualizar usuario', detail: 'Error al actualizar el usuario, inténtelo de nuevo', life: 3000 });
+          }
+        })
+      }
+    }
+  }
+
+  showDialog(){
+    this.servicioUsers.usuarioGet(this.id!).subscribe({
+      
+      next: (usu:Users) => {
+        this.us = usu
+        this.visible=true
+        this.usuarios.nombre = usu.nombre
+        this.usuarios.email = usu.email
+        this.usuarios.password = usu.password
+      },
+      error: (e) => {
+        console.log(e)
+      }
+    })
+  }
+
+  async eliminar(b:Boolean){
+    this.servicioUsers.usuariosDelete(this.id!).subscribe({
+     next:(data: any) => {
+       setTimeout(()=>{
+         this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
+         for(let i=0;i<this.usuario.length;i++){
+           if(this.usuario[i].id == this.usuarios.id){
+           this.usuario[i]=this.us
+           this.visible=false
+         }
+       }
+     }, 1000)
+   },
+   error: (err) => {
+     console.log(err)
+     this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
+   }
+   })
+ }
 }

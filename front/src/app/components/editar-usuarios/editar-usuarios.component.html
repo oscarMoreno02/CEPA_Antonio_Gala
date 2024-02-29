@@ -1,10 +1,11 @@
 <p-toast></p-toast>
-<div class="card flex justify-content-center">
-  @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil"></p-button>
-  }
-  <p-dialog header="Editar usuarios" [(visible)]="visible" [modal]="true" 
-    [draggable]="false" [resizable]="false">
+    
+    <div class="card flex justify-content-center">
+        @if(tipo==0){
+    <p-button (click)="showDialog()" icon="pi pi-pencil"></p-button>
+        }
+    <p-dialog header="Editar usuarios" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar()" [resizable]="false">
 
 
     <div class="card flex justify-content-center" class="custom-dialog">
