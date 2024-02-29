@@ -14,14 +14,12 @@ class Server {
         this.serverWebSocket = require('http').createServer(this.app);
         this.io = require('socket.io')(this.serverWebSocket, {
             cors: {
-                origin: process.env.URLCLIENTE,
+                origin:'*',
                 methods: ["*"],
                 allowedHeaders: [""],
                 credentials: true
             }
         });
-
-
 
         this.apiUsuarios = '/api/usuario';
         this.apiRoles = '/api/roles'
@@ -49,7 +47,7 @@ class Server {
         this.sockets();
     }
     middlewares() {
-        this.app.use(cors());
+        this.app.use(cors({origin:'*'}));
         this.app.use(express.json());
         this.app.use(fileUpload({
             useTempFiles: true,

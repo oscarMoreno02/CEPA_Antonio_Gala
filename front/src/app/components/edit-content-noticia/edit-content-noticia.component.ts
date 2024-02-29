@@ -45,6 +45,7 @@ constructor(
   private messageService:MessageService,
   private servicioFoto:FotosNoticiasService
   ){}
+  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   env=environment
   foto:string | null=null
   id = this.rutaActiva.snapshot.params['id']
@@ -59,7 +60,7 @@ ngOnInit(): void {
       this.noticia=data
 
       if(this.noticia.foto){
-        this.foto=environment.baseUrl+environment.urlFotosNoticias+'/'+this.noticia.foto
+        // this.foto=environment.baseUrl+environment.urlFotosNoticias+'/'+this.noticia.foto
       }
     },
     error:(err)=>{
@@ -90,5 +91,7 @@ contarSecciones(seccion:Seccion):Number{
   }
   return contador
 }
-
+esUrl(foto:string):Boolean{
+return this.httpRegex.test(foto)
+}
 }

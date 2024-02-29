@@ -3,6 +3,7 @@ import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { Noticia } from '../../interface/noticia';
 import { Router, RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 //Óscar
 @Component({
   selector: 'app-preview-noticia',
@@ -15,5 +16,9 @@ import { Router, RouterLink } from '@angular/router';
 export class PreviewNoticiaComponent {
 @Input() noticia!:Noticia
 constructor(private router: Router){}
-
+env=environment
+httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+esUrl(foto:string):Boolean{
+  return this.httpRegex.test(foto)
+  }
 }
