@@ -91,10 +91,10 @@ export class NuevaNoticiaComponent implements OnInit {
 
       if (this.validarCampos()) {
         if (this.formularioFoto != null) {
+          this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
           this.servicioFotos.uploadFoto(this.formularioFoto).subscribe({
             next: (data: any) => {
               this.nuevaNoticia.foto = data.url
-              this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
               this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
                 next: (u: any) => {
                     this.ws.sendNoticifacion(this.nuevaNoticia)

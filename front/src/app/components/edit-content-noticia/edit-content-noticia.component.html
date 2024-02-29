@@ -27,7 +27,13 @@
                     }
                 }
                 @if(noticia.foto){
-                    <td><img [src]="foto" width="100" class="shadow-4"></td>
+                    @if(esUrl(noticia.foto)){
+                        <td><img [src]="noticia.foto" width="100" class="shadow-4"></td>
+
+                    }@else {
+
+                        <td><img [src]="env.baseUrl+env.urlFotosNoticias+'/'+noticia.foto" width="100" class="shadow-4"></td>
+                    }
 
                 }@else {
                     <td>[Sin foto]</td>
