@@ -58,7 +58,7 @@ export class EventosComponent implements OnInit {
   formatearSrc(){
     for (let i=0 ; i<this.eventos.length;i++){
       if(!this.eventos[i].fotoCartel.includes('http') || !this.eventos[i].fotoCartel.includes('https')){
-        this.eventos[i].fotoCartel = "../../../../../back/uploads/eventos/"+this.eventos[i].fotoCartel
+        this.eventos[i].fotoCartel = "/back/uploads/eventos"+this.eventos[i].fotoCartel
         console.log(this.eventos[i].fotoCartel)
       }
       
