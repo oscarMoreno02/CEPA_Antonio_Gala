@@ -1,5 +1,4 @@
-// Óscar -> creación de la estructua
-// Laura María Pedraza Gómez -> adaptación para que funcione con la foto de cartel del evento
+// Laura María Pedraza Gómez 
 const path = require('path');
 const fs   = require('fs');
 const { v4: uuidv4 } = require('uuid');

@@ -32,8 +32,7 @@
                 <td>{{ evento.hora }}</td>
                 <td>{{ evento.mg }}</td>
                 <td>{{ evento.visibilidad ? 'Si' : 'No' }}</td>
-                <td>{{ evento.fotoCartel }}</td>
-            </tr>
+                <td><img [src]=evento.fotoCartel alt="Foto de evento" style="width: auto; height: 200px;"></td>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
             <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
