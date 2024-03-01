@@ -36,7 +36,12 @@ export class EditarUsuariosComponent implements OnInit {
     private servicioUsers: UsersService
   ) { }
   value = ''
-  usuarios: Users = { id: 0, nombre: '', email: '', password: '' }
+  usuarios: Users = { 
+    id: 0, 
+    nombre: '', 
+    email: '', 
+    password: '' 
+  }
   @Input() id?: number
   subscripcionUsuarios: Subscription = new Subscription;
 
@@ -51,14 +56,6 @@ export class EditarUsuariosComponent implements OnInit {
   @Input() listaUsuarios: Array<Users> = []
 
   @Input() tipo=0
-  
-
-  nuevaUsuarios: Users = {
-    id: 0,
-    nombre: '',
-    email: '',
-    password: ''
-  }
 
   estiloValidacionNombre = ''
   estiloValidacionCorreo = ''
@@ -155,9 +152,10 @@ export class EditarUsuariosComponent implements OnInit {
             setTimeout(()=>{
               this.messageService.add({severity:'success', summary:'Actualizar usuario', detail:'Completada', life:3000})
               console.log(this.usuarios)
+              console.log(this.usuario)
               for(let i=0;i<this.usuario.length;i++){
                 if(this.usuario[i].id == this.usuarios.id){
-                  this.usuario[i]=this.us
+                  this.usuario[i]=this.usuarios
                   this.visible=false
                 }
               }

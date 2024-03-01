@@ -57,7 +57,7 @@ const usuariosDelete =  (req, res) => {
 
 const usuariosPut =  (req, res = response) => {
     const conx = new Conexion();
-    conx.modificarUsuario(req.params.id, req.body.nombre, req.body.email, req.body.password)    
+    conx.putUsuarios(req.params.id, req.body.nombre, req.body.email, req.body.password)    
         .then( msg => {
             console.log('Modificado correctamente!');
             res.status(202).json(msg);

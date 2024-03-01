@@ -68,7 +68,7 @@ class ConexionUser{
     }
 
     postUsuarios = async (body) => {
-        let resultado = 0;
+        let resultado;
         this.conectar();
         try {
             const password = await bcrypt.hash(body.password, 10);
@@ -76,7 +76,6 @@ class ConexionUser{
             usuarioNuevo.password = password
             await usuarioNuevo.save();
             resultado = usuarioNuevo.id; 
-            console.log(resultado)
             return resultado
         } catch (error) {
             if (error instanceof Sequelize.UniqueConstraintError) {
