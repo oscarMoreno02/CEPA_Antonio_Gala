@@ -36,24 +36,20 @@ export class EditarUsuariosComponent implements OnInit {
     private servicioUsers: UsersService
   ) { }
   value = ''
+  us!:Users
   usuarios: Users = { 
     id: 0, 
     nombre: '', 
     email: '', 
     password: '' 
   }
-  @Input() id?: number
+  @Input() usuario?: any
+  @Input() id!: number
   subscripcionUsuarios: Subscription = new Subscription;
 
   @Input() visible: boolean = false
 
   @Output() cerrarModal = new EventEmitter<void>();
-
-  @Input() usuario?: any
-
-  us!:Users
-
-  @Input() listaUsuarios: Array<Users> = []
 
   @Input() tipo=0
 
@@ -147,7 +143,7 @@ export class EditarUsuariosComponent implements OnInit {
   async guardar(b:Boolean){
     if(b){
       if(this.validaciones()){
-         this.servicioUsers.usuariosPut(this.usuarios).subscribe({
+         this.servicioUsers.usuariosPut(this.usuarios,this.id).subscribe({
           next: (data:any)=> {
             setTimeout(()=>{
               this.messageService.add({severity:'success', summary:'Actualizar usuario', detail:'Completada', life:3000})
@@ -155,9 +151,11 @@ export class EditarUsuariosComponent implements OnInit {
               console.log(this.usuario)
               for(let i=0;i<this.usuario.length;i++){
                 if(this.usuario[i].id == this.usuarios.id){
+                  console.log("dentro")
                   this.usuario[i]=this.usuarios
                   this.visible=false
                 }
+                this.visible=false
               }
             }, 1000)
           },
@@ -187,7 +185,7 @@ export class EditarUsuariosComponent implements OnInit {
   }
 
   async eliminar(b:Boolean){
-    this.servicioUsers.usuariosDelete(this.id!).subscribe({
+    this.servicioUsers.usuariosDelete(this.id).subscribe({
      next:(data: any) => {
        setTimeout(()=>{
          this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
@@ -196,6 +194,7 @@ export class EditarUsuariosComponent implements OnInit {
            this.usuario[i]=this.us
            this.visible=false
          }
+         this.visible=false
        }
      }, 1000)
    },

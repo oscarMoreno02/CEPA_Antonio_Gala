@@ -13,20 +13,20 @@
 
             <div class="flex flex-column">
                 <label for="username1">Nombre</label>
-                <input class="{{estiloValidacionNombre}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="usuarios.nombre" />
+                <input class="{{estiloValidacionNombre}}" pInputText id="nombre" aria-describedby="username-help1" [(ngModel)]="usuarios.nombre" />
                 <small id="username-help1">Introduce un nombre para el nuevo usuario</small>
             </div>
             
 
             <div class="flex flex-column">
                 <label for="username2">Correo</label>
-                <input class="{{estiloValidacionCorreo}}" pInputText id="username2" aria-describedby="username-help2" [(ngModel)]="usuarios.email" />
+                <input class="{{estiloValidacionCorreo}}" pInputText id="email" aria-describedby="username-help2" [(ngModel)]="usuarios.email" />
                 <small id="username-help2">Introduce un correo para el nuevo usuario</small>
             </div>
 
             <div class="flex flex-column">
                 <label for="username3">Contraseña</label>
-                <input class="{{estiloValidacionContrasena}}" pInputText id="username3" aria-describedby="username-help3" [(ngModel)]="usuarios.password" />
+                <input class="{{estiloValidacionContrasena}}" pInputText id="password" aria-describedby="username-help3" [(ngModel)]="usuarios.password" />
                 <small id="username-help3">Introduce una contraseña para el nuevo usuario</small>
             </div>
 

@@ -107,11 +107,11 @@ class ConexionUser{
         }
     }
     putUsuarios = async (id,body) => {
+        let resultado = 0
+        this.conectar();
         try{
-            let resultado = 0
-            this.conectar();
-            let task = await models.user.findByPk(id);
-            await task.update(body)
+            const task = await models.user.findByPk(id);
+            resultado = await task.update(body)
             return resultado
         }catch(error){
             throw error

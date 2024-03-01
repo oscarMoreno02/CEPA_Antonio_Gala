@@ -8,6 +8,6 @@ router.get('/', controlador.usuariosGet)
 router.get('/:id', controlador.usuarioGet)
 router.post('/', controlador.usuariosPost)
 router.put('/:id', controlador.usuariosPut)
-router.delete('/id', controlador.usuariosDelete)
+router.delete('/:id', controlador.usuariosDelete)
 
 module.exports = router;

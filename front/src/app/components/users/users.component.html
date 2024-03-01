@@ -20,7 +20,7 @@
         </ng-template> 
         <ng-template pTemplate="body" let-usuarios>
             <tr>
-                <td><app-editar-usuarios [listaUsuarios]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>
+                <td><app-editar-usuarios [usuario]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>
                 <td>{{usuarios.nombre}}</td>
                 <td>{{usuarios.email}}</td>
              
