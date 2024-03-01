@@ -20,4 +20,17 @@ export class AsistenciaService {
       })
     )
   }
+
+  deleteAsistencia(id:number):Observable<any|undefined>{
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params:{auth:true}}).pipe(
+
+    )
+  }
+
+  insertAsistencia(asistencia:Asistencia):Observable<any|undefined>{
+    let body={asistencia:asistencia}
+    return this.http.post<any>(this.baseUrl+'/',asistencia,{params:{auth:true}}).pipe(
+
+    )
+  }
 }

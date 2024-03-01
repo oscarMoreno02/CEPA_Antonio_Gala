@@ -52,7 +52,8 @@ export class EditarSeccionComponent {
 
  estiloValidacionTitulo=''
  estiloValidacionTexto=''
-
+ httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+fotoAuxiliar='null'
 
   formularioFoto: FormData | null = null
   fotoPreview: string | null = null
@@ -62,7 +63,15 @@ export class EditarSeccionComponent {
       next:(data:Seccion)=>{
         this.seccionEditar=data
         if (this.seccionEditar.foto != null) {
-          this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+      
+          if (this.httpRegex.test(this.seccionEditar.foto)){
+            const fragmentos = this.seccionEditar.foto.split('/');
+            this.fotoAuxiliar=fragmentos[fragmentos.length-1]
+            this.fotoPreview=this.seccionEditar.foto
+          }else{
+            this.fotoAuxiliar=this.seccionEditar.foto
+            this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+          }
         }
       },
       error:(err)=>{
@@ -75,7 +84,15 @@ export class EditarSeccionComponent {
     next:(data:Seccion)=>{
       this.seccionEditar=data
       if (this.seccionEditar.foto != null) {
-        this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+      
+        if (this.httpRegex.test(this.seccionEditar.foto)){
+          const fragmentos = this.seccionEditar.foto.split('/');
+          this.fotoAuxiliar=fragmentos[fragmentos.length-1]
+          this.fotoPreview=this.seccionEditar.foto
+        }else{
+          this.fotoAuxiliar=this.seccionEditar.foto
+          this.fotoPreview = environment.baseUrl + environment.urlFotosSecciones + '/' + this.seccionEditar.foto
+        }
       }
     },
     error:(err)=>{
@@ -136,6 +153,32 @@ export class EditarSeccionComponent {
    }
  }
  }
+ eliminar(confirm: Boolean) {
+
+  if (confirm) {
+
+    this.messageService.add({ severity: 'info', summary: 'Borrar Noticia', detail: 'En curso', life: 3000 });
+
+    this.servicioSeccion.deleteSeccion(this.seccionEditar.id).subscribe({
+      next: (u: any) => {
+        this.visible=false
+        setTimeout(() => {
+          this.messageService.add({ severity: 'success', summary: 'Borrar Sección', detail: 'Completada', life: 3000 });
+          setTimeout(() => {
+           
+            this.noticia!.secciones=this.noticia!.secciones!.filter(data => data.id !== this.seccionEditar.id);
+          }, 1000);
+        }, 1000);
+
+      },
+      error: (err) => {
+      
+        this.messageService.add({ severity: 'error', summary: 'Borrar Sección', detail: 'Cancelada', life: 3000 });
+      }
+    })
+
+  }
+}
 
  validarCampos():Boolean{
    let valido = true
@@ -191,7 +234,7 @@ export class EditarSeccionComponent {
       if(this.fotoPreview==null){
         if (this.seccionEditar.foto != null) {
           try {
-            const data: any = await lastValueFrom(this.servicioFoto.deleteFoto(this.seccionEditar.foto));
+            const data: any = await lastValueFrom(this.servicioFoto.deleteFoto(this.fotoAuxiliar));
             id = null;
           } catch (err) {
             id=null
@@ -203,7 +246,7 @@ export class EditarSeccionComponent {
       }
     } else {
         try {
-            const data: any = await lastValueFrom(this.servicioFoto.updateFoto(this.seccionEditar.foto!, this.formularioFoto));
+            const data: any = await lastValueFrom(this.servicioFoto.updateFoto(this.fotoAuxiliar, this.formularioFoto));
             id = data.url;
         } catch (err) {
             return id;

@@ -1,0 +1,21 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-dialog header="Añadir asistencia" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label id="alumno">Escriba un email</label><br>
+                <input  class="{{ validacionEmail }}" pInputText id="email" aria-describedby="nombre" [(ngModel)]="usuario.email" /><br>
+                <small id="email">Introduzca un email registrado para añadir a su correspondiente usuario al evento</small>
+            </div>
+        </div>
+        <div style="margin-top: 20px;" >
+            <app-confirm tipo="Añadir" icono="plus" mensaje="¿Deseas añadir el usuario al evento?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+        </div>
+    </div>
+</p-dialog>
+</div>

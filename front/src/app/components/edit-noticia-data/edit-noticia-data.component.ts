@@ -64,13 +64,14 @@ export class EditNoticiaDataComponent implements OnInit {
   estiloValidacionUrl = ''
 
   enlace?: boolean
-  url = ''
-
+  url  = ''
+  fotoAuxiliar : string ='null'
   formularioFoto: FormData | null = null
   fotoPreview: string | null = null
 
   ngOnInit(): void {
     this.enlace = false
+  
     this.servicioNoticia.getNoticia(this.id!).subscribe({
       next: (n: Noticia) => {
         this.noticiaEditar = n
@@ -85,6 +86,14 @@ export class EditNoticiaDataComponent implements OnInit {
         }
         if (this.noticiaEditar.foto != null) {
           this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
+          if (this.httpRegex.test(this.noticiaEditar.foto)){
+            const fragmentos = this.noticiaEditar.foto.split('/');
+            this.fotoAuxiliar=fragmentos[fragmentos.length-1]
+            this.fotoPreview=this.noticiaEditar.foto
+          }else{
+            this.fotoAuxiliar=this.noticiaEditar.foto
+            this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
+          }
         }
       },
       error: (err) => {
@@ -107,7 +116,15 @@ export class EditNoticiaDataComponent implements OnInit {
           this.url = this.noticiaEditar.enlace
         }
         if (this.noticiaEditar.foto != null) {
-          this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
+         
+          if (this.httpRegex.test(this.noticiaEditar.foto)){
+            const fragmentos = this.noticiaEditar.foto.split('/');
+            this.fotoAuxiliar=fragmentos[fragmentos.length-1]
+            this.fotoPreview=this.noticiaEditar.foto
+          }else{
+            this.fotoPreview = environment.baseUrl + environment.urlFotosNoticias + '/' + this.noticiaEditar.foto
+            this.fotoAuxiliar=this.noticiaEditar.foto
+          }
         }
       },
       error: (err) => {
@@ -121,7 +138,8 @@ export class EditNoticiaDataComponent implements OnInit {
     if (b) {
       if (this.validarCampos()) {
         if (this.formularioFoto) {
-          this.servicioFotos.updateFoto(this.noticiaEditar.foto!,this.formularioFoto).subscribe({
+          console.log(this.fotoAuxiliar)
+          this.servicioFotos.updateFoto(this.fotoAuxiliar,this.formularioFoto).subscribe({
             next: (data:any) => {
               this.noticiaEditar.foto = data.url
               this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
@@ -144,10 +162,10 @@ export class EditNoticiaDataComponent implements OnInit {
             }
           })
         } else {
-          if (this.fotoPreview==null && this.noticiaEditar != null) {
-           let f=this.noticiaEditar.foto
+          if (this.fotoPreview==null && this.noticiaEditar.foto != null) {
+         
        
-            this.servicioFotos.deleteFoto(f!).subscribe({
+            this.servicioFotos.deleteFoto(this.fotoAuxiliar).subscribe({
               next: (data: any) => {
                 this.noticiaEditar.foto = null
                 this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
