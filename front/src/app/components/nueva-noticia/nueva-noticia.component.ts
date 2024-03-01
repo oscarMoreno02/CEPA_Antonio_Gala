@@ -178,7 +178,6 @@ export class NuevaNoticiaComponent implements OnInit {
     } else {
       this.estiloValidacionUrl = ''
     }
-
     return valido
   }
 
