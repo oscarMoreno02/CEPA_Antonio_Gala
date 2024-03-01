@@ -82,7 +82,7 @@ const createCategoria = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertCategoria(req.body)
         .then(data => {
-            res.status(201).json('Tarea registrada correctamente')
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)
