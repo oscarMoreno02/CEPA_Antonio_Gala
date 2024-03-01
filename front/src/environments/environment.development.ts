@@ -16,5 +16,6 @@ export const environment = {
     urlFranjas:'/franjas',
     urlHorarios:'/horarios',
     urlAsistencias:'/asistencia',
-    urlReservas:'/reservas'
+    urlReservas:'/reservas',
+    urlFotosEventos:'/uploads/eventos'
 };
