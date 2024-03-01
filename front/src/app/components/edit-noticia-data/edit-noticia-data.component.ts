@@ -116,9 +116,9 @@ export class EditNoticiaDataComponent implements OnInit {
     })
     this.visible = true
   }
-  guardar(b: Boolean) {
+  guardar(confirm: Boolean) {
 
-    if (b) {
+    if (confirm) {
       if (this.validarCampos()) {
         if (this.formularioFoto) {
           this.servicioFotos.updateFoto(this.noticiaEditar.foto!,this.formularioFoto).subscribe({
