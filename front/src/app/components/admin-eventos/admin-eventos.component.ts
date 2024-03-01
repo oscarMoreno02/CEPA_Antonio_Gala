@@ -10,6 +10,7 @@ import { EditarEventoComponent } from "../editar-evento/editar-evento.component"
 import { AdminAsistenciasComponent } from "../admin-asistencias/admin-asistencias.component";
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { finalize } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
     selector: 'app-eventos',
@@ -39,7 +40,10 @@ export class EventosComponent implements OnInit {
   constructor(
     private servicioEventos : EventosService,
     private router:Router
-    ) {}
+  ) {}
+  
+  formularioFoto: FormData | null = null
+  fotoPreview: string | null = null
 
   ngOnInit(): void {
     this.servicioEventos.getAllEventos()
@@ -58,10 +62,8 @@ export class EventosComponent implements OnInit {
   formatearSrc(){
     for (let i=0 ; i<this.eventos.length;i++){
       if(!this.eventos[i].fotoCartel.includes('http') || !this.eventos[i].fotoCartel.includes('https')){
-        this.eventos[i].fotoCartel = "/back/uploads/eventos"+this.eventos[i].fotoCartel
-        console.log(this.eventos[i].fotoCartel)
-      }
-      
+        this.eventos[i].fotoCartel = environment.baseUrl + environment.urlFotosEventos + '/' + this.eventos[i].fotoCartel
+      }   
     }
   }
 }
