@@ -144,6 +144,42 @@ class ConexionAulaReserva {
         }
     }
     //Óscar
+    getReservaWithDataByID = async (id) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaReserva.findByPk(id,{
+                include: [
+                    {
+                        model: models.AulaEspecial,
+                        as: 'aula',
+                    },
+                    {
+                        model: models.AulaHorario,
+                        as: 'horario',
+                        include:[{
+                            model:models.AulaFranja,
+                            as:'franja'
+                        }]
+                    },
+                    {
+                        model: models.user,
+                        as: 'profesor',
+                        attributes:['id','nombre','email']
+                    }
+                ],
+                
+                order:[['fecha','DESC']]
+            }
+            )
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
+    //Óscar
     getAllReservasOfProfesorWithData = async (id) => {
         try {
             let resultado = []
