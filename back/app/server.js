@@ -7,6 +7,8 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const { noticiasSocketController } = require('../controllers/noticiasSocketController');
+const { eventosSocketController } = require('../controllers/eventoSocketController')
+
 class Server {
     constructor() {
         this.app = express();
@@ -24,8 +26,6 @@ class Server {
         this.apiUsuarios = '/api/usuario';
         this.apiRoles = '/api/roles'
         this.apiRolesAsignados = '/api/rolesAsignados'
-
-        // this.apiPath = '/api';
         this.categoriasPath = '/api/categorias';
         this.enlacesPath = '/api/enlaces'
         this.noticiasPath = '/api/noticias'
@@ -78,6 +78,7 @@ class Server {
     }
     sockets() {
         this.io.on('connection', noticiasSocketController);
+        this.io.on('connection', eventosSocketController)
     }
 
 
