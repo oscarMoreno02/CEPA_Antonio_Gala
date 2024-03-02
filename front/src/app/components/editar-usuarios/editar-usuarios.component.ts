@@ -1,3 +1,4 @@
+//Raul
 import { Component, EventEmitter ,Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -139,7 +140,6 @@ export class EditarUsuariosComponent implements OnInit {
     this.cerrarModal.emit();
   }
 
-  //revisar el .length
   async guardar(b:Boolean){
     if(b){
       if(this.validaciones()){
