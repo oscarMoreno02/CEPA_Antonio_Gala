@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { Reserva } from '../interface/reserva';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 //Óscar
 @Injectable({
   providedIn: 'root'
 })
 export class ReservaService {
-
+authService=inject(AuthService)
 
   baseUrl=environment.baseUrl+environment.urlReservas
   constructor(private http:HttpClient) { }
@@ -54,12 +55,16 @@ export class ReservaService {
     )
   }
   deleteReserva(id:number): Observable<any | undefined> {
-
-    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true}}).pipe(
+    let notififacion=false
+    if(this.authService.getAccess=='jefedeestudios'){
+      console.log('entra en notify')
+      notififacion=true
+    }
+    return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true,notify:notififacion}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
-    )
+      )
   }
   updateReserva(reserva:Reserva): Observable<any | undefined> {
      return this.http.put<any>(this.baseUrl+'/'+reserva.id,reserva,{params: {auth: true}}).pipe(
