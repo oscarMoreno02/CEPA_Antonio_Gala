@@ -18,6 +18,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FotosNoticiasService} from '../../services/fotosNoticias.service';
 import { environment } from '../../../environments/environment.development';
+import { ConfirmComponent } from '../confirm/confirm.component';
+import { WebSocketService } from '../../services/websocket.service';
 //Óscar
 @Component({
   selector: 'app-edit-noticia-content',
@@ -30,7 +32,8 @@ import { environment } from '../../../environments/environment.development';
     EditarSeccionComponent,
     NuevoEnlaceComponent,
     EditarEnlaceComponent,
-    ToastModule
+    ToastModule,
+    ConfirmComponent
   ],
   templateUrl: './edit-content-noticia.component.html',
   styleUrl: './edit-content-noticia.component.css',
@@ -43,7 +46,9 @@ constructor(
   private rutaActiva: ActivatedRoute,
   private servicioCategorias:CategoriasService,
   private messageService:MessageService,
-  private servicioFoto:FotosNoticiasService
+  private servicioFoto:FotosNoticiasService,
+  private ws: WebSocketService
+
   ){}
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   env=environment
@@ -93,5 +98,26 @@ contarSecciones(seccion:Seccion):Number{
 }
 esUrl(foto:string):Boolean{
 return this.httpRegex.test(foto)
+
+}
+editarPublicacion(confirm: Boolean,visibilidad:boolean) {
+  if (confirm) {
+    this.servicioNoticias.updateNoticia(this.noticia,true).subscribe({
+      next: (u: any) => {
+        if(this.noticia.publicada==false){
+          this.messageService.add({ severity: 'success', summary: 'Publicar Noticia', detail: 'Publicada', life: 3000 });
+          this.noticia.publicada=true
+          this.ws.sendNoticifacion(this.noticia)
+        }else{
+          this.messageService.add({ severity: 'success', summary: 'Publicar Noticia', detail: 'Ocultada', life: 3000 });
+          this.noticia.publicada=false
+        }
+          
+      },
+      error: (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Publicar Noticia', detail: 'Cancelada', life: 3000 });
+      }
+    })
+  }
 }
 }
