@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import { EventoWebsocketService } from '../../services/evento-websocket.service';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class NuevoEventosComponent implements OnInit{
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
+    private socket : EventoWebsocketService
   ) {}
   ngOnInit(): void {
     
