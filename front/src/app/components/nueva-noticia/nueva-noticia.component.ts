@@ -48,7 +48,7 @@ export class NuevaNoticiaComponent implements OnInit {
     private servicioNoticia: NoticiaService,
     private router: Router,
     private servicioFotos: FotosNoticiasService,
-    private ws: WebSocketService
+    
   ) { }
 
   @Input() visible: boolean = false;
@@ -97,7 +97,7 @@ export class NuevaNoticiaComponent implements OnInit {
               this.nuevaNoticia.foto = data.url
               this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
                 next: (u: any) => {
-                    this.ws.sendNoticifacion(this.nuevaNoticia)
+                    
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                     setTimeout(() => {
@@ -122,7 +122,7 @@ export class NuevaNoticiaComponent implements OnInit {
             next: (u: any) => {
    
               setTimeout(() => {
-                this.ws.sendNoticifacion(this.nuevaNoticia)
+                
                 this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
                   this.router.navigate(['/noticia/contenido', u.id])

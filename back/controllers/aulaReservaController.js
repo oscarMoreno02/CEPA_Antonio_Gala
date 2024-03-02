@@ -55,7 +55,7 @@ const editReserva = (req, res = response) => {
         });
 
 }
-
+//Óscar
 const removeReserva = async (req, res = response) => {
     const conexion = new Conexion()
     let reserva = await conexion.getReservaWithDataByID(req.params.id)
