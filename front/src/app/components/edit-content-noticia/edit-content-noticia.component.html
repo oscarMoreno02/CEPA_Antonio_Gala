@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <!-- //Óscar -->
-<div style="width : 1000px;margin-left: 20%; margin-top: 50px;">
+<div class="contenedor" style="margin-top: 50px;">
 
     <div class="card" style="border: 1px solid green;border-radius: 15px;" >
         <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem'}">
@@ -58,7 +58,10 @@
         </ng-template>
     </p-table>
 </div>
-<app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
+
+
+    <app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
+
 
 @if(noticia.secciones){
     
