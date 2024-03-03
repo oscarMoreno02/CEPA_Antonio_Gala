@@ -24,6 +24,11 @@
                 <div class="flex flex-column">
                     <input type="checkbox" [(ngModel)]="esProfe"> Profesor
                 </div>
+
+                <div style="margin-top: 20px;" >
+
+                    <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+                </div>
             </div>
         </div>
 
