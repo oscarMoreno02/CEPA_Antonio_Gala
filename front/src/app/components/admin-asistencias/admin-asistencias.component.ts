@@ -54,7 +54,6 @@ export class AdminAsistenciasComponent implements OnInit {
             this.usuarios.push(asistencias[i].usuario);
           }
           this.asistencias = asistencias
-          console.log("Llegan los usuarios", this.usuarios);
         },
         error: (err) => {
           console.log(err);

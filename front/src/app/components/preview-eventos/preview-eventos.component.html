@@ -1,0 +1,18 @@
+<p-card styleClass="mt10" >
+    <ng-template pTemplate="title">
+        <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
+                <h1>
+                    <a style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;"> 
+                        <span>
+                            {{ evento.nombre }}
+                        </span>
+                    </a>
+                </h1>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        @if(evento.fotoCartel!=null){
+            <img [src]="env.baseUrl+env.urlFotosEventos+'/'+evento.fotoCartel"  width="100%" class="shadow-4">
+        }
+    </ng-template>
+</p-card>

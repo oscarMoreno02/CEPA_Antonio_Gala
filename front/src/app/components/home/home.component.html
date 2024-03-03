@@ -1,1 +1,9 @@
-<p>home works!</p>
+<h1>EVENTOS DISPONIBLES</h1>
+@if (eventos != []){
+    @for (evento of eventos; track evento){
+        <app-preview-eventos [evento]=evento></app-preview-eventos>
+    }
+} @else {
+    <p>No hay eventos disponibles</p>
+}
+
