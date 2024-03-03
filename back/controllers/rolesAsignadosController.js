@@ -5,7 +5,20 @@ const Conexion = require('../database/conexionRolesAsignados');
 
 const rolesAsignadosGet =  (req, res = response) => {
     const conx = new Conexion();
-    conx.getRolesAsignados()    
+    conx.rolesAsignadosGet()    
+        .then( msg => {
+            console.log('Listado correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registros');
+            res.status(200).json({'msg':'No se han encontrado registros'});
+        });
+}
+
+const rolesAsignadosGetIdUsu =  (req, res = response) => {
+    const conx = new Conexion();
+    conx.rolesAsignadosGetId(req.params.idUser)    
         .then( msg => {
             console.log('Listado correcto!');
             res.status(200).json(msg);
@@ -18,7 +31,7 @@ const rolesAsignadosGet =  (req, res = response) => {
 
 const rolesAsignadosPost =  (req = request, res = response) => {
     const conx = new Conexion();
-    conx.registrarRolesAsignados(req.body.id, req.body.nombre)    
+    conx.rolesAsignadosPost(req.body)    
         .then( msg => {
             console.log('Insertado correctamente!');
             res.status(201).json(msg);
@@ -31,9 +44,9 @@ const rolesAsignadosPost =  (req = request, res = response) => {
 
 const rolesAsignadosDelete =  (req, res) => {
     const conx = new Conexion();
-    conx.borrarRolesAsignados(req.params.id)    
+    conx.rolesAsignadosDelete(req.params.id)    
         .then( msg => {
-            console.log('Borrado correctamente!');  //Podemos acceder a este valor de req porque lo hemos almacenado en el middleware validarHWT extrayendo la información del token.
+            console.log('Borrado correctamente!');
             res.status(202).json(msg);
         })
         .catch( err => {
@@ -44,7 +57,7 @@ const rolesAsignadosDelete =  (req, res) => {
 
 const rolesAsignadosPut =  (req, res = response) => {
     const conx = new Conexion();
-    conx.modificarRolesAsignados(req.params.id, req.body.nombre)    
+    conx.rolesAsignadosPut(req.params.id, req.body.nombre)    
         .then( msg => {
             console.log('Modificado correctamente!');
             res.status(202).json(msg);
@@ -58,6 +71,7 @@ const rolesAsignadosPut =  (req, res = response) => {
 
 module.exports = {
     rolesAsignadosGet,
+    rolesAsignadosGetIdUsu,
     rolesAsignadosDelete,
     rolesAsignadosPost,
     rolesAsignadosPut

@@ -1,0 +1,29 @@
+<!--Raul-->
+
+<p-toast></p-toast>
+
+    <div class="card flex justify-content-center">
+
+        @if(tipo==0){
+            <p-button (click)="showDialog()" icon="pi-cog"></p-button>
+        }
+        <p-dialog header="Roles" [(visible)]="visible" [modal]="true" 
+        [draggable]="false" (onHide)="cerrar()" [resizable]="false">
+
+        <div class="card flex justify-content-center" class="custom-dialog">
+            <div class="flex flex-row gap-4">
+
+                <div class="flex flex-column">
+                    <input type="checkbox" [(ngModel)]="esAdmin"> Administrador
+                </div>
+
+                <div class="flex flex-column">
+                    <input type="checkbox" [(ngModel)]="esJefe"> Jefe de estudios
+                </div>
+
+                <div class="flex flex-column">
+                    <input type="checkbox" [(ngModel)]="esProfe"> Profesor
+                </div>
+            </div>
+        </div>
+

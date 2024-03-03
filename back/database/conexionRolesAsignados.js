@@ -1,4 +1,4 @@
-//Raúl
+//Raúl 
 
 require('dotenv').config()
 const bcrypt = require('bcrypt');
@@ -40,6 +40,19 @@ class ConexionRolesAsignados{
             let resultado = [];
             this.conectar();
             resultado = await models.rolAsignados.findAll();
+            return resultado;
+        }catch(error){
+          throw error
+        }finally{
+            this.desconectar();
+        }
+    }
+
+    rolesAsignadosGetId = async (idUser) => {
+        try{
+            let resultado = [];
+            this.conectar();
+            resultado = await models.rolAsignados.findByPk(idUser);
             return resultado;
         }catch(error){
           throw error

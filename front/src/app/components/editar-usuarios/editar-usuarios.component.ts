@@ -1,16 +1,15 @@
 //Raul
 import { Component, EventEmitter ,Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService} from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { ModificarRolesComponent } from '../modificar-roles/modificar-roles.component';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ConfirmComponent } from '../confirm/confirm.component';
-import { DropdownModule } from 'primeng/dropdown';
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
 import { Users } from '../../interface/users';
@@ -26,7 +25,8 @@ import { Users } from '../../interface/users';
     InputTextModule,
     InputSwitchModule,
     ConfirmComponent,
-    DropdownModule],
+    ModificarRolesComponent
+  ],
   templateUrl: './editar-usuarios.component.html',
   styleUrl: './editar-usuarios.component.css',
   providers: [DialogService, MessageService, UsersService]

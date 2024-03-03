@@ -31,6 +31,7 @@
                 <small id="username-help3">Introduce una contraseña para el nuevo usuario</small>
             </div>
 
+            <app-modificar-roles></app-modificar-roles>
             </div>
         </div>
         <div style="margin-top: 20px;" >
@@ -39,7 +40,7 @@
         </div>
         <div style="margin-top: 20px;" >
 
-            <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar esta usuarios?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+            <app-confirm tipo="Borrar" icono="pi-trash" mensaje="¿Deseas borrar esta usuarios?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
         </div>
   </p-dialog>
 </div>
