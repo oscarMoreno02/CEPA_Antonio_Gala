@@ -171,7 +171,7 @@ export class EditarEventoComponent{
   async guardar(confirm:Boolean){
     if(confirm){
       if(this.validarCampos()){
-        this.servicioFotos.updateFoto(this.eventoModal.fotoCartel!, this.formularioFoto!).subscribe({
+      //  this.servicioFotos.updateFoto(this.eventoModal.fotoCartel!, this.formularioFoto!).subscribe({
           next:(data:any) => {
             this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
               next: (data:any)=> {
@@ -190,7 +190,7 @@ export class EditarEventoComponent{
               }
             })  
           }
-        }) 
+       // }) 
       }
     }
   }
