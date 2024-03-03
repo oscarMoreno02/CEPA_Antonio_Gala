@@ -13,11 +13,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../interface/evento';
-import {MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import {MatDatepickerModule } from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class NuevoEventosComponent implements OnInit{
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
+    private servicioFoto: FotoCartelEventosService
   ) {}
   ngOnInit(): void {
     
@@ -166,31 +168,37 @@ export class NuevoEventosComponent implements OnInit{
       }
     return validacion
   }
-  crear(b:Boolean){
-    if (b){
+  crear(confirm:Boolean){
+    if (confirm){
       if(this.validarCampos()){
-       // if(this.formularioFoto != null){
-          this.messageService.add({ severity: 'info', summary:'Crear evento', detail:'En curso', life:3000});
-          console.log(this.nuevoEvento)
-          this.servicioEvento.insertEvento(this.nuevoEvento).subscribe({
-            next: (data: any) => {
-              console.log('Respuesta del servidor:', data)
-              setTimeout(() => {
-                this.messageService.add({severity: 'success', summary:'Crear evento', detail:'Completado', life:3000});
-                this.nuevoEvento.id = data.id
-                this.nuevoEvento.nombre= ''
-                this.nuevoEvento.descripcion= ''
-                this.nuevoEvento.fecha= ''
-                this.nuevoEvento.hora=''
-                this.nuevoEvento.fotoCartel= ''
-                this.nuevoEvento.visibilidad= false;
+        if(this.formularioFoto != null){
+          this.servicioFoto.uploadFoto(this.formularioFoto).subscribe({
+            next:(data:any) => {
+              this.nuevoEvento.fotoCartel = data.url
+              this.messageService.add({ severity: 'info', summary:'Crear evento', detail:'En curso', life:3000});
+              this.servicioEvento.insertEvento(this.nuevoEvento).subscribe({
+                next: (data: any) => {
+                  setTimeout(() => {
+                    this.messageService.add({severity: 'success', summary:'Crear evento', detail:'Completado', life:3000});
+                    this.nuevoEvento.id = data.id
+                    this.nuevoEvento.nombre= ''
+                    this.nuevoEvento.descripcion= ''
+                    this.nuevoEvento.fecha= ''
+                    this.nuevoEvento.hora=''
+                    this.nuevoEvento.fotoCartel= ''
+                    this.nuevoEvento.visibilidad= false;
+                  });
+                },
+                error: (error) => {
+                  this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});
+                }
               });
             },
             error: (error) => {
-              this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});
+              this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al subir la foto, inténtelo de nuevo', life:3000});
             }
-          });
-       // }
+          }); 
+        }
       }
     }
   }
