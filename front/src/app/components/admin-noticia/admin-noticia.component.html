@@ -1,26 +1,31 @@
-<app-nueva-noticia></app-nueva-noticia>
+
 <!-- //Óscar -->
-<div style="margin-top: 100px;" class="card">
-    <p-table
+
+    
+    <div style="margin-top: 40px;" class="card">
+        <p-table
         [value]="listaNoticias"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} categorias"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} noticias"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width:10%"></th>
-                <th style="width:40%">Nombre</th>
-                <th style="width:20%">Categoria</th>
-                <th style="width:30%">Enlace</th>
-            </tr>
+  
+        <ng-template id="" style="border-radius: 100px;" pTemplate="header">
+        
+                <tr class="header-glass" style="border: none;" >
+                    <th style="width:10%"><app-nueva-noticia></app-nueva-noticia></th>
+                    <th style="width:40%">Nombre</th>
+                    <th style="width:20%">Categoria</th>
+                    <th style="width:30%">Enlace</th>
+                </tr>
+            
         </ng-template>
         <ng-template pTemplate="body" let-noticia>
-            <tr>
-                <td><p-button routerLink="/noticia/contenido/{{noticia.id}}" icon="pi pi-pencil" title=""></p-button></td>
+            <tr class="glass">
+                <td><p-button label="Editar" [raised]="true" [outlined]="true" routerLink="/noticia/contenido/{{noticia.id}}" icon="pi pi-pencil" title=""></p-button></td>
                 <td>{{ noticia.titulo}}</td>
                 @for (categoria of listaCategorias; track categoria.id) {
                     @if(categoria.id==noticia.idCategoria){
@@ -29,11 +34,18 @@
                 }
                 <td>{{ noticia.enlace }}</td>
             </tr>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft">
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
             
         </ng-template>
+        <div style="max-width: 70rem;">
+
+            <ng-template pTemplate="paginatorleft">
+                <div class="header">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                
+            </ng-template>
+        </div>
     </p-table>
 </div>
+

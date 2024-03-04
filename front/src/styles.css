@@ -14,8 +14,51 @@
 }
 
   *{
+    
     font-family: hellix;
   }
-  html{
-    background-color: rgb(170, 231, 255);
+  html {
+    background-color: rgb(182, 250, 182);
+    background-image: linear-gradient(45deg, rgba(182, 250, 182, 0.8), rgba(250, 182, 182, 0.8));
+    background-repeat:no-repeat;
+    background-size: 100vw 100vh;
   }
+  
+  .glass{
+    z-index: -1;
+     background-color: rgba(255, 255, 255, 0.45);
+     box-shadow: 0 0 10px 0.01px rgba(0, 0, 0, 0.25);
+     backdrop-filter: blur(15px);
+ }
+ .header-glass{
+     z-index: -1;
+     background-color: rgba(255, 255, 255, 0.75); 
+     box-shadow: 0 0 5px 1px rgba(112, 103, 103, 0.25);
+   background-repeat:no-repeat;
+   background-size: 100vw 600vh;
+
+ }
+ .p-paginator-bottom{
+   z-index: -1;
+     background-color: rgba(255, 255, 255, 0.75); 
+     box-shadow: 0 0 5px 1px rgba(112, 103, 103, 0.25);
+   background-repeat:no-repeat;
+   background-size: 100vw 600vh;
+   max-width: 80rem;
+   margin: auto;
+   border-radius: 0px 0px 20px 20px;
+ }
+
+#v{
+  border-radius: 20px !important;
+ }
+
+ .p-datatable-thead  thead{
+  border-radius: 20px !important;
+ }
+ thead{
+  border-radius: 200px;
+ }
+
+
+ 

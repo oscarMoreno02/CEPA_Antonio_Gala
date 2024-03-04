@@ -1,5 +1,6 @@
 <p-toast></p-toast>
 <!-- //Óscar -->
+
 <div class="contenedor" style="margin-top: 50px;">
 
     <div class="card" style="border: 1px solid green;border-radius: 15px;" >
@@ -50,9 +51,9 @@
                 }
                 @if(noticia.enlace!=undefined){
 
-                    <td colspan="2"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
+                    <td colspan="3"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
                 }@else {
-                    <td colspan="2">[Sin enlace]</td>
+                    <td colspan="3">[Sin enlace]</td>
                 }
             </tr>
         </ng-template>
@@ -100,11 +101,12 @@
                 }@else {
                     <td>[Sin foto]</td>
                 }
-                <td style="max-width: 300px;">
+                <td colspan="" style="max-width: 300px;">
                     <div style="word-wrap: break-word;">
                         {{seccion.texto}}
                     </div>
-                </td>         
+                </td> 
+                       
             </tr>
         </ng-template>
 

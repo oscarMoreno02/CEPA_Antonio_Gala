@@ -17,24 +17,8 @@
 .enlace-container p-button {
     margin-left: 5px; 
 }
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.contenedor {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-}
 .contenedor-boton {
-    margin: 0 auto;
+    
+    margin: auto;
 }
