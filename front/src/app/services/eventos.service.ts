@@ -48,4 +48,11 @@ export class EventosService {
 
     )
   }
+
+  plusMgEvento(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/mg/'+id,body).pipe(
+
+    )
+  }
 }

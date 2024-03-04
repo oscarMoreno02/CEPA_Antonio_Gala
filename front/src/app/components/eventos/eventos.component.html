@@ -1,6 +1,16 @@
-<div style="margin-top: 100px;" class="card">
+<div style="margin-top: 100px;" class="card" style="text-align:center">
     <h1>{{ evento.nombre }}</h1><br>
-    <img [src]=evento.fotoCartel alt="Foto de evento" style="width: 60%; height: auto;">
-    <p>{{ evento.descripcion }}</p><br>
-    <p-button type="button" icon="pi pi-heart"></p-button>
+    <img [src]="evento.fotoCartel" alt="Foto de evento" style="width: auto; height: 400px;">
+    <p>{{ evento.descripcion }}</p>
+    <p>Fecha: {{ evento.fecha}}</p>
+    <p>Hora: {{ evento.hora }}</p><br><br>
+    <p-button type="button" (onClick)="sumarMg()" icon="pi pi-heart" styleClass="mg" title="{{ evento.mg }}" label="{{ evento.mg }}" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button><br><br>
+    @if(userId != 0){
+        <app-confirm icono="plus" mensaje='¿Deseas apuntarte al evento?' color="success" tipo="Apuntarse"></app-confirm>
+    } @else {
+        <app-confirm icono="plus" mensaje='Debes de iniciar sesión' color="success" tipo="Apuntarse"></app-confirm>
+    }<br>
+    <p-button type="button" icon="pi pi-file-pdf" label="Descargar la foto de cartel" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button>
+    <!--<h2>GALERÍA</h2>
+    <h2>FORO DEL EVENTO</h2>-->
 </div>

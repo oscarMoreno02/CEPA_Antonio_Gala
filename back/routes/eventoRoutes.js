@@ -30,5 +30,6 @@ router.put('/:id', [
     check('visibilidad').isBoolean(),
     validateValues
 ], authMid.validarJWT,accessMid.esAdmin, controller.actualizarEvento);
+router.put('/mg/:id', controller.aumentarMg)
 
 module.exports = router;

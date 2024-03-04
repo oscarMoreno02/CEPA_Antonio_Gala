@@ -33,7 +33,7 @@ import { environment } from '../../../environments/environment.development';
   ]
 })
 
-export class EventosComponent implements OnInit {
+export class AdminEventosComponent implements OnInit {
 
   eventos:Array<Evento>=[]
 

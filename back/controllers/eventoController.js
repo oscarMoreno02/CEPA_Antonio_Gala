@@ -72,10 +72,24 @@ const actualizarEvento = (req, res = response) => {
         });
 }
 
+const aumentarMg = (req, res) => {
+    const conx = new EventoConexion()
+    conx.plusMgEvento(req.params.id)
+        .then((evento) => {
+            console.log('Mg aumentado correctamente!');
+            res.status(200).json(evento);
+        })
+        .catch((err) => {
+            console.log('Fallo en la modificación!');
+            res.status(404).json(err);
+        });
+}
+
 module.exports = {
     obtenerEventos,
     obtenerEventoPorId,
     actualizarEvento,
     subirEvento,
-    borrarEvento
+    borrarEvento,
+    aumentarMg
 }

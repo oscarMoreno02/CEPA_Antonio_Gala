@@ -102,6 +102,25 @@ class ConexionEvento {
         }
         return resultado;
     }
+
+    plusMgEvento = async (id) => {
+        this.conectar();
+        let resultado;
+        try {
+            const evento = await models.Evento.findByPk(id);
+            if (!evento) {
+                throw new Error(`Evento con ID ${id} no encontrado`);
+            } else {
+                evento.mg = evento.mg + 1;
+                resultado = await evento.save();
+            }
+        } catch (error) {
+            console.error(`Error al actualizar evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }    
 }
 
 module.exports = ConexionEvento;

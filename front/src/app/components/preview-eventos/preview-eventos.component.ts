@@ -1,5 +1,5 @@
 /**Laura María Pedraza Gómez */
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { Evento } from '../../interface/evento';
   templateUrl: './preview-eventos.component.html',
   styleUrl: './preview-eventos.component.css'
 })
-export class PreviewEventosComponent {
+export class PreviewEventosComponent{
   @Input() evento!:Evento
   constructor(private router: Router){}
   env=environment
