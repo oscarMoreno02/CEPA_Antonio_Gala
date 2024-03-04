@@ -12,8 +12,13 @@
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} noticias"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
-  
-        <ng-template id="" style="border-radius: 100px;" pTemplate="header">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Administrar Noticias
+           
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
         
                 <tr class="header-glass" style="border: none;" >
                     <th style="width:10%"><app-nueva-noticia></app-nueva-noticia></th>

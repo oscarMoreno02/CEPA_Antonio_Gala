@@ -1,4 +1,4 @@
-<app-nueva-franja></app-nueva-franja>
+
 <!-- //Óscar -->
 <div style="margin-top: 100px;" class="card">
     <p-table
@@ -6,13 +6,19 @@
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} franjas"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+           Franjas
+           
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
-            <tr>
-                <th></th>
+            <tr class="header-glass">
+                <th><app-nueva-franja></app-nueva-franja></th>
                 <th style="width:10%">Nº</th>
                 <th style="width:40%">Turno</th>
                 <th style="width:30%">Hora Inicio</th>
@@ -20,7 +26,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-franja>
-            <tr>
+            <tr class="glass">
                 <td><app-editar-franja [id]="franja.id"></app-editar-franja></td>
                 <td>{{ franja.id}}</td>
                 <td>{{ franja.turno}}</td>

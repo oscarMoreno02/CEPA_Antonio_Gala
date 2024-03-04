@@ -2,7 +2,7 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-plus" label="Crear aula"></p-button>
+  <p-button severity="success" [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-plus" label="Añadir"></p-button>
   }
   <p-dialog header="Crear nuevo aula" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
@@ -19,7 +19,7 @@
         </div>
         <div style="margin-top: 20px;" >
 
-            <app-confirm tipo="Crear" icono="pi pi-plus" mensaje="¿Deseas crear este nuevo aula?" color="success" (confirmacion)="crear($event)"></app-confirm>
+            <app-confirm tipo="Añadir" icono="pi pi-plus" mensaje="¿Deseas crear este nuevo aula?" color="success" (confirmacion)="crear($event)"></app-confirm>
         </div>
     </div>
     </div>

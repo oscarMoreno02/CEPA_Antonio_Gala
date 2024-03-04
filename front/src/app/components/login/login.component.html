@@ -1,6 +1,6 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
-    <p-button (click)="showDialog()" icon="pi pi-user" label="Login"></p-button>
+    <p-button [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-user" label="Login"></p-button>
         @if(register==false){
         
         <p-dialog header="Início de sesión" [(visible)]="visible" [modal]="true" 
@@ -27,9 +27,9 @@
                 <div [innerHTML]="error"></div>
             </div>
         }
-        <div style="margin-top: 20px;" >
-            <button (click)="login()">Login</button>
-            <button (click)="changeType(true)">Crear una cuenta</button>
+        <div style="margin-top: 20px; display: flex; gap: 10px;" >
+            <p-button [raised]="true" [outlined]="true" (click)="login()">Login</p-button>
+            <p-button [outlined]="true" severity="help" [outlined]="true" (click)="changeType(true)">Registro</p-button>
         </div>
     </div>
 </p-dialog>
@@ -66,9 +66,9 @@
         <div style="margin-top: 10px;" class="flex flex-row gap-4">
             <div [innerHTML]="error"></div>
         </div>
-        <div style="margin-top: 20px;" >
-            <button (click)="registro()">Registrarse</button>
-            <button (click)="changeType(false)">Iniciar sesión</button>
+        <div style="margin-top: 20px; display: flex;gap:10px"  >
+            <p-button [outlined]="true" severity="success" [outlined]="true" (click)="registro()">Registrarse</p-button>
+            <p-button [outlined]="true"  [outlined]="true" (click)="changeType(false)">Iniciar sesión</p-button>
         </div>
     </div>
 </p-dialog>

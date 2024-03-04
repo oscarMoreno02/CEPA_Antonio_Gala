@@ -18,6 +18,7 @@ import { Noticia } from '../../interface/noticia';
 import { FotosNoticiasService} from '../../services/fotosNoticias.service';
 import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
+import { FileUploadModule } from 'primeng/fileupload';
 //Óscar
 @Component({
   selector: 'app-edit-noticia-data',
@@ -31,7 +32,8 @@ import { Router } from '@angular/router';
     InputSwitchModule,
     ConfirmComponent,
     DropdownModule,
-    EditNoticiaDataComponent
+    EditNoticiaDataComponent,
+    FileUploadModule
   ],
   providers: [CategoriasService, NoticiaService, DialogService, MessageService,],
   templateUrl: './edit-noticia-data.component.html',

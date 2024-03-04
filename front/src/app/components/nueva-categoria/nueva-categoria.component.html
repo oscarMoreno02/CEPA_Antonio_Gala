@@ -1,17 +1,17 @@
 <p-toast></p-toast>
 <!-- //Óscar -->
-<div class="card flex justify-content-center">
+<div style="" class=" card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
+  <p-button  label="Nueva" severity="success" [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
   }
-  <p-dialog header="Crear nueva categoria" [(visible)]="visible" [modal]="true" 
+  <p-dialog  header="Crear nueva categoria" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
 
 
-    <div class="card flex justify-content-center" class="custom-dialog">
+    <div style="margin-top: 10px;" class="card flex justify-content-center" class="custom-dialog">
         <div class="flex flex-row gap-4">
 
-            <div class="flex flex-column">
+            <div  class="flex flex-column">
                 <label for="username1">Nombre</label>
                 <input class="{{estiloValidacionNombre}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="nuevaCategoria.nombre" />
                 <small id="username-help1">Introduce un nombre para la nueva categoria</small>

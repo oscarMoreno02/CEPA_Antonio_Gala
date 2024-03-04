@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { TableModule } from 'primeng/table';
 import { NoticiaService } from '../../services/noticia.service';
@@ -37,7 +37,8 @@ import { WebSocketService } from '../../services/websocket.service';
   ],
   templateUrl: './edit-content-noticia.component.html',
   styleUrl: './edit-content-noticia.component.css',
-  providers:[MessageService]
+  providers:[MessageService],
+  encapsulation:ViewEncapsulation.None
 })
 
 export class EditContentNoticiaComponent implements OnInit {
@@ -109,7 +110,7 @@ editarPublicacion(confirm: Boolean,visibilidad:boolean) {
           this.noticia.publicada=true
           this.ws.sendNoticifacion(this.noticia)
         }else{
-          this.messageService.add({ severity: 'success', summary: 'Publicar Noticia', detail: 'Ocultada', life: 3000 });
+          this.messageService.add({ severity: 'warn', summary: 'Publicar Noticia', detail: 'Ocultada', life: 3000 });
           this.noticia.publicada=false
         }
           

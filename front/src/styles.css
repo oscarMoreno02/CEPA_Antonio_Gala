@@ -19,16 +19,16 @@
   }
   html {
     background-color: rgb(182, 250, 182);
-    background-image: linear-gradient(45deg, rgba(182, 250, 182, 0.8), rgba(250, 182, 182, 0.8));
-    background-repeat:no-repeat;
-    background-size: 100vw 100vh;
+    background-image: linear-gradient(250deg, rgba(182, 250, 182, 0.8), rgba(250, 182, 182, 0.8));
+ 
+    background-size: 200% 200% !important;
   }
   
   .glass{
     z-index: -1;
      background-color: rgba(255, 255, 255, 0.45);
      box-shadow: 0 0 10px 0.01px rgba(0, 0, 0, 0.25);
-     backdrop-filter: blur(15px);
+
  }
  .header-glass{
      z-index: -1;
@@ -49,16 +49,65 @@
    border-radius: 0px 0px 20px 20px;
  }
 
-#v{
-  border-radius: 20px !important;
- }
-
- .p-datatable-thead  thead{
-  border-radius: 20px !important;
- }
- thead{
-  border-radius: 200px;
- }
 
 
- 
+ .p-dialog-content{
+
+  background-color: rgb(250, 246, 246); 
+  box-shadow: 0 0 5px 1px rgba(112, 103, 103,);
+background-repeat:no-repeat;
+background-size: 100vw 600vh;
+}
+.custom-dialog{
+  width: 100% !important;
+}
+
+.p-datatable .p-datatable-header {
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.75); 
+  box-shadow: 0 0 5px 1px rgba(112, 103, 103, 0.25);
+background-repeat:no-repeat;
+background-size: 100vw 600vh;
+border: none;
+border-radius: 20px 20px 0px 0px;
+min-width: 50rem ;max-width:80rem; margin: auto;
+    }
+
+  .p-datatable-footer{
+    background-color: rgba(255, 255, 255, 0.75); 
+
+background-repeat:no-repeat;
+background-size: 100vw 600vh;
+border: none;
+border-radius: 0px 0px 20px 20px;
+z-index: -1;
+
+    min-width: 50rem ;max-width:80rem; margin: auto;
+  }
+
+  .p-button.p-button-outlined:hover {
+    background-color: #cacaca;
+
+    border: 1px solid;
+  }
+
+  .p-ripple.p-element.p-menuitem-link.ng-star-inserted:hover {
+    background-color: #cacaca;
+    border-radius: 10px;
+  }
+  .p-dialog{
+    max-width: 90%;
+  }
+
+  .p-dialog .p-dialog-footer {
+    border-top: 0 none;
+    background: #ffffff;
+    color: #4b5563;
+    padding: 0 0 1rem 1rem;
+    text-align: right;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }

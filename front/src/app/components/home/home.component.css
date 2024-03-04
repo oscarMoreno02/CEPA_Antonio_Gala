@@ -1,37 +1,7 @@
-:root {
-    font-size: 20px;
-  }
-  
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-  
-  p {
-    margin: 0;
-  }
-  
-  p:not(:last-child) {
-    margin-bottom: 1.5em;
-  }
-  
+
   body {
-    font: 1em/1.618 Inter, sans-serif;
-  
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
-    
-    min-height: 100vh;
-    padding: 30px;
-    margin: 0;
-    
-  /* background: linear-gradient(326deg,#25422E 1%, #55B95F 15%,#25422E 50%, #C4EA70 100%);
-  background-repeat:no-repeat;
-  background-size: 100vw 600vh; */
-  /* min-height: 100%; */
-    color: #224;
+   
+    color: #224 !important;
   
   }
   
