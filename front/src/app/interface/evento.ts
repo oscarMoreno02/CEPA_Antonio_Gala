@@ -7,7 +7,8 @@ export interface Evento {
     hora:           string;
     fotoCartel:     string;
     mg:             number;
-    visibilidad:    boolean;    
+    visibilidad:    boolean;
+    numAsistentes:  number;    
     createdAt?:     string;
     updatedAt?:     string;
 }

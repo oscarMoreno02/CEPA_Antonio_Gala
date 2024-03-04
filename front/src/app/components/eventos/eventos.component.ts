@@ -69,7 +69,6 @@ export class EventosComponent implements OnInit{
     })
   }
 
-    
   downloadPDF(): void {
     const doc = this.jsPDFService.getPDF();
    
@@ -78,7 +77,7 @@ export class EventosComponent implements OnInit{
        img.crossOrigin = 'Anonymous';
        img.src = this.evento.fotoCartel;
        img.onload = () => {
-         doc.addImage(img, 'JPEG', 10, 10, 180, 160);
+         doc.addImage(img, 'JPEG', 10, 10, 190, 250);
          doc.save(this.evento.nombre + '.pdf');
        };
     }

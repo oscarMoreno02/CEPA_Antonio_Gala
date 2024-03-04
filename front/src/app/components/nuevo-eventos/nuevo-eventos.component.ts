@@ -75,6 +75,7 @@ export class NuevoEventosComponent implements OnInit{
     hora: '',
     fotoCartel: '',
     mg: 0,
+    numAsistentes: 0,
     visibilidad: false
   }
 
