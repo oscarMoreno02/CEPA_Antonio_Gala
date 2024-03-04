@@ -24,11 +24,16 @@ import { RolAsignado } from '../../interface/rolAsignado';
   ],
   templateUrl: './modificar-roles.component.html',
   styleUrl: './modificar-roles.component.css',
-  providers:[DialogService,MessageService,RolAsignadoService]
+  providers:[
+    DialogService,
+    MessageService,
+    RolAsignadoService
+  ]
 })
 export class ModificarRolesComponent {
 
   constructor(
+    public messageService:MessageService,
     private servicioRolAsig:RolAsignadoService
   ){}
 
@@ -51,36 +56,61 @@ export class ModificarRolesComponent {
 
   showDialog(){
     this.servicioRolAsig.rolesAsignadosGetIdUsu(this.idUser!).subscribe({
-      
-      next: (rolA:RolAsignado) => {
-        this.ro = rolA
-        this.visible=true
-        if(this.rolAsignado.idRol==1){
-          this.esAdmin = true
-        }else{
-          this.esAdmin = false
-        }
-        if(this.rolAsignado.idRol==2){
-          this.esJefe = true
-        }else{
-          this.esJefe = false
-        }
-        if(this.rolAsignado.idRol==3){
-          this.esProfe = true
-        }else{
-          this.esProfe = false
-        }
+  
+      next: (rolesAsignados: RolAsignado[]) => {
+        console.log(this.idUser!);
+        rolesAsignados.forEach(rol => {
+          if (rol.idRol === 1) {
+            this.esAdmin = true;
+          } else if (rol.idRol === 2) {
+            this.esJefe = true;
+          } else if (rol.idRol === 3) {
+            this.esProfe = true;
+          }
+        });
+        console.log(rolesAsignados);
+        this.visible = true;
       },
       error: (e) => {
-        console.log(e)
+        console.log(e);
       }
     })
   }
 
   async guardar(b:Boolean){
     if(b){
+      this.messageService.add({ severity: 'info', summary:'Modificación de los roles', detail:'En curso', life:3000});
+      if(this.esAdmin){
+        this.servicioRolAsig.rolesAsignadosPost({
+          id : 0,
+          idUser : this.idUser,
+          idRol : 1
+        })
+      }else{
+        this.servicioRolAsig.rolesAsignadosDelete(this.idUser,1)
+      }
 
+      if(this.esJefe){
+        this.servicioRolAsig.rolesAsignadosPost({          
+          id : 0,
+          idUser : this.idUser,
+          idRol : 2})
+      }else{
+        this.servicioRolAsig.rolesAsignadosDelete(this.idUser,2)
+      }
+
+      if(this.esProfe){
+        this.servicioRolAsig.rolesAsignadosPost({
+          id : 0,
+          idUser : this.idUser,
+          idRol : 3
+        })
+      }else{
+        this.servicioRolAsig.rolesAsignadosDelete(this.idUser,3)
+      }
     }
+    this.messageService.add({ severity: 'success', summary:'Modificación de los roles', detail:'Terminada', life:3000});
+    this.visible = false
   }
 
   cerrar(): void {

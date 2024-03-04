@@ -8,6 +8,6 @@ router.get('/', controlador.rolesAsignadosGet)
 router.get('/:idUser', controlador.rolesAsignadosGetIdUsu)
 router.post('/', controlador.rolesAsignadosPost)
 router.put('/:id', controlador.rolesAsignadosPut)
-router.delete('/id', controlador.rolesAsignadosDelete)
+router.delete('/:idUser/:idRol', controlador.rolesAsignadosDelete)
 
 module.exports = router;

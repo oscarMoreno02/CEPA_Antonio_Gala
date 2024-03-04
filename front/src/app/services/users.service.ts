@@ -31,7 +31,6 @@ export class UsersService {
   usuariosPost(usuarios:Users): Observable<any | undefined> {
     let body={usuarios:usuarios}
     
-    console.log("Im the storm that its aproching")
      return this.http.post<any>(this.baseUrl,usuarios).pipe(
      
      )

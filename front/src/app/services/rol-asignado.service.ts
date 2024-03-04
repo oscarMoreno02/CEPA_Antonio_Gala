@@ -12,6 +12,7 @@ export class RolAsignadoService {
   constructor(private http:HttpClient) { }
 
   rolesAsignadosGetIdUsu(idUser:number): Observable<any  | undefined> {
+    console.log(this.baseUrl+'/'+idUser)
     return this.http.get<any>(this.baseUrl+'/'+idUser).pipe(
       catchError((error) =>{
         return of(undefined)
@@ -22,10 +23,10 @@ export class RolAsignadoService {
   rolesAsignadosPost(rolAsig:RolAsignado): Observable<any  | undefined> {
     let body={rolAsig:rolAsig}
     return this.http.post<any>(this.baseUrl,rolAsig).pipe()
-  }
+  } 
 
-  rolesAsignadosDelete(idUser:number): Observable<any | undefined> {
-    return this.http.delete<any>(this.baseUrl+'/'+idUser).pipe(
+  rolesAsignadosDelete(idUser:number, idRol:number): Observable<any | undefined> {
+    return this.http.delete<any>(this.baseUrl+'/'+idUser+'/'+idRol).pipe(
       catchError((error) =>{
         return of(undefined)
       })
