@@ -62,4 +62,11 @@ export class EventosService {
 
     )
   }
+
+  putPlaza(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/anadirPlaza/'+id, body).pipe(
+
+    )
+  }
 }
