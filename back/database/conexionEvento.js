@@ -120,7 +120,21 @@ class ConexionEvento {
             this.desconectar();
         }
         return resultado;
-    }    
+    }
+    
+    getNumAsistentesEvento = async  (id) => {
+        this.conectar();
+        let resultado;
+        try {
+            const evento = await models.Evento.findByPk(id); 
+            resultado = evento.numAsistentes
+        } catch (error) {
+            console.error(`Error al actualizar evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
 }
 
 module.exports = ConexionEvento;

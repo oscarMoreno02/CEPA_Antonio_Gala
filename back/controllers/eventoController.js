@@ -80,9 +80,22 @@ const aumentarMg = (req, res) => {
             res.status(200).json(evento);
         })
         .catch((err) => {
-            console.log('Fallo en la modificación!');
+            console.log('Fallo al añadir el mg!');
             res.status(404).json(err);
         });
+}
+
+const obtenerNumAsistentes = (req, res) => {
+    const conx = new EventoConexion()
+    conx.getNumAsistentesEvento(req.params.id)
+        .then((asistencias) => {
+            console.log('Numero de asistentes obtenido correctamente')
+            res.status(200).json(asistencias)
+            .catch((err) => {
+                console.log('Fallo al obtener el número de asistentes')
+                res.status(404).json(err)
+            })
+        })
 }
 
 module.exports = {
@@ -91,5 +104,6 @@ module.exports = {
     actualizarEvento,
     subirEvento,
     borrarEvento,
-    aumentarMg
+    aumentarMg,
+    obtenerNumAsistentes
 }

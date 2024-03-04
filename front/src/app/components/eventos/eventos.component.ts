@@ -55,7 +55,6 @@ export class EventosComponent implements OnInit{
       } catch {
         this.userId = 0
       }
-      console.log(this.userId)
     }    
   }
 

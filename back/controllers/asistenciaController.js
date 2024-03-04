@@ -1,6 +1,7 @@
 /*Laura María Pedraza Gómez* */
 const { response, request } = require('express');
 const ConexionAsistencia = require('../database/conexionAsistencia');
+const ConexionEvento = require('../database/conexionEvento');
 
 const obtenerAsistencias = async (req, res = response) => {
     const conx = new ConexionAsistencia();
@@ -68,7 +69,6 @@ const obtenerAsistenciaEventoUsuario = async (req, res) => {
 
 const subirAsistencia = async (req = request, res = response) => {
     const conx = new ConexionAsistencia();
-
     try {
         const asistencia = await conx.postAsistencia(req.body);
         console.log('Insertado correctamente!');
