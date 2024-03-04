@@ -7,22 +7,27 @@ import { ButtonModule } from 'primeng/button';
 import { environment } from '../../../environments/environment.development';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { AuthService } from '../../services/auth.service';
+// import { jsPDF } from 'jspdf';
+import { JsPDFService } from '../../services/js-pdfservice.service';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-eventos',
   standalone: true,
   imports: [
     ButtonModule,
-    ConfirmComponent
+    ConfirmComponent,
   ],
   templateUrl: './eventos.component.html',
-  styleUrl: './eventos.component.css'
+  styleUrl: './eventos.component.css',
+  providers: []
 })
 export class EventosComponent implements OnInit{
   constructor(
     private eventoServicio : EventosService,
     private route: ActivatedRoute,
-    private authServicio : AuthService
+    private authServicio : AuthService,
+    private jsPDFService: JsPDFService
   ) {}
 
   evento! : Evento
@@ -68,5 +73,20 @@ export class EventosComponent implements OnInit{
       }
     })
   }
+
+    
+  downloadPDF(): void {
+    const doc = this.jsPDFService.getPDF();
+   
+    if (this.evento.fotoCartel && this.evento.fotoCartel.includes('http')) {
+       const img = new Image();
+       img.crossOrigin = 'Anonymous';
+       img.src = this.evento.fotoCartel;
+       img.onload = () => {
+         doc.addImage(img, 'JPEG', 10, 10, 180, 160);
+         doc.save(this.evento.nombre + '.pdf');
+       };
+    }
+   }   
 
 }

@@ -10,7 +10,7 @@
     } @else {
         <app-confirm icono="plus" mensaje='Debes de iniciar sesión' color="success" tipo="Apuntarse"></app-confirm>
     }<br>
-    <p-button type="button" icon="pi pi-file-pdf" label="Descargar la foto de cartel" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button>
+    <p-button type="button" icon="pi pi-file-pdf" label="Descargar la foto de cartel" (click)="downloadPDF()" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button>
     <!--<h2>GALERÍA</h2>
     <h2>FORO DEL EVENTO</h2>-->
 </div>
