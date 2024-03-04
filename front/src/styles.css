@@ -1,6 +1,7 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+
 @font-face {
     font-family: 'Hellix';
     src: url('../font/Hellix-SemiBold.eot');
@@ -12,7 +13,7 @@
     font-weight: 600;
     font-style: normal;
 }
-
+/* Óscar */
   *{
     
     font-family: hellix;
@@ -178,3 +179,10 @@ a:hover {
 .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text:hover {
   color: #040404;
 }
+
+.p-splitbutton.p-button-outlined > .p-button:not(:disabled):hover {
+  background-color: #cacaca;
+    
+  border: 1px solid;
+}
+

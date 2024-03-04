@@ -4,11 +4,12 @@ import { ImageModule } from 'primeng/image';
 import { Noticia } from '../../interface/noticia';
 import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
+import { TagModule } from 'primeng/tag';
 //Óscar
 @Component({
   selector: 'app-preview-noticia',
   standalone: true,
-  imports: [ImageModule, CardModule,RouterLink],
+  imports: [ImageModule, CardModule,RouterLink,TagModule],
   templateUrl: './preview-noticia.component.html',
   styleUrl: './preview-noticia.component.css',
   encapsulation: ViewEncapsulation.None

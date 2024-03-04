@@ -52,7 +52,11 @@
                 @if(noticia.secciones![0].enlaces){
                     <ng-template pTemplate="footer">
                         @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
-                            <a href="{{enlace.url}}">{{enlace.textoClave}}</a>&nbsp;
+                            <span style="line-height: 2;">
+                                <a href="{{enlace.url}}">
+                                    <p-tag [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}" icon="pi pi-external-link" value=" {{enlace.textoClave}}"></p-tag>
+                                </a>&nbsp;
+                            </span>
                     }
                 </ng-template>
             }
