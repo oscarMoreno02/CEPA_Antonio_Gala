@@ -53,9 +53,23 @@ export class ModificarRolesComponent {
     this.servicioRolAsig.rolesAsignadosGetIdUsu(this.idUser!).subscribe({
       
       next: (rolA:RolAsignado) => {
-        //this.ro = rolA
+        this.ro = rolA
         this.visible=true
-        //this.rolAsignado.idRol = rolA.idRol
+        if(this.rolAsignado.idRol==1){
+          this.esAdmin = true
+        }else{
+          this.esAdmin = false
+        }
+        if(this.rolAsignado.idRol==2){
+          this.esJefe = true
+        }else{
+          this.esJefe = false
+        }
+        if(this.rolAsignado.idRol==3){
+          this.esProfe = true
+        }else{
+          this.esProfe = false
+        }
       },
       error: (e) => {
         console.log(e)
