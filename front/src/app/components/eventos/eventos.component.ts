@@ -7,9 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { environment } from '../../../environments/environment.development';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { AuthService } from '../../services/auth.service';
-// import { jsPDF } from 'jspdf';
 import { JsPDFService } from '../../services/js-pdfservice.service';
-import html2canvas from 'html2canvas';
+import { AsistenciaService } from '../../services/asistencia.service';
+import { Asistencia } from '../../interface/asistencia';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-eventos',
@@ -20,20 +21,22 @@ import html2canvas from 'html2canvas';
   ],
   templateUrl: './eventos.component.html',
   styleUrl: './eventos.component.css',
-  providers: []
+  providers: [MessageService, AsistenciaService, EventosService, JsPDFService]
 })
 export class EventosComponent implements OnInit{
   constructor(
     private eventoServicio : EventosService,
     private route: ActivatedRoute,
     private authServicio : AuthService,
-    private jsPDFService: JsPDFService
+    private jsPDFService: JsPDFService,
+    private asistenciaServicio : AsistenciaService,
+    public messageService:MessageService,
   ) {}
 
   evento! : Evento
   eventoId!: number;
 
-  userId!: number;
+  @Input () userId!: number;
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -48,18 +51,11 @@ export class EventosComponent implements OnInit{
         }
       })
       try {
-        this.authServicio.getUid().subscribe({
-          next:(uid: any) => {
-            if (uid) {
-              this.userId = uid
-            } else {
-              this.userId = 0
-            } 
-          } 
-        })
+        this.userId = this.authServicio.getUid() 
       } catch {
         this.userId = 0
-      }  
+      }
+      console.log(this.userId)
     }    
   }
 
@@ -87,6 +83,29 @@ export class EventosComponent implements OnInit{
          doc.save(this.evento.nombre + '.pdf');
        };
     }
-   }   
+   } 
+
+   asistencia:Asistencia = {
+    id:0,
+    idEvento:0,
+    idUsuario:0
+   }
+   
+   apuntarAsistente(confirm:Boolean){
+    if (confirm){
+      this.asistencia.idEvento = this.eventoId
+      this.asistencia.idUsuario=this.userId
+      this.asistenciaServicio.insertAsistencia(this.asistencia).subscribe({
+        next: (data:any) => {
+          setTimeout(() => {
+            this.messageService.add({severity: 'success', summary:'Apuntarse a evento', detail:'Completado', life:3000});
+          })
+        },
+        error: (error) => {
+          this.messageService.add({severity: 'error', summary:'Apuntarse a evento', detail:'Ya se encuentra apuntado', life:3000});
+        }
+      }) 
+    }
+   }
 
 }

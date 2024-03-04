@@ -57,10 +57,8 @@ export class NuevoAsistenteEventoComponent implements OnInit {
     this.subscriptionUsers = this.servicioUsers.usuariosGet().subscribe({
       next: (data: Array<Users>) => {
         this.usuarios=data
-        console.log(data)
       },
       error: (e) => {
-        console.log(e)
       }
     })
   }
@@ -95,10 +93,8 @@ export class NuevoAsistenteEventoComponent implements OnInit {
               this.asistencia.idUsuario = this.usuario.id
             }
           }
-          console.log(this.asistencia.idEvento)
           this.servicioAsistencia.insertAsistencia(this.asistencia).subscribe({
             next: (data: any) => {
-              console.log('Respuesta del servidor:', data)
               setTimeout(() => {
                 this.messageService.add({severity: 'success', summary:'Crear Asistencia', detail:'Completado', life:3000});
                 this.asistencia.id = data.id
