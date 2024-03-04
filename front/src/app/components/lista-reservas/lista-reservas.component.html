@@ -1,20 +1,20 @@
 <p-toast></p-toast>
-<div style="margin-top: 100px;" class="card">
+<div style="margin-top: 40px;" class="card">
     <!-- //Óscar -->
     <p-table
         [value]="listaReservas"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} aulas"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} reservas"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
             <div>
 
-                Tus reservas
+                Reservas
             </div>
             
          </div>
@@ -22,7 +22,7 @@
         </ng-template>
     
         <ng-template pTemplate="header">
-            <tr>
+            <tr class="header-glass">
              
                 <th style="width:15%">Aula</th>
                 <th style="width:10%">Fecha</th>
@@ -31,16 +31,16 @@
                 @if(authService.getAccess!='profesor'){
                     <th style="width:10%">Profesor</th>
                     <th style="width:20%">Email</th>
-                    <th colspan="2" style="width:10%">estado</th>
+                    <th colspan="2" style="width:10%">Estado</th>
                 }@else {
-                    <th colspan="4" style="width:10%">estado</th>
+                    <th colspan="4" style="width:10%">Estado</th>
                 }
               
             </tr>
         </ng-template>
     
         <ng-template pTemplate="body" let-reserva>
-            <tr>
+            <tr class="glass">
                 <td>{{reserva.aula.nombre}}</td>
                 <td>{{ reserva.fecha}}</td>
                 <td>{{ reserva.horario.franja.horaInicio}}</td>
@@ -73,10 +73,7 @@
             <ng-template pTemplate="paginatorright">
             </ng-template> -->
             <ng-template pTemplate="footer">
-    @if(listaReservas.length==0){
-
-        <div>Sin Reservas</div>
-    }
+   
 </ng-template>
                
             

@@ -1,22 +1,34 @@
-@if(authService.getAccess=='jefedeestudios'){
 
-    <app-nueva-aula></app-nueva-aula>
-}
 <!-- //Óscar -->
 
-<div style="margin-top: 100px;" class="card">
+<div style="margin-top: 40px;" class="card">
     <p-table
         [value]="listaAulas"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} aulas"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Aulas
+           
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
-            <tr>
-                <th></th>
+            <tr class="header-glass">
+                @if(authService.getAccess=='jefedeestudios'){
+
+                    <th>
+
+                        <app-nueva-aula></app-nueva-aula>
+                    </th> 
+                }@else {
+
+                    <th></th>
+                }
                 <th style="width:10%">Nº</th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:30%"></th>
@@ -24,7 +36,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-aula>
-            <tr>
+            <tr class="glass">
                 @if(authService.getAccess=='jefedeestudios'){
 
                     <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
@@ -33,10 +45,10 @@
                 <td>{{ aula.nombre}}</td>
                 @if(authService.getAccess=='jefedeestudios'){
 
-                    <td>    <button routerLink="{{aula.id}}/horarios">Horarios</button></td>
-                    <td><button routerLink="{{aula.id}}/reservas">Reservas</button></td>
+                    <td>    <p-button severity="help" [raised]="true" label="Horarios" [outlined]="true"  routerLink="{{aula.id}}/horarios"></p-button></td>
+                    <td><p-button severity="warning" [raised]="true" [outlined]="true" label="Reservas" routerLink="{{aula.id}}/reservas"></p-button></td>
                 }@else {
-                    <td><button routerLink="{{aula.id}}/horarios">Horarios</button></td>
+                    <td colspan="2"><p-button severity="help" [raised]="true" label="Horarios" [outlined]="true"  routerLink="{{aula.id}}/horarios"></p-button></td>
                 }
             </tr>
         </ng-template>

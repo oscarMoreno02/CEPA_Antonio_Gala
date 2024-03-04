@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-plus" label="Añadir enlace"></p-button>
+  <p-button (click)="showDialog()" [raised]="true" [outlined]="true" severity="help" icon="pi pi-plus" label="Añadir enlace"></p-button>
   }
   <p-dialog header="Crear nuevo enlace" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
