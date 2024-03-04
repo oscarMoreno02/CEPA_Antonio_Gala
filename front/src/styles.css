@@ -87,13 +87,14 @@ z-index: -1;
 
   .p-button.p-button-outlined:hover {
     background-color: #cacaca;
-
+    
     border: 1px solid;
   }
 
   .p-ripple.p-element.p-menuitem-link.ng-star-inserted:hover {
     background-color: #cacaca;
     border-radius: 10px;
+    color: #000;
   }
   .p-dialog{
     max-width: 90%;
@@ -111,3 +112,69 @@ z-index: -1;
     gap: 10px;
     width: 100%;
   }
+
+
+  .p-card {
+    z-index: -1;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+    backdrop-filter: blur(15px);
+  }
+
+  img{
+
+    border-radius: 20px !important;
+  }
+  .p-card .p-card-body {
+    padding: 0.3rem;
+    color: #224 !important;
+
+  }
+
+  i.pi.pi-external-link:hover {
+    background-color: rgba(255, 255, 255);
+    color: rgb(61, 61, 102);
+  }
+
+  a {
+    text-decoration: none; 
+    font-size: 0.85em;
+    color: #446;
+}
+
+a:hover {
+  text-decoration: none; 
+  font-size: 0.85em;
+  color: rgb(40, 40, 53);
+}
+
+
+.p-card .p-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
+  color: #000000 !important;
+  background: #c2c2c2;
+}
+
+.p-menubar .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+  color: #000000;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {
+  color: #000;
+}
+
+.p-menubar .p-menuitem.p-highlight > .p-menuitem-content .p-menuitem-link .p-submenu-icon {
+  color: #000000;
+}
+.p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text:hover {
+  color: #040404;
+}
