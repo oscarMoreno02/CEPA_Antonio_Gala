@@ -55,4 +55,11 @@ export class EventosService {
 
     )
   }
+
+  deletePlaza(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/eliminarPlaza/'+id,body).pipe(
+
+    )
+  }
 }

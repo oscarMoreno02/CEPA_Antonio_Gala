@@ -34,5 +34,7 @@ router.put('/:id', [
     validateValues
 ], authMid.validarJWT,accessMid.esAdmin, controller.actualizarEvento);
 router.put('/mg/:id', controller.aumentarMg)
-router.get('/numAsistentes/:id', eventosMid.quedanPlazas ,controller.obtenerNumAsistentes)
+router.get('/numAsistentes/:id', controller.obtenerNumAsistentes)
+router.put('/eliminarPlaza/:id', eventosMid.quedanPlazas, controller.eliminarAsistente)
+router.put('/anadirPlaza/:id', controller.anadirAsistente)
 module.exports = router;

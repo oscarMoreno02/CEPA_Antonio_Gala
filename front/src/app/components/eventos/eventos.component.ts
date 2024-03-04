@@ -93,6 +93,7 @@ export class EventosComponent implements OnInit{
     if (confirm){
       this.asistencia.idEvento = this.eventoId
       this.asistencia.idUsuario=this.userId
+      console.log("Asistencia "+this.asistencia )
       this.asistenciaServicio.insertAsistencia(this.asistencia).subscribe({
         next: (data:any) => {
           setTimeout(() => {

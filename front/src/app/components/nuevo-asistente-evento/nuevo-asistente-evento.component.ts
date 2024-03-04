@@ -16,6 +16,7 @@ import { Asistencia } from '../../interface/asistencia';
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { EventosService } from '../../services/eventos.service';
 
 @Component({
     selector: 'app-nuevo-asistente-evento',
@@ -40,7 +41,8 @@ export class NuevoAsistenteEventoComponent implements OnInit {
     private servicioAsistencia: AsistenciaService,
     public messageService:MessageService,
     private servicioUsers : UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private servicioEvento : EventosService
   ){
     this.usuarios = []
   }
@@ -93,19 +95,23 @@ export class NuevoAsistenteEventoComponent implements OnInit {
               this.asistencia.idUsuario = this.usuario.id
             }
           }
-          this.servicioAsistencia.insertAsistencia(this.asistencia).subscribe({
-            next: (data: any) => {
-              setTimeout(() => {
-                this.messageService.add({severity: 'success', summary:'Crear Asistencia', detail:'Completado', life:3000});
-                this.asistencia.id = data.id
-                this.asistencia.idUsuario = 0
-                this.asistencia.idEvento = 0
+          this.servicioEvento.deletePlaza(this.eventoId).subscribe({
+            next: (data:any) => { 
+              this.servicioAsistencia.insertAsistencia(this.asistencia).subscribe({
+                next: (data: any) => {
+                  setTimeout(() => {
+                    this.messageService.add({severity: 'success', summary:'Crear Asistencia', detail:'Completado', life:3000});
+                    this.asistencia.id = data.id
+                    this.asistencia.idUsuario = 0
+                    this.asistencia.idEvento = 0
+                  });
+                },
+                error: (error) => {
+                  this.messageService.add({severity: 'error', summary:'Crear Asistencia', detail:'El usuario introducido ya se encuentra apuntado al evento o no está registrado', life:3000});
+                }
               });
-            },
-            error: (error) => {
-              this.messageService.add({severity: 'error', summary:'Crear Asistencia', detail:'El usuario introducido ya se encuentra apuntado al evento o no está registrado', life:3000});
             }
-          });
+          })
         } else {
           this.validacionEmail = 'ng-invalid ng-dirty'
           this.messageService.add({severity:'warn', summary:'Crear Asistencia', detail:'No se encontraron usuarios', life:3000})

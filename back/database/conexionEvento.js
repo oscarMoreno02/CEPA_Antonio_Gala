@@ -135,6 +135,36 @@ class ConexionEvento {
         }
         return resultado;
     }
+
+    deleteAsistenteEvento = async (id) => {
+        this.conectar()
+        let resultado
+        try {
+            const evento = await models.Evento.findByPk(id)
+            evento.numAsistentes = evento.numAsistentes - 1
+            resultado = await evento.save()
+        } catch (error) {
+            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+
+    putAsistenteEvento = async (id) => {
+        this.conectar()
+        let resultado
+        try {
+            const evento = await models.Evento.findByPk(id)
+            evento.numAsistentes = evento.numAsistentes + 1
+            resultado = await evento.save()
+        } catch (error) {
+            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
 }
 
 module.exports = ConexionEvento;

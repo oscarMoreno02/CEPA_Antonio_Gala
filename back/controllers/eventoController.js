@@ -91,11 +91,38 @@ const obtenerNumAsistentes = (req, res) => {
         .then((asistencias) => {
             console.log('Numero de asistentes obtenido correctamente')
             res.status(200).json(asistencias)
-            .catch((err) => {
-                console.log('Fallo al obtener el número de asistentes')
-                res.status(404).json(err)
-            })
         })
+        .catch((err) => {
+            console.log('Fallo al obtener el número de asistentes')
+            res.status(404).json(err)
+        })
+    
+}
+
+const eliminarAsistente = (req, res) => {
+    const conx = new EventoConexion()
+    conx.deleteAsistenteEvento(req.params.id)
+        .then((evento) => {
+            console.log('Asistente eliminado correctamente!');
+            res.status(200).json(evento);
+        })
+        .catch((err) => {
+            console.log('Fallo al eliminar el asistente!');
+            res.status(404).json(err);
+        });
+}
+
+const anadirAsistente = (req, res) => {
+    const conx = new EventoConexion()
+    conx.putAsistenteEvento(req.params.id)
+        .then((evento) => {
+            console.log('Asistente eliminado correctamente!');
+            res.status(200).json(evento);
+        })
+        .catch((err) => {
+            console.log('Fallo al eliminar el asistente!');
+            res.status(404).json(err);
+        });
 }
 
 module.exports = {
@@ -105,5 +132,7 @@ module.exports = {
     subirEvento,
     borrarEvento,
     aumentarMg,
-    obtenerNumAsistentes
+    obtenerNumAsistentes,
+    eliminarAsistente,
+    anadirAsistente
 }
