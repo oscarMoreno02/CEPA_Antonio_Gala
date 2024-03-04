@@ -1,8 +1,9 @@
 
 <!-- //Óscar -->
-<p-card styleClass="mt10" >
-    <ng-template pTemplate="title">
-        <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
+
+    <p-card styleClass="mt10" >
+        <ng-template pTemplate="title">
+            <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
             @if(noticia.enlace!=null){
 
                 <h1>
@@ -16,11 +17,11 @@
                 </h1>
             }@else {
                 <h1>
-                        <span  style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;" >
-                            
-                            {{noticia.titulo}}
-                        </span>
+                    <span  style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;" >
                         
+                        {{noticia.titulo}}
+                    </span>
+                    
                     
                 </h1>
             }
@@ -28,9 +29,9 @@
     </ng-template>
     <ng-template pTemplate="header">
         @if(noticia.foto!=null){
-
+            
             @if(esUrl(noticia.foto)){
-                <img alt="Card" src="{{noticia.foto}}" />
+                <img alt="noticia" src="{{noticia.foto}}" />
             }@else {
                 <img [src]="env.baseUrl+env.urlFotosNoticias+'/'+noticia.foto"  width="100%" class="shadow-4">
             }
@@ -49,12 +50,12 @@
                 </ng-template>
             }@else {
                 @if(noticia.secciones![0].enlaces){
-                <ng-template pTemplate="footer">
-                    @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
-                        <a href="{{enlace.url}}">{{enlace.textoClave}}</a>&nbsp;
+                    <ng-template pTemplate="footer">
+                        @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
+                            <a href="{{enlace.url}}">{{enlace.textoClave}}</a>&nbsp;
                     }
                 </ng-template>
-                }
             }
+        }
     }
 </p-card>
