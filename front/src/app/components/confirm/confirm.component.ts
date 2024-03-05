@@ -35,6 +35,7 @@ export class ConfirmComponent implements OnInit {
           acceptLabel:this.tipo,
           rejectButtonStyleClass: 'p-button-outlined p-button-secondary',
           acceptButtonStyleClass:  'p-button-outlined p-button-'+this.color,
+          
           accept: () => {
               this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Actualizado', life: 3000 });
               this.confirmacion.emit(true);

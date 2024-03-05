@@ -6,7 +6,7 @@ const {
 } = require('express');
 const Conexion = require('../database/conexionAulaReserva');
 const bcrypt = require('bcrypt');
-
+const mailHelper = require('../helpers/send-mail')
 const listAllReservas = (req, res = response) => {
     const conexion = new Conexion()
     conexion.getAllReservas()
@@ -55,17 +55,39 @@ const editReserva = (req, res = response) => {
         });
 
 }
-
-const removeReserva = (req, res = response) => {
+//Óscar
+const removeReserva = async (req, res = response) => {
     const conexion = new Conexion()
+    let reserva = await conexion.getReservaWithDataByID(req.params.id)
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const queryParams = url.searchParams;
+    const notify = queryParams.get('notify');
     conexion.deleteReserva(req.params.id)
         .then(msg => {
             res.status(202).json('Exito en la eliminacion')
+            if (notify === 'true') {
+                console.log('entra')
+                try {
+                    mailBody = {
+                        horario: reserva.horario.franja.horaInicio + ' - ' + reserva.horario.franja.horaFin,
+                        fecha: reserva.fecha,
+                        aula: reserva.aula.nombre,
+                        email: reserva.profesor.email
+                    }
+                    console.log(mailBody)
+                    mailHelper.enviarCorreo(mailBody)
+                } catch (err) {
+                    console.log(err)
+                }
+            } else {
+                console.log('no entra')
+            }
         })
         .catch(err => {
             console.log(err)
             res.status(203).json('Error en la eliminacion')
         })
+
 }
 //Óscar
 const listAllReservasOfClaseWithData = (req, res = response) => {
@@ -79,6 +101,8 @@ const listAllReservasOfClaseWithData = (req, res = response) => {
             res.status(404).json()
         })
 }
+
+
 //Óscar
 const listAllReservasOfProfesorWithData = (req, res = response) => {
     const conexion = new Conexion()

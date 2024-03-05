@@ -1,0 +1,93 @@
+<!-- //Óscar -->
+<div style="max-width: 800px;margin: auto; margin-top: 40px;">
+
+  @if(noticia){
+
+  <p-card styleClass="mt10">
+    <ng-template pTemplate="title">
+      <div style="text-align: center;  overflow: hidden; margin-top: -50px;">
+        @if(noticia.enlace!=null){
+
+        <h1>
+          <a style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;"
+            href="{{noticia.enlace}}">
+            <h1>
+
+                {{noticia.titulo}}
+                <i class="pi pi-external-link "></i>
+            </h1>
+          </a>
+        </h1>
+        }@else {
+        <h1>
+          <span
+            style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;">
+
+            {{noticia.titulo}}
+          </span>
+
+
+        </h1>
+        }
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      @if(noticia.foto!=null){
+
+      @if(esUrl(noticia.foto)){
+      <img alt="noticia" src="{{noticia.foto}}" />
+      }@else {
+      <img [src]="env.baseUrl+env.urlFotosNoticias+'/'+noticia.foto" width="100%" class="shadow-4">
+      }
+      }
+    </ng-template>
+
+    @if(noticia.secciones!.length>0){
+        <div style="margin-top: -60px;">
+
+            @for (seccion of noticia.secciones; track seccion.id) {
+                
+                <div  style="margin-top: 40px;">
+                    
+                    <h2 style="word-wrap: break-word; margin-bottom: 50px;">{{noticia.secciones![0].titulo}}</h2>
+      <p style="word-wrap: break-word; margin-bottom: 50px;">{{noticia.secciones![0].texto}}</p>
+      <br>
+      @if(noticia.foto!=null){
+        <div style="max-width: 100%; margin: auto; display: flex; align-items: center; justify-content: center;margin-bottom: 40px;">
+
+            @if(esUrl(noticia.foto)){
+                <img alt="noticia" src="{{seccion.foto}}" />
+            }@else {
+                <img [src]="env.baseUrl+env.urlFotosNoticias+'/'+seccion.foto"  width="70%" height="320px" class="shadow-4">
+            }
+        </div>
+        }
+
+
+                @if(seccion.enlaces){
+                  
+
+                    @for (enlace of seccion.enlaces; track enlace.id) {
+                        <span style="line-height: 2;">
+                            <a href="{{enlace.url}}">
+                                <p-tag [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}" icon="pi pi-external-link" value=" {{enlace.textoClave}}"></p-tag>
+                            </a>&nbsp;
+                        </span>
+                    }
+                    
+            
+         
+        }@else {
+            
+        }
+  
+    </div>
+}
+
+</div>
+    }
+  </p-card>
+
+  }
+
+</div>

@@ -11,10 +11,13 @@ export const environment = {
     urlLogin:'/login',
     urlRegistro:'/register',
     urlUsers:'/usuario',
+    urlRol:'/roles',
+    urlRolAsignado:'/rolesAsignados',
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',
     urlHorarios:'/horarios',
     urlAsistencias:'/asistencia',
-    urlReservas:'/reservas'
+    urlReservas:'/reservas',
+    urlFotosEventos:'/uploads/eventos'
 };

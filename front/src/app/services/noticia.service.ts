@@ -64,11 +64,18 @@ export class NoticiaService {
       })
     )
   }
-  updateNoticia(noticia:Noticia): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+noticia.id,noticia,{params: {auth: true}}).pipe(
+  updateNoticia(noticia:Noticia,visibilidad:boolean=false): Observable<any | undefined> {
+     return this.http.put<any>(this.baseUrl+'/'+noticia.id,noticia,{params: {auth: true,publish:visibilidad}}).pipe(
       catchError((error) =>{
         return of(undefined)
       })
      )
    }
+   updatePublicadaNoticia(noticia:Noticia): Observable<any | undefined> {
+    return this.http.put<any>(this.baseUrl+'/publish/'+noticia.id,noticia,{params: {auth: true}}).pipe(
+     catchError((error) =>{
+       return of(undefined)
+     })
+    )
+  }
 }

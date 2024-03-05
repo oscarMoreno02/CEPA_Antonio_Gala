@@ -2,7 +2,7 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil" label=""></p-button>
+  <p-button  [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-pencil" label="Editar Noticia"></p-button>
   }
   <p-dialog header="Editar la noticia" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
@@ -34,24 +34,23 @@
             </div>
             <div class="flex flex-column">
                 <label for="username2">Foto</label>
+                <!-- <p-fileUpload name="myfile[]" (onSelect)="uplodadFoto($event)"  chooseLabel="Examinar" uploadLabel="Subir" cancelLabel="Cancelar"></p-fileUpload> -->
                     <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                    <small style="margin-bottom: 20px;" id="username-help2">Subir una foto para esta noticia</small>
                     @if(fotoPreview){
-                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                        <p-button [raised]="true" [outlined]="true" severity="warning" (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
                     }
-                <small id="username-help2">Subir una foto para esta noticia</small>
             </div>
             @if(fotoPreview){
-                <img [src]="fotoPreview">
+                <img style="max-width: 350px; max-height:300px ; margin-top: 40px;" [src]="fotoPreview">
             }
            
         </div>
-        <div style="margin-top: 5px;" >
+        
+        <div style="margin-top: 30px;display: flex; gap: 10px;" >
+            <app-confirm tipo="Guardar" icono="save" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
 
-            <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
-        </div>
-        <div style="margin-top: 20px;" >
-
-            <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar esta noticia?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+            <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar esta noticia?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
         </div>
   </p-dialog>
 </div>

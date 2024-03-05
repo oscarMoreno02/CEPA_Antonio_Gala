@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { NuevaNoticiaComponent } from '../nueva-noticia/nueva-noticia.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
@@ -26,6 +26,7 @@ import { EditNoticiaDataComponent } from '../edit-noticia-data/edit-noticia-data
     providers:[NoticiaService, CategoriasService],
   templateUrl: './admin-noticia.component.html',
   styleUrl: './admin-noticia.component.css',
+  encapsulation:ViewEncapsulation.None
   
 })
 export class AdminNoticiaComponent implements OnInit {
@@ -55,7 +56,6 @@ export class AdminNoticiaComponent implements OnInit {
         })
       },
       error: (err) => {
-
       }
     });
   }

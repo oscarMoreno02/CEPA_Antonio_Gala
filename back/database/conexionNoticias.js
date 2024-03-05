@@ -66,7 +66,8 @@ class ConexionNoticias {
             this.conectar();
             resultado = await models.Noticia.findAll({
                     where: {
-                        idCategoria: n
+                        idCategoria: n,
+                        publicada:true
                     },
                     include: [{
                         model: models.Seccion,
@@ -76,6 +77,7 @@ class ConexionNoticias {
                             as: 'enlaces',
                         }, ]
                     }, ],
+                    order:[['updatedAt','DESC']]
                 }
 
             );
@@ -90,6 +92,7 @@ class ConexionNoticias {
             this.desconectar()
         }
     }
+    
     insertNoticia = async (body) => {
         this.conectar();
         try {

@@ -42,6 +42,7 @@ class Server {
         this.uploadsNoticiasPath = '/api/uploads/noticias';
         this.uploadsSeccionesPath = '/api/uploads/secciones';
         this.authPath = '/api/auth';
+        this.uploadsFotoEventosPath = '/api/uploads/eventos';
         this.middlewares();
         this.routes();
         this.sockets();
@@ -62,7 +63,7 @@ class Server {
         this.app.use(this.asistenciaPath, require('../routes/asistenciaRoutes'));
         this.app.use(this.apiUsuarios, require('../routes/usuarioRutas'))
         this.app.use(this.apiRoles, require('../routes/rolesRutas'))
-        this.app.use(this.apiRoles, require('../routes/rolesAsignadosRutas'))
+        this.app.use(this.apiRolesAsignados, require('../routes/rolesAsignadosRutas'))
         this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
         this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))
@@ -75,6 +76,7 @@ class Server {
         this.app.use(this.uploadsNoticiasPath, require('../routes/uploadsNoticiasRoutes'));
         this.app.use(this.uploadsSeccionesPath, require('../routes/updloadsSeccionesRoutes'));
         this.app.use(this.authPath, require('../routes/authRoutes'));
+        this.app.use(this.uploadsFotoEventosPath, require('../routes/uploadsFotoEventos'))
     }
     sockets() {
         this.io.on('connection', noticiasSocketController);

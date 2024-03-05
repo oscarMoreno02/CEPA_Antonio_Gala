@@ -46,7 +46,7 @@ const createAula = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertAula(req.body)
         .then(data => {
-            res.status(201).json('Aula registrada correctamente')
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)

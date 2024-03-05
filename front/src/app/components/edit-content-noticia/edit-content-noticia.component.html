@@ -1,28 +1,39 @@
 <p-toast></p-toast>
 <!-- //Óscar -->
-<div class="card">
-    <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem'}">
-        <ng-template pTemplate="caption">
+
+<div class="contenedor" style="margin-top: 50px;">
+
+    <div class="card"  >
+        <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}">
+            <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Editar Noticia
                
             </div>
         </ng-template>
         <ng-template pTemplate="header">
-            <tr>
+            <tr class="header-glass" style="border: none;" >
                 <th>Nombre</th>
                 <th>Categoria</th>
                 <th>Foto</th>
                 <th>enlace</th>
+
+                @if(noticia.publicada==true){
+                    <th> <app-confirm tipo="Ocultar" icono="eye-slash" mensaje="¿Deseas ocultar esta noticia?" color="warning" (confirmacion)="editarPublicacion($event,true)"></app-confirm></th>
+                    
+                }@else {
+                    
+                    <th> <app-confirm tipo="Publicar" icono="eye" mensaje="¿Deseas publicar esta noticia?" color="success" (confirmacion)="editarPublicacion($event,true)"></app-confirm></th>
+                }
                 <th><app-edit-noticia-data [listaCategorias]="listaCategorias" [id]="id"></app-edit-noticia-data></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-noticia>
-            <tr>
+            <tr class="glass">
                 <td>{{ noticia.titulo }}</td>
                 @for (categoria of listaCategorias; track categoria.id) {
                     @if(categoria.id==noticia.idCategoria){
-
+                        
                         <td>{{ categoria.nombre }}</td>
                     }
                 }
@@ -31,7 +42,7 @@
                         <td><img [src]="noticia.foto" width="100" class="shadow-4"></td>
 
                     }@else {
-
+                        
                         <td><img [src]="env.baseUrl+env.urlFotosNoticias+'/'+noticia.foto" width="100" class="shadow-4"></td>
                     }
 
@@ -40,31 +51,39 @@
                 }
                 @if(noticia.enlace!=undefined){
 
-                    <td colspan="2"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
+                    <td colspan="3"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
                 }@else {
-                    <td colspan="2">[Sin enlace]</td>
+                    <td colspan="3">[Sin enlace]</td>
                 }
             </tr>
         </ng-template>
+        <ng-template pTemplate="summary">
+    
+        </ng-template>
     </p-table>
 </div>
-<app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
+
+<div style="margin: auto; max-width: 200px; margin-top: 30px;">
+
+    <app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
+</div>
+
 
 @if(noticia.secciones){
-   
+    
     
     @if(noticia.secciones.length>0){
         @for (seccion of noticia.secciones; track seccion.id) {
-           
-            <div class="card" style="margin-top: 10px;">
-                <p-table [value]="[seccion]" [tableStyle]="{ 'min-width': '50rem'}">
+            
+            <div class="card" style="margin-top: 20px;">
+                <p-table [value]="[seccion]" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto',}">
                     <ng-template pTemplate="caption">
-                <div class="flex align-items-center justify-content-between">
+                        <div class="flex align-items-center justify-content-between">
                     Seccion nº{{contarSecciones(seccion)}}
                 </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr class="header-glass" style="border: none;" >
                 <th [width]="30">Titulo</th>
                 <th [width]="30">Foto</th>
                 <th [width]="20">Texto</th>
@@ -72,11 +91,11 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-seccion>
-            <tr>
+            <tr class="glass">
                 <td>{{ seccion.titulo }}</td>
                 @if(seccion.foto!=undefined){
                     
-                    <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    
                     @if(esUrl(seccion.foto)){
                         <td><img [src]="seccion.foto" width="100" class="shadow-4"></td>
 
@@ -87,21 +106,24 @@
                 }@else {
                     <td>[Sin foto]</td>
                 }
-                <td style="max-width: 300px;">
+                <td colspan="2" style="max-width: 300px;">
                     <div style="word-wrap: break-word;">
                         {{seccion.texto}}
                     </div>
-                </td>         
+                </td> 
+                       
             </tr>
         </ng-template>
-        <ng-template pTemplate="summary">
-            <app-nuevo-enlace [seccion]="seccion"></app-nuevo-enlace>
-            @if(seccion.enlaces){
-                @if(seccion.enlaces.length>0){
 
-                    <div class="flex align-items-center justify-content-between" style="overflow-wrap: break-word;">
-                    
-                       <br>
+        
+            <ng-template pTemplate="summary">
+                <app-nuevo-enlace [seccion]="seccion"></app-nuevo-enlace>
+                @if(seccion.enlaces){
+                    @if(seccion.enlaces.length>0){
+
+                    <div class="flex align-items-center justify-content-between" style="overflow-wrap: break-word; ">
+                        
+                        <br>
                         @for (enlace of seccion.enlaces; track enlace.id) {
                             <div class="enlace-container">
                                 <a  target="_blank" href="{{enlace.url}}">{{enlace.textoClave}}</a>
@@ -110,18 +132,19 @@
                         }
                     </div>
                 }
-        
+                
             }
             </ng-template>
+     
         </p-table>
 </div>
 }
 }@else{
-
+    
     <div class="card" style="margin-top: 10px;">
-        <p-table [value]="noticia.secciones!" [tableStyle]="{ 'min-width': '50rem'}">
-        <ng-template pTemplate="caption">
-            <div class="flex align-items-center justify-content-between">
+        <p-table [value]="noticia.secciones!" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
                 Añade la primera seccion
                 
             </div>
@@ -130,3 +153,6 @@
 </div>
 }
 }
+</div>
+
+<div style="height: 50px;"></div>

@@ -42,16 +42,27 @@ const listNoticiasByCategorias= (req, res = response) => {
 
 
 const editNoticia= (req, res = response)=>{
-    const conexion = new Conexion()
-    conexion.updateFullNoticia(req.params.id,req.body)
-    .then(data => {
-        res.status(202).json('Actualizado correctamente')
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(203).json('Error al actualizar')
-    });
 
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const queryParams = url.searchParams;
+    const publish = queryParams.get('publish');
+    const conexion = new Conexion()
+    if(publish=='true'){
+        if(req.body.publicada==true){
+            req.body={publicada:false}
+        }else{
+            req.body={publicada:true}
+        }
+    }
+        conexion.updateFullNoticia(req.params.id,req.body)
+        .then(data => {
+            res.status(202).json('Actualizado correctamente')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(203).json('Error al actualizar')
+        });
+        
 }
 
 const createNoticia = (req, res = response) => {

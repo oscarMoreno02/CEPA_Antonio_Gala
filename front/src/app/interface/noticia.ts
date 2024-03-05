@@ -6,6 +6,7 @@ export interface Noticia {
     enlace?:      string | null;
     idCategoria: number | null;
     foto?:        string | null;
+    publicada?:boolean;
     createdAt?:   string;
     updatedAt?:   string;
     secciones?:   Seccion[];

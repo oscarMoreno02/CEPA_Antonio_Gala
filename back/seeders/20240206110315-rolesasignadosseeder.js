@@ -1,3 +1,5 @@
+//Raúl
+
 'use strict';
 const {rolAsignadoFactory}=require('../factories/rolesAsignadosFactory')
 /** @type {import('sequelize-cli').Migration} */

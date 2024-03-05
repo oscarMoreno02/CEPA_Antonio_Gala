@@ -2,7 +2,7 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-plus" label="Crear franja"></p-button>
+  <p-button [raised]="true" [outlined]="true" severity="success" (click)="showDialog()" icon="pi pi-plus" label="Crear "></p-button>
   }
   <p-dialog header="Crear nueva franja" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
@@ -10,28 +10,38 @@
 
     <div class="card flex justify-content-center" class="custom-dialog">
         <div class="flex flex-row gap-4">
+            <div style="margin-top: 20px;">
 
-            <label for="username1">Hora inicio</label>
-            <div class="flex flex-rows">
-                <p-dropdown [styleClass]="estiloValidacionHoras"  [options]="horas" [(ngModel)]="horaInicio.hora" optionLabel="valor" [showClear]="true" placeholder="Hora"></p-dropdown>
-          
-                <p-dropdown  [styleClass]="estiloValidacionMinutos" [options]="minutos" [(ngModel)]="horaInicio.minuto" optionLabel="valor" [showClear]="true" placeholder="Minuto "></p-dropdown>
+                <label for="username1">Hora inicio</label>
+                <div style="display: flex;gap: 10px;margin-top: 20px">
+                    
+                    <p-dropdown [styleClass]="estiloValidacionHoras"  [options]="horas" [(ngModel)]="horaInicio.hora" optionLabel="valor" [showClear]="true" placeholder="Hora"></p-dropdown>
+                    
+                    <p-dropdown  [styleClass]="estiloValidacionMinutos" [options]="minutos" [(ngModel)]="horaInicio.minuto" optionLabel="valor" [showClear]="true" placeholder="Minuto "></p-dropdown>
+                </div>
           
         </div>
+        <div style="margin-top: 20px;">
 
-        <label for="username1">Hora finalización</label>
-        <div class="flex flex-rows">
-            <p-dropdown [styleClass]="estiloValidacionHoras"  [options]="horas" [(ngModel)]="horaFin.hora" optionLabel="valor" [showClear]="true" placeholder="Hora"></p-dropdown>
-       
-            <p-dropdown [styleClass]="estiloValidacionMinutos"  [options]="minutos" [(ngModel)]="horaFin.minuto" optionLabel="valor" [showClear]="true" placeholder="Minuto "></p-dropdown>
-
+            <label for="username1">Hora finalización</label>
+            <div style="display: flex;gap: 10px;margin-top: 20px">
+                
+                <p-dropdown [styleClass]="estiloValidacionHoras"  [options]="horas" [(ngModel)]="horaFin.hora" optionLabel="valor" [showClear]="true" placeholder="Hora"></p-dropdown>
+                
+                <p-dropdown [styleClass]="estiloValidacionMinutos"  [options]="minutos" [(ngModel)]="horaFin.minuto" optionLabel="valor" [showClear]="true" placeholder="Minuto "></p-dropdown>
+                
+            </div>
         </div>
-        <label for="username1">Turno</label>
-        <div class="flex flex-rows">
-            <p-dropdown  [styleClass]="estiloValidacioneTurno"  [options]="turnosDisponibles" [(ngModel)]="turnoElegido" optionLabel="nombre"  [showClear]="true" placeholder="Turno"></p-dropdown>
-       
-           
+        <div style="margin-top: 20px;">
 
+            <label for="username1">Turno</label>
+            <div style="display: flex;gap: 10px;margin-top: 20px">
+                
+                <p-dropdown  [styleClass]="estiloValidacioneTurno"  [options]="turnosDisponibles" [(ngModel)]="turnoElegido" optionLabel="nombre"  [showClear]="true" placeholder="Turno"></p-dropdown>
+                
+                
+                
+            </div>
         </div>
         <div style="margin-top: 70px;" >
 
