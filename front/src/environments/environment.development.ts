@@ -17,5 +17,7 @@ export const environment = {
     urlHorarios:'/horarios',
     urlAsistencias:'/asistencia',
     urlReservas:'/reservas',
-    urlFotosEventos:'/uploads/eventos'
+    urlFotosEventos:'/uploads/eventos',
+    urlGaleria: '/galeria',
+    urlFotosGaleria: '/uploads/galerias'
 };
