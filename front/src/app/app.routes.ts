@@ -16,6 +16,7 @@ import { AdminAsistenciasComponent } from './components/admin-asistencias/admin-
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
 import { EventosComponent } from './components/eventos/eventos.component';
+import { TusEventosComponent } from './components/tus-eventos/tus-eventos.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -73,6 +74,8 @@ canActivate:[accesoGuard], data:{rol:['Administrador']}},
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
 {path:'eventos/:id', component:EventosComponent},
+
+{path:'eventos/tus-eventos/:id', component:TusEventosComponent},
 
 {path: '**', component: NotFoundComponent},
 ];
