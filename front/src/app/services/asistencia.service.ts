@@ -27,10 +27,22 @@ export class AsistenciaService {
     )
   }
 
-  insertAsistencia(asistencia:Asistencia):Observable<any|undefined>{
+  insertAsistencia(asistencia:any):Observable<any|undefined>{
     let body={asistencia:asistencia}
     return this.http.post<any>(this.baseUrl+'/',asistencia,{params:{auth:true}}).pipe(
 
+    )
+  }
+
+  getAsistencias():Observable<any|undefined>{
+    return this.http.get<any>(this.baseUrl+"/").pipe(
+
+    )
+  }
+
+  getAsistenciasUsuario(userId:number):Observable<any|undefined>{
+    return this.http.get<any>(this.baseUrl+"/asistenciasUsuario/"+userId, {params:{auth:true}}).pipe(
+      
     )
   }
 }

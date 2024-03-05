@@ -27,13 +27,19 @@
 
             <div class="flex felx-column">
                 <label for="hora">Hora</label><br>
-                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>
+                <input type="time" pInputTime class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>
                 <small id="hora">Introduce una hora para el nuevo evento</small>
             </div><br>
 
             <div class="flex flex-column">
                 <label for="visibilidad">Visibilidad</label>
                 <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="asistentes">Asistentes</label><br>
+                <input type="number" id="asistentes" pInputNumber min="0" [(ngModel)]="nuevoEvento.numAsistentes"><br>
+                <small id="asistentes">Introduce un número máximo de asistentes para el evento</small><br><br>
             </div>
 
             <div class="flex flex-column">

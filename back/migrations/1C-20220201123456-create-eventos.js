@@ -1,3 +1,4 @@
+/**Laura María Pedraza Gómez */
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -35,6 +36,10 @@ module.exports = {
       },
       visibilidad: {
         type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      numAsistentes: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {

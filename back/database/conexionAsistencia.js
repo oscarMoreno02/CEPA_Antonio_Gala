@@ -84,15 +84,14 @@ class ConexionAsistencia {
         this.conectar();
         let usuarios = [];
         try {
-            usuarios = await models.Usuario.findAll({
-                include: [{
-                    model: models.Asistencia,
-                    where: { idUsuario: userId },
-                    include: [{
-                        model: models.Eventos,
-                        as: 'evento'
-                    }]
-                }]
+            usuarios = await models.Asistencia.findAll({
+                where: {
+                    idUsuario: userId
+                  },
+                  include: [{
+                      model:models.Evento,
+                      as:'evento'
+                  }]
             });
         } catch (error){
             console.error('Error al obtener las asistencias: ', error);

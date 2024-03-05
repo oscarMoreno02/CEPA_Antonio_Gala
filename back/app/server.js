@@ -43,6 +43,7 @@ class Server {
         this.uploadsSeccionesPath = '/api/uploads/secciones';
         this.authPath = '/api/auth';
         this.uploadsFotoEventosPath = '/api/uploads/eventos';
+        this.uploadsGaleriasPath = '/api/uploads/galerias'
         this.middlewares();
         this.routes();
         this.sockets();
@@ -77,6 +78,7 @@ class Server {
         this.app.use(this.uploadsSeccionesPath, require('../routes/updloadsSeccionesRoutes'));
         this.app.use(this.authPath, require('../routes/authRoutes'));
         this.app.use(this.uploadsFotoEventosPath, require('../routes/uploadsFotoEventos'))
+        this.app.use(this.uploadsGaleriasPath, require('../routes/uploadsGaleriaRoutes'))
     }
     sockets() {
         this.io.on('connection', noticiasSocketController);

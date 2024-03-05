@@ -47,16 +47,13 @@ import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.ser
     provideNativeDateAdapter()
   ]
 })
-export class NuevoEventosComponent implements OnInit{
+export class NuevoEventosComponent{
   constructor(
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
     private servicioFoto: FotoCartelEventosService
   ) {}
-  ngOnInit(): void {
-    
-  }
   
   @Input() visible: boolean = false;
   @Output() cerrarModal = new EventEmitter<void>();
@@ -75,6 +72,7 @@ export class NuevoEventosComponent implements OnInit{
     hora: '',
     fotoCartel: '',
     mg: 0,
+    numAsistentes: 0,
     visibilidad: false
   }
 

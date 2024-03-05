@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     hora: DataTypes.STRING,
     fotoCartel: DataTypes.STRING,
     mg: DataTypes.INTEGER,
-    visibilidad: DataTypes.BOOLEAN
+    visibilidad: DataTypes.BOOLEAN,
+    numAsistentes: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Evento',
