@@ -83,27 +83,27 @@ export class EventosComponent implements OnInit{
     }
    } 
 
-   asistencia:Asistencia = {
-    id:0,
-    idEvento:0,
-    idUsuario:0
-   }
+   asistencia = {
+    idUsuario : 0,
+    idEvento : 0
+  }
    
    apuntarAsistente(confirm:Boolean){
     if (confirm){
       this.asistencia.idEvento = this.eventoId
       this.asistencia.idUsuario=this.userId
-      console.log("Asistencia "+this.asistencia )
       this.asistenciaServicio.insertAsistencia(this.asistencia).subscribe({
         next: (data:any) => {
           setTimeout(() => {
             this.messageService.add({severity: 'success', summary:'Apuntarse a evento', detail:'Completado', life:3000});
+            this.asistencia.idUsuario = 0
+            this.asistencia.idEvento = 0
           })
         },
         error: (error) => {
           this.messageService.add({severity: 'error', summary:'Apuntarse a evento', detail:'Ya se encuentra apuntado', life:3000});
         }
-      }) 
+      })
     }
    }
 

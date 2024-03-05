@@ -10,7 +10,7 @@ const asistenciaMid=require('../middlewares/asistenciasMid');
 
 router.get('/', controller.obtenerAsistencias);
 router.get('/:id', controller.obtenerAsistenciaPorId);
-router.get('/asistenciasUsuario/:userId', controller.obtenerAsistenciasDeUsuario);
+router.get('/asistenciasUsuario/:userId',authMid.validarJWT, controller.obtenerAsistenciasDeUsuario);
 router.get('/asistenciasEvento/:eventoId', controller.obtenerUsuariosDeEvento);
 router.post('/',[
     check('idEvento').isInt(),

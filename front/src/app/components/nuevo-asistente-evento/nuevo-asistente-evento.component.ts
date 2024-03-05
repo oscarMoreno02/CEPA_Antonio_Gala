@@ -85,8 +85,8 @@ export class NuevoAsistenteEventoComponent implements OnInit {
     return regexTest
   }
 
-  guardar(b:Boolean){
-    if (b){
+  guardar(confirm:Boolean){
+    if (confirm){
       if (this.validarEmail(this.usuario.email)){
         if (this.usuarios && this.usuarios.length > 0) {
           for (var i=0 ; i<this.usuarios.length ; i++){

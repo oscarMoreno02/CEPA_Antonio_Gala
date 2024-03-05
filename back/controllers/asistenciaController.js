@@ -7,7 +7,7 @@ const obtenerAsistencias = async (req, res = response) => {
     const conx = new ConexionAsistencia();
 
     try {
-        const asistencias = await conx.getAsistencia();
+        const asistencias = await conx.getAsistencias();
         console.log('Listado correcto!');
         res.status(200).json(asistencias);
     } catch (err) {

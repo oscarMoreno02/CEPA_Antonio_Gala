@@ -13,6 +13,7 @@
             <tr>
                 <th style="width:5%">Editar</th>
                 <th style="width:5%">Ver Asistentes</th>
+                <th style="width:5%">Galería</th>
                 <th style="width:10%">Nombre</th>
                 <th style="width:10%">Descripción</th>
                 <th style="width:10%">Fecha</th>
@@ -27,6 +28,7 @@
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
                 <td><p-button routerLink="/admin/asistencias/{{evento.id}}" icon="pi pi-eye" title=""></p-button></td>
+                <td><p-button routerLink="/admin/galeria/{{ evento.id }}" icon="pi pi-camera" title=""></p-button></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>
