@@ -26,11 +26,11 @@ class ConexionCategorias{
         this.db.authenticate().then(() => {
             console.log('Connection has been established successfully.');
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+            // console.error('Unable to connect to the database: ', error);
         });
     }
     desconectar = () => {
-        process.on('SIGINT', () => conn.close())
+        process.on('SIGINT', () => this.db.close())
     }
 
     getAllCategorias = async () => {
@@ -136,7 +136,7 @@ class ConexionCategorias{
         try {
             const categoria = new models.Categoria(body);
             await categoria.save();
-            resultado = 1;
+            resultado = categoria.id;
         } catch (error) {
             throw error;
         } finally {

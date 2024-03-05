@@ -2,16 +2,16 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil"></p-button>
+  <p-button  [raised]="true" [outlined]="true" label="Editar" (click)="showDialog()" icon="pi pi-pencil"></p-button>
   }
-  <p-dialog header="Editar categoria" [(visible)]="visible" [modal]="true" 
+  <p-dialog  header="Editar categoria" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
 
 
-    <div class="card flex justify-content-center" class="custom-dialog">
-        <div class="flex flex-row gap-4">
+    <div  class="card flex justify-content-center" class="custom-dialog">
+        <div  class="flex flex-row gap-4">
 
-            <div class="flex flex-column">
+            <div style="width:100%;" class="flex flex-column">
                 <label for="username1">Nombre</label>
                 <input class="{{estiloValidacionNombre}}" pInputText id="username1" aria-describedby="username-help1" [(ngModel)]="categoria.nombre" />
                 <small id="username-help1">Introduce un nombre para la nueva categoria</small>
@@ -33,13 +33,12 @@
             }
             </div>
         </div>
-        <div style="margin-top: 20px;" >
-
-            <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+        <div style="margin-top: 20px; width:100%;" >
+            <div style="margin-top: 20px; display: flex; gap: 10px;" >
+                <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+                <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar esta categoria?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+            </div>
         </div>
-        <div style="margin-top: 20px;" >
-
-            <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar esta categoria?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
-        </div>
+        
   </p-dialog>
 </div>

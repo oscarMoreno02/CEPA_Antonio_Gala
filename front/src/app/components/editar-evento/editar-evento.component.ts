@@ -1,7 +1,6 @@
 /*Laura María Pedraza Gómez* */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
@@ -12,6 +11,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../interface/evento';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
 
 @Component({
   selector: 'app-editar-evento',
@@ -28,12 +28,13 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   styleUrl: './editar-evento.component.css',
   providers: [DialogService, MessageService, EventosService, provideNativeDateAdapter()]
 })
-export class EditarEventoComponent implements OnInit{
+export class EditarEventoComponent{
   
   
   constructor(
     private servicioEvento : EventosService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private servicioFotos : FotoCartelEventosService
   ){}
   @Input() eventos?: any 
   @Input() tipo=0
@@ -149,10 +150,6 @@ export class EditarEventoComponent implements OnInit{
     this.formularioFoto = null
     this.fotoPreview = null
   }
-
-  ngOnInit(): void {
-
-  }
   showDialog() {
     this.servicioEvento.getEvento(this.id!).subscribe({
       
@@ -171,47 +168,52 @@ export class EditarEventoComponent implements OnInit{
       }  
     })
   }
-  async guardar(b:Boolean){
-    if(b){
+  async guardar(confirm:Boolean){
+    if(confirm){
       if(this.validarCampos()){
-         this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
-          next: (data:any)=> {
-            setTimeout(()=>{
-              this.messageService.add({severity:'success', summary:'Actualizar evento', detail:'Completada', life:3000})
-              for(let i=0;i<this.eventos.length;i++){
-                if(this.eventos[i].id == this.eventoModal.id){
-                  this.eventos[i]=this.evento
-                  this.visible=false
-                }
+      //  this.servicioFotos.updateFoto(this.eventoModal.fotoCartel!, this.formularioFoto!).subscribe({
+          next:(data:any) => {
+            this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
+              next: (data:any)=> {
+                setTimeout(()=>{
+                  this.messageService.add({severity:'success', summary:'Actualizar evento', detail:'Completada', life:3000})
+                  for(let i=0;i<this.eventos.length;i++){
+                    if(this.eventos[i].id == this.eventoModal.id){
+                      this.eventos[i]=this.evento
+                      this.visible=false
+                    }
+                  }
+                }, 1000)
+              },
+              error: (err) => {
+                this.messageService.add({ severity:'error', summary: 'Actualizar evento', detail: 'Error al actualizar el evento, inténtelo de nuevo', life: 3000 });
               }
-            }, 1000)
-          },
-          error: (err) => {
-            console.log(err)
-            this.messageService.add({ severity:'error', summary: 'Actualizar evento', detail: 'Error al actualizar el evento, inténtelo de nuevo', life: 3000 });
+            })  
           }
-        })
+       // }) 
       }
     }
   }
-  async eliminar(b:Boolean){
-     this.servicioEvento.deleteEvento(this.id).subscribe({
-      next:(data: any) => {
-        setTimeout(()=>{
-          this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
-          for(let i=0;i<this.eventos.length;i++){
-            if(this.eventos[i].id == this.eventoModal.id){
-            this.eventos[i]=this.evento
-            this.visible=false
+  async eliminar(confirm:Boolean){
+    if (confirm){
+      this.servicioEvento.deleteEvento(this.id).subscribe({
+        next:(data: any) => {
+          setTimeout(()=>{
+            this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
+            for(let i=0;i<this.eventos.length;i++){
+              if(this.eventos[i].id == this.eventoModal.id){
+              this.eventos[i]=this.evento
+              this.visible=false
+            }
           }
-        }
-      }, 1000)
-    },
-    error: (err) => {
-      console.log(err)
-      this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
-    }
-    })
+        }, 1000)
+      },
+      error: (err) => {
+        console.log(err)
+        this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
+      }
+      })
+    } 
   }
  
 }

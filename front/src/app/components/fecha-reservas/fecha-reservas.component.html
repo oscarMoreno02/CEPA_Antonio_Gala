@@ -2,7 +2,7 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-calendar" label="{{day+'/'+month+'/'+year}}"></p-button>
+  <p-button [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-calendar" label="{{day+'/'+month+'/'+year}}"></p-button>
   }
   <p-dialog header="Consultar reservas" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">

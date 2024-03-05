@@ -15,6 +15,7 @@ import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lis
 import { AdminAsistenciasComponent } from './components/admin-asistencias/admin-asistencias.component';
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
+import { NoticiaComponent } from './noticia/noticia.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -54,7 +55,7 @@ export const routes: Routes = [
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
-{path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},
+{path:'categorias/:id/noticia/:noticia',component: NoticiaComponent},
 
 {path:'noticia/contenido/:id',component: EditContentNoticiaComponent,
 canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
@@ -68,7 +69,7 @@ canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 {path:'admin/eventos', component:EventosComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
-{path:'admin/asistencias', component:AdminAsistenciasComponent,
+{path:'admin/asistencias/:id', component:AdminAsistenciasComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
 {path: '**', component: NotFoundComponent},

@@ -48,7 +48,7 @@ export class NuevaNoticiaComponent implements OnInit {
     private servicioNoticia: NoticiaService,
     private router: Router,
     private servicioFotos: FotosNoticiasService,
-    private ws: WebSocketService
+    
   ) { }
 
   @Input() visible: boolean = false;
@@ -91,13 +91,13 @@ export class NuevaNoticiaComponent implements OnInit {
 
       if (this.validarCampos()) {
         if (this.formularioFoto != null) {
+          this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
           this.servicioFotos.uploadFoto(this.formularioFoto).subscribe({
             next: (data: any) => {
               this.nuevaNoticia.foto = data.url
-              this.messageService.add({ severity: 'info', summary: 'Crear Categoria', detail: 'En curso', life: 3000 });
               this.servicioNoticia.insertNoticia(this.nuevaNoticia).subscribe({
                 next: (u: any) => {
-                    this.ws.sendNoticifacion(this.nuevaNoticia)
+                    
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                     setTimeout(() => {
@@ -122,7 +122,7 @@ export class NuevaNoticiaComponent implements OnInit {
             next: (u: any) => {
    
               setTimeout(() => {
-                this.ws.sendNoticifacion(this.nuevaNoticia)
+                
                 this.messageService.add({ severity: 'success', summary: 'Crear Noticia', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
                   this.router.navigate(['/noticia/contenido', u.id])
@@ -178,7 +178,6 @@ export class NuevaNoticiaComponent implements OnInit {
     } else {
       this.estiloValidacionUrl = ''
     }
-
     return valido
   }
 

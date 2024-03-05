@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil" label="Editar evento"></p-button>
+  <p-button (click)="showDialog()" icon="pi pi-pencil" label=""></p-button>
   }
   <p-dialog header="Editar evento" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
@@ -38,7 +38,7 @@
                 <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="eventoModal.visibilidad"/><br><br>
             </div>
 
-            <div class="flex flex-column">
+          <!--  <div class="flex flex-column">
                 <label for="fotoCartel">Foto de cartel</label><br><br>
                     <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
                     @if(fotoPreview){
@@ -49,14 +49,14 @@
             <br>
             @if(fotoPreview){
                 <img [src]="fotoPreview">
-            }
+            }-->
 
         </div><br>
     <div style="margin-top: 20px;" >
         <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
     </div>
     <div style="margin-top: 20px;" >
-        <app-confirm tipo="Borrar" icono="plus" mensaje="¿Deseas borrar este evento?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+        <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar este evento?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
     </div>
     </div>
 </p-dialog>
