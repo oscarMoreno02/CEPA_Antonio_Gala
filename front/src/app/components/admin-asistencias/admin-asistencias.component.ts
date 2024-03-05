@@ -57,13 +57,8 @@ export class AdminAsistenciasComponent implements OnInit {
           }
           this.asistencias = asistencias
         },
-        error: (err) => {
-          console.log(err);
-        }
       });
-    } else {
-      console.error('El parámetro id es requerido');
-    }
+    } 
   }
 
   async eliminar(id: number, confirm:Boolean) {
