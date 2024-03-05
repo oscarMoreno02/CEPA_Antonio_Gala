@@ -81,30 +81,19 @@ export class ModificarRolesComponent {
     if(b){
       this.messageService.add({ severity: 'info', summary:'Modificación de los roles', detail:'En curso', life:3000});
       if(this.esAdmin){
-        this.servicioRolAsig.rolesAsignadosPost({
-          id : 0,
-          idUser : this.idUser,
-          idRol : 1
-        })
+        this.servicioRolAsig.rolesAsignadosPost(this.idUser, 1)
       }else{
         this.servicioRolAsig.rolesAsignadosDelete(this.idUser,1)
       }
 
       if(this.esJefe){
-        this.servicioRolAsig.rolesAsignadosPost({          
-          id : 0,
-          idUser : this.idUser,
-          idRol : 2})
+        this.servicioRolAsig.rolesAsignadosPost(this.idUser,2)
       }else{
         this.servicioRolAsig.rolesAsignadosDelete(this.idUser,2)
       }
 
       if(this.esProfe){
-        this.servicioRolAsig.rolesAsignadosPost({
-          id : 0,
-          idUser : this.idUser,
-          idRol : 3
-        })
+        this.servicioRolAsig.rolesAsignadosPost(this.idUser,3)
       }else{
         this.servicioRolAsig.rolesAsignadosDelete(this.idUser,3)
       }

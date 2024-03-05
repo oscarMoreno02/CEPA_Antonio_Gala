@@ -20,9 +20,9 @@ export class RolAsignadoService {
     )
   }
 
-  rolesAsignadosPost(rolAsig:RolAsignado): Observable<any  | undefined> {
-    let body={rolAsig:rolAsig}
-    return this.http.post<any>(this.baseUrl,rolAsig).pipe()
+  rolesAsignadosPost(idUser:number,idRol:number): Observable<any  | undefined> {
+    let body={idUser,idRol}
+    return this.http.post<any>(this.baseUrl,body).pipe()
   } 
 
   rolesAsignadosDelete(idUser:number, idRol:number): Observable<any | undefined> {

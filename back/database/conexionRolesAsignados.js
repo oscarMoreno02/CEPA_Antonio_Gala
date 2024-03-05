@@ -52,7 +52,7 @@ class ConexionRolesAsignados{
         try{
             let resultado = [];
             this.conectar();
-            resultado = await models.rolAsignado.findAll({
+            resultado = await models.rolAsignado.findOne({
                 where: {
                     idUser : idUser
                 }
@@ -86,23 +86,17 @@ class ConexionRolesAsignados{
         return resultado;
     }
 
-    rolesAsignadosDelete = async (idUser, idRol) => {
+    rolesAsignadosDelete = async (id) => {
         try{
             this.conectar();
-            let resultado = await models.rolAsignados.findOne({
-                where: {
-                    idUser: idUser,
-                    idRol: idRol
-                }
-            });
-
+            let resultado = await models.rolAsignados.findByPk(id);
             await resultado.destroy();
-            return resultado;
         }catch(error){
             throw error
         }finally{
             this.desconectar()
         }
+        return resultado;
     }
     rolesAsignadosPut = async (id,body) => {
         try{

@@ -44,7 +44,7 @@ const rolesAsignadosPost =  (req = request, res = response) => {
 
 const rolesAsignadosDelete =  (req, res) => {
     const conx = new Conexion();
-    conx.rolesAsignadosDelete(req.params.idUser,req.params.idRol)    
+    conx.rolesAsignadosDelete(req.params.id)    
         .then( msg => {
             console.log('Borrado correctamente!');
             res.status(202).json(msg);

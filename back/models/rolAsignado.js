@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           //Óscar
       this.belongsTo(models.user, {
         foreignKey: 'idUser',
-        as: 'usuario'
+        as: 'usuarios'
       });
       this.belongsTo(models.rol, {
         foreignKey: 'idRol',
