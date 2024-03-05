@@ -2,7 +2,7 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/aulaEspecialController')
+const controller = require('../controllers/aulaReservaController')
 const { check } = require('express-validator')
 const { validateValues } = require('../helpers/validar-campos')
 const authMid = require('../middlewares/validarJWT')
