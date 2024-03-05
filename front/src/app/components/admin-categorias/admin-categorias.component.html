@@ -36,7 +36,12 @@
                 @if(categoria.dependiente==null){
                     <td>[Categoría principal]</td>
                 }@else {
-                    <td>{{ categoria.dependiente }}</td>
+                    @for (categoria2 of listaCategorias; track categoria2.id) {
+                        @if(categoria2.id==categoria.dependiente){
+                            <td>{{ categoria2.nombre }}</td>
+                            
+                        }
+                    }
                    
                 }
              

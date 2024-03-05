@@ -56,7 +56,6 @@ export class AdminNoticiaComponent implements OnInit {
         })
       },
       error: (err) => {
-
       }
     });
   }

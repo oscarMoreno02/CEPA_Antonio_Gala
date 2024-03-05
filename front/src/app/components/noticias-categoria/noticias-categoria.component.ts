@@ -36,17 +36,12 @@ export class NoticiasCategoriaComponent implements OnInit, OnChanges {
       this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(params['id']).subscribe({
         next: (data: Array<Noticia>) => {
           this.listaNoticias=data
-  
         },
         error: (err) => {
-  
         }
-        
       });
     })
-   
   }
   ngOnChanges(changes: SimpleChanges): void {
-    
   }
 }

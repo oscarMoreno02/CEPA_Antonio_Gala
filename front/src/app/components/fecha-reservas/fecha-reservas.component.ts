@@ -82,6 +82,9 @@ date: Date =new Date();
         this.day=this.date.getDate()
         this.month=this.date.getMonth()
         this.year=this.date.getFullYear()
+        console.log(this.day)
+        console.log(this.month)
+        console.log(this.year)
       },
       error:(err)=>{
       

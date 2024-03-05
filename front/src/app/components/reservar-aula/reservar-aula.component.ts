@@ -135,7 +135,7 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
     }
   }
     nuevosHorarios(horarios:Array<Horario>){
-
+      console.log(this.fecha)
       this.horarios=horarios
     }
 }

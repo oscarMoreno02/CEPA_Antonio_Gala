@@ -15,7 +15,7 @@ import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lis
 import { AdminAsistenciasComponent } from './components/admin-asistencias/admin-asistencias.component';
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
-import { NoticiaComponent } from './noticia/noticia.component';
+import { NoticiaComponent } from './components/noticia/noticia.component';
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },

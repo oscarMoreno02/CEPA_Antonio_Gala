@@ -37,7 +37,7 @@
                 <label for="username2">Foto</label>
                     <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
                     @if(fotoPreview){
-                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                        <p-button [outlined]="true" [raised]="true" severity="warning" (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
                     }
                 <small id="username-help2">Subir una foto para esta noticia</small>
             </div>
