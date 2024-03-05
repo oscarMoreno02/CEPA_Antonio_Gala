@@ -63,7 +63,7 @@ class Server {
         this.app.use(this.asistenciaPath, require('../routes/asistenciaRoutes'));
         this.app.use(this.apiUsuarios, require('../routes/usuarioRutas'))
         this.app.use(this.apiRoles, require('../routes/rolesRutas'))
-        this.app.use(this.apiRoles, require('../routes/rolesAsignadosRutas'))
+        this.app.use(this.apiRolesAsignados, require('../routes/rolesAsignadosRutas'))
         this.app.use(this.categoriasPath, require('../routes/categoriasRoutes'))
         this.app.use(this.enlacesPath, require('../routes/enlacesRoutes'))
         this.app.use(this.noticiasPath, require('../routes/noticiasRoutes'))

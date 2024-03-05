@@ -30,7 +30,7 @@ export class UsersService {
   }
   usuariosPost(usuarios:Users): Observable<any | undefined> {
     let body={usuarios:usuarios}
-  
+    
      return this.http.post<any>(this.baseUrl,usuarios).pipe(
      
      )
@@ -43,11 +43,10 @@ export class UsersService {
       })
     )
   }
-  usuariosPut(usuarios:Users): Observable<any | undefined> {
-     return this.http.put<any>(this.baseUrl+'/'+usuarios.id,usuarios,).pipe(
-      catchError((error) =>{
-        return of(undefined)
-      })
-     )
+  usuariosPut(usuarios:Users, id:number): Observable<any | undefined> {
+    let body={usuario: usuarios}
+    return this.http.put<any>(this.baseUrl+'/'+id,usuarios,{params: {auth: true}}).pipe(
+
+    )
    }
 }

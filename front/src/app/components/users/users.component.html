@@ -1,4 +1,6 @@
-<!--<app-nuevo-usuarios></app-nuevo-usuarios>-->
+<!--Raúl-->
+
+<app-nuevo-usuarios></app-nuevo-usuarios>
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="listaUsers"
@@ -11,17 +13,16 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                <!--<th style="width:10%"></th>-->
+                <th style="width:10%"></th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:30%">Email</th>
             </tr>
-        </ng-template>
+        </ng-template> 
         <ng-template pTemplate="body" let-usuarios>
             <tr>
-                <!--<td><app-editar-usuarios [listaUsers]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>-->
+                <td><app-editar-usuarios [usuario]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>
                 <td>{{usuarios.nombre}}</td>
                 <td>{{usuarios.email}}</td>
-                <!--<td><i class="pi-pencil"></i></td>-->
              
             </tr>
         </ng-template>
