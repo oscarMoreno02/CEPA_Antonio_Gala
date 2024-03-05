@@ -23,7 +23,7 @@
 
                     <th>
 
-                        <app-nueva-aula></app-nueva-aula>
+                        <app-nueva-aula [listaAulas]="listaAulas"></app-nueva-aula>
                     </th> 
                 }@else {
 
@@ -39,7 +39,7 @@
             <tr class="glass">
                 @if(authService.getAccess=='jefedeestudios'){
 
-                    <td><app-editar-aula [id]="aula.id"></app-editar-aula></td>
+                    <td><app-editar-aula [listaAulas]="listaAulas" [id]="aula.id"></app-editar-aula></td>
                 }@else {<td></td>}
                 <td>{{ aula.id}}</td>
                 <td>{{ aula.nombre}}</td>
