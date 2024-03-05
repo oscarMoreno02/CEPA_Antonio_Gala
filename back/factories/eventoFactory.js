@@ -10,9 +10,10 @@ const eventosFactory = async (ctos = 1) => {
             descripcion: `Descripción del evento ${i}`,
             fecha: new Date().getDay().toString()+'/'+new Date().getMonth().toString()+'/'+new Date().getFullYear().toString(),
             hora: new Date().getHours().toString()+':'+new Date().getMinutes().toString(),
-            fotoCartel: `https://picsum.photos/id/237/200/300`,
+            fotoCartel: "e6bb7e29-8f62-4c38-9429-c5cadb9f00f7.jpg",
             mg:0,
             visibilidad: Math.random() < 0.5 ? true : false,
+            numAsistentes: Math.random() * 19+1,
             createdAt: new Date(),
             updatedAt: new Date()
         };

@@ -14,6 +14,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import { NuevoAsistenteEventoComponent } from "../nuevo-asistente-evento/nuevo-asistente-evento.component";
 import { ToastModule } from 'primeng/toast';
 import { ActivatedRoute } from '@angular/router';
+import { EventosService } from '../../services/eventos.service';
 
 
 @Component({
@@ -41,7 +42,8 @@ export class AdminAsistenciasComponent implements OnInit {
   constructor(
     private asistenciaServicio: AsistenciaService, 
     private route: ActivatedRoute,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private eventoServicio: EventosService
     ) {}
 
   ngOnInit(): void {
@@ -54,7 +56,6 @@ export class AdminAsistenciasComponent implements OnInit {
             this.usuarios.push(asistencias[i].usuario);
           }
           this.asistencias = asistencias
-          console.log("Llegan los usuarios", this.usuarios);
         },
         error: (err) => {
           console.log(err);
@@ -65,38 +66,43 @@ export class AdminAsistenciasComponent implements OnInit {
     }
   }
 
-  async eliminar(id: number) {
-    var idAsistencia;
-    var asistenciasActualizadas = [];
-    var usuariosActualizados = [];
+  async eliminar(id: number, confirm:Boolean) {
+    if (confirm){
+      var idAsistencia: number;
+      var asistenciasActualizadas = [];
+      var usuariosActualizados = [];
 
-    for (var i =  0; i < this.asistencias.length; i++) {
-        if (this.asistencias[i].usuario.id == id) {
-            idAsistencia = this.asistencias[i].id;
-        } else {
-            asistenciasActualizadas.push(this.asistencias[i]);
+      for (var i =  0; i < this.asistencias.length; i++) {
+          if (this.asistencias[i].usuario.id == id) {
+              idAsistencia = this.asistencias[i].id;
+          } else {
+              asistenciasActualizadas.push(this.asistencias[i]);
+          }
+      }
+
+      for (var i =  0; i < this.usuarios.length; i++) {
+          if (this.usuarios[i].id != id) {
+              usuariosActualizados.push(this.usuarios[i]);
+          }
+      }
+
+      this.asistencias = asistenciasActualizadas;
+      this.usuarios = usuariosActualizados;
+
+      this.eventoServicio.putPlaza(this.eventoId).subscribe({
+        next:(data:any) => {
+          this.asistenciaServicio.deleteAsistencia(idAsistencia).subscribe({
+            next: (data: any) => {
+                setTimeout(() => {
+                    this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
+                },  1000)
+            },
+            error: (err) => {
+                this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
+            }
+        });
         }
+      })
     }
-
-    for (var i =  0; i < this.usuarios.length; i++) {
-        if (this.usuarios[i].id != id) {
-            usuariosActualizados.push(this.usuarios[i]);
-        }
-    }
-
-    this.asistencias = asistenciasActualizadas;
-    this.usuarios = usuariosActualizados;
-
-    this.asistenciaServicio.deleteAsistencia(idAsistencia).subscribe({
-        next: (data: any) => {
-            setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
-            },  1000)
-        },
-        error: (err) => {
-            console.log(err);
-            this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
-        }
-    });
   }
 }
