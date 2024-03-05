@@ -61,6 +61,7 @@ export class ModificarRolesComponent {
   
       next: (rolesAsignados: RolAsignado[]) => {
         console.log(this.idUser!);
+        console.log(rolesAsignados);
         rolesAsignados.forEach(rol => {
           if (rol.idRol === 1) {
             this.esAdmin = true;
