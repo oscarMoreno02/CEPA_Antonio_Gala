@@ -9,6 +9,7 @@ import { EventosService } from '../../services/eventos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { environment } from '../../../environments/environment.development';
+import { Asistencia } from '../../interface/asistencia';
 
 @Component({
     selector: 'app-tus-eventos',
@@ -28,14 +29,16 @@ import { environment } from '../../../environments/environment.development';
 })
 export class TusEventosComponent implements OnInit {
 
-  eventos:Array<Evento> = []
+  eventos:Array<any> = []
+  asistencias:Array<any>=[]
   idUsuario:number = 0
 
   constructor(
     private servicioEventos : EventosService,
     private servicioAsistencias: AsistenciaService,
     private router:Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService:MessageService,
     ){}
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -43,20 +46,42 @@ export class TusEventosComponent implements OnInit {
       this.idUsuario = +idParam
       console.log(this.idUsuario)
       this.servicioAsistencias.getAsistenciasUsuario(this.idUsuario).subscribe({
-        next: (eventos:any) => {
-          for (var i = 0; i<eventos.length ; i++){
-            this.eventos.push(eventos[i].evento)
-          }
-          
+        next: (asistencias:any) => {
+          for (var i = 0; i<asistencias.length ; i++){
+            this.eventos.push(asistencias[i].evento)
+          }  
+          this.asistencias=asistencias
         }
       })
       
     }
   }
 
-  eliminar(confirm:Boolean){
-    if (confirm){
+  idAsistencia:number = 0
 
+  eliminar(eventoId:number, confirm:Boolean){
+    if (confirm){
+      
+      for (var i=0 ; i<this.asistencias.length ; i++){
+        if (this.asistencias[i].evento.id== eventoId){
+          this.idAsistencia = this.asistencias[i].id
+        }
+      }
+      this.servicioEventos.putPlaza(eventoId).subscribe({
+        next:(data:any)=> {
+          this.servicioAsistencias.deleteAsistencia(this.idAsistencia).subscribe({
+            next:(data:any)=> {
+              setTimeout(() => {
+                this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
+            },  1000)
+            },
+            error: (err) => {
+              this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
+          }
+          })
+        }
+      })
+      
     }
   }
 

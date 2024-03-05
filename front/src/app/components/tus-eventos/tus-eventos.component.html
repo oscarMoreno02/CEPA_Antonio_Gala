@@ -25,7 +25,7 @@
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><div style="margin-top: 20px;" >
-                    <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar este evento?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+                    <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar este evento?" color="danger" (confirmacion)="eliminar(evento.id, $event)"></app-confirm>
                 </div></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
