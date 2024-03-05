@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 import { Users } from '../../interface/users';
 
 @Component({
-  selector: 'app-editar-usuarios',
+  selector: 'app-perfil',
   standalone: true,
   imports: [
     FormsModule,
@@ -27,11 +27,11 @@ import { Users } from '../../interface/users';
     ConfirmComponent,
     ModificarRolesComponent
   ],
-  templateUrl: './editar-usuarios.component.html',
-  styleUrl: './editar-usuarios.component.css',
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.css',
   providers: [DialogService, MessageService, UsersService]
 })
-export class EditarUsuariosComponent implements OnInit {
+export class PerfilComponent implements OnInit{
   constructor(
     public messageService: MessageService,
     private servicioUsers: UsersService
@@ -106,27 +106,6 @@ export class EditarUsuariosComponent implements OnInit {
       this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'El correo es obligatorio', life:3000})
 
     }
-
-    //validar password
-    /*if (this.usuarios.password){
-
-      var passwordPrueba = passwordRegex.test(this.usuarios.password)
-      
-      if (passwordPrueba){
-        this.estiloValidacionContrasena
-      }else{
-        this.estiloValidacionContrasena = 'ng-invalid ng-dirty'
-        validado = false
-        this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'La contraseña tiene que ser mayor a 8 caracteres', life:3000})
-
-      }
-    }else{
-
-      this.estiloValidacionContrasena = 'ng-invalid ng-dirty'
-      validado = false
-      this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'El contraseña es obligatorio', life:3000})
-
-    }*/
     return validado
   }
 
@@ -181,25 +160,4 @@ export class EditarUsuariosComponent implements OnInit {
       }
     })
   }
-
-  async eliminar(b:Boolean){
-    this.servicioUsers.usuariosDelete(this.id).subscribe({
-     next:(data: any) => {
-       setTimeout(()=>{
-         this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
-         for(let i=0;i<this.usuario.length;i++){
-           if(this.usuario[i].id == this.usuarios.id){
-           this.usuario[i]=this.us
-           this.visible=false
-         }
-         this.visible=false
-       }
-     }, 1000)
-   },
-   error: (err) => {
-     console.log(err)
-     this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
-   }
-   })
- }
 }
