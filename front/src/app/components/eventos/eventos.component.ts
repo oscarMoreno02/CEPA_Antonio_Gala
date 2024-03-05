@@ -94,11 +94,18 @@ export class EventosComponent implements OnInit{
       this.asistencia.idUsuario=this.userId
       this.asistenciaServicio.insertAsistencia(this.asistencia).subscribe({
         next: (data:any) => {
-          setTimeout(() => {
-            this.messageService.add({severity: 'success', summary:'Apuntarse a evento', detail:'Completado', life:3000});
-            this.asistencia.idUsuario = 0
-            this.asistencia.idEvento = 0
-          })
+          this.eventoServicio.deletePlaza(this.eventoId).subscribe({
+            next: (data:any) => {
+              
+                this.messageService.add({severity: 'success', summary:'Apuntarse a evento', detail:'Completado', life:3000});
+                this.asistencia.idUsuario = 0
+                this.asistencia.idEvento = 0
+              
+            },
+            error: (error) => {
+              this.messageService.add({severity: 'error', summary:'Apuntarse a evento', detail:'Ya se encuentra apuntado', life:3000});
+            }
+          }) 
         },
         error: (error) => {
           this.messageService.add({severity: 'error', summary:'Apuntarse a evento', detail:'Ya se encuentra apuntado', life:3000});
