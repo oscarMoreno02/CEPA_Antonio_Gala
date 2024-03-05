@@ -42,7 +42,6 @@ export class AdminEventosComponent implements OnInit {
     private router:Router
   ) {}
   
-  formularioFoto: FormData | null = null
   fotoPreview: string | null = null
 
   ngOnInit(): void {
@@ -55,7 +54,7 @@ export class AdminEventosComponent implements OnInit {
           this.eventos = eventos;
         },
         error:(err)=>{
-          console.log(err)
+          
         }
       });
   }

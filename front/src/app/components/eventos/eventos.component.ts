@@ -11,17 +11,19 @@ import { JsPDFService } from '../../services/js-pdfservice.service';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { Asistencia } from '../../interface/asistencia';
 import { MessageService } from 'primeng/api';
+import { GaleriaService } from '../../services/galeria.service';
+import { Galeria } from '../../interface/galeria';
 
 @Component({
-  selector: 'app-eventos',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    ConfirmComponent,
-  ],
-  templateUrl: './eventos.component.html',
-  styleUrl: './eventos.component.css',
-  providers: [MessageService, AsistenciaService, EventosService, JsPDFService]
+    selector: 'app-eventos',
+    standalone: true,
+    templateUrl: './eventos.component.html',
+    styleUrl: './eventos.component.css',
+    providers: [MessageService, AsistenciaService, EventosService, JsPDFService],
+    imports: [
+        ButtonModule,
+        ConfirmComponent,
+    ]
 })
 export class EventosComponent implements OnInit{
   constructor(
@@ -31,11 +33,13 @@ export class EventosComponent implements OnInit{
     private jsPDFService: JsPDFService,
     private asistenciaServicio : AsistenciaService,
     public messageService:MessageService,
+    private servicioGaleria : GaleriaService,
   ) {}
 
   evento! : Evento
   eventoId!: number;
 
+  galerias: Array<Galeria> = []
   @Input () userId!: number;
 
   ngOnInit(): void {
@@ -50,12 +54,33 @@ export class EventosComponent implements OnInit{
           }  
         }
       })
+
+      this.servicioGaleria.getGaleriaEvento(this.eventoId).subscribe({
+        next: (fotos: any) => {
+          this.galerias = fotos
+          console.log(this.galerias)
+          this.formatearSrc();
+        },
+        error: (err) => {
+          
+        }
+      });
+
       try {
         this.userId = this.authServicio.getUid() 
       } catch {
         this.userId = 0
       }
+
     }    
+  }
+
+  formatearSrc() {
+    for (let i = 0; i < this.galerias.length; i++) {
+       if (!this.galerias[i].foto.includes('http') || !this.galerias[i].foto.includes('https')) {
+         this.galerias[i].foto = environment.baseUrl+ '/uploads/galerias/' + this.galerias[i].foto;
+       }
+    }
   }
 
   sumarMg(){
