@@ -39,7 +39,11 @@ class ConexionAulaFranja {
         try {
             let resultado = []
             this.conectar()
-            resultado = await models.AulaFranja.findAll()
+            resultado = await models.AulaFranja.findAll({
+                order: [
+                  ['orden', 'ASC'] 
+                ]
+              });
             return resultado
         } catch (error) {
             throw error
@@ -63,10 +67,14 @@ class ConexionAulaFranja {
             this.desconectar()
         }
     }
+    //Se que esta mal hecho pero no me da tiempo a ponerlo mejor 
     insertFranja = async (body) => {
         let resultado = 0
         this.conectar()
         try {
+            let ultimo = parseInt(await models.AulaFranja.max('orden'));
+            ultimo += 1;
+            body.orden=ultimo
             const task = new models.AulaFranja(body)
             await task.save()
             resultado=task.id
@@ -79,6 +87,7 @@ class ConexionAulaFranja {
     }
     updateFranja = async (id, body) => {
         try {
+
             let resultado = 0
             this.conectar();
             let task = await models.AulaFranja.findByPk(id);
@@ -100,6 +109,26 @@ class ConexionAulaFranja {
             await resultado.destroy();
             return resultado;
         } catch (error) {
+            throw error
+        } finally {
+            this.desconectar()
+        }
+    }
+
+    sortFranjas = async (body) => {
+        try {
+            let resultado = 0
+            this.conectar();
+
+            for (let i=0;i<body.length;i++){
+                let aux=i+1
+                body[i].orden=aux
+                let task = await models.AulaFranja.findByPk(body[i].id);
+                await task.update(body[i])
+            }
+            return resultado
+        } catch (error) {
+            console.log(error)
             throw error
         } finally {
             this.desconectar()
