@@ -67,6 +67,7 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
       this.subscripcionHorarios = this.servicioHorario.getAllHorariosOfAulaWithReservas(this.idAula,this.day,this.month,this.year).subscribe({
         next: (data: Array<Horario>) => {
           this.horarios=data
+          this.evaluarFechas()
           console.log(data)
         },
         error: (err) => {
@@ -85,6 +86,7 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
       if (b) {
         this.messageService.add({ severity: 'info', summary: 'Reservar Horario', detail: 'En curso', life: 3000 });
         let reserva:Reserva=  {fecha:this.year+'-'+this.month+'-'+this.day,idAula:this.idAula,idHorario:id,idProfesor:this.authService.getUid()}
+        console.log(reserva)
        console.log(reserva)
         this.servicioReserva.insertReserva(reserva).subscribe({
           next: (u: any) => {
@@ -95,6 +97,7 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
                for(const h of this.horarios){
                 if(h.id==id){
                   h.reservado=reserva
+                  this.evaluarFechas()
                 }
                }
               }, 1000);
@@ -121,7 +124,7 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
 
                       if(h.reservado?.id==id){
                         h.reservado=null
-             
+                        this.evaluarFechas()
                       }
                      }
                  
@@ -137,5 +140,56 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
     nuevosHorarios(horarios:Array<Horario>){
       console.log(this.fecha)
       this.horarios=horarios
+      this.evaluarFechas()
+    }
+
+    nuevaFecha(date:Date){
+      console.log(date)
+      this.day=date.getDate()
+      this.month=date.getMonth()+1
+      this.year=date.getFullYear()
+    }
+
+    evaluarFechas=()=>{
+      console.log(this.horarios)
+      for(let i =0;i<this.horarios.length;i++){
+        if(this.horarios[i].reservado!=null ){
+
+          this.horarios[i].reservado!.estado=this.checkVencimiento( this.horarios[i].reservado!.fecha, this.horarios[i].franja!.horaInicio, this.horarios[i].franja!.horaFin)
+            console.log(this.horarios[i].reservado)
+        }
+      }
+    }
+    checkVencimiento=(fechaString:string,horarioInicio:string,horarioFin:string): number=>{
+      console.log('llega')
+      let estado=0
+      let partesFecha = fechaString.split('-');
+      let año = parseInt(partesFecha[0], 10);
+      let mes = parseInt(partesFecha[1], 10) - 1;
+      let dia = parseInt(partesFecha[2], 10);
+      let partesHoraInicio = horarioInicio.split(':'); 
+  
+       let horas = parseInt(partesHoraInicio[0], 10);
+      let minutos = parseInt(partesHoraInicio[1], 10);
+      let segundos = parseInt(partesHoraInicio[2], 10);
+  
+      let fechaInicio=new Date(año,mes,dia,horas,minutos)
+  
+      let partesHoraFin = horarioInicio.split(':'); 
+  
+       horas = parseInt(partesHoraFin[0], 10);
+     minutos = parseInt(partesHoraFin[1], 10);
+      segundos = parseInt(partesHoraFin[2], 10);
+      
+      let fechaFin=new Date(año,mes,dia,horas,minutos)
+      if(this.fecha>fechaInicio ){
+        if(this.fecha>fechaFin){
+          estado=1
+        }else{
+            estado=2
+        }
+      }
+  
+      return estado
     }
 }

@@ -80,7 +80,7 @@ console.log(this.fecha)
               next: (data: Array<Reserva>) => {
                 this.listaReservas=data
                 this.evaluarFechas()
-                console.log(this.listaReservas.length)
+                console.log(this.listaReservas)
               },
               error: (err) => {
               }

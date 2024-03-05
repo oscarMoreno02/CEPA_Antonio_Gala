@@ -29,7 +29,7 @@
                     <th style="width:20%">Hora fin</th>
                     <th style="width:20%">Turno</th>
                     <th  style="width: 20%;">Estado</th>
-                    <th> <app-fecha-reservas (newHorarios)="nuevosHorarios($event)" [id]="idAula" [day]="day" [month]="month" [year]="year" [horarios]="horarios"></app-fecha-reservas>
+                    <th> <app-fecha-reservas (newDate)="nuevaFecha($event)" (newHorarios)="nuevosHorarios($event)" [id]="idAula" [day]="day" [month]="month" [year]="year" [horarios]="horarios"></app-fecha-reservas>
                     </th>
                 </tr>
             </ng-template>
@@ -48,7 +48,14 @@
 
                      <td><p style="color: red">RESERVADO</p></td>
                      @if(horario.reservado.idProfesor==authService.getUid()){
-                        <td><app-confirm tipo="Anular" mensaje="¿Desea anular esta reserva?" color="danger" (confirmacion)="eliminar($event,horario.reservado.id)"> </app-confirm></td>
+                        
+                        @if(horario.reservado.estado==0){
+
+                            <td><app-confirm tipo="Anular" mensaje="¿Desea anular esta reserva?" color="danger" (confirmacion)="eliminar($event,horario.reservado.id)"> </app-confirm></td>
+                        }@else{
+                            <td></td>
+                                        
+                        }
                      }
                     }
             </tr>
