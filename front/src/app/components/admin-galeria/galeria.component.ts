@@ -51,7 +51,7 @@ export class AdminGaleriaComponent implements OnInit{
            this.formatearSrc();
          },
          error: (err) => {
-           console.error(err);
+           
          }
        });
     }
