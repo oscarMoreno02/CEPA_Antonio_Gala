@@ -119,6 +119,7 @@ fotoAuxiliar='null'
                      this.visible=false
                    }
                  }
+                 window.location.reload()
               }, 1000); 
           },
           error: (err) => {

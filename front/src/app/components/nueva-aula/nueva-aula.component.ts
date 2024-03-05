@@ -24,7 +24,7 @@ import { Aula } from '../../interface/aula';
     InputTextModule,
     ConfirmComponent,
   ],
-  providers:[DialogService, MessageService, AulaService],
+  providers: [DialogService, MessageService, AulaService],
   templateUrl: './nueva-aula.component.html',
   styleUrl: './nueva-aula.component.css'
 })
@@ -33,53 +33,62 @@ export class NuevaAulaComponent {
     public messageService: MessageService,
     private servicioAulas: AulaService,
     private router: Router,
-   
+
   ) { }
-  nuevaAula:Aula={nombre:''}
-  aulaSubscripcion:Subscription=new Subscription
-  estiloValidacionTexto=''
+  nuevaAula: Aula = { nombre: '' }
+  aulaSubscripcion: Subscription = new Subscription
+  estiloValidacionTexto = ''
   @Input() visible: boolean = false;
-  @Input() tipo=0
-  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/ ;
+  @Input() tipo = 0
+  @Input() listaAulas: Array<Aula> = []
+  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
   showDialog() {
-      this.visible = true;
+    this.visible = true;
   }
-  crear(b:Boolean){
-    if(b){
+  crear(b: Boolean) {
+    if (b) {
 
-      if(this.validarCampos()){
-      this.messageService.add({ severity: 'info', summary: 'Crear Aula', detail: 'En curso', life: 3000 });
-      this.servicioAulas.insertAula(this.nuevaAula).subscribe({
-        next: (data:any) => {
+      if (this.validarCampos()) {
+        this.messageService.add({ severity: 'info', summary: 'Crear Aula', detail: 'En curso', life: 3000 });
+        this.servicioAulas.insertAula(this.nuevaAula).subscribe({
+          next: (data: any) => {
+            setTimeout(() => {
+              this.messageService.add({ severity: 'success', summary: 'Crear Aula', detail: 'Completada', life: 3000 });
+              this.nuevaAula.id = data.id
               setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Crear Aula', detail: 'Completada', life: 3000 });
-                setTimeout(() => {
-                  
-              }, 1000); 
-            }, 1000); 
-          
-        },
-        error: (err) => {
-      
-          this.messageService.add({ severity:'error', summary: 'Crear Aula', detail: 'Cancelada', life: 3000 });
-        }
-      })
+                if (this.listaAulas.length == 5) {
+                  window.location.reload()
+                } else {
+                  this.listaAulas.push(this.nuevaAula)
+                  this.visible = false
+                }
+              }, 1000);
+            }, 1000);
+
+          },
+          error: (err) => {
+
+            this.messageService.add({ severity: 'error', summary: 'Crear Aula', detail: 'Cancelada', life: 3000 });
+          }
+        })
+      }
     }
   }
-  }
-  validarCampos():Boolean{
+  validarCampos(): Boolean {
 
     let valido = true
-  
-      if(this.nuevaAula.nombre.split(' ').join('').length<4){
-        this.estiloValidacionTexto='ng-invalid ng-dirty'
-        valido=false
-        this.messageService.add({ severity: 'warn', summary: 'Crear Aula', detail: 'Tamaño de nombre incorrecto', life: 3000 });
-      }else{
-        this.estiloValidacionTexto=''
-      }
-    
+
+    if (this.nuevaAula.nombre.split(' ').join('').length < 4) {
+      this.estiloValidacionTexto = 'ng-invalid ng-dirty'
+      valido = false
+      this.messageService.add({ severity: 'warn', summary: 'Crear Aula', detail: 'Tamaño de nombre incorrecto', life: 3000 });
+    } else {
+      this.estiloValidacionTexto = ''
+    }
+
+
+
     return valido
   }
 }

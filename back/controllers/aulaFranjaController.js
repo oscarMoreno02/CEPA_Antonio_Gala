@@ -35,7 +35,7 @@ const createFranja = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertFranja(req.body)
         .then(data => {
-            res.status(201).json('Franja registrada correctamente')
+            res.status(201).json({id:data})
         })
         .catch(err => {
             console.log(err)

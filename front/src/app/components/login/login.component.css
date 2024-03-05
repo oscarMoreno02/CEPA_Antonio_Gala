@@ -45,3 +45,8 @@ small {
     
     margin-bottom: 100px;
 }
+
+#errorLogin{
+    color:red !important;
+    background-color: grey;
+  }

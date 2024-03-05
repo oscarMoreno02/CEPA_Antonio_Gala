@@ -69,7 +69,7 @@ class ConexionAulaFranja {
         try {
             const task = new models.AulaFranja(body)
             await task.save()
-            resultado = 1
+            resultado=task.id
         } catch (error) {
             throw error
         } finally {

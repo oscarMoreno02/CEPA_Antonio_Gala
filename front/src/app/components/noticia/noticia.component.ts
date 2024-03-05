@@ -2,11 +2,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { NoticiaService } from '../services/noticia.service';
+import { NoticiaService } from '../../services/noticia.service';
 import { Subscription } from 'rxjs';
-import { Noticia } from '../interface/noticia';
+import { Noticia } from '../../interface/noticia';
 import { CardModule } from 'primeng/card';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../../environments/environment.development';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 //Óscar

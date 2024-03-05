@@ -24,7 +24,7 @@ import { Aula } from '../../interface/aula';
     InputTextModule,
     ConfirmComponent,
   ],
-  providers:[DialogService, MessageService, AulaService],
+  providers: [DialogService, MessageService, AulaService],
   templateUrl: './editar-aula.component.html',
   styleUrl: './editar-aula.component.css'
 })
@@ -33,86 +33,100 @@ export class EditarAulaComponent implements OnInit {
     public messageService: MessageService,
     private servicioAulas: AulaService,
     private router: Router,
-   
+
   ) { }
- editarAula:Aula={nombre:''}
-  aulaSubscripcion:Subscription=new Subscription
-  estiloValidacionTexto=''
+  editarAula: Aula = { nombre: '' }
+  aulaSubscripcion: Subscription = new Subscription
+  estiloValidacionTexto = ''
   @Input() visible: boolean = false;
-  @Input() tipo=0
- @Input() id:number=0
+  @Input() tipo = 0
+  @Input() id: number = 0
+  @Input() listaAulas: Array<Aula> = []
   showDialog() {
-      this.visible = true;
+    this.visible = true;
   }
   ngOnInit(): void {
-    this.aulaSubscripcion=this.servicioAulas.getAula(this.id).subscribe({
-      next:(data)=>{
-        this.editarAula=data
+    this.aulaSubscripcion = this.servicioAulas.getAula(this.id).subscribe({
+      next: (data) => {
+        this.editarAula = data
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err)
       }
     })
   }
-  crear(b:Boolean){
-    if(b){
+  crear(b: Boolean) {
+    if (b) {
 
-      if(this.validarCampos()){
-      this.messageService.add({ severity: 'info', summary: 'Editar Aula', detail: 'En curso', life: 3000 });
-      this.servicioAulas.updateAula(this.editarAula).subscribe({
-        next: (data:any) => {
+      if (this.validarCampos()) {
+        this.messageService.add({ severity: 'info', summary: 'Editar Aula', detail: 'En curso', life: 3000 });
+        this.servicioAulas.updateAula(this.editarAula).subscribe({
+          next: (data: any) => {
+            setTimeout(() => {
+              this.messageService.add({ severity: 'success', summary: 'Editar Aula', detail: 'Completada', life: 3000 });
               setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Editar Aula', detail: 'Completada', life: 3000 });
-                setTimeout(() => {
-                  window.location.reload()
-              }, 1000); 
-            }, 1000); 
-          
-        },
-        error: (err) => {
-      
-          this.messageService.add({ severity:'error', summary: 'Editar Aula', detail: 'Cancelada', life: 3000 });
-        }
-      })
+                for (let i=0;i<this.listaAulas.length;i++){
+                  if(this.listaAulas[i].id==this.editarAula.id){
+                    this.listaAulas[i]=this.editarAula
+                  }
+                }
+              }, 1000);
+            }, 1000);
+
+          },
+          error: (err) => {
+
+            this.messageService.add({ severity: 'error', summary: 'Editar Aula', detail: 'Cancelada', life: 3000 });
+          }
+        })
+      }
     }
   }
-  }
-  validarCampos():Boolean{
+  validarCampos(): Boolean {
 
     let valido = true
-  
-      if(this.editarAula.nombre.split(' ').join('').length<4){
-        this.estiloValidacionTexto='ng-invalid ng-dirty'
-        valido=false
-        this.messageService.add({ severity: 'warn', summary: 'Editar Aula', detail: 'Tamaño de nombre incorrecto', life: 3000 });
-      }else{
-        this.estiloValidacionTexto=''
+
+    if (this.editarAula.nombre.split(' ').join('').length < 4) {
+      this.estiloValidacionTexto = 'ng-invalid ng-dirty'
+      valido = false
+      this.messageService.add({ severity: 'warn', summary: 'Editar Aula', detail: 'Tamaño de nombre incorrecto', life: 3000 });
+    } else {
+      this.estiloValidacionTexto = ''
+    }
+    if(valido==true){
+      for(let i=0;i<this.listaAulas.length;i++){
+
+        if(this.listaAulas[i].nombre.toLowerCase().split(' ').join('')==(this.editarAula.nombre.toLowerCase().split(' ').join(''))){
+          valido=false
+          this.messageService.add({ severity: 'warn', summary: 'Editar Aula', detail: 'Nombre ya registrado', life: 3000 });
+        }
       }
-    
+    }
+
     return valido
   }
-  eliminar(b:Boolean){
+  eliminar(b: Boolean) {
 
-    if(b){
+    if (b) {
 
       this.messageService.add({ severity: 'info', summary: 'Borrar Aula', detail: 'En curso', life: 3000 });
       this.servicioAulas.deleteAula(this.editarAula.id!).subscribe({
-        next: (u:any) => {
+        next: (u: any) => {
 
-              setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Borrar Aula', detail: 'Completada', life: 3000 });
-                setTimeout(() => {
-                  window.location.reload()
-              }, 1000); 
-            }, 2000); 
-          
+          setTimeout(() => {
+            this.messageService.add({ severity: 'success', summary: 'Borrar Aula', detail: 'Completada', life: 3000 });
+            setTimeout(() => {
+              window.location.reload()
+            }, 1000);
+          }, 2000);
+
         },
         error: (err) => {
 
-          this.messageService.add({ severity:'error', summary: 'Borrar Aula', detail: 'Cancelada', life: 3000 });
+          this.messageService.add({ severity: 'error', summary: 'Borrar Aula', detail: 'Cancelada', life: 3000 });
         }
       })
-    
-  }
+
+    }
   }
 }

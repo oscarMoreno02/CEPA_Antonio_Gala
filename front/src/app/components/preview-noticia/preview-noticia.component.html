@@ -39,14 +39,14 @@
     </ng-template>
 
     @if(noticia.secciones!.length>0){
-        <div class="mt-0" style="margin-top: -50px;">
+        <div  class="mt-0" style="margin-top: -50px;max-width: 500px;">
          
 
             <p style="word-wrap: break-word;">{{noticia.secciones![0].texto}}</p>
         </div>
             @if(noticia.secciones!.length>1){
                 <ng-template pTemplate="footer">
-                    <a routerLink="/categorias/{{noticia.idCategoria}}/noticia/{{noticia.id}}">Leer mas</a>
+                    <a routerLink="/categoria/{{noticia.idCategoria}}/noticia/{{noticia.id}}">Leer mas</a>
                 </ng-template>
             }@else {
                 @if(noticia.secciones![0].enlaces){

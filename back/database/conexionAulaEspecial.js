@@ -117,7 +117,7 @@ class ConexionAulaEspecial {
         try {
             const task = new models.AulaEspecial(body)
             await task.save()
-            resultado = 1
+            resultado =task.id
         } catch (error) {
             throw error
         } finally {

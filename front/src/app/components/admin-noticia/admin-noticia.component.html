@@ -37,7 +37,13 @@
                         <td>{{categoria.nombre}}</td>
                     }
                 }
-                <td>{{ noticia.enlace }}</td>
+
+                @if(noticia.enlace!=undefined){ 
+                    <td><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
+                }@else {
+                    <td>[Sin enlace]</td>
+                }
+             
             </tr>
             
         </ng-template>

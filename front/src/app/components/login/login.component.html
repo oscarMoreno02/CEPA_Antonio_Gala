@@ -63,8 +63,8 @@
             </div>
     
         </div>
-        <div style="margin-top: 10px;" class="flex flex-row gap-4">
-            <div [innerHTML]="error"></div>
+        <div style="margin-top: 10px;color: red" class="flex flex-row gap-4">
+            <div class="error"  ><p id="errorLogin" style="color: red !important;">{{error}}</p></div>
         </div>
         <div style="margin-top: 20px; display: flex;gap:10px"  >
             <p-button [outlined]="true" severity="success" [outlined]="true" (click)="registro()">Registrarse</p-button>

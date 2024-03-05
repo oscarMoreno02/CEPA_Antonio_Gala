@@ -100,7 +100,7 @@ export class NuevaFranjaComponent implements OnInit {
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Crear Franja', detail: 'Completada', life: 3000 });
                 setTimeout(() => {
-                  console.log(data)
+                  window.location.reload()
                 }, 1000); 
               }, 1000); 
               
