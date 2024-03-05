@@ -55,7 +55,7 @@ export const routes: Routes = [
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
-{path:'categorias/:id/noticia/:noticia',component: NoticiaComponent},
+{path:'categoria/:id/noticia/:noticia',component: NoticiaComponent},
 
 {path:'noticia/contenido/:id',component: EditContentNoticiaComponent,
 canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
