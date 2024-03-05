@@ -11,6 +11,8 @@ export const environment = {
     urlLogin:'/login',
     urlRegistro:'/register',
     urlUsers:'/usuario',
+    urlRol:'/roles',
+    urlRolAsignado:'/rolesAsignados',
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',

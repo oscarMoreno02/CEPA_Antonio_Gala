@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewEncapsulation, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -28,7 +28,8 @@ import { FranjaService } from '../../services/franja.service';
   ],
   providers:[DialogService, MessageService, AulaService],
   templateUrl: './editar-franja.component.html',
-  styleUrl: './editar-franja.component.css'
+  styleUrl: './editar-franja.component.css',
+  encapsulation:ViewEncapsulation.None
 })
 export class EditarFranjaComponent {
 

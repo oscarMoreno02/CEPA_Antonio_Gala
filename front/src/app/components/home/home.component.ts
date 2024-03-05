@@ -1,15 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+
+import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
 import { finalize } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Evento } from '../../interface/evento';
 import { EventosService } from '../../services/eventos.service';
 import { PreviewEventosComponent } from "../preview-eventos/preview-eventos.component";
+
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    imports: [PreviewEventosComponent]
+    imports: [PreviewEventosComponent],
+  encapsulation:ViewEncapsulation.None
+
 })
 export class HomeComponent implements OnInit {
 

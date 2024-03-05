@@ -47,6 +47,7 @@ class ConexionAulaEspecial {
             this.desconectar()
         }
     }
+
     getAulaById = async (id) => {
         try {
             let resultado = [];
@@ -60,6 +61,23 @@ class ConexionAulaEspecial {
             throw error
         }
         finally {
+            this.desconectar()
+        }
+    }
+
+    getAulaByNombre = async (n) => {
+        try {
+            let resultado = []
+            this.conectar()
+            resultado = await models.AulaEspecial.findOne({where: { nombre: n }})
+            if (!resultado) {
+                console.log('error')
+                throw new Error('error')
+            }
+            return resultado
+        } catch (error) {
+            throw error
+        } finally {
             this.desconectar()
         }
     }
@@ -92,13 +110,14 @@ class ConexionAulaEspecial {
             this.desconectar()
         }
     }
+
     insertAula = async (body) => {
         let resultado = 0
         this.conectar()
         try {
             const task = new models.AulaEspecial(body)
             await task.save()
-            resultado = 1
+            resultado =task.id
         } catch (error) {
             throw error
         } finally {
@@ -106,6 +125,7 @@ class ConexionAulaEspecial {
         }
         return resultado
     }
+
     updateAula = async (id, body) => {
         try {
             let resultado = 0
@@ -119,6 +139,7 @@ class ConexionAulaEspecial {
             this.desconectar()
         }
     }
+    
     deleteAula = async (id) => {
         try {
             this.conectar();

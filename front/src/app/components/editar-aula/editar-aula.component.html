@@ -2,7 +2,7 @@
 <!-- //Óscar -->
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil" label="Editar"></p-button>
+  <p-button [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-pencil" label="Editar"></p-button>
   }
   <p-dialog header="Editar aula" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">
@@ -17,9 +17,9 @@
                 <small id="username-help1">Introduce un nombre para el nuevo aula </small>
 
         </div>
-        <div style="margin-top: 20px;" >
+        <div style="margin-top: 20px;display: flex; gap:10px" >
 
-            <app-confirm tipo="Guardar" icono="pi pi-plus" mensaje="¿Deseas actualizar este aula?" color="success" (confirmacion)="crear($event)"></app-confirm>
+            <app-confirm tipo="Guardar" icono="pi pi-save" mensaje="¿Deseas actualizar este aula?" color="success" (confirmacion)="crear($event)"></app-confirm>
             <app-confirm tipo="Eliminar" icono="pi pi-trash" mensaje="¿Deseas eliminar este aula?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
         </div>
     </div>

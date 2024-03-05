@@ -110,6 +110,13 @@ export class NuevoHorarioComponent implements OnInit {
        }else{
         this.estiloValidacionFranja=''
        }
+       if(this.validarFranja()==false){
+        valido=false
+          this.estiloValidacionFranja='ng-invalid ng-dirty'
+          this.messageService.add({ severity:'warn', summary: 'Añadir Horario', detail: 'Franja en conflicto con otra en uso', life: 3000 });
+       }else{
+        this.estiloValidacionFranja=''
+       }
     }
   
 
@@ -123,9 +130,26 @@ let valido = true
       if(f.franja!.id==this.franja!.id){
           valido = false
       }
+      
     }
   }
 
 return valido
+}
+
+validarFranja(): boolean {
+  let valido = true;
+
+  if (this.aula.horarios) {
+    for (const f of this.aula.horarios) {
+      if ((f.franja!.horaInicio < this.franja!.horaFin && this.franja!.horaFin <= f.franja!.horaFin) ||
+          (f.franja!.horaInicio <= this.franja!.horaInicio && this.franja!.horaInicio < f.franja!.horaFin)) {
+        valido = false;
+        break;
+      }
+    }
+  }
+
+  return valido;
 }
 }

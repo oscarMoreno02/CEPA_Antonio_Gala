@@ -4,8 +4,8 @@
 } */
 
 .p-menuitem-text{
-    color: rgb(0, 0, 0);
-    font-size: 15px;
+    /* color: rgb(52, 255, 73);
+    font-size: 15px; */
 }
 li {
     list-style: none;
@@ -13,18 +13,87 @@ li {
 @media (max-width: 960px) {
    .p-submenu-list {
         display:block;
+
     }
+    .p-menuitem-content {
+        /* background-color: #25422E; */
+    } 
+}
+.p-submenu-list {
+    /* background: #25422E; */
+    
+}
+a.p-ripple .p-element .p-menuitem-link .ng-star-inserted{
+    /* background-color:  solid greenyellow;
+    outline: none !important;
+    user-select: none !important; */
+}
+.p-menuitem-link{
+    /* background-color:  solid greenyellow; */
 }
 .p-menubar  {
     /* background-color: rgb(200, 16, 46); */
-    background-color:#ffffffdd;
-    border-radius: 10px;
-    box-shadow: 1px;
-} 
-html{
-    background-color:#ffffffdd;
-}
-.p-menuitem {
 
-    border-radius: 10px;
+  
+    background-color: rgba(255, 255, 255, 0.75); 
+    box-shadow: 0 0 5px 1px rgba(112, 103, 103, 0.25);
+  
+  background-repeat:no-repeat;
+  background-size: 100vw 600vh;
 } 
+
+.p-menuitem:hover {
+    /* background-color: #25422E;
+    box-shadow: 0 0 10px 1px rgba(225, 0, 0, 0.25);
+    color: white;
+    border-radius: 10px; */
+} 
+.p-menuitem-content:hover {
+    /* background-color: #376345;
+    box-shadow: 0 0 10px 1px rgba(225, 0, 0, 0.25);
+    color: white;
+    border-radius: 10px; */
+} 
+
+/* body{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(326deg,#25422E 1%, #55B95F 15%,#25422E 50%, #006400 100%);
+    background-repeat:no-repeat;
+    background-size: 100vw 600vh;
+} */
+
+.p-menuitem:hover {
+}
+
+
+
+.p-menuitem:hover,
+.p-menuitem:hover .p-menuitem-content {
+}
+.p-menuitem:hover,
+.p-menuitem:focus {
+
+}
+
+.p-menuitem-content:hover .p-menuitem-content,
+.p-menuitem-content:focus .p-menuitem-content {
+}
+.p-submenu-list .p-menuitem:not(:focus-within) {
+    /* background-color: #376345; */
+}
+.p-menubarsub{
+   
+}
+
+.p-menuitem > .p-menubar-sub {
+    
+}
+
+.p-ripple.p-element.p-menuitem-link.ng-star-inserted:hover {
+    /* background-color: rgb(0, 0, 7); */
+}
+.p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+    /* color: #634c4b; */
+  }
+ 

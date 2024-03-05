@@ -7,6 +7,7 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor() { }
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
       let peticion = request.clone()
+      console.log(peticion)
       const param = request.params.get('auth')
       if(param){
         console.log(peticion)

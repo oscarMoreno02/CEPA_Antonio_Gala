@@ -18,6 +18,8 @@ import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.
 import { EventosComponent } from './components/eventos/eventos.component';
 import { TusEventosComponent } from './components/tus-eventos/tus-eventos.component';
 import { AdminGaleriaComponent } from './components/admin-galeria/galeria.component';
+import { NoticiaComponent } from './components/noticia/noticia.component';
+
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -57,7 +59,7 @@ export const routes: Routes = [
 
 {path:'categoria/:id',component: NoticiasCategoriaComponent},
 
-{path:'categorias/:id/noticia/:noticia',component: NoticiasCategoriaComponent},
+{path:'categoria/:id/noticia/:noticia',component: NoticiaComponent},
 
 {path:'noticia/contenido/:id',component: EditContentNoticiaComponent,
 canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
