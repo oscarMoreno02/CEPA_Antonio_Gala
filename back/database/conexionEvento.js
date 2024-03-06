@@ -102,6 +102,69 @@ class ConexionEvento {
         }
         return resultado;
     }
+
+    plusMgEvento = async (id) => {
+        this.conectar();
+        let resultado;
+        try {
+            const evento = await models.Evento.findByPk(id);
+            if (!evento) {
+                throw new Error(`Evento con ID ${id} no encontrado`);
+            } else {
+                evento.mg = evento.mg + 1;
+                resultado = await evento.save();
+            }
+        } catch (error) {
+            console.error(`Error al actualizar evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+    
+    getNumAsistentesEvento = async  (id) => {
+        this.conectar();
+        let resultado;
+        try {
+            const evento = await models.Evento.findByPk(id); 
+            resultado = evento.numAsistentes
+        } catch (error) {
+            console.error(`Error al actualizar evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+
+    deleteAsistenteEvento = async (id) => {
+        this.conectar()
+        let resultado
+        try {
+            const evento = await models.Evento.findByPk(id)
+            evento.numAsistentes = evento.numAsistentes - 1
+            resultado = await evento.save()
+        } catch (error) {
+            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+
+    putAsistenteEvento = async (id) => {
+        this.conectar()
+        let resultado
+        try {
+            const evento = await models.Evento.findByPk(id)
+            evento.numAsistentes = evento.numAsistentes + 1
+            resultado = await evento.save()
+        } catch (error) {
+            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
 }
 
 module.exports = ConexionEvento;

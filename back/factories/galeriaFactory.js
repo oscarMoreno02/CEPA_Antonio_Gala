@@ -6,7 +6,7 @@ const galeriaFactory = async (ctos = 1) => {
     for (let i = 1; i <= ctos; i++) {
         let galeria = {
             idEvento: 1,
-            foto: `https://picsum.photos/id/237/200/300`,
+            foto: "1d26583f3f9e278d096740d30892c338.jpg",
             createdAt: new Date(),
             updatedAt: new Date()
         };

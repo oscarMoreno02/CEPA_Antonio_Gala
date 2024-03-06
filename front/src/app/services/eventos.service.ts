@@ -48,4 +48,25 @@ export class EventosService {
 
     )
   }
+
+  plusMgEvento(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/mg/'+id,body).pipe(
+
+    )
+  }
+
+  deletePlaza(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/eliminarPlaza/'+id,body).pipe(
+
+    )
+  }
+
+  putPlaza(id:number):Observable<any|undefined>{
+    let body = null
+    return this.http.put<any>(this.baseUrl+'/anadirPlaza/'+id, body).pipe(
+
+    )
+  }
 }

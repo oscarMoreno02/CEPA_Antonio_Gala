@@ -6,6 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
 //Óscar
+// Laura -> añadir tus eventos
 @Component({
   selector: 'app-profile-icon',
   standalone: true,
@@ -18,6 +19,7 @@ export class ProfileIconComponent implements OnInit, OnChanges {
   @Input() roles:Array<string>=[]
   items: MenuItem[];
   @Input() nombre='usuario'
+  id:number = 0
   constructor(private messageService: MessageService, private servicioAutenticacion:AuthService) {
       this.items = [
           {
@@ -43,6 +45,7 @@ ngOnInit(): void {
 
  this.nombre=this.servicioAutenticacion.getName()
  this.roles=this.servicioAutenticacion.getRoles()
+ this.id = this.servicioAutenticacion.getUid()
  this.crearMenu()
 }
 ngOnChanges(changes: SimpleChanges): void {
@@ -75,6 +78,12 @@ ngOnChanges(changes: SimpleChanges): void {
       })
       }
     }
+    menu.push({ separator: true },{
+      label: 'Tus Eventos', icon: 'pi pi-calendar', command: () => {
+        let ruta = 'eventos/tus-eventos/'+this.id
+        window.location.href=ruta
+     }
+    })
     menu.push({ separator: true },{
       label: 'Cerrar Sesion', icon: 'pi pi-power-off', command: () => {
       this.servicioAutenticacion.logout()
