@@ -9,11 +9,11 @@ const remoteController=require('../controllers/RemoteUploadsSeccionesController'
 const router = Router();
 
 
-router.post( '/',authMid.validarJWT,accessMid.esAdmin, validarArchivoSubir, remoteController.cargarArchivo );
+router.post( '/',authMid.validarJWT,accessMid.esAdmin, validarArchivoSubir, cargarArchivo );
 
-router.put('/:id',authMid.validarJWT,accessMid.esAdmin, validarArchivoSubir, remoteController.actualizarImagen )
+router.put('/:id',authMid.validarJWT,accessMid.esAdmin, validarArchivoSubir,actualizarImagen )
 
-router.delete('/:id',authMid.validarJWT,accessMid.esAdmin, remoteController.borrarImagen  )
+router.delete('/:id',authMid.validarJWT,accessMid.esAdmin, borrarImagen  )
 
 
 router.get('/:id', obtenerImagen  )  
