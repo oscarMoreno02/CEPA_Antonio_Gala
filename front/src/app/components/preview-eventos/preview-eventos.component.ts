@@ -5,6 +5,7 @@ import { ImageModule } from 'primeng/image';
 import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
 import { Evento } from '../../interface/evento';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-preview-eventos',
@@ -13,9 +14,12 @@ import { Evento } from '../../interface/evento';
   templateUrl: './preview-eventos.component.html',
   styleUrl: './preview-eventos.component.css'
 })
-export class PreviewEventosComponent{
+export class PreviewEventosComponent implements OnInit{
   @Input() evento!:Evento
   @Input() ruta!:String 
-  constructor(private router: Router){}
+  constructor(private router: Router,private authService:AuthService){}
   env=environment
+  ngOnInit(): void {
+    this.authService.clearAccess()
+  }
 }

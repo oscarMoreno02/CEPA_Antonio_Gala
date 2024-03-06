@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.component';
+import { AuthService } from '../../services/auth.service';
 @Component({
     selector: 'app-home',
     standalone: true,
@@ -31,9 +32,11 @@ export class HomeComponent implements OnInit {
   noticiaSubscripcion:Subscription=new Subscription
   constructor(
     private servicioEventos:EventosService,
-    private noticiaService:NoticiaService
+    private noticiaService:NoticiaService,
+    private authService:AuthService
   ){}
   ngOnInit(): void {
+    this.authService.clearAccess()
     this.servicioEventos.getAllEventos()
       .pipe(
         finalize(() => this.formatearSrc())
