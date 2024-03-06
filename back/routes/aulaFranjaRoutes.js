@@ -7,7 +7,7 @@ const { check } = require('express-validator')
 const { validateValues } = require('../helpers/validar-campos')
 const authMid = require('../middlewares/validarJWT')
 const accessMid = require('../middlewares/validarRoles')
-const aulaFranjaMid = require('../middlewares/aulaFranjaMid')
+// const aulaFranjaMid = require('../middlewares/aulaFranjaMid')
 
 router.get('/', controller.listAllFranjas)
 router.get('/:id', controller.listFranja)
@@ -17,14 +17,14 @@ router.post('/', [
     check('horaInicio').isTime().notEmpty(),
     check('horaFin').isTime().notEmpty(),
     validateValues
-], authMid.validarJWT, accessMid.esJefeDeEstudios, aulaFranjaMid.horaInicioSuperiorHoraFinal, controller.createFranja)
+], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.createFranja)
 
 router.put('/:id', [
     check('turno').notEmpty(),
     check('horaInicio').isTime().notEmpty(),
     check('horaFin').isTime().notEmpty(),
     validateValues
-], authMid.validarJWT, accessMid.esJefeDeEstudios, aulaFranjaMid.horaInicioSuperiorHoraFinal, controller.editFranja)
+], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.editFranja)
 
 router.delete('/:id', authMid.validarJWT, accessMid.esJefeDeEstudios, controller.removeFranja)
 

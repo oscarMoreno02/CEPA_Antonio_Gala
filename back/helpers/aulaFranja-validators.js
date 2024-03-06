@@ -6,7 +6,7 @@ const ConexionFranjas = require('../database/conexionAulaFranja')
 const aulaFranjaExiste = (idFranja) => {
     return new Promise((resolve, reject) => {
         const conx = new ConexionFranjas()
-        conx.getAulaById(idFranja)
+        conx.getAllFranjas(idFranja)
         .then(msg => {
             console.log(msg)
             resolve(true)
