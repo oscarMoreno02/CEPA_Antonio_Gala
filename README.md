@@ -1,5 +1,127 @@
 # CEPA_Antonio_Gala
+
+### Integrantes
+- [Jaime Ortega Núñez](https://github.com/jornu99)
+- [Laura María Pedraza Gómez](https://github.com/lmexe18)
+- [Óscar Moreno](https://github.com/oscarMoreno02)
+- [Raúl Gutiérrez Merino](https://github.com/pinoxx64)
+
 ## - Base URL: `http://localhost:9090/api`
+
+### Aulas especiales
+
+#### Obtener todas las aulas 
+
+- Verbo: `GET`
+- URL: `/aulas/`
+- Descripción: Retorna todas las aulas disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "nombre": "string",
+            "dependiente": int / null ,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+## ---------------------------------------------------------
+
+### Asistencia
+
+#### Obtener todas las asistencias
+
+- Verbo: `GET`
+- URL: `/asistencia/`
+- Descripción: Retorna todas las asistencias disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Obtener asistencia por id
+
+- Verbo: `GET`
+- URL: `/asistencia/{int}`
+- Descripción: Retorna una asistencia disponible buscando por su id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Obtener asistencias de usuario
+
+- Verbo: `GET`
+- URL: `/asistencia/asistenciasUsuario/{int}`
+- Descripción: Retorna las asistencias de un usuario.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Obtener asistencias de evento
+
+- Verbo: `GET`
+- URL: `/asistencia/asistenciasEvento/{int}`
+- Descripción: Retorna las asistencias de un evento.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Insertar una nueva asistencia
+
+- Verbo: `POST`
+- URL: `/asistencia/`
+- Descripción: Insertar una nueva asistencia.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Actualizar una asistencia
+
+- Verbo: `PUT`
+- URL: `/asistencia/{int}`
+- Descripción: Actualizar una asistencia existente.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+#### Eliminar una asistencia
+
+- Verbo: `DELETE`
+- URL: `/asistencia/{int}`
+- Descripción: Eliminar una asistencia según su ID.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+            "idUsuario: int
+        }
+    ```
+
+## ---------------------------------------------------------
 
 ### Categorías
 
@@ -10,7 +132,6 @@
 - Descripción: Retorna todas las categorías disponibles.
 - ``Ejemplo de respuesta``:
     ```
-    
         {
             "id": int,
             "nombre": "string",
@@ -18,16 +139,15 @@
             "createdAt": date,
             "updatedAt": date
         }
-    
     ```
-    #### Obtener categoría por id
+
+#### Obtener categoría por id
 
 - Verbo: `GET`
 - URL: `/categorias/{int}`
 - Descripción: Retorna una categoria disponible buscando por su id.
 - ``Ejemplo de respuesta``:
     ```
-    
         {
             "id": int,
             "nombre": "string",
@@ -35,8 +155,8 @@
             "createdAt": date,
             "updatedAt": date
         }
-    
     ```
+
 #### Obtener categoría por nombre
 
 - Verbo: `GET`
@@ -44,7 +164,6 @@
 - Descripción: Retorna una categoria disponible buscando por su nombre.
 - ``Ejemplo de respuesta``:
     ```
-    
         {
             "id": int,
             "nombre": "string",
@@ -52,7 +171,6 @@
             "createdAt": date,
             "updatedAt": date
         }
-    
     ```
 
 #### Obtener todas las categorías con todas las subcategorias
@@ -86,6 +204,7 @@
         .............
     ]
     ```
+
 #### Obtener categoria junto con las subcategorias directas
 
 - Verbo: `GET`
@@ -93,7 +212,6 @@
 - Descripción: Retorna  una categoría juntos con las  subcategorias directas.
 - ``Ejemplo de respuesta``:
     ```
-    
         {
             "id": int,
             "nombre": "string",
@@ -111,26 +229,21 @@
                 .............
             ]
         },
-        
     ```
-
 
 #### Insertar una nueva categoría
 
 - Método: `POST`
 - URL: `/categorias/`
 - Descripción: Inserta una nueva categoría.
-
 - ``Ejemplo de solicitud``:
     ```
     {
-            "id": int,
-            "nombre": "string",
-            "dependiente": int / null 
+        "id": int,
+        "nombre": "string",
+        "dependiente": int / null 
     }
     ```
-
-
 
 #### Actualizar una categoría
 
@@ -141,9 +254,9 @@
 ``Ejemplo de solicitud``:
     ```
     {
-            "id": int,
-            "nombre": "string",
-            "dependiente": int / null 
+        "id": int,
+        "nombre": "string",
+        "dependiente": int / null 
     }
     ```
 
@@ -153,10 +266,7 @@
 - URL: `/categorias/{int}`
 - Descripción: Elimina una categoría existente según su ID.
 
-
-
-
-
+## ---------------------------------------------------------
 
 ### Noticias
 
@@ -179,18 +289,15 @@
         },
         .............
     ]
-   
-    
     ```
-    #### Obtener noticia por id
+
+#### Obtener noticia por id
 
 - Verbo: `GET`
 - URL: `/noticias/{int}`
 - Descripción: Retorna una noticia si esta disponible buscando su id.
-
 - ``Ejemplo de respuesta``
     ```
-    
        {
             "id": {int},
             "titulo": {string}
@@ -200,8 +307,8 @@
             "createdAt": {date},
             "updatedAt": {date}
         }
-    
     ```
+
 #### Obtener todas las noticias por categpria
 
 - Verbo: `GET`
@@ -221,7 +328,6 @@
         },
         .............
     ]
-    
     ```
 
 #### Obtener todas las noticias junto con las secciones y los enlaces
@@ -267,6 +373,7 @@
         .............
     ]
     ```
+
 #### Obtener una  noticia junto con las secciones y los enlaces
 
 - Verbo: `GET`
@@ -274,7 +381,6 @@
 - Descripción: Retorna  una noticia junto con las  secciones y sus enlaces.
 - ``Ejemplo de respuesta``:
     ```
-    
         {
             "id": {int},
             "titulo": {string}
@@ -307,28 +413,23 @@
                 .............
             ]
         }
-        
     ```
-
 
 #### Insertar una nueva noticia
 
 - Método: `POST`
 - URL: `/noticias/`
 - Descripción: Inserta una nueva noticia.
-
 - ``Ejemplo de solicitud``:
     ```
     {
-            "id": {int},
-            "titulo": {string}
-            "enlace": {url},
-            "idCategoria":{int},
-            "foto": "{url}"
+        "id": {int},
+        "titulo": {string}
+        "enlace": {url},
+        "idCategoria":{int},
+        "foto": "{url}"
     }
     ```
-
-
 
 #### Actualizar una noticia
 
@@ -339,11 +440,11 @@
 ``Ejemplo de solicitud``:
     ```
     {
-            "id": {int},
-            "titulo": {string}
-            "enlace": {url},
-            "idCategoria":{int},
-            "foto": "{url}",
+        "id": {int},
+        "titulo": {string}
+        "enlace": {url},
+        "idCategoria":{int},
+        "foto": "{url}",
     }
     ```
 
@@ -353,7 +454,7 @@
 - URL: `/noticias/{int}`
 - Descripción: Elimina una noticia existente según su ID.
 
-
+## ---------------------------------------------------------
 
 ### Secciones
 
@@ -366,28 +467,25 @@
     ```
     [
         {
-                "id": {int},
-                "idNoticia": {int},
-                "titulo": {string},
-                "texto": {int},
-                "foto": {url},
-                "createdAt": {date},
-                "updatedAt": {date}
+            "id": {int},
+            "idNoticia": {int},
+            "titulo": {string},
+            "texto": {int},
+            "foto": {url},
+            "createdAt": {date},
+            "updatedAt": {date}
         },
         ...........
-    ]
-   
-    
+    ] 
     ```
-    #### Obtener sección por id
+
+#### Obtener sección por id
 
 - Verbo: `GET`
 - URL: `/secciones/{int}`
 - Descripción: Retorna una sección si esta disponible buscando su id.
-
 - ``Ejemplo de respuesta``
     ```
-    
        {
             "id": {int},
             "idNoticia": {int},
@@ -397,8 +495,8 @@
             "createdAt": {date},
             "updatedAt": {date}
         }
-    
     ```
+
 #### Obtener seccion por noticia
 
 - Verbo: `GET`
@@ -407,7 +505,6 @@
 ``Ejemplo de respuesta``
     ```
     [
-
         {
             "id": {int},
             "idNoticia": {int},
@@ -449,12 +546,11 @@
                 },
                 .............
             ]
-                
         },
         .........
-
     ]
     ```
+
 #### Obtener una  sección junto con sus enlaces
 
 - Verbo: `GET`
@@ -482,28 +578,23 @@
                 .............
             ]
         }
-        
     ```
-
 
 #### Insertar una nueva sección
 
 - Método: `POST`
 - URL: `/seccion/`
 - Descripción: Inserta una nueva sección.
-
 - ``Ejemplo de solicitud``:
     ```
     {
-            "id": {int},
-            "idNoticia": {int},
-            "titulo": {string},
-            "texto": {int},
-            "foto": {url}
+        "id": {int},
+        "idNoticia": {int},
+        "titulo": {string},
+        "texto": {int},
+        "foto": {url}
     }
     ```
-
-
 
 #### Actualizar una seccion
 
@@ -514,12 +605,11 @@
 ``Ejemplo de solicitud``:
     ```
     {
-            "id": {int},
-            "idNoticia": {int},
-            "titulo": {string},
-            "texto": {int},
-            "foto": {url},
-      
+        "id": {int},
+        "idNoticia": {int},
+        "titulo": {string},
+        "texto": {int},
+        "foto": {url},
     }
     ```
 
@@ -529,7 +619,7 @@
 - URL: `/seccion/{int}`
 - Descripción: Elimina una sección existente según su ID.
 
-
+## ---------------------------------------------------------
 
 ### Enlaces
 
@@ -542,36 +632,34 @@
     ```
     [
         {
-                "id": {int},
-                "idSeccion": {int},
-                "textoClave": {int},
-                "url": {string}",
-                "createdAt": {date},
-                "updatedAt": {date}
+            "id": {int},
+            "idSeccion": {int},
+            "textoClave": {int},
+            "url": {string}",
+            "createdAt": {date},
+            "updatedAt": {date}
         },
         .............
     ]
-   
-    
     ```
-    #### Obtener enlace por id
+
+#### Obtener enlace por id
 
 - Verbo: `GET`
 - URL: `/enlaces/{int}`
 - Descripción: Retorna un enlace si esta disponible buscando su id.
-
 - ``Ejemplo de respuesta``
     ```
          {
-                "id": {int},
-                "idSeccion": {int},
-                "textoClave": {int},
-                "url": {string}",
-                "createdAt": {date},
-                "updatedAt": {date}
+            "id": {int},
+            "idSeccion": {int},
+            "textoClave": {int},
+            "url": {string}",
+            "createdAt": {date},
+            "updatedAt": {date}
         }
-    
     ```
+
 #### Obtener enlaces por sección
 
 - Verbo: `GET`
@@ -590,17 +678,13 @@
             },
             .......
         ]
-    
     ```
-
-
 
 #### Insertar un nuevo enlace
 
 - Método: `POST`
 - URL: `/enlaces/`
 - Descripción: Inserta un nuevo enlace.
-
 - ``Ejemplo de solicitud``:
     ```
         {
@@ -611,14 +695,11 @@
         }
     ```
 
-
-
 #### Actualizar un enlace
 
 - Método: `PUT`
 - URL: `/enlaces/{int}`
 - Descripción: Actualiza un enlace existente.
-
 ``Ejemplo de solicitud``:
     ```
    {
@@ -628,10 +709,206 @@
         "url": {string}",
     }
     ```
+
 #### Eliminar un enlace
 
 - Método: `DELETE`
 - URL: `/enlaces/{int}`
 - Descripción: Elimina una enlace existente según su ID.
 
+## ---------------------------------------------------------
 
+### Usuario
+
+#### Obtener todos los usuarios
+
+- Verbo: `GET`
+- URL: `/usuario/`
+- Descripción: Retorna todos los usuarios disponibles.
+- ``Ejemplo de respuesta``
+    ```
+    [
+        {
+            "id": {int},
+            "nombre": {string},
+            "email": {string},
+            "password": {string}",
+            "createdAt": {date},
+            "updatedAt": {date}
+        },
+        .............
+    ]
+    ```
+
+#### Obtener usuario por id
+
+- Verbo: `GET`
+- URL: `/usuario/{int}`
+- Descripción: Retorna un usuario si esta disponible buscando su id.
+- ``Ejemplo de respuesta``
+    ```
+         {
+            "id": {int},
+            "nombre": {string},
+            "email": {string},
+            "password": {string}",
+            "createdAt": {date},
+            "updatedAt": {date}
+        }
+    ```
+
+#### Insertar un nuevo usuario
+
+- Método: `POST`
+- URL: `/usuario/`
+- Descripción: Inserta un nuevo usuario.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "nombre": {string},
+            "email": {string},
+            "password": {string}
+        }
+    ```
+
+#### Actualizar un usuario
+
+- Método: `PUT`
+- URL: `/usuario/{int}`
+- Descripción: Actualiza un usuario existente.
+``Ejemplo de solicitud``:
+    ```
+   {
+        "nombre": {string},
+        "email": {string},
+        "password": {string}
+    }
+    ```
+
+#### Eliminar un usuario
+
+- Método: `DELETE`
+- URL: `/usuario/{int}`
+- Descripción: Elimina un usuario existente según su ID.
+
+## ---------------------------------------------------------
+
+### Roles
+
+#### Obtener todos los roles
+
+- Verbo: `GET`
+- URL: `/roles/`
+- Descripción: Retorna todos los roles disponibles.
+- ``Ejemplo de respuesta``
+    ```
+    [
+        {
+            "id": {int},
+            "nombre": {string},
+            "createdAt": {date},
+            "updatedAt": {date}
+        },
+        .............
+    ]
+    ```
+
+#### Obtener rol por id
+
+- Verbo: `GET`
+- URL: `/roles/{int}`
+- Descripción: Retorna un rol si esta disponible buscando su id.
+- ``Ejemplo de respuesta``
+    ```
+         {
+            "id": {int},
+            "nombre": {string},
+            "createdAt": {date},
+            "updatedAt": {date}
+        }
+    ```
+
+#### Insertar un nuevo rol
+
+- Método: `POST`
+- URL: `/roles/`
+- Descripción: Inserta un nuevo rol.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "nombre": {string}
+        }
+    ```
+
+#### Actualizar un rol
+
+- Método: `PUT`
+- URL: `/roles/{int}`
+- Descripción: Actualiza un rol existente.
+``Ejemplo de solicitud``:
+    ```
+        {
+            "nombre": {string}
+        }
+    ```
+
+#### Eliminar un rol
+
+- Método: `DELETE`
+- URL: `/roles/{int}`
+- Descripción: Elimina un rol existente según su ID.
+
+## ---------------------------------------------------------
+
+### Roles asignados
+
+#### Obtener todos los roles asignados por usuario
+
+- Verbo: `GET`
+- URL: `/rolesAsignados/{int}`
+- Descripción: Retorna todos los roles asignados disponibles por usuario buscado por id.
+- ``Ejemplo de respuesta``
+    ```
+    [
+        {
+            "id": {int},
+            "idUser": {int},
+            "idRol": {string},
+            "createdAt": {date},
+            "updatedAt": {date}
+        },
+        .............
+    ]
+    ```
+
+#### Insertar un nuevo rol asignado
+
+- Método: `POST`
+- URL: `/rolesAsignados/`
+- Descripción: Inserta un nuevo rol asignado.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idUser": {string},
+            "idRol": {string}
+        }
+    ```
+
+#### Actualizar un rol asignado
+
+- Método: `PUT`
+- URL: `/rolesAsignados/{int}`
+- Descripción: Actualiza un rol asignado existente.
+``Ejemplo de solicitud``:
+    ```
+        {
+            "idUser": {string},
+            "idRol": {string}
+        }
+    ```
+
+#### Eliminar un rol asignado
+
+- Método: `DELETE`
+- URL: `/rolesAsignados/{int}`
+- Descripción: Elimina un rol asignado existente según su ID.
