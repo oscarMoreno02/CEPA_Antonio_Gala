@@ -53,7 +53,7 @@ export class NuevoEventosComponent{
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
-    private socket : EventoWebsocketService
+    private socket : EventoWebsocketService,
     private servicioFoto: FotoCartelEventosService
   ) {}
   
@@ -188,6 +188,7 @@ export class NuevoEventosComponent{
                     this.nuevoEvento.fotoCartel= ''
                     this.nuevoEvento.visibilidad= false;
                   });
+                  this.socket.sendNoticifacion(this.nuevoEvento)
                 },
                 error: (error) => {
                   this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});
