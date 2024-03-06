@@ -8,7 +8,6 @@ const aulaFranjaExiste = (idFranja) => {
         const conx = new ConexionFranjas()
         conx.getAllFranjas(idFranja)
         .then(msg => {
-            console.log(msg)
             resolve(true)
         })
         .catch(err => {

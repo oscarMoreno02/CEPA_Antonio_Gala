@@ -67,7 +67,6 @@ class ConexionSecciones{
             this.conectar();
             resultado = await models.Seccion.findAll({where: { idNoticia: n}});
             if (!resultado) {
-                console.log('error')
                 throw new Error('error');
             }
             return resultado;

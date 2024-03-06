@@ -121,11 +121,10 @@ export class EditarUsuariosComponent implements OnInit {
           next: (data:any)=> {
             setTimeout(()=>{
               this.messageService.add({severity:'success', summary:'Actualizar usuario', detail:'Completada', life:3000})
-              console.log(this.usuarios)
-              console.log(this.usuario)
+          
               for(let i=0;i<this.usuario.length;i++){
                 if(this.usuario[i].id == this.usuarios.id){
-                  console.log("dentro")
+              
                   this.usuario[i]=this.usuarios
                   this.visible=false
                 }
@@ -134,7 +133,7 @@ export class EditarUsuariosComponent implements OnInit {
             }, 1000)
           },
           error: (err) => {
-            console.log(err)
+      
             this.messageService.add({ severity:'error', summary: 'Actualizar usuario', detail: 'Error al actualizar el usuario, inténtelo de nuevo', life: 3000 });
           }
         })
@@ -153,7 +152,7 @@ export class EditarUsuariosComponent implements OnInit {
         this.usuarios.password = usu.password
       },
       error: (e) => {
-        console.log(e)
+      
       }
     })
   }
@@ -173,7 +172,7 @@ export class EditarUsuariosComponent implements OnInit {
      }, 1000)
    },
    error: (err) => {
-     console.log(err)
+  
      this.messageService.add({ severity:'error', summary: 'Eliminar usuario', detail: 'Error al eliminar el usuario, inténtelo de nuevo', life: 3000 });
    }
    })

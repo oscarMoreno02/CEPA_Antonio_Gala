@@ -34,7 +34,7 @@ const cargarArchivo = async(req, res = response) => {
 const borrarImagen = async(req, res = response ) => {
     let idborrado = req.params.id;
     idborrado = idborrado.split('.')
-    console.log(idborrado);
+
     try {
         const uploaded = await cloudinary.uploader.destroy(process.env.CARPETAFOTOSSECCIONES + '/' + idborrado[0]);
 
@@ -52,7 +52,7 @@ const actualizarImagen = async(req, res = response ) => {
 
     let idborrado = req.params.id;
     idborrado = idborrado.split('.')
-    console.log(idborrado);
+
     try {
         const uploaded = await cloudinary.uploader.destroy(process.env.CARPETAFOTOSSECCIONES + '/' + idborrado[0]);
     } catch (error) {
@@ -78,7 +78,7 @@ const actualizarImagen = async(req, res = response ) => {
 
 
         } catch (msg) {
-            console.log(msg)
+   
             res.status(400).json({
                 msg
             });
@@ -94,7 +94,7 @@ const obtenerImagen = async(req, res = response ) => {
     const nombreArchivo = req.params.id ; 
     if (nombreArchivo) {
         const pathImagen = path.join( __dirname, '../uploads', process.env.CARPETAFOTOSSECCIONES, nombreArchivo );
-        console.log(pathImagen);
+
         if ( fs.existsSync( pathImagen ) ) {
             return res.sendFile( pathImagen )
         }

@@ -32,7 +32,7 @@ export class VistaEventosComponent implements OnInit{
           this.eventos = eventos;
         },
         error:(err)=>{
-          console.log(err)
+          
         }
       })
   }

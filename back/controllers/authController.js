@@ -10,7 +10,7 @@ const login =  (req, res = response) => {
         const conx = new Conexion();
         u = conx.checkLogin(email)    
             .then( usu => {
-                console.log(usu.password)
+              
                 bcrypt.compare(password, usu.password, (err, result) => {
                     if (result) {
                         conx.getRolUserId(usu.id)
@@ -36,7 +36,7 @@ const login =  (req, res = response) => {
             });
     }
     catch(error){
-        console.log(error);
+      
         res.status(500).json({'msg':'Error en el servidor.'});
     }
     
@@ -47,7 +47,7 @@ const register =  (req, res = response) => {
         const conx = new Conexion();
         conx.postUsuarios(req.body)    
         .then( usu => {
-            console.log(usu)
+       
             let data={
                 idUser: usu,
                 idRol: 4
@@ -69,7 +69,7 @@ const register =  (req, res = response) => {
             });
     }
     catch(error){
-        console.log(error);
+       
         res.status(500).json({'msg':'Error en el servidor.'});
     }
     

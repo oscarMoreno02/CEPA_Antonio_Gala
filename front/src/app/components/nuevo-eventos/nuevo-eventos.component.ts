@@ -95,7 +95,7 @@ export class NuevoEventosComponent{
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+      
     } else {
       this.formularioFoto = null
     }

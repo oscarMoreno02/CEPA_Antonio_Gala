@@ -141,7 +141,7 @@ export class EditarEventoComponent{
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+     
     } else {
       this.formularioFoto = null
     }
@@ -166,7 +166,7 @@ export class EditarEventoComponent{
           this.eventoModal.numAsistentes = ev.numAsistentes
       },
       error: (err) => {
-        console.log(err)
+     
       }  
     })
   }
@@ -211,7 +211,7 @@ export class EditarEventoComponent{
         }, 1000)
       },
       error: (err) => {
-        console.log(err)
+   
         this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
       }
       })

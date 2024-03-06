@@ -14,7 +14,7 @@ const listAllReservas = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json()
         })
 }
@@ -26,7 +26,7 @@ const listReserva = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite una reserva con ese id')
         })
 }
@@ -38,7 +38,7 @@ const createReserva = (req, res = response) => {
             res.status(201).json('Reserva registrada correctamente')
         })
         .catch(err => {
-            console.log(err)
+       
             res.status(203).json('Error en el registro')
         })
 }
@@ -50,7 +50,7 @@ const editReserva = (req, res = response) => {
             res.status(202).json('Actualizado correctamente')
         })
         .catch(err => {
-            console.log(err);
+   
             res.status(203).json('Error al actualizar')
         });
 
@@ -66,7 +66,7 @@ const removeReserva = async (req, res = response) => {
         .then(msg => {
             res.status(202).json('Exito en la eliminacion')
             if (notify === 'true') {
-                console.log('entra')
+
                 try {
                     mailBody = {
                         horario: reserva.horario.franja.horaInicio + ' - ' + reserva.horario.franja.horaFin,
@@ -74,17 +74,17 @@ const removeReserva = async (req, res = response) => {
                         aula: reserva.aula.nombre,
                         email: reserva.profesor.email
                     }
-                    console.log(mailBody)
+            
                     mailHelper.enviarCorreo(mailBody)
                 } catch (err) {
-                    console.log(err)
+        
                 }
             } else {
-                console.log('no entra')
+       
             }
         })
         .catch(err => {
-            console.log(err)
+          
             res.status(203).json('Error en la eliminacion')
         })
 
@@ -97,7 +97,7 @@ const listAllReservasOfClaseWithData = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+         
             res.status(404).json()
         })
 }
@@ -111,7 +111,7 @@ const listAllReservasOfProfesorWithData = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json()
         })
 }
@@ -123,7 +123,7 @@ const listAllReservasWithData = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+  
             res.status(404).json()
         })
 }

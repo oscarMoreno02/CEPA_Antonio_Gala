@@ -19,7 +19,6 @@ const aulaFranjaFactory = async (ctos = 1) => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        console.log(i)
         factory.push(aulaFranja)
     }
     return factory

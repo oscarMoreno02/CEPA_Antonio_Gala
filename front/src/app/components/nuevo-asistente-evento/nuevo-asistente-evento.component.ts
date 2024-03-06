@@ -76,7 +76,6 @@ export class NuevoAsistenteEventoComponent implements OnInit {
 
   cerrar(): void {
     this.cerrarModal.emit();
-    console.log("Usuarios modal "+this.usuarios)
   }
 
   validarEmail(email:string){

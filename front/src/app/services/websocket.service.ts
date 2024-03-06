@@ -20,12 +20,12 @@ constructor(private message:MessageService) {
 })
 ;
 this.socket.on("connect", () => {
-  console.log(this.socket.id);
+ 
 });
 
 
 this.socket.on("recibir-notificacion", (data:Noticia) => {
-  console.log(data)
+
   this.message.add({ severity: 'info', id:'unique-message-id', summary: 'Nueva noticia', detail:`<a href="${data.titulo}" target="_blank">${data.titulo}</a>`, life: 6000 });
   setTimeout(() => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');
@@ -43,7 +43,7 @@ this.socket.on("recibir-notificacion", (data:Noticia) => {
 
 
 this.socket.on("enviar-evento", (data:Evento) => {
-  console.log(data)
+
   this.message.add({ severity: 'info', id:'unique-message-id', summary: 'Nuevo Evento', detail:`<a href="${data.nombre}" target="_blank">${data.nombre}</a>`, life: 6000 });
   setTimeout(() => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');

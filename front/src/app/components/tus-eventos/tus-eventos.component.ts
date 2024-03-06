@@ -44,7 +44,7 @@ export class TusEventosComponent implements OnInit {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam){
       this.idUsuario = +idParam
-      console.log(this.idUsuario)
+
       this.servicioAsistencias.getAsistenciasUsuario(this.idUsuario).subscribe({
         next: (asistencias:any) => {
           for (var i = 0; i<asistencias.length ; i++){

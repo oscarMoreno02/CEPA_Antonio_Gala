@@ -68,7 +68,7 @@ export class FechaReservasComponent {
     this.visible = true;
   }
   buscar() {
-    console.log(this.date)
+
     this.subscripcionSeccion = this.servicioHorarios.getAllHorariosOfAulaWithReservas(
       this.id,
       this.date.getDate(),
@@ -78,7 +78,7 @@ export class FechaReservasComponent {
       next: (data: Array<Horario>) => {
         this.horarios = data
         this.newHorarios.emit(this.horarios)
-        console.log(data)
+    
         this.visible = false
         this.day = this.date.getDate()
         this.month = this.date.getMonth()+1

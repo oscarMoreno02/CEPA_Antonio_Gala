@@ -5,7 +5,6 @@ const ConexionAulas = require('../database/conexionAulaEspecial')
 
 const nombreEnUsoAula = (req, res, next) => {
     const conx = new ConexionAulas()
-    console.log(req.params.id)
     conx.getAulaById(req.params.id)
     .then(data => {
         if (data.nombre.toLowerCase() == req.body.nombre.toLowerCase()) {

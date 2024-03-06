@@ -109,9 +109,7 @@ class ConexionAulaHorario {
             const task = new models.AulaHorario(body)
             await task.save()
             return task.id
-            console.log(resultado)
-            console.log(task)
-            return resultado
+    
         } catch (error) {
             throw error
         } finally {

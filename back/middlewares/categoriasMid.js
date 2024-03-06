@@ -15,7 +15,6 @@ const mismoDependiente = (req, res, next) => {
 const nombreEnUso = (req, res, next) => {
 
     const conexion= new Conexion()
-    console.log(req.params.id)
     conexion.getCategoriaById(req.params.id)
     .then(data=>{
             if(data.nombre==req.nombre){
@@ -32,7 +31,6 @@ const nombreEnUso = (req, res, next) => {
             }
     })
     .catch(err=>{
-        console.log(err)
         res.status(400).json({msg:'No exite una tarea con ese id'})
     })
 }

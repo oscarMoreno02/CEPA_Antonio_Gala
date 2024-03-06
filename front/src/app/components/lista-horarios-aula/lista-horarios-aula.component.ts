@@ -58,7 +58,7 @@ export class ListaHorariosAulaComponent implements OnInit {
       this.subscripcionHorarios = this.servicioAulas.getAulaWithData(this.idAula).subscribe({
         next: (data: Aula) => {
           this.aula=data
-          console.log(data)
+        
         },
         error: (err) => {
         }

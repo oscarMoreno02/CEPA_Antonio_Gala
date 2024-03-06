@@ -39,10 +39,10 @@ export class UsersComponent {
     this.subscriptionUsers = this.servicioUsers.usuariosGet().subscribe({
       next: (data: Array<Users>) => {
         this.listaUsers=data
-        console.log(data)
+   
       },
       error: (e) => {
-        console.log(e)
+
       }
     })
   }

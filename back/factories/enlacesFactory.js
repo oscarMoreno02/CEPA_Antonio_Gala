@@ -8,7 +8,6 @@ const enlacesFactory = async (ctos) => {
 
     for(let i = 1; i <= ctos; i++) {
         for(let x = 0; x < lista.length; x++) {
-            console.log(lista[x].texto)
         let enlace = 
             {
             textoClave: lista[x].texto,
@@ -17,7 +16,6 @@ const enlacesFactory = async (ctos) => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        console.log('llega')
         factory.push(enlace)
         }   
     }

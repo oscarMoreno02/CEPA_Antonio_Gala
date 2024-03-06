@@ -7,7 +7,6 @@ const ConexionSecciones = require('../database/conexionSecciones');
        
         conx.getSeccionById(idSeccion)
         .then(msg => {
-          console.log(msg)
           resolve(true)
         })
         .catch(err => {
