@@ -128,7 +128,13 @@ userroles:Array<string>=[]
         this.listaCategorias = data
 
         this.items = this.crearMenu(this.listaCategorias)
+        this.items?.unshift({
+          label: 'EVENTOS',
+          command:()=>{this.router.navigate(['/eventos'])},
+          replaceUrl:true,
+        })
         this.items?.unshift({ label: 'Inicio',command: () => { this.router.navigate(['']) }, })
+
       },
       error: (err) => {
     
@@ -158,12 +164,8 @@ userroles:Array<string>=[]
 
       l.push(item);
     }
-    let item: MenuItem = {
-      label: 'EVENTOS',
-      command:()=>{this.router.navigate(['/eventos'])},
-      replaceUrl:true,
-    }
-    l.push(item)
+    
+
     return l
   }
   login(b: boolean) {

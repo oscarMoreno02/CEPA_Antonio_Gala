@@ -18,8 +18,13 @@
             </div>
         
             <div class="flex flex-column">
-                <label for="username2">Foto</label>
-                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" >
+                <label for="archivo" class="boton-bonito">
+                    Subir foto
+                  </label>
+                  <input #archivo id="archivo" type="file" class="form-control" accept="image/*" (change)="uplodadFoto($event)" hidden>
+                  
+                <!-- <label for="username2">Foto</label> -->
+                    <!-- <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" > -->
                     @if(fotoPreview){
                         <p-button [raised]="true" severity="warning" [outlined]="true" (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
                     }
