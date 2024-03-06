@@ -2,7 +2,7 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
   <!--@if(tipo==0){-->
-  <p-button (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
+  <p-button [raised]="true" severity="success" [outlined]="true" (click)="showDialog()" icon="pi pi-plus" label="Nueva"></p-button>
   <!--}-->
   <p-dialog header="Crear nuevo usuario" [(visible)]="visible" [modal]="true" 
     [draggable]="false" [resizable]="false">

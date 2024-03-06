@@ -21,9 +21,9 @@ class ConexionGaleria {
 
     conectar() {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+           
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+         
         });
     }
 
@@ -31,11 +31,11 @@ class ConexionGaleria {
         process.on('SIGINT', () => {
             this.db.close()
                 .then(() => {
-                    console.log('Connection has been closed successfully.');
+               
                     process.exit(0);
                 })
                 .catch((error) => {
-                    console.error('Error closing the database connection: ', error);
+                    
                     process.exit(1);
                 });
         });
@@ -47,7 +47,7 @@ class ConexionGaleria {
         try {
             resultado = await models.Galeria.findAll();
         } catch (error) {
-            console.error('Error al obtener la galeria: ', error);
+            
         } finally {
             this.desconectar();
         }
@@ -60,7 +60,7 @@ class ConexionGaleria {
         try {
             resultado = await models.Galeria.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener la galería con ID ${id}: `, error);
+            
         } finally {
             this.desconectar();
         }
@@ -73,7 +73,7 @@ class ConexionGaleria {
         try {
             resultado = await models.Galeria.create(body);
         } catch (error) {
-            console.error('Error al crear la galeria: ', error);
+          
         } finally {
             this.desconectar();
         }
@@ -90,7 +90,7 @@ class ConexionGaleria {
             }
             resultado = await galeria.destroy();
         } catch (error) {
-            console.error(`Error al eliminar la galeria con ID ${id}: `, error);
+      
         } finally {
             this.desconectar();
         }
@@ -107,7 +107,7 @@ class ConexionGaleria {
                 }
             })
         } catch (error){
-            console.error('Error al obtener la galeria del evento: ',error)
+         
         } finally {
             this.desconectar()
         }

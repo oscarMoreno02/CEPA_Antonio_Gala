@@ -21,9 +21,9 @@ class ConexionAsistencia {
 
     conectar() {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+         
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+          
         });
     }
 
@@ -31,11 +31,10 @@ class ConexionAsistencia {
         process.on('SIGINT', () => {
             this.db.close()
                 .then(() => {
-                    console.log('Connection has been closed successfully.');
                     process.exit(0);
                 })
                 .catch((error) => {
-                    console.error('Error closing the database connection: ', error);
+            
                     process.exit(1);
                 });
         });
@@ -47,7 +46,7 @@ class ConexionAsistencia {
         try {
             resultado = await models.Asistencia.findAll();
         } catch (error) {
-            console.error('Error al obtener asistencias: ', error);
+      
         } finally {
             this.desconectar();
         }
@@ -60,7 +59,6 @@ class ConexionAsistencia {
         try {
             resultado = await models.Asistencia.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener asistencia con ID ${id}: `, error);
         } finally {
             this.desconectar();
         }
@@ -73,7 +71,6 @@ class ConexionAsistencia {
         try {
             resultado = await models.Asistencia.create(body);
         } catch (error) {
-            console.error('Error al crear asistencia: ', error);
         } finally {
             this.desconectar();
         }
@@ -94,7 +91,6 @@ class ConexionAsistencia {
                   }]
             });
         } catch (error){
-            console.error('Error al obtener las asistencias: ', error);
         } finally {
             this.desconectar();
         }
@@ -115,7 +111,6 @@ class ConexionAsistencia {
                 }]
               });
         } catch (error){
-            console.error('Error al obtener los usuarios: ', error);
         } finally {
             this.desconectar();
         }
@@ -133,7 +128,6 @@ class ConexionAsistencia {
                 }
             })
         } catch (error){
-            console.error('Error al obtener los usuarios: ', error);
         } finally {
             this.desconectar();
         }
@@ -150,7 +144,6 @@ class ConexionAsistencia {
             }
             resultado = await asistencia.destroy();
         } catch (error) {
-            console.error(`Error al eliminar asistencia con ID ${id}: `, error);
         } finally {
             this.desconectar();
         }

@@ -21,9 +21,8 @@ class ConexionChat {
 
     conectar() {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+         
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
         });
     }
 
@@ -31,11 +30,11 @@ class ConexionChat {
         process.on('SIGINT', () => {
             this.db.close()
                 .then(() => {
-                    console.log('Connection has been closed successfully.');
+                  
                     process.exit(0);
                 })
                 .catch((error) => {
-                    console.error('Error closing the database connection: ', error);
+                  
                     process.exit(1);
                 });
         });
@@ -47,7 +46,7 @@ class ConexionChat {
         try {
             resultado = await models.Chat.findAll();
         } catch (error) {
-            console.error('Error al obtener los chats: ', error);
+      
         } finally {
             this.desconectar();
         }
@@ -60,7 +59,7 @@ class ConexionChat {
         try {
             resultado = await models.Chat.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener chat con ID ${id}: `, error);
+         
         } finally {
             this.desconectar();
         }
@@ -73,7 +72,7 @@ class ConexionChat {
         try {
             resultado = await models.Chat.create(body);
         } catch (error) {
-            console.error('Error al crear chat: ', error);
+          
         } finally {
             this.desconectar();
         }
@@ -90,7 +89,7 @@ class ConexionChat {
             }
             resultado = await chat.destroy();
         } catch (error) {
-            console.error(`Error al eliminar chat con ID ${id}: `, error);
+           
         } finally {
             this.desconectar();
         }

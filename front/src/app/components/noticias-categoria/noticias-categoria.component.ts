@@ -7,6 +7,7 @@ import { NoticiaService } from '../../services/noticia.service';
 import { Noticia, NoticiaTitulo } from '../../interface/noticia';
 import { Subscription } from 'rxjs';
 import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-noticias-categoria',
@@ -22,16 +23,17 @@ import { PreviewNoticiaComponent } from '../preview-noticia/preview-noticia.comp
   styleUrl: './noticias-categoria.component.css'
 })
 //Óscar
-export class NoticiasCategoriaComponent implements OnInit, OnChanges {
+export class NoticiasCategoriaComponent implements OnInit {
   constructor(
     private servicioNoticia:NoticiaService,
-    private router: Router,
     private rutaActiva: ActivatedRoute,
+    private authService : AuthService
   ){}
   id=new Subscription
   listaNoticias:Array<Noticia>=[]
   subscripcionCategorias: Subscription=new Subscription;
   ngOnInit(): void {
+    this.authService.clearAccess()
     this.id = this.rutaActiva.params.subscribe(params => {
       this.subscripcionCategorias = this.servicioNoticia.getAllNoticiasByCategoria(params['id']).subscribe({
         next: (data: Array<Noticia>) => {
@@ -42,6 +44,5 @@ export class NoticiasCategoriaComponent implements OnInit, OnChanges {
       });
     })
   }
-  ngOnChanges(changes: SimpleChanges): void {
-  }
+  
 }

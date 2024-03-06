@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment.development';
 import { Evento } from '../../interface/evento';
 import { EventosService } from '../../services/eventos.service';
 import { PreviewEventosComponent } from "../preview-eventos/preview-eventos.component";
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -17,12 +18,15 @@ import { PreviewEventosComponent } from "../preview-eventos/preview-eventos.comp
 
 export class VistaEventosComponent implements OnInit{
   constructor(
-    private servicioEventos:EventosService
+    private servicioEventos:EventosService,
+    private authService:AuthService
   ){}
 
   @Input() eventos:Array<Evento>=[]
 
   ngOnInit(): void {
+
+    this.authService.clearAccess()
     this.servicioEventos.getEventosActivos()
       .pipe(
         finalize(() => this.formatearSrc())

@@ -199,7 +199,9 @@ export class NuevoEventosComponent{
                     this.nuevoEvento.fotoCartel= ''
                     this.nuevoEvento.visibilidad= false;
                   });
+                  this.nuevoEvento.id=data.id
                  this.socket.sendEvent(this.nuevoEvento)
+                 window.location.reload()
                 },
                 error: (error) => {
                   this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});

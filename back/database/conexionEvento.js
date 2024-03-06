@@ -20,9 +20,9 @@ class ConexionEvento {
 
     conectar = () => {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+     
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+           
         });
     }
 
@@ -36,7 +36,7 @@ class ConexionEvento {
         try {
             resultado = await models.Evento.findAll();
         } catch (error) {
-            console.error('Error al obtener eventos: ', error);
+            
         } finally {
             this.desconectar();
         }
@@ -67,7 +67,7 @@ class ConexionEvento {
         try {
             resultado = await models.Evento.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener evento con ID ${id}: `, error);
+
         } finally {
             this.desconectar();
         }
@@ -78,13 +78,15 @@ class ConexionEvento {
         this.conectar();
         let resultado;
         try {
-            resultado = await models.Evento.create(body);
+            const evento =  new models.Evento(body);
+            await evento.save()
+            resultado=evento.id
+            return resultado;
         } catch (error) {
-            console.error('Error al crear evento: ', error);
+         
         } finally {
             this.desconectar();
         }
-        return resultado;
     }
 
     updateEvento = async (id, body) => {
@@ -97,7 +99,7 @@ class ConexionEvento {
             }
             resultado = await evento.update(body);
         } catch (error) {
-            console.error(`Error al actualizar evento con ID ${id}: `, error);
+          
         } finally {
             this.desconectar();
         }
@@ -114,7 +116,7 @@ class ConexionEvento {
             }
             resultado = await evento.destroy();
         } catch (error) {
-            console.error(`Error al eliminar evento con ID ${id}: `, error);
+            
         } finally {
             this.desconectar();
         }
@@ -133,7 +135,7 @@ class ConexionEvento {
                 resultado = await evento.save();
             }
         } catch (error) {
-            console.error(`Error al actualizar evento con ID ${id}: `, error);
+           
         } finally {
             this.desconectar();
         }
@@ -147,7 +149,7 @@ class ConexionEvento {
             const evento = await models.Evento.findByPk(id); 
             resultado = evento.numAsistentes
         } catch (error) {
-            console.error(`Error al actualizar evento con ID ${id}: `, error);
+    
         } finally {
             this.desconectar();
         }
@@ -162,7 +164,7 @@ class ConexionEvento {
             evento.numAsistentes = evento.numAsistentes - 1
             resultado = await evento.save()
         } catch (error) {
-            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+
         } finally {
             this.desconectar();
         }
@@ -177,7 +179,7 @@ class ConexionEvento {
             evento.numAsistentes = evento.numAsistentes + 1
             resultado = await evento.save()
         } catch (error) {
-            console.error(`Error al eliminar el asistente del evento con ID ${id}: `, error);
+      
         } finally {
             this.desconectar();
         }

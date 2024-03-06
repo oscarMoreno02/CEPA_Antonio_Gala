@@ -88,11 +88,9 @@ class Server {
 
     listen() {
         this.serverExpress.listen(process.env.PORT, () => {
-            console.log(`Servidor Express escuchando en: ${process.env.PORT}`);
         });
 
         this.serverWebSocket.listen(process.env.WEBSOCKETPORT, () => {
-            console.log(`Servidor de WebSockets escuchando en: ${process.env.WEBSOCKETPORT}`);
         });
     }
 }

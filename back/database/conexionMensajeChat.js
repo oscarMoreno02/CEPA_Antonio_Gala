@@ -21,9 +21,9 @@ class ConexionMensajeChat {
 
     conectar() {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+          
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+         
         });
     }
 
@@ -31,11 +31,11 @@ class ConexionMensajeChat {
         process.on('SIGINT', () => {
             this.db.close()
                 .then(() => {
-                    console.log('Connection has been closed successfully.');
+                   
                     process.exit(0);
                 })
                 .catch((error) => {
-                    console.error('Error closing the database connection: ', error);
+
                     process.exit(1);
                 });
         });
@@ -47,7 +47,7 @@ class ConexionMensajeChat {
         try {
             resultado = await models.MensajeChat.findAll();
         } catch (error) {
-            console.error('Error al obtener los mensajes: ', error);
+    
         } finally {
             this.desconectar();
         }
@@ -60,7 +60,7 @@ class ConexionMensajeChat {
         try {
             resultado = await models.MensajeChat.findByPk(id);
         } catch (error) {
-            console.error(`Error al obtener el mensaje de un chat con ID ${id}: `, error);
+      
         } finally {
             this.desconectar();
         }
@@ -73,7 +73,7 @@ class ConexionMensajeChat {
         try {
             resultado = await models.MensajeChat.create(body);
         } catch (error) {
-            console.error('Error al crear el mensaje: ', error);
+    
         } finally {
             this.desconectar();
         }
@@ -95,7 +95,7 @@ class ConexionMensajeChat {
             }
             resultado = mensajes;
         } catch (error) {
-            console.error('Error al obtener mensajes de chat:', error.message);
+           
             throw error;
         } finally {
             this.desconectar();
@@ -113,7 +113,7 @@ class ConexionMensajeChat {
             }
             resultado = await chat.destroy();
         } catch (error) {
-            console.error(`Error al eliminar mensaje con ID ${id}: `, error);
+          
         } finally {
             this.desconectar();
         }

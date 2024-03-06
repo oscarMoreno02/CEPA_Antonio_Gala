@@ -78,16 +78,7 @@ export class NuevaSeccionComponent {
                 next: (data: any) => {
                   setTimeout(() => {
                     this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
-                    this.nuevaSeccion.id = data.id
-
-                    this.noticia?.secciones?.push({ id: this.nuevaSeccion.id, idNoticia: this.noticia.id, titulo: this.nuevaSeccion.titulo, texto: this.nuevaSeccion.texto, foto: this.urlFoto })
-                    this.nuevaSeccion.id = 0
-                    this.nuevaSeccion.enlaces = []
-                    this.nuevaSeccion.foto = ''
-                    this.nuevaSeccion.texto = ''
-                    this.nuevaSeccion.titulo = ''
-                    this.visible = false
-                    this.urlFoto = ''
+                    window.location.reload()
                   }, 1000);
 
                 },
@@ -106,17 +97,9 @@ export class NuevaSeccionComponent {
           this.nuevaSeccion.idNoticia = this.noticia!.id
           this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
             next: (data: any) => {
+              this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
               setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
-                this.nuevaSeccion.id = data.id
-                this.noticia?.secciones?.push({ id: this.nuevaSeccion.id, idNoticia: this.noticia.id, titulo: this.nuevaSeccion.titulo, texto: this.nuevaSeccion.texto, foto: this.urlFoto })
-                this.nuevaSeccion.id = 0
-                this.nuevaSeccion.enlaces = []
-                this.nuevaSeccion.foto = ''
-                this.nuevaSeccion.texto = ''
-                this.nuevaSeccion.titulo = ''
-                this.visible = false
-                this.urlFoto = ''
+                window.location.reload()
               }, 1000);
 
             },

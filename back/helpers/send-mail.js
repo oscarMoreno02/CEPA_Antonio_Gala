@@ -88,7 +88,6 @@ const enviarCorreo = (body) => {
             console.log('Error al enviar el correo electrónico:', error);
           
         } else {
-            console.log('Correo electrónico enviado exitosamente:', info.response);
         }
     });
 }

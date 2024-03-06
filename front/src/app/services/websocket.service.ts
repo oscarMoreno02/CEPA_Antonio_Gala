@@ -43,11 +43,12 @@ this.socket.on("recibir-notificacion", (data:Noticia) => {
 
 
 this.socket.on("enviar-evento", (data:Evento) => {
-
+ 
   this.message.add({ severity: 'info', id:'unique-message-id', summary: 'Nuevo Evento', detail:`<a href="${data.nombre}" target="_blank">${data.nombre}</a>`, life: 6000 });
   setTimeout(() => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');
     if (messageElement) {
+      console.log(data)
       const link = document.createElement('a');
       link.href = '/eventos/evento/'+data.id!.toString(); 
       link.textContent = 'Ver evento'; 

@@ -36,7 +36,7 @@ const subirEvento = (req = request, res = response) => {
     conx.postEvento(req.body)
         .then((evento) => {
            
-            res.status(200).json(evento);
+            res.status(200).json({id:evento});
         })
         .catch((err) => {
   

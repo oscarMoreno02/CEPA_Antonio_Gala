@@ -130,6 +130,7 @@ export class EditarUsuariosComponent implements OnInit {
                 }
                 this.visible=false
               }
+              window.location.reload()
             }, 1000)
           },
           error: (err) => {
@@ -150,6 +151,7 @@ export class EditarUsuariosComponent implements OnInit {
         this.usuarios.nombre = usu.nombre
         this.usuarios.email = usu.email
         this.usuarios.password = usu.password
+      
       },
       error: (e) => {
       
@@ -166,9 +168,11 @@ export class EditarUsuariosComponent implements OnInit {
            if(this.usuario[i].id == this.usuarios.id){
            this.usuario[i]=this.us
            this.visible=false
+           window.location.reload()
          }
          this.visible=false
        }
+       window.location.reload()
      }, 1000)
    },
    error: (err) => {

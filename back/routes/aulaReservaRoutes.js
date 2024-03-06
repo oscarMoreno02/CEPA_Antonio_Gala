@@ -20,7 +20,7 @@ router.post('/', [
     check('idAula').custom(aulaEspecialValidator.aulaEspecialExiste).notEmpty(),
     check('idHorario').custom(aulaFranjaValidator.aulaFranjaExiste).notEmpty(),
     check('idProfesor'),
-    check('fecha').isTime().notEmpty(),
+    check('fecha').notEmpty(),
     validateValues
 ], authMid.validarJWT, controller.createReserva)
 
@@ -28,7 +28,7 @@ router.put('/:id', [
     check('idAula').custom(aulaEspecialValidator.aulaEspecialExiste).notEmpty(),
     check('idHorario').custom(aulaFranjaValidator.aulaFranjaExiste).notEmpty(),
     check('idProfesor'),
-    check('fecha').isTime().notEmpty(),
+    check('fecha').notEmpty(),
     validateValues
 ], authMid.validarJWT, controller.editReserva)
 

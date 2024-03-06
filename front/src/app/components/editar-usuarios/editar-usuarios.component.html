@@ -3,7 +3,7 @@
     
     <div class="card flex justify-content-center">
         @if(tipo==0){
-    <p-button (click)="showDialog()" [raised]="true" label="Editar" icon="pi pi-pencil"></p-button>
+    <p-button [raised]="true" [outlined]="true" (click)="showDialog()" [raised]="true" label="Editar" icon="pi pi-pencil"></p-button>
         }
     <p-dialog header="Editar usuarios" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar()" [resizable]="false">

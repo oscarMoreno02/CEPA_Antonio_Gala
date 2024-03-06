@@ -9,6 +9,7 @@ import { CardModule } from 'primeng/card';
 import { environment } from '../../../environments/environment.development';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
+import { AuthService } from '../../services/auth.service';
 //Óscar
 @Component({
   selector: 'app-noticia',
@@ -29,6 +30,7 @@ export class NoticiaComponent implements OnInit {
   constructor(
     private servicioNoticia:NoticiaService,
     private rutaActiva: ActivatedRoute,
+    private authService: AuthService
   ){}
   env=environment
   id=new Subscription
@@ -36,7 +38,7 @@ export class NoticiaComponent implements OnInit {
   subscripcionCategorias: Subscription=new Subscription;
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   ngOnInit(): void {
- 
+  this.authService.clearAccess()
     this.id = this.rutaActiva.params.subscribe(params => {
       this.subscripcionCategorias = this.servicioNoticia.getNoticiaWithSecciones(params['noticia']).subscribe({
         next: (data: Noticia) => {
