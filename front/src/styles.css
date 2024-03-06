@@ -189,3 +189,8 @@ a:hover {
   color:red !important;
   background-color: grey;
 }
+
+.p-card-header img {
+  max-width: 100%;
+  max-height: 300px;
+}
