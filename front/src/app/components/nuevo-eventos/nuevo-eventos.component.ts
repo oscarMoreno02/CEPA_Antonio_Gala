@@ -89,13 +89,22 @@ export class NuevoEventosComponent{
   cerrar(): void {
     this.cerrarModal.emit();
   }
+  
   uplodadFoto(event: any) {
     const file = event.target.files[0]
     if (file) {
+      const permitidas = ['.jpeg', '.jpg', '.png'];
+      const fichero = file.name.toLowerCase();
+      const extension = fichero.substring(fichero.lastIndexOf('.'));
+    
+      if (permitidas.includes(extension)) {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Subir foto', detail: 'Extensión no valida ', life: 3000 });
+        this.formularioFoto=null
+      }
     } else {
       this.formularioFoto = null
     }
