@@ -32,7 +32,7 @@ this.socket.on("recibir-notificacion", (data:Evento) => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');
     if (messageElement) {
       const link = document.createElement('a');
-      link.href = '/evento/'+data.id!.toString(); 
+      link.href = '/eventos/evento/'+data.id!.toString(); 
       link.textContent = 'Ver evento'; 
       link.target = '_blank'; 
       const content = 'Nombre:  <br> <br> ' + data.nombre + ' <br>   <br>';
