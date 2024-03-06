@@ -64,8 +64,9 @@ class ConexionNoticias {
             let resultado = [];
             this.conectar();
             resultado = await models.Noticia.findAll({
-                    where: {
-                        idCategoria: n,
+                order:[['updatedAt','DESC']],
+                where: {
+                    idCategoria: n,
                         publicada:true
                     },
                     include: [{
@@ -75,11 +76,15 @@ class ConexionNoticias {
                             model: models.Enlace,
                             as: 'enlaces',
                         }, ]
-                    }, ],
-                    order:[['updatedAt','DESC']]
+                    }, ]
                 }
 
             );
+            resultado.forEach(noticia => {
+                noticia.secciones.sort((a, b) => {
+                  return new Date(a.createdAt) - new Date(b.createdAt);
+                });
+              });
             if (!resultado) {
            
                 throw new Error('error');
@@ -192,6 +197,7 @@ class ConexionNoticias {
                 include: [{
                     model: models.Seccion,
                     as: 'secciones',
+                    
                     include: [{
                         model: models.Enlace,
                         as: 'enlaces',
