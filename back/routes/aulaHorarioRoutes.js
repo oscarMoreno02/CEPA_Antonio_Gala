@@ -17,13 +17,13 @@ router.get('/aula/:id/reservas/:day/:month/:year', controller.listReservaOfAulaO
 
 router.post('/', [
     check('idAula').custom(aulaEspecialValidator.aulaEspecialExiste),
-    check('idAula').custom(aulaFranjaValidator.aulaFranjaExiste),
+    check('idFranja').custom(aulaFranjaValidator.aulaFranjaExiste),
     validateValues
 ], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.createHorario)
 
 router.put('/:id', [
     check('idAula').custom(aulaEspecialValidator.aulaEspecialExiste),
-    check('idAula').custom(aulaFranjaValidator.aulaFranjaExiste),
+    check('idFranja').custom(aulaFranjaValidator.aulaFranjaExiste),
     validateValues
 ], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.editHorario)
 

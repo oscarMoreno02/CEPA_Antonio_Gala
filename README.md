@@ -6,7 +6,11 @@
 - [Óscar Moreno](https://github.com/oscarMoreno02)
 - [Raúl Gutiérrez Merino](https://github.com/pinoxx64)
 
+## -----------------------------------------------------
+
 ## - Base URL: `http://localhost:9090/api`
+
+## -----------------------------------------------------
 
 ### Aulas especiales
 
@@ -20,13 +24,324 @@
         {
             "id": int,
             "nombre": "string",
-            "dependiente": int / null ,
             "createdAt": date,
             "updatedAt": date
         }
     ```
 
-## ---------------------------------------------------------
+#### Obtener aula por id
+
+- Verbo: `GET`
+- URL: `/aulas/{int}`
+- Descripción: Retorna el aula buscando por id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "nombre": "string",
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener aula con sus datos
+
+- Verbo: `GET`
+- URL: `/aulas/{int}`
+- Descripción: Retorna el aula con sus datos.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "nombre": "string",
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Insertar una nueva aula
+
+- Verbo: `POST`
+- URL: `/aulas/`
+- Descripción: Insertar una nueva asistencia.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "nombre": "string"
+        }
+    ```
+
+#### Actualizar un aula
+
+- Verbo: `PUT`
+- URL: `/aulas/{int}`
+- Descripción: Actualizar un aula existente.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "nombre": "string"
+        }
+    ```
+
+#### Eliminar un aula
+
+- Método: `DELETE`
+- URL: `/aulas/{int}`
+- Descripción: Elimina un aula existente según su ID.
+
+## -----------------------------------------------------
+
+### Franjas 
+
+#### Obtener todas las franjas 
+
+- Verbo: `GET`
+- URL: `/franjas/`
+- Descripción: Retorna todas las franjas disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "turno": "string",
+            "horaInicio": date,
+            "horaFin": date,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener franja por id
+
+- Verbo: `GET`
+- URL: `/franjas/{int}`
+- Descripción: Retorna la franja buscando por id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "turno": "string",
+            "horaInicio": date,
+            "horaFin": date
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Insertar una nueva franja
+
+- Verbo: `POST`
+- URL: `/franjas/`
+- Descripción: Insertar una nueva franja.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "turno": "string",
+            "horaInicio": date,
+            "horaFin": date
+        }
+    ```
+
+#### Actualizar una franja
+
+- Verbo: `PUT`
+- URL: `/franjas/{int}`
+- Descripción: Actualizar una franja existente.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "turno": "string",
+            "horaInicio": date,
+            "horaFin": date
+        }
+    ```
+
+#### Ordenar las franjas
+
+- Verbo: `PUT`
+- URL: `/franjas/sort`
+- Descripción: Recibe un array de las franjas y mediante un drag & drop se pueden ordenar.
+
+#### Eliminar una franja
+
+- Método: `DELETE`
+- URL: `/franjas/{int}`
+- Descripción: Elimina una franja existente según su ID.
+
+## -----------------------------------------------------
+
+### Horarios 
+
+#### Obtener todos los horarios 
+
+- Verbo: `GET`
+- URL: `/horarios/`
+- Descripción: Retorna todos los horarios disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "idAula": int,
+            "idFranja": int,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener horario por id
+
+- Verbo: `GET`
+- URL: `/horarios/{int}`
+- Descripción: Retorna el horario buscando por id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "idAula": int,
+            "idFranja": int,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener horarios de un aula
+
+- Verbo: `GET`
+- URL: `/horarios/aula/{int}`
+- Descripción: Retorna los horarios de un aula.
+
+#### Obtener reservas de un aula en un día, mes y año
+
+- Verbo: `GET`
+- URL: `/horarios/aula/{int}/reservas/DD{int}/MM{int}/YYYY{int}`
+- Descripción: Retorna las reservas de un aula en un día.
+
+#### Insertar un nuevo horario
+
+- Verbo: `POST`
+- URL: `/horarios/`
+- Descripción: Insertar un nuevo horario.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idAula": int,
+            "idFranja": int
+        }
+    ```
+
+#### Actualizar un horario
+
+- Verbo: `PUT`
+- URL: `/horarios/{int}`
+- Descripción: Actualizar un horario existente.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idAula": int,
+            "idFranja": int
+        }
+    ```
+
+#### Eliminar un horario
+
+- Método: `DELETE`
+- URL: `/horarios/{int}`
+- Descripción: Elimina un horario existente según su ID.
+
+## -----------------------------------------------------
+
+### Reservas 
+
+#### Obtener todas las reservas
+
+- Verbo: `GET`
+- URL: `/reservas/`
+- Descripción: Retorna todas las reservas disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "idAula": int,
+            "idHorario": int,
+            "idProfesor": int,
+            "fecha": date,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener reserva por id
+
+- Verbo: `GET`
+- URL: `/reservas/{int}`
+- Descripción: Retorna la reserva buscando por id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+            "idAula": int,
+            "idHorario": int,
+            "idProfesor": int,
+            "fecha": date,
+            "createdAt": date,
+            "updatedAt": date
+        }
+    ```
+
+#### Obtener reservas de un aula
+
+- Verbo: `GET`
+- URL: `/reservas/aula/{int}`
+- Descripción: Retorna las reservas de un aula.
+
+#### Obtener reservas de un profesor
+
+- Verbo: `GET`
+- URL: `/reservas/profesor/{int}`
+- Descripción: Retorna las reservas de un profesor.
+
+#### Obtener reservas con datos
+
+- Verbo: `GET`
+- URL: `/reservas/data/`
+- Descripción: Retorna las reservas con datos.
+
+#### Insertar una nueva reserva
+
+- Verbo: `POST`
+- URL: `/reservas/`
+- Descripción: Insertar una nueva reserva.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idAula": int,
+            "idHorario": int,
+            "idProfesor": int,
+            "fecha": date,
+        }
+    ```
+
+#### Actualizar una reserva
+
+- Verbo: `PUT`
+- URL: `/reservas/{int}`
+- Descripción: Actualizar una reserva existente.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idAula": int,
+            "idHorario": int,
+            "idProfesor": int,
+            "fecha": date,
+        }
+    ```
+
+#### Eliminar una reserva
+
+- Método: `DELETE`
+- URL: `/reservas/{int}`
+- Descripción: Elimina una reserva existente según su ID.
+
+## -----------------------------------------------------
 
 ### Asistencia
 
@@ -87,7 +402,7 @@
 - Verbo: `POST`
 - URL: `/asistencia/`
 - Descripción: Insertar una nueva asistencia.
-- ``Ejemplo de respuesta``:
+- ``Ejemplo de solicitud``:
     ```
         {
             "idEvento": int,
@@ -100,7 +415,7 @@
 - Verbo: `PUT`
 - URL: `/asistencia/{int}`
 - Descripción: Actualizar una asistencia existente.
-- ``Ejemplo de respuesta``:
+- ``Ejemplo de solicitud``:
     ```
         {
             "idEvento": int,
@@ -110,18 +425,11 @@
 
 #### Eliminar una asistencia
 
-- Verbo: `DELETE`
+- Método: `DELETE`
 - URL: `/asistencia/{int}`
-- Descripción: Eliminar una asistencia según su ID.
-- ``Ejemplo de respuesta``:
-    ```
-        {
-            "idEvento": int,
-            "idUsuario: int
-        }
-    ```
+- Descripción: Elimina una asistencia existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Categorías
 
@@ -266,7 +574,7 @@
 - URL: `/categorias/{int}`
 - Descripción: Elimina una categoría existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Noticias
 
@@ -454,7 +762,7 @@
 - URL: `/noticias/{int}`
 - Descripción: Elimina una noticia existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Secciones
 
@@ -619,7 +927,7 @@
 - URL: `/seccion/{int}`
 - Descripción: Elimina una sección existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Enlaces
 
@@ -716,7 +1024,7 @@
 - URL: `/enlaces/{int}`
 - Descripción: Elimina una enlace existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Usuario
 
@@ -791,7 +1099,7 @@
 - URL: `/usuario/{int}`
 - Descripción: Elimina un usuario existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Roles
 
@@ -858,7 +1166,7 @@
 - URL: `/roles/{int}`
 - Descripción: Elimina un rol existente según su ID.
 
-## ---------------------------------------------------------
+## -----------------------------------------------------
 
 ### Roles asignados
 
