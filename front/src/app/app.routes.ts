@@ -19,6 +19,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { TusEventosComponent } from './components/tus-eventos/tus-eventos.component';
 import { AdminGaleriaComponent } from './components/admin-galeria/galeria.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
+import { VistaEventosComponent } from './components/vista-eventos/vista-eventos.component';
 
 
 export const routes: Routes = [
@@ -76,12 +77,14 @@ canActivate:[accesoGuard], data:{rol:['Administrador']}},
 {path:'admin/asistencias/:id', component:AdminAsistenciasComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
-{path:'eventos/:id', component:EventosComponent},
+{path:'eventos/evento/:id', component:EventosComponent},
 
 {path:'eventos/tus-eventos/:id', component:TusEventosComponent},
 
 {path:'admin/galeria/:id', component:AdminGaleriaComponent,
 canActivate: [accesoGuard], data:{rol:['Administrador']}},
+
+{path:'eventos', component:VistaEventosComponent},
 
 {path: '**', component: NotFoundComponent},
 ];

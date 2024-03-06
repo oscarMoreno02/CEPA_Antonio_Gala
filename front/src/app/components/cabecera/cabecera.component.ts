@@ -13,6 +13,7 @@ import { LoginComponent } from '../login/login.component';
 import { ProfileIconComponent } from '../profile-icon/profile-icon.component';
 import { AuthService } from '../../services/auth.service';
 //Óscar
+// Laura -> añadir apartado de eventos
 @Component({
   selector: 'app-cabecera',
   standalone: true,
@@ -57,11 +58,11 @@ username=''
 userroles:Array<string>=[]
   adminItems: MenuItem[] | undefined = [
     {
-      label: 'Administrar categorias',
+      label: 'Administrar Categorias',
       command: () => { this.router.navigate(['/admin/categorias']) },
     },
     {
-      label: 'Administrar noticias',
+      label: 'Administrar Noticias',
       command: () => { this.router.navigate(['/admin/noticias']) },
 
     }
@@ -79,7 +80,7 @@ userroles:Array<string>=[]
       command: () => { this.router.navigate(['/aulas']) },
     },
     {
-      label: 'Franjas horarias',
+      label: 'Franjas Horarias',
       command: () => { this.router.navigate(['/aulas/franjas']) },
     },
     {
@@ -136,6 +137,12 @@ userroles:Array<string>=[]
 
       l.push(item);
     }
+    let item: MenuItem = {
+      label: 'EVENTOS',
+      command:()=>{this.router.navigate(['/eventos'])},
+      replaceUrl:true,
+    }
+    l.push(item)
     return l
   }
   login(b: boolean) {

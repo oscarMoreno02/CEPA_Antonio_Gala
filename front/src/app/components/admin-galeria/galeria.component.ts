@@ -81,7 +81,7 @@ export class AdminGaleriaComponent implements OnInit{
                 this.messageService.add({ severity: 'success', summary: 'Eliminar fotografía', detail: 'Completada', life:  3000 })
             },  1000) 
           },
-          error: (err) => {
+          error: () => {
             this.messageService.add({ severity: 'error', summary: 'Eliminar fotografía', detail: 'Error al eliminar la fotografía, inténtelo de nuevo', life:  3000 });
     
         }

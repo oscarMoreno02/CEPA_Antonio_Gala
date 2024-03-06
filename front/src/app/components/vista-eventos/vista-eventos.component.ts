@@ -1,28 +1,27 @@
 /**Laura María Pedraza Gómez */
-import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { finalize } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Evento } from '../../interface/evento';
 import { EventosService } from '../../services/eventos.service';
 import { PreviewEventosComponent } from "../preview-eventos/preview-eventos.component";
 
+
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css',
-    encapsulation: ViewEncapsulation.None,
-    imports: [PreviewEventosComponent],
-    providers:[EventosService]
+  selector: 'app-vista-eventos',
+  standalone: true,
+  imports: [PreviewEventosComponent],
+  templateUrl: './vista-eventos.component.html',
+  styleUrl: './vista-eventos.component.css'
 })
-export class HomeComponent implements OnInit {
 
-  @Input() eventos:Array<Evento>=[]
-  @Input() last:number = 0
-
+export class VistaEventosComponent implements OnInit{
   constructor(
     private servicioEventos:EventosService
   ){}
+
+  @Input() eventos:Array<Evento>=[]
+
   ngOnInit(): void {
     this.servicioEventos.getAllEventos()
       .pipe(
@@ -30,14 +29,12 @@ export class HomeComponent implements OnInit {
       )
       .subscribe({
         next:(eventos: Array<Evento>) => {
-          this.eventos = eventos
-          this.last = this.eventos.length-1
+          this.eventos = eventos;
         },
         error:(err)=>{
           console.log(err)
         }
       })
-    
   }
 
   formatearSrc(){
@@ -47,5 +44,4 @@ export class HomeComponent implements OnInit {
       }   
     }
   }
-  
 }
