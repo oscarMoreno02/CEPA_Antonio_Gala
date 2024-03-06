@@ -34,7 +34,7 @@ const rolesDelete =  (req, res) => {
     const conx = new Conexion();
     conx.rolesDelete(req.params.id)    
         .then( msg => {
-            console.log('Borrado correctamente!');  //Podemos acceder a este valor de req porque lo hemos almacenado en el middleware validarHWT extrayendo la información del token.
+            console.log('Borrado correctamente!');
             res.status(202).json(msg);
         })
         .catch( err => {

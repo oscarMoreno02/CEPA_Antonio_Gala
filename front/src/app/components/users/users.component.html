@@ -1,25 +1,25 @@
-<!--Raúl-->
+<!--Raúl--> 
 
-<app-nuevo-usuarios></app-nuevo-usuarios>
-<div style="margin-top: 100px;" class="card">
+<div style="margin-top: 40px;" class="card">
     <p-table
         [value]="listaUsers"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuarios"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    
         <ng-template pTemplate="header">
-            <tr>
-                <th style="width:10%"></th>
+            <tr class="header-glass" style="border: none;">
+                <th style="width:10%"><app-nuevo-usuarios></app-nuevo-usuarios></th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:30%">Email</th>
             </tr>
         </ng-template> 
         <ng-template pTemplate="body" let-usuarios>
-            <tr>
+            <tr class="glass">
                 <td><app-editar-usuarios [usuario]="listaUsers" [id]="usuarios.id"></app-editar-usuarios></td>
                 <td>{{usuarios.nombre}}</td>
                 <td>{{usuarios.email}}</td>
