@@ -18,7 +18,6 @@ const asistenciaExiste = () => {
     };
 };
 
-
 module.exports = {
     asistenciaExiste
 }

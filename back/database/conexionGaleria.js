@@ -97,6 +97,23 @@ class ConexionGaleria {
         }
         return resultado;
     }
+
+    async getGaleriaEvento(id){
+        this.conectar()
+        let galeria = []
+        try {
+            galeria = await models.Galeria.findAll({
+                where: {
+                    idEvento: id
+                }
+            })
+        } catch (error){
+            console.error('Error al obtener la galeria del evento: ',error)
+        } finally {
+            this.desconectar()
+        }
+        return galeria
+    }
 }
 
 module.exports = ConexionGaleria;

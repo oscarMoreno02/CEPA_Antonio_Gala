@@ -1,4 +1,3 @@
-<app-nuevo-eventos></app-nuevo-eventos>
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="eventos"
@@ -9,29 +8,39 @@
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <app-nuevo-eventos></app-nuevo-eventos>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Administrar Eventos
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:5%">Editar</th>
                 <th style="width:5%">Ver Asistentes</th>
-                <th style="width:10%">Nombre</th>
-                <th style="width:10%">Descripción</th>
-                <th style="width:10%">Fecha</th>
-                <th style="width:10%">Hora</th>
-                <th style="width:10%">Me gusta</th>
-                <th style="width:10%">Visibilidad</th>
-                <th style="width:10%">Foto Cartel</th>
+                <th style="width:5%">Galería</th>
+                <th style="width:5%">Nombre</th>
+                <th style="width:5%">Descripción</th>
+                <th style="width:5%">Fecha</th>
+                <th style="width:5%">Hora</th>
+                <th style="width:5%">Me gusta</th>
+                <th style="width:5%">Visibilidad</th>
+                <th style="width:5%">Plazas Restantes</th>
+                <th style="width:5%">Foto Cartel</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
                 <td><p-button routerLink="/admin/asistencias/{{evento.id}}" icon="pi pi-eye" title=""></p-button></td>
+                <td><p-button routerLink="/admin/galeria/{{ evento.id }}" icon="pi pi-camera" title=""></p-button></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>
                 <td>{{ evento.hora }}</td>
                 <td>{{ evento.mg }}</td>
                 <td>{{ evento.visibilidad ? 'Si' : 'No' }}</td>
+                <td>{{ evento.numAsistentes }} </td>
                 <td><img [src]=evento.fotoCartel alt="Foto de evento" style="width: auto; height: 200px;"></td>
         </ng-template>
         <ng-template pTemplate="paginatorleft">

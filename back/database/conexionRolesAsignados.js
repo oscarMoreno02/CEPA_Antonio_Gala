@@ -52,7 +52,7 @@ class ConexionRolesAsignados{
         try{
             let resultado = [];
             this.conectar();
-            resultado = await models.rolAsignado.findOne({
+            resultado = await models.rolAsignado.findAll({
                 where: {
                     idUser : idUser
                 }

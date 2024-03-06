@@ -33,7 +33,7 @@ import { environment } from '../../../environments/environment.development';
   ]
 })
 
-export class EventosComponent implements OnInit {
+export class AdminEventosComponent implements OnInit {
 
   eventos:Array<Evento>=[]
 
@@ -42,7 +42,6 @@ export class EventosComponent implements OnInit {
     private router:Router
   ) {}
   
-  formularioFoto: FormData | null = null
   fotoPreview: string | null = null
 
   ngOnInit(): void {
@@ -55,7 +54,7 @@ export class EventosComponent implements OnInit {
           this.eventos = eventos;
         },
         error:(err)=>{
-          console.log(err)
+          
         }
       });
   }

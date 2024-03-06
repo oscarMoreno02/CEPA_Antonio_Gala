@@ -31,8 +31,9 @@ const listFranja = (req, res = response) => {
         })
 }
 
-const createFranja = (req, res = response) => {
+const createFranja = async (req, res = response) => {
     const conexion = new Conexion()
+
     conexion.insertFranja(req.body)
         .then(data => {
             res.status(201).json({id:data})
@@ -67,6 +68,18 @@ const removeFranja = (req, res = response) => {
             res.status(203).json('Error en la eliminacion')
         })
 }
+const sortFranjas = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.sortFranjas(req.body)
+        .then(data => {
+            res.status(202).json('Actualizado correctamente')
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(203).json('Error al actualizar')
+        });
+}
+
 
 module.exports = {
     listAllFranjas,
@@ -74,4 +87,5 @@ module.exports = {
     createFranja,
     editFranja,
     removeFranja,
+    sortFranjas
 }

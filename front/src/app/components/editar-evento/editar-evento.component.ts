@@ -59,7 +59,8 @@ export class EditarEventoComponent{
     hora: '',
     fotoCartel: '',
     mg: 0,
-    visibilidad: false
+    visibilidad: false,
+    numAsistentes: 0
   }
 
   formularioFoto: FormData | null = null
@@ -162,6 +163,7 @@ export class EditarEventoComponent{
           this.eventoModal.hora = ev.hora
           this.eventoModal.visibilidad = ev.visibilidad
           this.eventoModal.fotoCartel = ev.fotoCartel
+          this.eventoModal.numAsistentes = ev.numAsistentes
       },
       error: (err) => {
         console.log(err)
@@ -172,7 +174,7 @@ export class EditarEventoComponent{
     if(confirm){
       if(this.validarCampos()){
       //  this.servicioFotos.updateFoto(this.eventoModal.fotoCartel!, this.formularioFoto!).subscribe({
-          next:(data:any) => {
+         // next:(data:any) => {
             this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
               next: (data:any)=> {
                 setTimeout(()=>{
@@ -189,7 +191,7 @@ export class EditarEventoComponent{
                 this.messageService.add({ severity:'error', summary: 'Actualizar evento', detail: 'Error al actualizar el evento, inténtelo de nuevo', life: 3000 });
               }
             })  
-          }
+         // }
        // }) 
       }
     }

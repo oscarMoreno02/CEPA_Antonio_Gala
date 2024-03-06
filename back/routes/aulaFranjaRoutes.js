@@ -19,12 +19,18 @@ router.post('/', [
     validateValues
 ], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.createFranja)
 
+router.put('/sort', authMid.validarJWT, accessMid.esJefeDeEstudios, controller.sortFranjas)
+
+
+
 router.put('/:id', [
     check('turno').notEmpty(),
     check('horaInicio').isTime().notEmpty(),
     check('horaFin').isTime().notEmpty(),
     validateValues
 ], authMid.validarJWT, accessMid.esJefeDeEstudios, controller.editFranja)
+
+
 
 router.delete('/:id', authMid.validarJWT, accessMid.esJefeDeEstudios, controller.removeFranja)
 
