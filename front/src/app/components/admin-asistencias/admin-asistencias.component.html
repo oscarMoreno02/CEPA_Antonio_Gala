@@ -10,6 +10,12 @@
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} asistentes"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <app-nuevo-asistente-evento></app-nuevo-asistente-evento>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Administrar Asistentes
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:20%">Eliminar</th>

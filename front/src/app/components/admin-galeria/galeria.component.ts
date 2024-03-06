@@ -5,13 +5,12 @@ import { MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { GaleriaService } from "../../services/galeria.service";
-import { AsistenciaService } from "../../services/asistencia.service";
 import { ActivatedRoute } from "@angular/router";
 import { Galeria } from "../../interface/galeria";
 import { environment } from "../../../environments/environment.development";
-import { finalize } from "rxjs";
 import { ConfirmComponent } from "../confirm/confirm.component";
 import { FotosGaleriaService } from "../../services/fotos-galeria.service";
+import { ToastModule } from "primeng/toast";
 
 @Component({
     selector: 'app-galeria',
@@ -26,7 +25,8 @@ import { FotosGaleriaService } from "../../services/fotos-galeria.service";
         NuevaFotoGaleriaComponent,
         TableModule,
         ButtonModule,
-        ConfirmComponent
+        ConfirmComponent,
+        ToastModule
     ]
 })
 export class AdminGaleriaComponent implements OnInit{
@@ -50,9 +50,6 @@ export class AdminGaleriaComponent implements OnInit{
            this.fotos=fotos
            this.formatearSrc();
          },
-         error: (err) => {
-           
-         }
        });
     }
    }

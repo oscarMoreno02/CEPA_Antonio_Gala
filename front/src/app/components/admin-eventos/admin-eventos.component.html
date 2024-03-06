@@ -1,4 +1,3 @@
-<app-nuevo-eventos></app-nuevo-eventos>
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="eventos"
@@ -9,19 +8,25 @@
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            <app-nuevo-eventos></app-nuevo-eventos>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Administrar Eventos
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:5%">Editar</th>
                 <th style="width:5%">Ver Asistentes</th>
                 <th style="width:5%">Galería</th>
-                <th style="width:10%">Nombre</th>
-                <th style="width:10%">Descripción</th>
-                <th style="width:10%">Fecha</th>
-                <th style="width:10%">Hora</th>
-                <th style="width:10%">Me gusta</th>
-                <th style="width:10%">Visibilidad</th>
-                <th style="width:10%">Plazas Restantes</th>
-                <th style="width:10%">Foto Cartel</th>
+                <th style="width:5%">Nombre</th>
+                <th style="width:5%">Descripción</th>
+                <th style="width:5%">Fecha</th>
+                <th style="width:5%">Hora</th>
+                <th style="width:5%">Me gusta</th>
+                <th style="width:5%">Visibilidad</th>
+                <th style="width:5%">Plazas Restantes</th>
+                <th style="width:5%">Foto Cartel</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-evento>

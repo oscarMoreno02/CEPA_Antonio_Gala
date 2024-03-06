@@ -13,6 +13,7 @@ import { Asistencia } from '../../interface/asistencia';
 import { MessageService } from 'primeng/api';
 import { GaleriaService } from '../../services/galeria.service';
 import { Galeria } from '../../interface/galeria';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'app-eventos',
@@ -23,6 +24,7 @@ import { Galeria } from '../../interface/galeria';
     imports: [
         ButtonModule,
         ConfirmComponent,
+        ToastModule
     ]
 })
 export class EventosComponent implements OnInit{
@@ -61,9 +63,6 @@ export class EventosComponent implements OnInit{
           console.log(this.galerias)
           this.formatearSrc();
         },
-        error: (err) => {
-          
-        }
       });
 
       try {
@@ -121,11 +120,13 @@ export class EventosComponent implements OnInit{
         next: (data:any) => {
           this.eventoServicio.deletePlaza(this.eventoId).subscribe({
             next: (data:any) => {
-              
+              this.evento = data
                 this.messageService.add({severity: 'success', summary:'Apuntarse a evento', detail:'Completado', life:3000});
                 this.asistencia.idUsuario = 0
                 this.asistencia.idEvento = 0
-              
+                if(!this.evento.fotoCartel.includes('http') || !this.evento.fotoCartel.includes('https')){
+                  this.evento.fotoCartel = environment.baseUrl + environment.urlFotosEventos + '/' + this.evento.fotoCartel
+                } 
             },
             error: (error) => {
               this.messageService.add({severity: 'error', summary:'Apuntarse a evento', detail:'Ya se encuentra apuntado', life:3000});

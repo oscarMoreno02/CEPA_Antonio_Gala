@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { environment } from '../../../environments/environment.development';
 import { Asistencia } from '../../interface/asistencia';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'app-tus-eventos',
@@ -19,7 +20,8 @@ import { Asistencia } from '../../interface/asistencia';
     imports: [
       ConfirmComponent,
       TableModule,
-      ButtonModule
+      ButtonModule,
+      ToastModule
     ],
     providers:[
       MessageService,
@@ -71,9 +73,10 @@ export class TusEventosComponent implements OnInit {
         next:(data:any)=> {
           this.servicioAsistencias.deleteAsistencia(this.idAsistencia).subscribe({
             next:(data:any)=> {
-              setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
-            },  1000)
+            location.reload()
+            setTimeout(() => {
+              this.messageService.add({ severity: 'success', summary: 'Eliminar asistencia', detail: 'Completada', life:  3000 })
+          },  1000)
             },
             error: (err) => {
               this.messageService.add({ severity: 'error', summary: 'Eliminar asistencia', detail: 'Error al eliminar la asistencia, inténtelo de nuevo', life:  3000 });
