@@ -36,11 +36,11 @@ export class NoticiaComponent implements OnInit {
   subscripcionCategorias: Subscription=new Subscription;
   httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   ngOnInit(): void {
-    console.log('llega')
+ 
     this.id = this.rutaActiva.params.subscribe(params => {
       this.subscripcionCategorias = this.servicioNoticia.getNoticiaWithSecciones(params['noticia']).subscribe({
         next: (data: Noticia) => {
-          console.log(data)
+ 
           this.noticia=data
   
         },

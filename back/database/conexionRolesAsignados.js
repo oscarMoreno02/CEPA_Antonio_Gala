@@ -26,7 +26,7 @@ class ConexionRolesAsignados{
 
     conectar = () => {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+          
         }).catch((error) => {
             console.error('Unable to connect to the database: ', error);
         });
@@ -58,12 +58,10 @@ class ConexionRolesAsignados{
                 }
             });
             if (!resultado) {
-                console.log(resultado)
                 throw new Error('error');
             }
             return resultado;
         }catch(error){
-            console.log('llegaCatch')
             throw error
         }
         finally{
@@ -78,7 +76,6 @@ class ConexionRolesAsignados{
             const rolAsig = new models.rolAsignado(body);
             await rolAsig.save();
         } catch (error) {
-            console.log(error)
             throw error;
         } finally {
             this.desconectar();

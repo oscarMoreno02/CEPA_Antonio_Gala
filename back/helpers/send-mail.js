@@ -3,7 +3,6 @@ const nodemailer = require('nodemailer');
 //Óscar
 
 const enviarCorreo = (body) => {
-    console.log(body)
     let mailOptions = {
         from: process.env.MAIL_FROM_ADDRESS, 
         to: body.email, 

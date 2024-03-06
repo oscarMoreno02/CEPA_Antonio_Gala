@@ -12,7 +12,7 @@ const listAllSecciones= (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json()
         })
 }
@@ -24,7 +24,7 @@ const listSeccion= (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+       
             res.status(404).json('No exite un noticia con ese id')
         })
 }
@@ -35,7 +35,7 @@ const listSeccionesByNoticia= (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite una categoria con ese id')
         })
 }
@@ -48,7 +48,7 @@ const editSeccion= (req, res = response)=>{
         res.status(202).json('Actualizado correctamente')
     })
     .catch(err => {
-        console.log(err);
+
         res.status(203).json('Error al actualizar')
     });
 
@@ -61,7 +61,7 @@ const createSeccion= (req, res = response) => {
             res.status(201).json({id:data})
         })
         .catch(err => {
-            console.log(err)
+        
             res.status(203).json('Error en el registro')
         })
 }
@@ -74,7 +74,7 @@ const removeSeccion= (req, res = response) => {
             res.status(202).json('Exito en la eliminacion')
         })
         .catch(err => {
-            console.log(err)
+      
             res.status(203).json('Error en la eliminacion')
         })
 }
@@ -85,7 +85,7 @@ const listAllSeccionesWithEnlaces= (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+          
             res.status(404).json()
         })
 }
@@ -96,7 +96,7 @@ const listSeccionWithEnlaces = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+     
             res.status(404).json()
         })
 }

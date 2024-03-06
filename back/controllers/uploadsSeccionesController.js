@@ -59,7 +59,7 @@ const obtenerImagen = async(req, res = response ) => {
     const nombreArchivo = req.params.id ; 
     if (nombreArchivo) {
         const pathImagen = path.join( __dirname, '../uploads', process.env.CARPETAFOTOSSECCIONES, nombreArchivo );
-        console.log(pathImagen);
+
         if ( fs.existsSync( pathImagen ) ) {
             return res.sendFile( pathImagen )
         }

@@ -44,12 +44,12 @@ export class HomeComponent implements OnInit {
           this.last = this.eventos.length-1
         },
         error:(err)=>{
-          console.log(err)
+     
         }
       })
     this.noticiaSubscripcion=this.noticiaService.getUltimasNoticias().subscribe({
       next:(data:Array<Noticia>)=>{
-        console.log(data)
+   
         this.noticias=data
       }
     })

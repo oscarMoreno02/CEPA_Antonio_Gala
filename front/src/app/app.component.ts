@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   });
   }
   onActivate(event: any) {
-    console.log('funciona')
+
     if (event instanceof NotFoundComponent) {
       this.headerService.hide();
     } else {

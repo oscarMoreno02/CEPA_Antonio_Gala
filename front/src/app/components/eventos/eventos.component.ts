@@ -82,7 +82,7 @@ export class EventosComponent implements OnInit{
       this.servicioGaleria.getGaleriaEvento(this.eventoId).subscribe({
         next: (fotos: any) => {
           this.galerias = fotos
-          console.log(this.galerias)
+ 
           this.formatearSrc();
         },
       });

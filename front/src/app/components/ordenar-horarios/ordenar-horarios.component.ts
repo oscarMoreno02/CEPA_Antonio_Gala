@@ -55,7 +55,7 @@ export class OrdenarHorariosComponent {
 
       this.franjaService.sortFranjas(this.franjas).subscribe({
         next:(data)=>{
-          console.log(data)
+    
           this.messageService.add({ severity: 'success', summary: 'Actualizar orden', detail: 'Completada', life: 3000 });
           setTimeout(() => {
             window.location.reload()
@@ -72,9 +72,9 @@ export class OrdenarHorariosComponent {
     for(let i = 0;i<this.franjas.length;i++){
   
       let aux=i+1
-      console.log(aux)
+    
       this.franjas[i].orden=aux
     }
-      console.log(this.franjas)
+    
   }
 }

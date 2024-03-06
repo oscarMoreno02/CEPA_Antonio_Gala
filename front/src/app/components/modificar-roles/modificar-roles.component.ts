@@ -69,11 +69,11 @@ export class ModificarRolesComponent {
             this.esProfe = true;
           }
         });
-        console.log(rolesAsignados);
+  
         this.visible = true;
       },
       error: (e) => {
-        console.log(e);
+  
       }
     })
   }

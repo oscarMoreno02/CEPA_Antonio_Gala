@@ -45,7 +45,7 @@ import { Reserva } from '../../interface/reserva';
   templateUrl: './reservar-aula.component.html',
   styleUrl: './reservar-aula.component.css'
 })
-export class ReservarAulaComponent implements OnInit, OnChanges {
+export class ReservarAulaComponent implements OnInit {
   constructor(    
     private servicioHorario:HorarioService,
     private router: Router,
@@ -68,29 +68,22 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
         next: (data: Array<Horario>) => {
           this.horarios=data
           this.evaluarFechas()
-          console.log(data)
+         
         },
         error: (err) => {
         }
 
       });
     }
-    ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes)
-      if(changes["day"]){
-
-        console.log("dia cambia")
-      }
-    }
+  
     reservar(b: Boolean,id:number) {
       if (b) {
         this.messageService.add({ severity: 'info', summary: 'Reservar Horario', detail: 'En curso', life: 3000 });
         let reserva:Reserva=  {fecha:this.year+'-'+this.month+'-'+this.day,idAula:this.idAula,idHorario:id,idProfesor:this.authService.getUid()}
-        console.log(reserva)
-       console.log(reserva)
+       
         this.servicioReserva.insertReserva(reserva).subscribe({
           next: (u: any) => {
-            console.log(u)
+          
             setTimeout(() => {
               this.messageService.add({ severity: 'success', summary: 'Reservar Horario', detail: 'Completada', life: 3000 });
               setTimeout(() => {
@@ -138,30 +131,30 @@ export class ReservarAulaComponent implements OnInit, OnChanges {
     }
   }
     nuevosHorarios(horarios:Array<Horario>){
-      console.log(this.fecha)
+     
       this.horarios=horarios
       this.evaluarFechas()
     }
 
     nuevaFecha(date:Date){
-      console.log(date)
+  
       this.day=date.getDate()
       this.month=date.getMonth()+1
       this.year=date.getFullYear()
     }
 
     evaluarFechas=()=>{
-      console.log(this.horarios)
+
       for(let i =0;i<this.horarios.length;i++){
         if(this.horarios[i].reservado!=null ){
 
           this.horarios[i].reservado!.estado=this.checkVencimiento( this.horarios[i].reservado!.fecha, this.horarios[i].franja!.horaInicio, this.horarios[i].franja!.horaFin)
-            console.log(this.horarios[i].reservado)
+            
         }
       }
     }
     checkVencimiento=(fechaString:string,horarioInicio:string,horarioFin:string): number=>{
-      console.log('llega')
+  
       let estado=0
       let partesFecha = fechaString.split('-');
       let año = parseInt(partesFecha[0], 10);

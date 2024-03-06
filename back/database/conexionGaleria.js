@@ -89,7 +89,6 @@ class ConexionGaleria {
                 throw new Error(`Galeria con ID ${id} no encontrado`);
             }
             resultado = await galeria.destroy();
-            console.log('Galeria eliminada correctamente');
         } catch (error) {
             console.error(`Error al eliminar la galeria con ID ${id}: `, error);
         } finally {

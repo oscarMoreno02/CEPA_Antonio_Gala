@@ -94,7 +94,6 @@ class ConexionMensajeChat {
                 throw new Error('Chat no encontrado');
             }
             resultado = mensajes;
-            console.log(`Mensajes encontrados correctamente: ${mensajes}`);
         } catch (error) {
             console.error('Error al obtener mensajes de chat:', error.message);
             throw error;
@@ -113,7 +112,6 @@ class ConexionMensajeChat {
                 throw new Error(`Mensaje con ID ${id} no encontrado`);
             }
             resultado = await chat.destroy();
-            console.log('Mensaje eliminado correctamente');
         } catch (error) {
             console.error(`Error al eliminar mensaje con ID ${id}: `, error);
         } finally {

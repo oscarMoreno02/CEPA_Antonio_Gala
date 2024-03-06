@@ -13,7 +13,6 @@ const aulaHorarioFactory = async (ctos = 1) => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        console.log(i)
         factory.push(aulaHorario)
     }
     return factory

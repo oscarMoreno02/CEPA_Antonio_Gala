@@ -8,7 +8,6 @@ const aulaHorarioExiste = (idHorario) => {
         const conx = new ConexionHorarios()
         conx.getHorarioById(idHorario)
         .then(msg => {
-            console.log(msg)
             resolve(true)
         })
         .catch(err => {

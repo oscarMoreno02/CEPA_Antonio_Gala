@@ -16,8 +16,6 @@ export class UsersService {
   usuariosGet(): Observable<any  | undefined> {
     return this.http.get<any>(this.baseUrl).pipe(
       catchError((error) =>{
-        console.log(this.baseUrl)
-        console.log(error)
         return of(undefined)
       })
     )

@@ -7,11 +7,11 @@ const obtenerGalerias = (req, res = response) => {
 
     conx.getGalerias()
         .then((galerias) => {
-            console.log('Listado correcto!');
+   
             res.status(200).json(galerias);
         })
         .catch((err) => {
-            console.log('No hay registros');
+          
             res.status(404).json({ 'msg': 'No se han encontrado registros' });
         });
 }
@@ -21,11 +21,11 @@ const obtenerGaleriaPorId = (req, res = response) => {
 
     conx.getGaleriaPorId(req.params.id)
         .then((galeria) => {
-            console.log('Listado correcto!');
+            
             res.status(200).json(galeria);
         })
         .catch((err) => {
-            console.log('No hay registro!');
+      
             res.status(404).json({ 'msg': 'No se ha encontrado el registro' });
         });
 }
@@ -35,11 +35,11 @@ const subirGaleria = (req = request, res = response) => {
 
     conx.postGaleria(req.body)
         .then((galeria) => {
-            console.log('Insertado correctamente!');
+          
             res.status(200).json(galeria);
         })
         .catch((err) => {
-            console.log('Fallo en el registro!');
+           
             res.status(404).json(err);
         });
 }
@@ -49,11 +49,11 @@ const borrarGaleria = (req, res = response) => {
 
     conx.deleteGaleria(req.params.id)
         .then((galeria) => {
-            console.log('Eliminado correctamente!');
+            
             res.status(200).json(galeria);
         })
         .catch((err) => {
-            console.log('Fallo en la eliminación!');
+          
             res.status(404).json(err);
         });
 }
@@ -63,11 +63,11 @@ const obtenerGaleriaEvento = (req, res) => {
     
     conx.getGaleriaEvento(req.params.id)
     .then((galeria) => {
-        console.log('Obtenido correctamente!');
+   
         res.status(200).json(galeria);
     })
     .catch((err) => {
-        console.log('Fallo en la obtención!');
+
         res.status(404).json(err);
     });
 }

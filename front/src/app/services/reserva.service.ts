@@ -57,7 +57,7 @@ authService=inject(AuthService)
   deleteReserva(id:number): Observable<any | undefined> {
     let notififacion=false
     if(this.authService.getAccess=='jefedeestudios'){
-      console.log('entra en notify')
+  
       notififacion=true
     }
     return this.http.delete<any>(this.baseUrl+'/'+id,{params: {auth: true,notify:notififacion}}).pipe(

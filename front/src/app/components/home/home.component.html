@@ -1,7 +1,6 @@
 
-<div style="max-width: 800px;margin: auto; margin-top: 400px;"></div>
-    
-    <div class="home">
+
+    <div class="container">
     <img src="../../../assets/CEPA.jpg">
     <div class="card2">
         <h3>Centro Educación Personas Adultas</h3>
@@ -15,8 +14,8 @@
         <h1>ÚLTIMO EVENTO</h1>
         <app-preview-eventos [evento]="eventos[last]"></app-preview-eventos>
     }
+    <h1>ÚLTIMAS NOTICIAS</h1>
     <div style="max-width: 500px;">
-
         @if(noticias!=undefined){
             @for (noticia of noticias; track noticia.id) {
                 <app-preview-noticia [noticia]="noticia"></app-preview-noticia>

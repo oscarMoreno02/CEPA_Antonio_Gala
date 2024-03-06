@@ -8,7 +8,6 @@ const aulaReservaExiste = (idReserva) => {
         const conx = new ConexionReservas()
         conx.getReservaById(idReserva)
         .then(msg => {
-            console.log(msg)
             resolve(true)
         })
         .catch(err => {

@@ -8,7 +8,6 @@ const aulaEspecialExiste = (idAula) => {
         const conx = new ConexionAulas()
         conx.getAulaById(idAula)
         .then(msg => {
-            console.log(msg)
             resolve(true)
         })
         .catch(err => {

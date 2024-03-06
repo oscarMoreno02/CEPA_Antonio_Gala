@@ -140,7 +140,6 @@ export class EditNoticiaDataComponent implements OnInit {
     if (b) {
       if (this.validarCampos()) {
         if (this.formularioFoto) {
-          console.log(this.fotoAuxiliar)
           this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
           this.servicioFotos.updateFoto(this.fotoAuxiliar,this.formularioFoto).subscribe({
             next: (data:any) => {

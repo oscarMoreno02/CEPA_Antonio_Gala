@@ -51,7 +51,7 @@ export class EditarAulaComponent implements OnInit {
         this.editarAula = data
       },
       error: (err) => {
-        console.log(err)
+     
       }
     })
   }
