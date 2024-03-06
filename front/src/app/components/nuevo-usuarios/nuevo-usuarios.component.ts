@@ -140,6 +140,7 @@ export class NuevoUsuariosComponent {
                 this.nuevoUsuario.nombre= ''
                 this.nuevoUsuario.email= ''
                 this.nuevoUsuario.password= ''
+                window.location.reload() 
               });
             },
             error: (error) => {

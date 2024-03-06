@@ -73,6 +73,11 @@ userroles:Array<string>=[]
 
     },
     {
+      label: 'Administrar Usuarios',
+      command: () => { this.router.navigate(['/users']) },
+
+    },
+    {
       label: 'Salir',
       command: () => {
         this.servicioAutenticacion.clearAccess()
