@@ -8,7 +8,23 @@
 
 ## -----------------------------------------------------
 
-## - Base URL: `http://localhost:9090/api`
+### Comandos para desplegar
+
+#### back
+
+`` npm install ``
+`` npx sequelize-cli db:migrate ``
+`` npx sequelize-cli db:seed:all ``
+`` nodemon ``
+
+#### front
+
+`` npm install ``
+`` ng serve --open ``
+
+## -----------------------------------------------------
+
+### - Base URL: `http://localhost:9090/api`
 
 ## -----------------------------------------------------
 
@@ -353,8 +369,9 @@
 - ``Ejemplo de respuesta``:
     ```
         {
-            "idEvento": int,
-            "idUsuario: int
+            "id": int,
+		    "idEvento": int,
+		    "idUsuario": int 
         }
     ```
 
@@ -366,8 +383,9 @@
 - ``Ejemplo de respuesta``:
     ```
         {
-            "idEvento": int,
-            "idUsuario: int
+            "id": int,
+		    "idEvento": int,
+		    "idUsuario": int 
         }
     ```
 
@@ -379,8 +397,19 @@
 - ``Ejemplo de respuesta``:
     ```
         {
-            "idEvento": int,
-            "idUsuario: int
+            "id": int, 
+	        "idEvento": int,
+	        "idUsuario": int,
+	        "evento": {
+                "id": int,
+		        "nombre": "string",
+		        "descripcion": "string",
+		        "fecha": "string",
+		        "hora": "string",
+		        "mg": int,
+		        "visibilidad": boolean,
+		        "numAsistentes": int
+            }
         }
     ```
 
@@ -392,10 +421,20 @@
 - ``Ejemplo de respuesta``:
     ```
         {
-            "idEvento": int,
-            "idUsuario: int
+            "id": int, 
+	        "idEvento": int,
+	        "idUsuario": int,
+	        "usuario" : {
+                .............
+	        }
         }
     ```
+
+#### Obtener asistencia por id
+
+- Verbo: `GET`
+- URL: `/asistenciaEventoUsuario/{int}/{int}`
+- Descripción: Retorna que existe un usuario en específico por id en un evento en específico por id.
 
 #### Insertar una nueva asistencia
 
@@ -428,6 +467,299 @@
 - Método: `DELETE`
 - URL: `/asistencia/{int}`
 - Descripción: Elimina una asistencia existente según su ID.
+
+## -----------------------------------------------------
+
+### Mensaje chat
+
+#### Obtener todos los mensajes
+
+- Verbo: `GET`
+- URL: `/mensajeChat/obtener`
+- Descripción: Retorna todos los mensajes disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+		    "idChat": int,
+		    "idUsuario": int,
+		    "mensaje": "string"
+        }
+    ```
+
+#### Obtener mensaje por id
+
+- Verbo: `GET`
+- URL: `/mensajeChat/obtenerId/{int}`
+- Descripción: Retorna un mensaje disponible buscando por su id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+		    "idChat": int,
+		    "idUsuario": int,
+		    "mensaje": "string"
+        }
+    ```
+
+#### Insertar un nuevo mensaje
+
+- Verbo: `POST`
+- URL: `/mensajeChat/subirMensajeChat`
+- Descripción: Insertar un nuevo mensaje.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "id": int,
+		    "idChat": int,
+		    "idUsuario": int,
+		    "mensaje": "string"
+        }
+    ```
+
+#### Eliminar un mensaje
+
+- Método: `DELETE`
+- URL: `/mensajeChat/borrar/{int}`
+- Descripción: Elimina un mensaje existente según su ID.
+
+## -----------------------------------------------------
+
+### Evento
+
+#### Obtener todos los eventos
+
+- Verbo: `GET`
+- URL: `/eventos/obtener`
+- Descripción: Retorna todos los eventos disponibles.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+		    "nombre": "string",
+		    "descripcion": "string",
+		    "fecha": "string",
+		    "hora": "string",
+		    "mg": int,
+		    "visibilidad": boolean,
+		    "numAsistentes": int
+        }
+    ```
+
+#### Obtener evento por id
+
+- Verbo: `GET`
+- URL: `/eventos/{int}`
+- Descripción: Retorna un evento disponible buscando por su id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+		    "nombre": "string",
+		    "descripcion": "string",
+		    "fecha": "string",
+		    "hora": "string",
+		    "mg": int,
+		    "visibilidad": boolean,
+		    "numAsistentes": int
+        }
+    ```
+
+#### Obtener eventos en activo
+
+- Verbo: `GET`
+- URL: `/eventos/obtenerActivos`
+- Descripción: Retorna los eventos que tienen visibilidad (true).
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "id": int,
+		    "nombre": "string",
+		    "descripcion": "string",
+		    "fecha": "string",
+		    "hora": "string",
+		    "mg": int,
+		    "visibilidad": boolean,
+		    "numAsistentes": int
+        }
+    ```
+
+#### Obtener plazas disponibles de un evento
+
+- Verbo: `GET`
+- URL: `/asistencia/asistenciasEvento/{int}`
+- Descripción: Retorna las plazas disponibles de un evento por id.
+
+#### Insertar un nuevo evento
+
+- Verbo: `POST`
+- URL: `/eventos/`
+- Descripción: Insertar un nuevo evento.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+		    "nombre": "string",
+		    "descripcion": "string",
+		    "fecha": "string",
+		    "hora": "string",
+		    "mg": int,
+		    "visibilidad": boolean,
+		    "numAsistentes": int
+        }
+    ```
+
+#### Actualizar un evento
+
+- Verbo: `PUT`
+- URL: `/eventos/{int}`
+- Descripción: Actualizar un evento existente.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+		    "nombre": "string",
+		    "descripcion": "string",
+		    "fecha": "string",
+		    "hora": "string",
+		    "mg": int,
+		    "visibilidad": boolean,
+		    "numAsistentes": int
+        }
+    ```
+
+#### Actualizar la cantidad de mg de un evento
+
+- Verbo: `PUT`
+- URL: `/eventos/mg/{int}`
+- Descripción: Actualizar la cantidad de mg de un evento existente.
+
+#### Añadir plazas de evento
+
+- Verbo: `PUT`
+- URL: `/eventos/anadirPlaza/{int}`
+- Descripción: Añadir plazas a un evento existente por id.
+
+#### Eliminar plazas de evento
+
+- Verbo: `PUT`
+- URL: `/eventos/eliminarPlaza/{int}`
+- Descripción: Eliminar plazas a un evento existente por id.
+
+#### Eliminar una asistencia
+
+- Método: `DELETE`
+- URL: `/asistencia/{int}`
+- Descripción: Elimina una asistencia existente según su ID.
+
+## -----------------------------------------------------
+
+### Galería 
+
+#### Obtener todas las galerías 
+
+- Verbo: `GET`
+- URL: `/galeria/`
+- Descripción: Retorna todas las galerías disponibles (fotos).
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+		    "foto": "string"
+        }
+    ```
+
+#### Obtener galería por id
+
+- Verbo: `GET`
+- URL: `/galeria/{int}`
+- Descripción: Retorna la galería buscando por id.
+- ``Ejemplo de respuesta``:
+    ```
+        {
+            "idEvento": int,
+		    "foto": "string"
+        }
+    ```
+
+#### Obtener galerías de un evento 
+
+- Verbo: `GET`
+- URL: `/galeria/{int}`
+- Descripción: Retorna las galerías por un evento buscando por id.
+
+#### Insertar una nueva galería
+
+- Verbo: `POST`
+- URL: `/galeria/`
+- Descripción: Insertar una nueva galería.
+- ``Ejemplo de solicitud``:
+    ```
+        {
+            "idEvento": int,
+		    "foto": "string"
+        }
+    ```
+
+#### Eliminar una galería
+
+- Método: `DELETE`
+- URL: `/galeria/{int}`
+- Descripción: Elimina una galería existente según su ID.
+
+## -----------------------------------------------------
+
+### Uploads foto evento
+
+#### Obtener una foto de evento
+
+- Verbo: `GET`
+- URL: `/uploads/eventos/{id}`
+- Descripción: Retorna una foto en específico de un evento disponible.
+
+#### Subir una foto de evento
+
+- Método: `POST`
+- URL: `/uploads/eventos`
+- Descripción: Inserta una foto.
+
+#### Actualizar una foto de evento
+
+- Método: `PUT`
+- URL: `/uploads/eventos/{int}`
+- Descripción: Actualiza una foto.
+
+#### Eliminar una foto de evento
+
+- Método: `DELETE`
+- URL: `/uploads/eventos/{int}`
+- Descripción: Elimina una foto existente según su ID.
+
+## -----------------------------------------------------
+
+### Uploads foto galería
+
+#### Obtener una foto de galería
+
+- Verbo: `GET`
+- URL: `/uploads/galerias/{id}`
+- Descripción: Retorna una foto en específico de una galería disponible.
+
+#### Subir una foto de galería
+
+- Método: `POST`
+- URL: `/uploads/galerias`
+- Descripción: Inserta una foto.
+
+#### Actualizar una foto de galería
+
+- Método: `PUT`
+- URL: `/uploads/galerias/{int}`
+- Descripción: Actualiza una foto.
+
+#### Eliminar una foto de galería
+
+- Método: `DELETE`
+- URL: `/uploads/galerias/{int}`
+- Descripción: Elimina una foto existente según su ID.
 
 ## -----------------------------------------------------
 
@@ -588,7 +920,7 @@
     [
         {
             "id": {int},
-            "titulo": {string}
+            "titulo": {string},
             "enlace": {url},
             "idCategoria":{int},
             "foto": "{url}",
@@ -603,7 +935,7 @@
 
 - Verbo: `GET`
 - URL: `/noticias/{int}`
-- Descripción: Retorna una noticia si esta disponible buscando su id.
+- Descripción: Retorna una noticia si está disponible buscando su id.
 - ``Ejemplo de respuesta``
     ```
        {
@@ -617,11 +949,11 @@
         }
     ```
 
-#### Obtener todas las noticias por categpria
+#### Obtener todas las noticias por categoría
 
 - Verbo: `GET`
 - URL: `/noticias/categoria/{int}`
-- Descripción: Retorna todas las noticias buscando la id de la categoria a la que pertenecen.
+- Descripción: Retorna todas las noticias buscando la id de la categoría a la que pertenecen.
 ``Ejemplo de respuesta``
     ```
     [
@@ -648,7 +980,7 @@
     [
          {
             "id": {int},
-            "titulo": {string}
+            "titulo": {string},
             "enlace": {url},
             "idCategoria":{int},
             "foto": "{url}",
@@ -686,12 +1018,12 @@
 
 - Verbo: `GET`
 - URL: `/noticias/secciones/{int}`
-- Descripción: Retorna  una noticia junto con las  secciones y sus enlaces.
+- Descripción: Retorna  una noticia junto con las secciones y sus enlaces.
 - ``Ejemplo de respuesta``:
     ```
         {
             "id": {int},
-            "titulo": {string}
+            "titulo": {string},
             "enlace": {url},
             "idCategoria":{int},
             "foto": "{url}",
@@ -723,6 +1055,12 @@
         }
     ```
 
+#### Obtener las últimas noticias con secciones
+
+- Verbo: `GET`
+- URL: `/noticias/last`
+- Descripción: Retorna las últimas noticias con sus secciones.
+
 #### Insertar una nueva noticia
 
 - Método: `POST`
@@ -732,7 +1070,7 @@
     ```
     {
         "id": {int},
-        "titulo": {string}
+        "titulo": {string},
         "enlace": {url},
         "idCategoria":{int},
         "foto": "{url}"
@@ -744,8 +1082,7 @@
 - Método: `PUT`
 - URL: `/noticias/{int}`
 - Descripción: Actualiza una noticia existente.
-- Ejemplo de solicitud:
-``Ejemplo de solicitud``:
+- ``Ejemplo de solicitud``:
     ```
     {
         "id": {int},
@@ -791,7 +1128,7 @@
 
 - Verbo: `GET`
 - URL: `/secciones/{int}`
-- Descripción: Retorna una sección si esta disponible buscando su id.
+- Descripción: Retorna una sección si está disponible buscando su id.
 - ``Ejemplo de respuesta``
     ```
        {
@@ -805,11 +1142,11 @@
         }
     ```
 
-#### Obtener seccion por noticia
+#### Obtener sección por noticia
 
 - Verbo: `GET`
 - URL: `/secciones/noticia/{int}`
-- Descripción: Retorna todas las seccies buscando la id de la noticia a la que pertenecen.
+- Descripción: Retorna todas las secciones buscando la id de la noticia a la que pertenecen.
 ``Ejemplo de respuesta``
     ```
     [
@@ -859,7 +1196,7 @@
     ]
     ```
 
-#### Obtener una  sección junto con sus enlaces
+#### Obtener una sección junto con sus enlaces
 
 - Verbo: `GET`
 - URL: `/secciones/enlaces/{int}`
@@ -904,13 +1241,12 @@
     }
     ```
 
-#### Actualizar una seccion
+#### Actualizar una sección
 
 - Método: `PUT`
 - URL: `/seccion/{int}`
 - Descripción: Actualiza una sección existente.
-- Ejemplo de solicitud:
-``Ejemplo de solicitud``:
+- ``Ejemplo de solicitud``:
     ```
     {
         "id": {int},
@@ -921,7 +1257,7 @@
     }
     ```
 
-#### Eliminar una seccion
+#### Eliminar una sección
 
 - Método: `DELETE`
 - URL: `/seccion/{int}`
@@ -955,7 +1291,7 @@
 
 - Verbo: `GET`
 - URL: `/enlaces/{int}`
-- Descripción: Retorna un enlace si esta disponible buscando su id.
+- Descripción: Retorna un enlace si está disponible buscando su id.
 - ``Ejemplo de respuesta``
     ```
          {
@@ -1008,7 +1344,7 @@
 - Método: `PUT`
 - URL: `/enlaces/{int}`
 - Descripción: Actualiza un enlace existente.
-``Ejemplo de solicitud``:
+- ``Ejemplo de solicitud``:
     ```
    {
         "id": {int},
