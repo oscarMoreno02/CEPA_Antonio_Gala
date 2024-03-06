@@ -60,13 +60,15 @@ class ConexionEvento {
         this.conectar();
         let resultado;
         try {
-            resultado = await models.Evento.create(body);
+            const evento =  new models.Evento(body);
+            await evento.save()
+            resultado=evento.id
+            return resultado;
         } catch (error) {
          
         } finally {
             this.desconectar();
         }
-        return resultado;
     }
 
     updateEvento = async (id, body) => {

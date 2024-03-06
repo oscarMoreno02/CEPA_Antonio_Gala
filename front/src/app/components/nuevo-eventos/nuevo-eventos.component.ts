@@ -190,6 +190,7 @@ export class NuevoEventosComponent{
                     this.nuevoEvento.fotoCartel= ''
                     this.nuevoEvento.visibilidad= false;
                   });
+                  this.nuevoEvento.id=data.id
                  this.socket.sendEvent(this.nuevoEvento)
                  window.location.reload()
                 },

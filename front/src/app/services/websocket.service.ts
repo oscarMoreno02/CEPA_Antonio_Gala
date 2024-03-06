@@ -48,6 +48,7 @@ this.socket.on("enviar-evento", (data:Evento) => {
   setTimeout(() => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');
     if (messageElement) {
+      console.log(data)
       const link = document.createElement('a');
       link.href = '/eventos/evento/'+data.id!.toString(); 
       link.textContent = 'Ver evento'; 
