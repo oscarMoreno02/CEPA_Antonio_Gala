@@ -57,12 +57,8 @@ export class NuevaAulaComponent {
               this.messageService.add({ severity: 'success', summary: 'Crear Aula', detail: 'Completada', life: 3000 });
               this.nuevaAula.id = data.id
               setTimeout(() => {
-                if (this.listaAulas.length == 5) {
-                  window.location.reload()
-                } else {
-                  this.listaAulas.push(this.nuevaAula)
-                  this.visible = false
-                }
+                window.location.reload()
+        
               }, 1000);
             }, 1000);
 

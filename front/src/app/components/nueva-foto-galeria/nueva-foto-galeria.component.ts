@@ -89,9 +89,11 @@ export class NuevaFotoGaleriaComponent implements OnInit {
             this.messageService.add({ severity: 'info', summary:'Subir fotografía', detail:'En curso', life:3000});
             this.servicioGaleria.insertGaleria(this.galeria).subscribe({
               next: (data: any) => {
+                this.messageService.add({severity: 'success', summary:'Subir fotografía', detail:'Completado', life:3000});
                 setTimeout(() => {
-                  this.messageService.add({severity: 'success', summary:'Subir fotografía', detail:'Completado', life:3000});
-                });
+                  window.location.reload()
+                },1000);
+
               },
               error: (error) => {
                 this.messageService.add({severity: 'error', summary:'Subir fotografía', detail:'Algo ha ido mal, inténtelo de nuevo', life:3000});

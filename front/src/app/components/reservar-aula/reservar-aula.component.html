@@ -46,7 +46,8 @@
                     <td><app-confirm tipo="Reservar" color="success" (confirmacion)="reservar($event,horario.id)"  mensaje="¿Desea reservar este horario?"></app-confirm></td>
                  }@else {
 
-                     <td><p style="color: red">RESERVADO</p></td>
+                     <td ><p style="color: red">RESERVADO</p></td>
+
                      @if(horario.reservado.idProfesor==authService.getUid()){
                         
                         @if(horario.reservado.estado==0){
@@ -56,6 +57,8 @@
                             <td></td>
                                         
                         }
+                     }@else{
+                        <td></td>
                      }
                     }
             </tr>

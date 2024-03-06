@@ -185,6 +185,7 @@ export class EditarEventoComponent{
                       this.visible=false
                     }
                   }
+                  window.location.reload()
                 }, 1000)
               },
               error: (err) => {
@@ -206,7 +207,9 @@ export class EditarEventoComponent{
               if(this.eventos[i].id == this.eventoModal.id){
               this.eventos[i]=this.evento
               this.visible=false
+
             }
+            window.location.reload()
           }
         }, 1000)
       },
