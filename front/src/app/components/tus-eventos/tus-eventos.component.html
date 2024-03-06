@@ -5,7 +5,7 @@
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
@@ -15,7 +15,7 @@
         </div>
     </ng-template>
         <ng-template pTemplate="header">
-            <tr>
+            <tr class="header-glass" style="border: none;">
                 <th style="width:5%">Eliminar</th>
                 <th style="width:10%">Nombre</th>
                 <th style="width:10%">Descripción</th>

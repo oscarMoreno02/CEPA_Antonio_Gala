@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
   @if(tipo==0){
-  <p-button (click)="showDialog()" icon="pi pi-pencil" label=""></p-button>
+  <p-button (click)="showDialog()" [raised]="true" [outlined]="true" icon="pi pi-pencil" label="Editar"></p-button>
   }
   <p-dialog header="Editar evento" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
