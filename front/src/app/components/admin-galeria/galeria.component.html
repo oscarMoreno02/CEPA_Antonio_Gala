@@ -11,13 +11,12 @@
     >
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
-            <app-nueva-foto-galeria [id]=eventoId></app-nueva-foto-galeria>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Administrar Fotografías 
+            Administrar Fotografías 
         </div>
     </ng-template>
         <ng-template pTemplate="header">
             <tr class="header-glass">
-                <th>Borrar</th>
+                <th><app-nueva-foto-galeria [id]=eventoId></app-nueva-foto-galeria></th>
                 <th>Fotografía</th>
             </tr>
         </ng-template>

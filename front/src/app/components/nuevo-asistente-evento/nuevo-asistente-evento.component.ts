@@ -99,6 +99,7 @@ export class NuevoAsistenteEventoComponent implements OnInit {
             next: (data:any) => { 
               this.servicioAsistencia.insertAsistencia(this.asistencia).subscribe({
                 next: (data: any) => {
+                  window.location.reload()
                   setTimeout(() => {
                     this.messageService.add({severity: 'success', summary:'Crear Asistencia', detail:'Completado', life:3000});
                     this.asistencia.id = data.id

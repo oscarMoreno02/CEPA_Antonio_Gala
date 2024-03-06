@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
-    <p-button severity="success" (click)="showDialog()" [raised]="true" [outlined]="true" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-button severity="success" [raised]="true" [outlined]="true" (click)="showDialog()" [raised]="true" [outlined]="true" icon="pi pi-plus" label="Nuevo"></p-button>
     <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
 
