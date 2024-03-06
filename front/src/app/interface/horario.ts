@@ -10,6 +10,6 @@ export interface Horario {
     idFranja?:number
     aula?:Aula,
     franja?:Franja,
-    reservado?:null | Reserva
+    reservado?:null | Reserva,
 }
 //Óscar
