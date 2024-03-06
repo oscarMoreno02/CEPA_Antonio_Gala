@@ -111,6 +111,18 @@ const listNoticiaWithSecciones = (req, res = response) => {
             res.status(404).json()
         })
 }
+
+const listUltimasNoticiasWithSecciones = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getUltimasNoticiasWithSecciones()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(404).json()
+        })
+}
 module.exports={
     listAllNoticias,
     listNoticia,
@@ -119,5 +131,6 @@ module.exports={
     createNoticia,
     listNoticiasByCategorias,
     listAllNoticiasWithSecciones,
-    listNoticiaWithSecciones
+    listNoticiaWithSecciones,
+    listUltimasNoticiasWithSecciones
 }

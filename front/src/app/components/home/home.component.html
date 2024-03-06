@@ -1,4 +1,4 @@
-<div class="home">
+<div class="home" style="margin-top: 700px;">
     <img src="../../../assets/CEPA.jpg">
     <div class="card2">
         <h3>Centro Educación Personas Adultas</h3>
@@ -12,4 +12,12 @@
         <h1>ÚLTIMO EVENTO</h1>
         <app-preview-eventos [evento]="eventos[last]"></app-preview-eventos>
     }
+    <div style="width: 500px;">
+
+        @if(noticias!=undefined){
+            @for (noticia of noticias; track noticia.id) {
+                <app-preview-noticia [noticia]="noticia"></app-preview-noticia>
+            }
+        }
+    </div>
 </div>

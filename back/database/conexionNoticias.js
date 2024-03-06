@@ -184,6 +184,33 @@ class ConexionNoticias {
             this.desconectar();
         }
     }
+
+    getUltimasNoticiasWithSecciones = async () => {
+        try {
+            let resultado = [];
+            this.conectar();
+            resultado = await models.Noticia.findAll({
+                include: [{
+                    model: models.Seccion,
+                    as: 'secciones',
+                    include: [{
+                        model: models.Enlace,
+                        as: 'enlaces',
+                    }, ],
+                }, ],
+                limit: 3 ,
+                order:[['updatedAt','DESC']]
+            });
+            if (resultado == null) {
+                throw new Error()
+            }
+            return resultado;
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar();
+        }
+    }
 }
 
 module.exports = ConexionNoticias;

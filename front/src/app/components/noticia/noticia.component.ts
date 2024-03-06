@@ -34,6 +34,7 @@ export class NoticiaComponent implements OnInit {
   id=new Subscription
   noticia?:Noticia
   subscripcionCategorias: Subscription=new Subscription;
+  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
   ngOnInit(): void {
     console.log('llega')
     this.id = this.rutaActiva.params.subscribe(params => {
@@ -49,7 +50,6 @@ export class NoticiaComponent implements OnInit {
     })
    
   }
-  httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 esUrl(foto:string):Boolean{
   return this.httpRegex.test(foto)
   }
