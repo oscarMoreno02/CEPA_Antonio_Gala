@@ -23,7 +23,7 @@ export class VistaEventosComponent implements OnInit{
   @Input() eventos:Array<Evento>=[]
 
   ngOnInit(): void {
-    this.servicioEventos.getAllEventos()
+    this.servicioEventos.getEventosActivos()
       .pipe(
         finalize(() => this.formatearSrc())
       )

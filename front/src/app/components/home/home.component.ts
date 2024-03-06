@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     private noticiaService:NoticiaService
   ){}
   ngOnInit(): void {
-    this.servicioEventos.getAllEventos()
+    this.servicioEventos.getEventosActivos()
       .pipe(
         finalize(() => this.formatearSrc())
       )
