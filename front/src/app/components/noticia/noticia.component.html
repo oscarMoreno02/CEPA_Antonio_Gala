@@ -52,13 +52,13 @@
                     <h2 style="word-wrap: break-word; margin-bottom: 50px;">{{noticia.secciones![0].titulo}}</h2>
       <p style="word-wrap: break-word; margin-bottom: 50px;">{{noticia.secciones![0].texto}}</p>
       <br>
-      @if(noticia.foto!=null){
+      @if(seccion.foto!=null){
         <div style="max-width: 100%; margin: auto; display: flex; align-items: center; justify-content: center;margin-bottom: 40px;">
 
-            @if(esUrl(noticia.foto)){
+            @if(esUrl(seccion.foto)){
                 <img alt="noticia" src="{{seccion.foto}}" />
             }@else {
-                <img [src]="env.baseUrl+env.urlFotosNoticias+'/'+seccion.foto"  width="70%" height="320px" class="shadow-4">
+                <img [src]="env.baseUrl+env.urlSecciones+'/'+seccion.foto"  width="70%" height="320px" class="shadow-4">
             }
         </div>
         }
