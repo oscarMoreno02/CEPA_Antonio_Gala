@@ -62,9 +62,7 @@ describe('Testeo de rutas GET', () => {
  
     it('Establecer categoria dependiente a si misma ', async () => {
         nueva.dependiente=id
-        console.log('---------------------------------------------------------------')
-        console.log('id:',id)
-        console.log('categoria:',nueva)
+       
         const response = await request(app).put('/'+id).send(nueva).set('x-token',token);
         expect(response.statusCode).toBe(400);
         expect(response.body).toBe('No se puede asignar una dependencia a la misma categoria')

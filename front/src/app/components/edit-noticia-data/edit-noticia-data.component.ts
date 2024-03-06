@@ -140,7 +140,6 @@ export class EditNoticiaDataComponent implements OnInit {
     if (b) {
       if (this.validarCampos()) {
         if (this.formularioFoto) {
-          console.log(this.fotoAuxiliar)
           this.messageService.add({ severity: 'info', summary: 'Editar Noticia', detail: 'En curso', life: 3000 });
           this.servicioFotos.updateFoto(this.fotoAuxiliar,this.formularioFoto).subscribe({
             next: (data:any) => {
@@ -286,10 +285,18 @@ export class EditNoticiaDataComponent implements OnInit {
   uplodadFoto(event: any) {
     const file = event.target.files[0]
     if (file) {
+      const permitidas = ['.jpeg', '.jpg', '.png'];
+      const fichero = file.name.toLowerCase();
+      const extension = fichero.substring(fichero.lastIndexOf('.'));
+    
+      if (permitidas.includes(extension)) {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Subir foto', detail: 'Extensión no valida ', life: 3000 });
+        this.formularioFoto=null
+      }
     } else {
       this.formularioFoto = null
     }

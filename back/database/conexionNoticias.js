@@ -24,7 +24,6 @@ class ConexionNoticias {
 
     conectar = () => {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
         }).catch((error) => {
             console.error('Unable to connect to the database: ', error);
         });
@@ -82,7 +81,7 @@ class ConexionNoticias {
 
             );
             if (!resultado) {
-                console.log('error')
+           
                 throw new Error('error');
             }
             return resultado;
@@ -100,7 +99,7 @@ class ConexionNoticias {
             await noticia.save();
             return noticia.id;
         } catch (error) {
-            console.log(error)
+  
             throw error;
         } finally {
             this.desconectar();
@@ -173,6 +172,33 @@ class ConexionNoticias {
                         as: 'enlaces',
                     }, ],
                 }, ],
+            });
+            if (resultado == null) {
+                throw new Error()
+            }
+            return resultado;
+        } catch (error) {
+            throw error
+        } finally {
+            this.desconectar();
+        }
+    }
+
+    getUltimasNoticiasWithSecciones = async () => {
+        try {
+            let resultado = [];
+            this.conectar();
+            resultado = await models.Noticia.findAll({
+                include: [{
+                    model: models.Seccion,
+                    as: 'secciones',
+                    include: [{
+                        model: models.Enlace,
+                        as: 'enlaces',
+                    }, ],
+                }, ],
+                limit: 3 ,
+                order:[['updatedAt','DESC']]
             });
             if (resultado == null) {
                 throw new Error()

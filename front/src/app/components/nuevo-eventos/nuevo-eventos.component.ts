@@ -18,7 +18,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import { EventoWebsocketService } from '../../services/evento-websocket.service';
 import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
+import { WebSocketService } from '../../services/websocket.service';
 
 
 @Component({
@@ -47,16 +49,15 @@ import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.ser
     provideNativeDateAdapter()
   ]
 })
-export class NuevoEventosComponent implements OnInit{
+export class NuevoEventosComponent{
   constructor(
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
-    private servicioFoto: FotoCartelEventosService
+  private socket : WebSocketService,
+    private servicioFoto: FotoCartelEventosService,
+  
   ) {}
-  ngOnInit(): void {
-    
-  }
   
   @Input() visible: boolean = false;
   @Output() cerrarModal = new EventEmitter<void>();
@@ -75,6 +76,7 @@ export class NuevoEventosComponent implements OnInit{
     hora: '',
     fotoCartel: '',
     mg: 0,
+    numAsistentes: 0,
     visibilidad: false
   }
 
@@ -93,7 +95,7 @@ export class NuevoEventosComponent implements OnInit{
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-      console.log(this.formularioFoto)
+      
     } else {
       this.formularioFoto = null
     }
@@ -188,6 +190,7 @@ export class NuevoEventosComponent implements OnInit{
                     this.nuevoEvento.fotoCartel= ''
                     this.nuevoEvento.visibilidad= false;
                   });
+                 this.socket.sendEvent(this.nuevoEvento)
                 },
                 error: (error) => {
                   this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});

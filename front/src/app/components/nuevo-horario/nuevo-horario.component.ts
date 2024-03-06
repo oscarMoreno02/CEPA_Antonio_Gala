@@ -58,7 +58,7 @@ export class NuevoHorarioComponent implements OnInit {
         }
       },
       error:(err)=>{
-        console.log(err)
+
       }
     })
 

@@ -96,12 +96,12 @@ class ConexionCategorias{
             this.conectar();
             resultado = await models.Categoria.findByPk(id);
             if (!resultado) {
-                console.log(resultado)
+      
                 throw new Error('error');
             }
             return resultado;
         }catch(error){
-            console.log('llegaCatch')
+
             throw error
         }
         finally{
@@ -112,12 +112,12 @@ class ConexionCategorias{
         try{
             let resultado = [];
             this.conectar();
-            console.log(n)
+
             resultado = await models.Categoria.findOne({where: { nombre: n}});
        
-            console.log(resultado)
+
             if (!resultado) {
-                console.log('error')
+             
                 throw new Error('error');
             }
             return resultado;

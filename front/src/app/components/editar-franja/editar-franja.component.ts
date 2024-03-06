@@ -130,8 +130,6 @@ export class EditarFranjaComponent {
   }
   }
   validarCampos():Boolean{
-    console.log(this.horaFin)
-    console.log(this.horaInicio)
     let valido = true
     if(this.horaInicio.hora==null || this.horaFin.hora==null){
       this.estiloValidacionHoras='ng-invalid ng-dirty'

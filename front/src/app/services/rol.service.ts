@@ -1,3 +1,5 @@
+//Raul
+
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Rol } from '../interface/rol';
@@ -14,8 +16,7 @@ export class RolService {
   rolesGet(): Observable<any  | undefined> {
     return this.http.get<any>(this.baseUrl).pipe(
       catchError((error) =>{
-        console.log(this.baseUrl)
-        console.log(error)
+  
         return of(undefined)
       })
     )

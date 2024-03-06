@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
-    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-button severity="success" (click)="showDialog()" icon="pi pi-plus" label="Nuevo" [raised]="true" [outlined]="true"></p-button>
     <p-dialog header="Añadir asistencia" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
 

@@ -1,0 +1,27 @@
+@if(evento){
+
+    <div style="float:left; margin-left:20px; margin-top:30px; margin-bottom:30px ;justify-content: space-evenly;">
+        <p-card styleClass="mt10" [style]="{'width': '350px', 'height': '460px', 'margin-top':'20px'}" routerLink="evento/{{ evento.id }}">
+    <ng-template pTemplate="header">
+        <div style="text-align: center;  overflow: hidden; margin-top: -30px;">
+                <h2>
+                    <span>
+                        {{ evento.nombre }}
+                    </span>
+                </h2>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-top: -30px; align-items: center; height: 100%;">
+            @if(evento.fotoCartel!=null){
+                <img [src]='evento.fotoCartel' style="height:200px; width:auto;" class="shadow-4">
+            }
+            <p>{{ evento.descripcion }}</p>
+            <p>{{ evento.fecha }}</p>
+            <p>{{ evento.hora }}</p>
+        </div>
+    </ng-template>
+</p-card>
+</div>
+
+        }

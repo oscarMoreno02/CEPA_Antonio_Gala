@@ -190,6 +190,12 @@ a:hover {
   background-color: grey;
 }
 
+
+.p-card-header img {
+  max-width: 100%;
+  max-height: 300px;
+}
+
 .boton-bonito {
   display: inline-block;
   padding: 10px 20px;
@@ -204,3 +210,4 @@ a:hover {
 .boton-bonito:hover{
   border-color: #3B82F6
 }
+

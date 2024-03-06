@@ -1,0 +1,33 @@
+
+
+<p-toast></p-toast>
+<!-- //Óscar -->
+<div class="card flex justify-content-center">
+  @if(tipo==0){
+  <p-button severity="warning" [raised]="true" [outlined]="true" (click)="showDialog()" icon="pi pi-list" label="Orden"></p-button>
+  }
+  <p-dialog  header="Ordenar Horarios" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card xl:flex xl:justify-content-center">
+        <p-orderList [responsive]="true" (onReorder)="asignar()" controlsPosition="right"  [stripedRows]="true" [value]="franjas" [listStyle]="{ 'max-height': '30rem' }" header="Orden Horarios" [dragdrop]="true">
+            <ng-template let-horario pTemplate="item">
+                <div class="flex flex-wrap p-2 align-items-center gap-3">
+                    <div class="flex-1 flex flex-column gap-2">
+                     
+                        <div class="flex align-items-center gap-2">
+                          <span>{{ horario.orden + 'a - '+horario.horaInicio+' - '+horario.horaFin  }}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-orderList>
+    </div>
+    
+    
+    <div style="margin-top: 20px;" >
+
+        <app-confirm tipo="Guardar" icono="save" mensaje="¿Deseas guardar este orden?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+    </div>
+  </p-dialog>
+</div>

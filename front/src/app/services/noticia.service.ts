@@ -78,4 +78,12 @@ export class NoticiaService {
      })
     )
   }
+
+  getUltimasNoticias(): Observable<any | undefined> {
+    return this.http.get<any>(this.baseUrl+'/last/').pipe(
+      catchError((error) =>{
+        return of(undefined)
+      })
+    )
+  }
 }

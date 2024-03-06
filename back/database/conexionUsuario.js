@@ -54,12 +54,10 @@ class ConexionUser{
             this.conectar();
             resultado = await models.user.findByPk(id);
             if (!resultado) {
-                console.log(resultado)
                 throw new Error('error');
             }
             return resultado;
         }catch(error){
-            console.log('llegaCatch')
             throw error
         }
         finally{
@@ -79,9 +77,7 @@ class ConexionUser{
             return resultado
         } catch (error) {
             if (error instanceof Sequelize.UniqueConstraintError) {
-                console.log(`El id ${body.id} ya existe en la base de datos.`);
             } else {
-                console.log('Ocurrió un error desconocido: ', error);
             }
             throw error;
         } finally {
@@ -165,7 +161,6 @@ class ConexionUser{
             this.desconectar();
             return resultado;
         } catch (err) {
-            console.log(err)
             this.desconectar()
         }
     }

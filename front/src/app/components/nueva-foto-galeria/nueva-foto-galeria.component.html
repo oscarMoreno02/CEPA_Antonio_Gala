@@ -1,0 +1,29 @@
+<p-toast></p-toast>
+<div class="card flex justify-content-center">
+    <p-button severity="success" [raised]="true" [outlined]="true" (click)="showDialog()" [raised]="true" [outlined]="true" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar();" [resizable]="false">
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="foto">Fotografía nueva</label><br><br>
+                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
+                    @if(fotoPreview){
+                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
+                    }
+                <small id="fotoCartel">Sube la foto del cartel del nuevo evento</small><br>
+            </div>
+            <br>
+            @if(fotoPreview){
+                <img [src]="fotoPreview">
+            }
+
+        </div><br>
+        <div style="margin-top: 20px;" >
+            <app-confirm tipo="Subir" icono="plus" mensaje="¿Deseas subir esta foto?" color="success" (confirmacion)="crear($event)"></app-confirm>
+        </div>
+        </div>
+    </p-dialog>
+</div>

@@ -8,7 +8,7 @@ const seccionesFactory = async (ctos,noticias) => {
 
     for(let i = 1; i <= noticias; i++) {
         for(let x = 0; x < ctos; x++) {
-            console.log('llega')
+         
             let seccion = 
             {
                 titulo: ejemplo.titulo,
@@ -18,7 +18,7 @@ const seccionesFactory = async (ctos,noticias) => {
                 createdAt: new Date(),
                 updatedAt: new Date()
             }
-            console.log('llega')
+        
             factory.push(seccion)
         }   
     }

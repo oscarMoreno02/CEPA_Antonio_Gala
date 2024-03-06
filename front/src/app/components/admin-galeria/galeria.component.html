@@ -1,0 +1,35 @@
+<p-toast></p-toast>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="galerias"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem','max-width':'80rem','margin':'auto' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} fotografías"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Administrar Fotografías 
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="header-glass">
+                <th><app-nueva-foto-galeria [id]=eventoId></app-nueva-foto-galeria></th>
+                <th>Fotografía</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-galerias>
+            <tr class="glass">
+                <td><app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar esta fotografía?" color="danger" (confirmacion)="eliminar(galerias.id, $event)"></app-confirm></td>
+                <td><img [src]=galerias.foto alt="Foto de evento" style="width: auto; height: 200px;"></td>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>

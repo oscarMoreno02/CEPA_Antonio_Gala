@@ -97,17 +97,9 @@ export class NuevaSeccionComponent {
           this.nuevaSeccion.idNoticia = this.noticia!.id
           this.servicioSeccion.insertSeccion(this.nuevaSeccion).subscribe({
             next: (data: any) => {
+              this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
               setTimeout(() => {
-                this.messageService.add({ severity: 'success', summary: 'Crear seccion', detail: 'Completada', life: 3000 });
-                this.nuevaSeccion.id = data.id
-                this.noticia?.secciones?.push({ id: this.nuevaSeccion.id, idNoticia: this.noticia.id, titulo: this.nuevaSeccion.titulo, texto: this.nuevaSeccion.texto, foto: this.urlFoto })
-                this.nuevaSeccion.id = 0
-                this.nuevaSeccion.enlaces = []
-                this.nuevaSeccion.foto = ''
-                this.nuevaSeccion.texto = ''
-                this.nuevaSeccion.titulo = ''
-                this.visible = false
-                this.urlFoto = ''
+                window.location.reload()
               }, 1000);
 
             },
@@ -155,10 +147,18 @@ export class NuevaSeccionComponent {
   uplodadFoto(event: any) {
     const file = event.target.files[0]
     if (file) {
+      const permitidas = ['.jpeg', '.jpg', '.png'];
+      const fichero = file.name.toLowerCase();
+      const extension = fichero.substring(fichero.lastIndexOf('.'));
+    
+      if (permitidas.includes(extension)) {
       this.formularioFoto = new FormData()
       this.formularioFoto.append('archivo', file)
       this.fotoPreview = URL.createObjectURL(file);
-    
+      }else{
+        this.messageService.add({ severity: 'warn', summary: 'Subir foto', detail: 'Extensión no valida ', life: 3000 });
+        this.formularioFoto=null
+      }
     } else {
       this.formularioFoto = null
     }

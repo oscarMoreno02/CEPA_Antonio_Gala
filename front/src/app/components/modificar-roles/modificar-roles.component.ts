@@ -1,3 +1,5 @@
+//Raul
+
 import { Component, EventEmitter ,Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
@@ -58,7 +60,6 @@ export class ModificarRolesComponent {
     this.servicioRolAsig.rolesAsignadosGetIdUsu(this.idUser!).subscribe({
   
       next: (rolesAsignados: RolAsignado[]) => {
-        console.log(this.idUser!);
         rolesAsignados.forEach(rol => {
           if (rol.idRol === 1) {
             this.esAdmin = true;
@@ -68,11 +69,11 @@ export class ModificarRolesComponent {
             this.esProfe = true;
           }
         });
-        console.log(rolesAsignados);
+  
         this.visible = true;
       },
       error: (e) => {
-        console.log(e);
+  
       }
     })
   }

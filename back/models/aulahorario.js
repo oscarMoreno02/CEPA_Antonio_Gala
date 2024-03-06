@@ -5,13 +5,11 @@ const {
   Model
 } = require('sequelize');
 
-const AulaEspecial = require('./aulaespecial'); 
-const AulaFranja = require('./aulafranja'); 
+const AulaEspecial = require('./aulaespecial');
+const AulaFranja = require('./aulafranja');
 
 module.exports = (sequelize, DataTypes) => {
   class AulaHorario extends Model {
- 
-
     static associate(models) {
       this.belongsTo(models.AulaEspecial, {
         foreignKey: 'idAula',

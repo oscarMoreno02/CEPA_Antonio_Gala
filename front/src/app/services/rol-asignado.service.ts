@@ -1,3 +1,5 @@
+//Raul
+
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +14,7 @@ export class RolAsignadoService {
   constructor(private http:HttpClient) { }
 
   rolesAsignadosGetIdUsu(idUser:number): Observable<any  | undefined> {
-    console.log(this.baseUrl+'/'+idUser)
+   
     return this.http.get<any>(this.baseUrl+'/'+idUser).pipe(
       catchError((error) =>{
         return of(undefined)

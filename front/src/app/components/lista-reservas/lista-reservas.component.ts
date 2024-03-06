@@ -59,9 +59,6 @@ export class ListaReservasComponent implements OnInit {
   
     ngOnInit(): void {
 
-console.log(this.fecha)
-
-
         if(this.id!=undefined){
           this.subscripcionReservas = this.servicioReservas.getAllReservasByClaseWithData(this.id).subscribe({
             next: (data: Array<Reserva>) => {
@@ -75,12 +72,12 @@ console.log(this.fecha)
           let acceso=this.authService.getAccess
           if(acceso=='profesor'){
             this.id=this.authService.getUid()
-            console.log(this.id)
+           
             this.subscripcionReservas = this.servicioReservas.getAllReservasByProfesorWithData(this.id).subscribe({
               next: (data: Array<Reserva>) => {
                 this.listaReservas=data
                 this.evaluarFechas()
-                console.log(this.listaReservas)
+        
               },
               error: (err) => {
               }
@@ -91,7 +88,7 @@ console.log(this.fecha)
               next: (data: Array<Reserva>) => {
                 this.listaReservas=data
                 this.evaluarFechas()
-                console.log(this.listaReservas.length)
+             
               },
               error: (err) => {
               }
@@ -123,13 +120,11 @@ console.log(this.fecha)
   evaluarFechas=()=>{
     for(let i =0;i<this.listaReservas.length;i++){
       this.listaReservas[i].estado=this.checkVencimiento( this.listaReservas[i].fecha, this.listaReservas[i].horario!.franja!.horaInicio, this.listaReservas[i].horario!.franja!.horaFin)
-      console.log( this.listaReservas[i].estado)
-      console.log('llega')
     }
   }
   //Estado 0 => pendiente  1=> Vencido  2=> En curso
   checkVencimiento=(fechaString:string,horarioInicio:string,horarioFin:string): number=>{
-    console.log('llega')
+
     let estado=0
     let partesFecha = fechaString.split('-');
     let año = parseInt(partesFecha[0], 10);

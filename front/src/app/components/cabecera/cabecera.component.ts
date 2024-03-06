@@ -13,6 +13,7 @@ import { LoginComponent } from '../login/login.component';
 import { ProfileIconComponent } from '../profile-icon/profile-icon.component';
 import { AuthService } from '../../services/auth.service';
 //Óscar
+// Laura -> añadir apartado de eventos
 @Component({
   selector: 'app-cabecera',
   standalone: true,
@@ -57,11 +58,11 @@ username=''
 userroles:Array<string>=[]
   adminItems: MenuItem[] | undefined = [
     {
-      label: 'Administrar categorias',
+      label: 'Administrar Categorias',
       command: () => { this.router.navigate(['/admin/categorias']) },
     },
     {
-      label: 'Administrar noticias',
+      label: 'Administrar Noticias',
       command: () => { this.router.navigate(['/admin/noticias']) },
 
     }
@@ -69,6 +70,13 @@ userroles:Array<string>=[]
     {
       label: 'Administrar Eventos',
       command: () => { this.router.navigate(['/admin/eventos']) },
+
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
 
     }
   ]
@@ -79,12 +87,19 @@ userroles:Array<string>=[]
       command: () => { this.router.navigate(['/aulas']) },
     },
     {
-      label: 'Franjas horarias',
+      label: 'Franjas Horarias',
       command: () => { this.router.navigate(['/aulas/franjas']) },
     },
     {
       label: 'Reservas',
       command: () => { this.router.navigate(['/aulas/reservas']) },
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
+
     }
   ]
   profItems: MenuItem[] | undefined = [
@@ -95,6 +110,13 @@ userroles:Array<string>=[]
     {
       label: 'Reservar Aula',
       command: () => { this.router.navigate(['/reservas/aulas']) },
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
+
     }
   ]
 
@@ -106,7 +128,13 @@ userroles:Array<string>=[]
         this.listaCategorias = data
 
         this.items = this.crearMenu(this.listaCategorias)
+        this.items?.unshift({
+          label: 'EVENTOS',
+          command:()=>{this.router.navigate(['/eventos'])},
+          replaceUrl:true,
+        })
         this.items?.unshift({ label: 'Inicio',command: () => { this.router.navigate(['']) }, })
+
       },
       error: (err) => {
     
@@ -136,6 +164,8 @@ userroles:Array<string>=[]
 
       l.push(item);
     }
+    
+
     return l
   }
   login(b: boolean) {

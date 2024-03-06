@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+<div style="margin-top: 100px;" class="card">
+    <p-table
+        [value]="eventos"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
+        [rowsPerPageOptions]="[5, 10, 20]"
+    >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Tus Eventos
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+            <tr class="header-glass" style="border: none;">
+                <th style="width:5%"></th>
+                <th style="width:10%">Nombre</th>
+                <th style="width:10%">Descripción</th>
+                <th style="width:10%">Fecha</th>
+                <th style="width:10%">Hora</th>
+                <th style="width:10%">Me gusta</th>
+                <th style="width:10%">Visibilidad</th>
+                <th style="width:10%">Plazas Restantes</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-evento>
+            <tr>
+                <td><div style="margin-top: 20px;" >
+                    <app-confirm tipo="Borrar" icono="trash" mensaje="¿Deseas borrar este evento?" color="danger" (confirmacion)="eliminar(evento.id, $event)"></app-confirm>
+                </div></td>
+                <td>{{ evento.nombre }}</td>
+                <td>{{ evento.descripcion }}</td>
+                <td>{{ evento.fecha }}</td>
+                <td>{{ evento.hora }}</td>
+                <td>{{ evento.mg }}</td>
+                <td>{{ evento.visibilidad ? 'Si' : 'No' }}</td>
+                <td>{{ evento.numAsistentes }} </td>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+        </ng-template>
+        <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-table>
+</div>

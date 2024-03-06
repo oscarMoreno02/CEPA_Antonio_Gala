@@ -12,7 +12,7 @@ const listAllNoticias= (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+          
             res.status(404).json()
         })
 }
@@ -24,7 +24,7 @@ const listNoticia = (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+    
             res.status(404).json('No exite un noticia con ese id')
         })
 }
@@ -35,7 +35,7 @@ const listNoticiasByCategorias= (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+    
             res.status(404).json('No exite una categoria con ese id')
         })
 }
@@ -59,7 +59,7 @@ const editNoticia= (req, res = response)=>{
             res.status(202).json('Actualizado correctamente')
         })
         .catch(err => {
-            console.log(err);
+         
             res.status(203).json('Error al actualizar')
         });
         
@@ -72,7 +72,7 @@ const createNoticia = (req, res = response) => {
             res.status(201).json({id:data})
         })
         .catch(err => {
-            console.log(err)
+
             res.status(203).json(err)
         })
 }
@@ -85,7 +85,7 @@ const removeNoticia= (req, res = response) => {
             res.status(202).json('Exito en la eliminacion')
         })
         .catch(err => {
-            console.log(err)
+
             res.status(203).json('Error en la eliminacion')
         })
 }
@@ -96,7 +96,7 @@ const listAllNoticiasWithSecciones = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json()
         })
 }
@@ -107,7 +107,19 @@ const listNoticiaWithSecciones = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+         
+            res.status(404).json()
+        })
+}
+
+const listUltimasNoticiasWithSecciones = (req, res = response) => {
+    const conexion = new Conexion()
+    conexion.getUltimasNoticiasWithSecciones()
+        .then(data => {
+            res.status(200).json(data)
+        })
+        .catch(err => {
+ 
             res.status(404).json()
         })
 }
@@ -119,5 +131,6 @@ module.exports={
     createNoticia,
     listNoticiasByCategorias,
     listAllNoticiasWithSecciones,
-    listNoticiaWithSecciones
+    listNoticiaWithSecciones,
+    listUltimasNoticiasWithSecciones
 }

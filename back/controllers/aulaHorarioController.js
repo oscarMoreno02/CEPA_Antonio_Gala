@@ -14,7 +14,7 @@ const listAllHorarios = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+        
             res.status(404).json()
         })
 }
@@ -26,7 +26,7 @@ const listHorario = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite un horario con ese id')
         })
 }
@@ -38,7 +38,7 @@ const listAllHorariosOfAula = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+        
             res.status(404).json()
         })
 }
@@ -47,11 +47,11 @@ const createHorario = (req, res = response) => {
     const conexion = new Conexion()
     conexion.insertHorario(req.body)
         .then(data => {
-            console.log(data)
+  
             res.status(201).json({id:data})
         })
         .catch(err => {
-            console.log(err)
+  
             res.status(203).json('Error en el registro')
         })
 }
@@ -63,7 +63,7 @@ const editHorario = (req, res = response) => {
             res.status(202).json('Actualizado correctamente')
         })
         .catch(err => {
-            console.log(err);
+
             res.status(203).json('Error al actualizar')
         });
 
@@ -76,7 +76,7 @@ const removeHorario = (req, res = response) => {
             res.status(202).json('Exito en la eliminacion')
         })
         .catch(err => {
-            console.log(err)
+          
             res.status(203).json('Error en la eliminacion')
         })
 }
@@ -92,7 +92,7 @@ const listReservaOfAulaOnDay = (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite una reserva con ese id')
         })
 }

@@ -130,10 +130,10 @@ export class NuevoUsuariosComponent {
       if (b){
         if(this.validaciones()){
           this.messageService.add({ severity: 'info', summary:'Crear usuario', detail:'En curso', life:3000});
-          console.log(this.nuevoUsuario)
+    
           this.usuariosService.usuariosPost(this.nuevoUsuario).subscribe({
             next: (data: any) => {
-              console.log('Respuesta del servidor:', data)
+         
               setTimeout(() => {
                 this.messageService.add({severity: 'success', summary:'Crear usuario', detail:'Completado', life:3000});
                 this.nuevoUsuario.id = data.id

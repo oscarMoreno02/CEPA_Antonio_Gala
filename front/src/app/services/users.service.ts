@@ -1,3 +1,5 @@
+//Raul
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
@@ -14,8 +16,6 @@ export class UsersService {
   usuariosGet(): Observable<any  | undefined> {
     return this.http.get<any>(this.baseUrl).pipe(
       catchError((error) =>{
-        console.log(this.baseUrl)
-        console.log(error)
         return of(undefined)
       })
     )

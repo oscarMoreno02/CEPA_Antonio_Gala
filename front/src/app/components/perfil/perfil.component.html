@@ -1,0 +1,48 @@
+<!-- Raul
+    Traspasado a profile-icon
+
+
+
+
+    
+<p-toast></p-toast>
+    
+    <div class="card flex justify-content-center">
+        @if(tipo==0){
+    <p-button (click)="showDialog()" icon="pi pi-pencil"></p-button>
+        }
+    <p-dialog header="Perfil" [(visible)]="visible" [modal]="true" 
+    [draggable]="false" (onHide)="cerrar()" [resizable]="false">
+
+
+    <div class="card flex justify-content-center" class="custom-dialog">
+        <div class="flex flex-row gap-4">
+
+            <div class="flex flex-column">
+                <label for="username1">Nombre</label>
+                <input class="{{estiloValidacionNombre}}" pInputText id="nombre" aria-describedby="username-help1" [(ngModel)]="usuarios.nombre" />
+                <small id="username-help1">Introduce un nombre para el nuevo usuario</small>
+            </div>
+            
+
+            <div class="flex flex-column">
+                <label for="username2">Correo</label>
+                <input class="{{estiloValidacionCorreo}}" pInputText id="email" aria-describedby="username-help2" [(ngModel)]="usuarios.email" />
+                <small id="username-help2">Introduce un correo para el nuevo usuario</small>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="username3">Contraseña</label>
+                <input class="{{estiloValidacionContrasena}}" pInputText id="password" aria-describedby="username-help3" [(ngModel)]="usuarios.password" />
+                <small id="username-help3">Introduce una contraseña para el nuevo usuario</small>
+            </div>
+
+            <app-modificar-roles [idUser]="id"></app-modificar-roles>
+            </div>
+        </div>
+        <div style="margin-top: 20px;" >
+
+            <app-confirm tipo="Guardar" icono="plus" mensaje="¿Deseas guardar los cambios?" color="success" (confirmacion)="guardar($event)"></app-confirm>
+        </div>
+  </p-dialog>
+</div> -->

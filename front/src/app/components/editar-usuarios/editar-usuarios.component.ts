@@ -58,16 +58,12 @@ export class EditarUsuariosComponent implements OnInit {
   estiloValidacionCorreo = ''
   estiloValidacionContrasena = ''
 
-  //esto tengo que retocarlo
-
   validaciones():Boolean{
 
     let validado = true
     let nombreRegex = /^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+([\s-][A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$/
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    //let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
-    //validar nombre
     if (this.usuarios.nombre){
 
       var nombrePrueba = nombreRegex.test(this.usuarios.nombre)
@@ -88,7 +84,6 @@ export class EditarUsuariosComponent implements OnInit {
 
     }
 
-    //validar email
     if (this.usuarios.email){
 
       var emailPrueba = emailRegex.test(this.usuarios.email)
@@ -108,27 +103,6 @@ export class EditarUsuariosComponent implements OnInit {
       this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'El correo es obligatorio', life:3000})
 
     }
-
-    //validar password
-    /*if (this.usuarios.password){
-
-      var passwordPrueba = passwordRegex.test(this.usuarios.password)
-      
-      if (passwordPrueba){
-        this.estiloValidacionContrasena
-      }else{
-        this.estiloValidacionContrasena = 'ng-invalid ng-dirty'
-        validado = false
-        this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'La contraseña tiene que ser mayor a 8 caracteres', life:3000})
-
-      }
-    }else{
-
-      this.estiloValidacionContrasena = 'ng-invalid ng-dirty'
-      validado = false
-      this.messageService.add({severity: 'warn', summary:'Editar usuario', detail:'El contraseña es obligatorio', life:3000})
-
-    }*/
     return validado
   }
 
@@ -147,11 +121,10 @@ export class EditarUsuariosComponent implements OnInit {
           next: (data:any)=> {
             setTimeout(()=>{
               this.messageService.add({severity:'success', summary:'Actualizar usuario', detail:'Completada', life:3000})
-              console.log(this.usuarios)
-              console.log(this.usuario)
+          
               for(let i=0;i<this.usuario.length;i++){
                 if(this.usuario[i].id == this.usuarios.id){
-                  console.log("dentro")
+              
                   this.usuario[i]=this.usuarios
                   this.visible=false
                 }
@@ -160,7 +133,7 @@ export class EditarUsuariosComponent implements OnInit {
             }, 1000)
           },
           error: (err) => {
-            console.log(err)
+      
             this.messageService.add({ severity:'error', summary: 'Actualizar usuario', detail: 'Error al actualizar el usuario, inténtelo de nuevo', life: 3000 });
           }
         })
@@ -179,7 +152,7 @@ export class EditarUsuariosComponent implements OnInit {
         this.usuarios.password = usu.password
       },
       error: (e) => {
-        console.log(e)
+      
       }
     })
   }
@@ -188,7 +161,7 @@ export class EditarUsuariosComponent implements OnInit {
     this.servicioUsers.usuariosDelete(this.id).subscribe({
      next:(data: any) => {
        setTimeout(()=>{
-         this.messageService.add({severity:'success', summary:'Eliminar evento', detail:'Completada', life:3000})
+         this.messageService.add({severity:'success', summary:'Eliminar usuario', detail:'Completada', life:3000})
          for(let i=0;i<this.usuario.length;i++){
            if(this.usuario[i].id == this.usuarios.id){
            this.usuario[i]=this.us
@@ -199,8 +172,8 @@ export class EditarUsuariosComponent implements OnInit {
      }, 1000)
    },
    error: (err) => {
-     console.log(err)
-     this.messageService.add({ severity:'error', summary: 'Eliminar evento', detail: 'Error al eliminar el evento, inténtelo de nuevo', life: 3000 });
+  
+     this.messageService.add({ severity:'error', summary: 'Eliminar usuario', detail: 'Error al eliminar el usuario, inténtelo de nuevo', life: 3000 });
    }
    })
  }

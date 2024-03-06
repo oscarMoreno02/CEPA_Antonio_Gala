@@ -6,7 +6,6 @@ const ConexionNoticias= require('../database/conexionNoticias');
         const conx = new ConexionNoticias();
         conx.getNoticiaById(idNoticia)
         .then(msg => {
-          console.log(msg)
           resolve(true)
         })
         .catch(err => {

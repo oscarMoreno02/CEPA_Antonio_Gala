@@ -12,7 +12,7 @@ const listAllEnlaces= (req, res = response) => {
             res.status(200).json(data)
         })
         .catch(err => {
-            console.log(err)
+      
             res.status(404).json()
         })
 }
@@ -24,7 +24,7 @@ const listEnlace = (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite un enlace con ese id')
         })
 }
@@ -35,7 +35,7 @@ const listEnlacesBySeccion= (req, res = response) => {
             res.status(200).json( data)
         })
         .catch(err => {
-            console.log(err)
+
             res.status(404).json('No exite una seccion con ese id')
         })
 }
@@ -48,7 +48,7 @@ const editEnlace= (req, res = response)=>{
         res.status(202).json('Actualizado correctamente')
     })
     .catch(err => {
-        console.log(err);
+ 
         res.status(203).json('Error al actualizar')
     });
 
@@ -61,7 +61,7 @@ const createEnlace = (req, res = response) => {
             res.status(201).json({id:data})
         })
         .catch(err => {
-            console.log(err)
+        
             res.status(203).json('Error en el registro')
         })
 }
@@ -74,7 +74,7 @@ const removeEnlace = (req, res = response) => {
             res.status(202).json('Exito en la eliminacion')
         })
         .catch(err => {
-            console.log(err)
+      
             res.status(203).json('Error en la eliminacion')
         })
 }

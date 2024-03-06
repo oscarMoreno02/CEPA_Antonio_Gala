@@ -3,6 +3,10 @@
     @case ('administrador') {
         @if(servicioAutenticacion.hasRol(['Administrador'])){
             <p-menubar  [model]="adminItems">
+                <ng-template pTemplate="start">
+                    <img src="../../../assets/logoadultos_original.jpg" height="40" class="mr-2" />
+                </ng-template>
+
                 <ng-template pTemplate="end">
                     @if(servicioAutenticacion.isLoggedIn){
                         <app-profile-icon [nombre]="username"></app-profile-icon>
@@ -21,6 +25,9 @@
     @case ('jefedeestudios') {
         @if(servicioAutenticacion.hasRol(['Jefe de estudios'])){
             <p-menubar  [model]="dtoItems">
+                <ng-template pTemplate="start">
+                    <img style="margin-right: 30px;" src="../../../assets/logoadultos_original.jpg" height="40" class="mr-2" />
+                </ng-template>
                 <ng-template pTemplate="end">
                     @if(servicioAutenticacion.isLoggedIn){
                         <app-profile-icon [nombre]="username"></app-profile-icon>
@@ -36,6 +43,9 @@
     @case ('profesor') {
         @if(servicioAutenticacion.hasRol(['Profesor'])){
             <p-menubar  [model]="profItems">
+                <ng-template pTemplate="start">
+                    <img style="margin-right: 30px;" src="../../../assets/logoadultos_original.jpg" height="40" class="mr-2" />
+                </ng-template>
                 <ng-template pTemplate="end">
                     @if(servicioAutenticacion.isLoggedIn){
                         <app-profile-icon [nombre]="username"></app-profile-icon>
@@ -51,7 +61,9 @@
     @default {
         
         <p-menubar [autoDisplay]="true" [autoHide]="true"  [model]="items">
-          
+            <ng-template pTemplate="start">
+                <img style="margin-right: 30px;" src="../../../assets/logoadultos_original.jpg" height="40" class="mr-2" />
+            </ng-template>
             <ng-template pTemplate="end">
             @if(servicioAutenticacion.isLoggedIn){
                    <app-profile-icon [nombre]="username"></app-profile-icon>

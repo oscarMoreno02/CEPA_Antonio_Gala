@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="card flex justify-content-center">
-    <p-button (click)="showDialog()" icon="pi pi-plus" label="Nuevo"></p-button>
+    <p-button severity="success" (click)="showDialog()" [raised]="true" [outlined]="true" icon="pi pi-plus" label="Nuevo"></p-button>
     <p-dialog header="Crear evento" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar();" [resizable]="false">
 
@@ -26,14 +26,20 @@
             </div><br>
 
             <div class="flex felx-column">
-                <label for="hora">Hora</label><br>
-                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>
+                <label for="hora">Hora</label><br> &nbsp;&nbsp;&nbsp;&nbsp;  
+                <input type="time" pInputTime class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="nuevoEvento.hora"><br>&nbsp;&nbsp; &nbsp;&nbsp; 
                 <small id="hora">Introduce una hora para el nuevo evento</small>
             </div><br>
 
             <div class="flex flex-column">
                 <label for="visibilidad">Visibilidad</label>
-                <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/><br><br>
+                <input type="checkbox" ng-model="checkboxModel.value1" id="checkbox" ng-true-value=true ng-false-value=false class="{{ validacionVisibilidad }}" id="visilidad" aria-describedby="evento" [(ngModel)]="nuevoEvento.visibilidad"/>
+            </div>
+
+            <div class="flex flex-column">
+                <label for="asistentes">Asistentes</label><br>
+                <input type="number" id="asistentes" pInputNumber min="0" [(ngModel)]="nuevoEvento.numAsistentes"><br>
+                <small id="asistentes">Introduce un número máximo de asistentes para el evento</small><br><br>
             </div>
 
             <div class="flex flex-column">

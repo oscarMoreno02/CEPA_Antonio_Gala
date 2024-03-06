@@ -15,7 +15,6 @@ const aulaReservaFactory = async (ctos = 1) => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        console.log(i)
         factory.push(aulaReserva)
     }
     return factory

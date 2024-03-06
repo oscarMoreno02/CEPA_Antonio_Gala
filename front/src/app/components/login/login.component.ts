@@ -75,7 +75,7 @@ registro(){
   let valido=this.validarRegistro()
   if(valido==true){
     const newUser:Usuario={nombre:this.nombre,email:this.email,password:this.password}
-    console.log(newUser)
+   
     this.servicioAuth.registro(newUser).subscribe({
       next:(data:any)=>{
         this.logged.emit(true)
@@ -96,9 +96,9 @@ registro(){
       }
     })
   }else{
-    console.log('llega')
+
     this.logged.emit(false)
-    console.log(valido)
+
     this.error=valido.toString()
   }
 }

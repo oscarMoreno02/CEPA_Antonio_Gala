@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminCategoriasComponent } from './components/admin-categorias/admin-categorias.component';
-import { EventosComponent } from './components/admin-eventos/admin-eventos.component';
+import { AdminEventosComponent } from './components/admin-eventos/admin-eventos.component';
 import { NoticiasCategoriaComponent } from './components/noticias-categoria/noticias-categoria.component';
 import { AdminNoticiaComponent } from './components/admin-noticia/admin-noticia.component';
 import { EditContentNoticiaComponent } from './components/edit-content-noticia/edit-content-noticia.component';
@@ -15,7 +15,12 @@ import { ListaHorariosAulaComponent } from './components/lista-horarios-aula/lis
 import { AdminAsistenciasComponent } from './components/admin-asistencias/admin-asistencias.component';
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 import { ReservarAulaComponent } from './components/reservar-aula/reservar-aula.component';
+import { EventosComponent } from './components/eventos/eventos.component';
+import { TusEventosComponent } from './components/tus-eventos/tus-eventos.component';
+import { AdminGaleriaComponent } from './components/admin-galeria/galeria.component';
 import { NoticiaComponent } from './components/noticia/noticia.component';
+import { VistaEventosComponent } from './components/vista-eventos/vista-eventos.component';
+
 
 export const routes: Routes = [
 {path: '', component:HomeComponent },
@@ -66,11 +71,20 @@ canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 {path:'admin/categorias',component:AdminCategoriasComponent,
  canActivate: [accesoGuard],data: { rol: ['Administrador'] }},
 
-{path:'admin/eventos', component:EventosComponent,
+{path:'admin/eventos', component:AdminEventosComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
 
 {path:'admin/asistencias/:id', component:AdminAsistenciasComponent,
 canActivate:[accesoGuard], data:{rol:['Administrador']}},
+
+{path:'eventos/evento/:id', component:EventosComponent},
+
+{path:'eventos/tus-eventos/:id', component:TusEventosComponent},
+
+{path:'admin/galeria/:id', component:AdminGaleriaComponent,
+canActivate: [accesoGuard], data:{rol:['Administrador']}},
+
+{path:'eventos', component:VistaEventosComponent},
 
 {path: '**', component: NotFoundComponent},
 ];

@@ -89,13 +89,29 @@ class ConexionGaleria {
                 throw new Error(`Galeria con ID ${id} no encontrado`);
             }
             resultado = await galeria.destroy();
-            console.log('Galeria eliminada correctamente');
         } catch (error) {
             console.error(`Error al eliminar la galeria con ID ${id}: `, error);
         } finally {
             this.desconectar();
         }
         return resultado;
+    }
+
+    async getGaleriaEvento(id){
+        this.conectar()
+        let galeria = []
+        try {
+            galeria = await models.Galeria.findAll({
+                where: {
+                    idEvento: id
+                }
+            })
+        } catch (error){
+            console.error('Error al obtener la galeria del evento: ',error)
+        } finally {
+            this.desconectar()
+        }
+        return galeria
     }
 }
 

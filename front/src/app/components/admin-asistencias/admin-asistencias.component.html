@@ -1,18 +1,22 @@
 <p-toast></p-toast>
-<app-nuevo-asistente-evento></app-nuevo-asistente-evento>
 <div style="margin-top: 100px;" class="card">
     <p-table
         [value]="usuarios"
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} asistentes"
+        [tableStyle]="{ 'min-width': '50rem','max-width':'80rem','margin':'auto' }"
+        currentPageReportTemplate="Mostrando asistentes"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+           Administrar Asistentes
+        </div>
+    </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:20%">Eliminar</th>
+                <th style="width:20%"><app-nuevo-asistente-evento></app-nuevo-asistente-evento></th>
                 <th style="width:40%">Nombre</th>
                 <th style="width:40%">Email</th>
             </tr>
@@ -20,7 +24,7 @@
         <ng-template pTemplate="body" let-usuario>
             <tr>
                 <td>
-                    <app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar este asistente?" color="danger" (confirmacion)="eliminar(usuario.id)"></app-confirm>
+                    <app-confirm tipo="Eliminar" icono="trash" mensaje="¿Deseas borrar este asistente?" color="danger" (confirmacion)="eliminar(usuario.id, $event)"></app-confirm>
                 </td>
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.email }}</td>

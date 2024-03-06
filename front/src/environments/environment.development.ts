@@ -19,5 +19,8 @@ export const environment = {
     urlHorarios:'/horarios',
     urlAsistencias:'/asistencia',
     urlReservas:'/reservas',
-    urlFotosEventos:'/uploads/eventos'
+    urlEventosSocket: 'http://localhost:8090',
+    urlFotosEventos:'/uploads/eventos',
+    urlGaleria: '/galeria',
+    urlFotosGaleria: '/uploads/galerias'
 };
