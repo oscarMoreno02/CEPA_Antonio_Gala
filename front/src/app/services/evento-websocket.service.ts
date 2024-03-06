@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 
 })
 export class EventoWebsocketService  {
+  
 socket?:any
   private url=environment.urlEventosSocket
 
@@ -25,7 +26,7 @@ this.socket.on("connect", () => {
 });
 
 
-this.socket.on("recibir-notificacion", (data:Evento) => {
+this.socket.on("enviar-evento", (data:Evento) => {
   console.log(data)
   this.message.add({ severity: 'info', id:'unique-message-id', summary: 'Nuevo Evento', detail:`<a href="${data.nombre}" target="_blank">${data.nombre}</a>`, life: 6000 });
   setTimeout(() => {
@@ -43,7 +44,7 @@ this.socket.on("recibir-notificacion", (data:Evento) => {
 });
 }
 public sendNoticifacion(message: Evento): void {
-    this.socket.emit('enviar-notificacion', message);
+    this.socket.emit('evento-creado', message);
   }
 
 }

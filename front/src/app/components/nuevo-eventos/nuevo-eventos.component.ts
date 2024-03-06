@@ -20,6 +20,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import { EventoWebsocketService } from '../../services/evento-websocket.service';
 import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
+import { WebSocketService } from '../../services/websocket.service';
 
 
 @Component({
@@ -53,8 +54,9 @@ export class NuevoEventosComponent{
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
-  // private socket : EventoWebsocketService,
-    private servicioFoto: FotoCartelEventosService
+  private socket : WebSocketService,
+    private servicioFoto: FotoCartelEventosService,
+  
   ) {}
   
   @Input() visible: boolean = false;
@@ -188,7 +190,7 @@ export class NuevoEventosComponent{
                     this.nuevoEvento.fotoCartel= ''
                     this.nuevoEvento.visibilidad= false;
                   });
-               //   this.socket.sendNoticifacion(this.nuevoEvento)
+                 this.socket.sendEvent(this.nuevoEvento)
                 },
                 error: (error) => {
                   this.messageService.add({severity: 'error', summary:'Crear evento', detail:'Algo ha ido mal al crear el evento, inténtelo de nuevo', life:3000});
