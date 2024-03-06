@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import { EventoWebsocketService } from '../../services/evento-websocket.service';
 import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
 
 
@@ -52,6 +53,7 @@ export class NuevoEventosComponent{
     public messageService:MessageService,
     private servicioEvento: EventosService,
     private router:Router,
+    private socket : EventoWebsocketService
     private servicioFoto: FotoCartelEventosService
   ) {}
   
