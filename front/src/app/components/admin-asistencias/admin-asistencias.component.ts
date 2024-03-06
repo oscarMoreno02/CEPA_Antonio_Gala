@@ -16,7 +16,6 @@ import { ToastModule } from 'primeng/toast';
 import { ActivatedRoute } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
 
-
 @Component({
     selector: 'app-admin-asistencias',
     standalone: true,

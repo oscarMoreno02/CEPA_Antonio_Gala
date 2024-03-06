@@ -4,19 +4,19 @@
         [paginator]="true"
         [rows]="5"
         [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
+        [tableStyle]="{ 'min-width': '50rem','max-width':'80rem','margin':'auto' }"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
         [rowsPerPageOptions]="[5, 10, 20]"
     >
     <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
-            <app-nuevo-eventos></app-nuevo-eventos>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Administrar Eventos
+            
+             Administrar Eventos
         </div>
     </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:5%">Editar</th>
+                <th style="width:5%"><app-nuevo-eventos></app-nuevo-eventos></th>
                 <th style="width:5%">Ver Asistentes</th>
                 <th style="width:5%">Galería</th>
                 <th style="width:5%">Nombre</th>
@@ -32,8 +32,8 @@
         <ng-template pTemplate="body" let-evento>
             <tr>
                 <td><app-editar-evento [eventos]="eventos" [id]="evento.id"></app-editar-evento></td>
-                <td><p-button routerLink="/admin/asistencias/{{evento.id}}" icon="pi pi-eye" title=""></p-button></td>
-                <td><p-button routerLink="/admin/galeria/{{ evento.id }}" icon="pi pi-camera" title=""></p-button></td>
+                <td><p-button routerLink="/admin/asistencias/{{evento.id}}" icon="pi pi-eye"  [raised]="true" [outlined]="true"title=""></p-button></td>
+                <td><p-button routerLink="/admin/galeria/{{ evento.id }}" icon="pi pi-camera" [raised]="true" [outlined]="true" title=""></p-button></td>
                 <td>{{ evento.nombre }}</td>
                 <td>{{ evento.descripcion }}</td>
                 <td>{{ evento.fecha }}</td>

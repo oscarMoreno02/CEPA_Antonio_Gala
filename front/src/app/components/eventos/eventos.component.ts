@@ -9,7 +9,6 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { AuthService } from '../../services/auth.service';
 import { JsPDFService } from '../../services/js-pdfservice.service';
 import { AsistenciaService } from '../../services/asistencia.service';
-import { Asistencia } from '../../interface/asistencia';
 import { MessageService } from 'primeng/api';
 import { GaleriaService } from '../../services/galeria.service';
 import { Galeria } from '../../interface/galeria';

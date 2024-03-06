@@ -1,15 +1,12 @@
 /**Laura María Pedraza Gómez */
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output, ViewEncapsulation, OnInit } from '@angular/core';
 import { ConfirmComponent } from "../confirm/confirm.component";
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { Evento } from '../../interface/evento';
 import { MessageService } from 'primeng/api';
 import { EventosService } from '../../services/eventos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsistenciaService } from '../../services/asistencia.service';
-import { environment } from '../../../environments/environment.development';
-import { Asistencia } from '../../interface/asistencia';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
@@ -26,7 +23,8 @@ import { ToastModule } from 'primeng/toast';
     providers:[
       MessageService,
       EventosService
-    ]
+    ],
+    encapsulation:ViewEncapsulation.None
     
 })
 export class TusEventosComponent implements OnInit {
