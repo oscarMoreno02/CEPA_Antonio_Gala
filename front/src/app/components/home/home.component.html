@@ -7,6 +7,9 @@
             E-Mail: 13004067.cea&#64;edu.jccm.es</p>
         <p class="card-footer">&copy; TODOS LOS DERECHOS RESERVADOS</p>
     </div><br><br>
-    <h1>ÚLTIMO EVENTO</h1>
-    <app-preview-eventos [evento]="eventos[last]"></app-preview-eventos>
+    @if(eventos!=undefined){
+
+        <h1>ÚLTIMO EVENTO</h1>
+        <app-preview-eventos [evento]="eventos[last]"></app-preview-eventos>
+    }
 </div>

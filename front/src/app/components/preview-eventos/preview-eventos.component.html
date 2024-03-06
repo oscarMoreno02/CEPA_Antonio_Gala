@@ -1,5 +1,7 @@
-<div style="float:left; margin-left:20px; margin-top:30px; margin-bottom:30px ;justify-content: space-evenly;">
-    <p-card styleClass="mt10" [style]="{'width': '350px', 'height': '460px', 'margin-top':'20px'}" routerLink="evento/{{ evento.id }}">
+@if(evento){
+
+    <div style="float:left; margin-left:20px; margin-top:30px; margin-bottom:30px ;justify-content: space-evenly;">
+        <p-card styleClass="mt10" [style]="{'width': '350px', 'height': '460px', 'margin-top':'20px'}" routerLink="evento/{{ evento.id }}">
     <ng-template pTemplate="header">
         <div style="text-align: center;  overflow: hidden; margin-top: -30px;">
                 <h2>
@@ -21,3 +23,5 @@
     </ng-template>
 </p-card>
 </div>
+
+        }
