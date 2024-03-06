@@ -1,4 +1,3 @@
-/*Laura María Pedraza Gómez* */
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -10,6 +9,8 @@ import { NuevoEventosComponent } from "../nuevo-eventos/nuevo-eventos.component"
 import { EditarEventoComponent } from "../editar-evento/editar-evento.component";
 import { AdminAsistenciasComponent } from "../admin-asistencias/admin-asistencias.component";
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { finalize } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
     selector: 'app-eventos',
@@ -32,25 +33,36 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
   ]
 })
 
-export class EventosComponent implements OnInit {
+export class AdminEventosComponent implements OnInit {
 
   eventos:Array<Evento>=[]
 
   constructor(
     private servicioEventos : EventosService,
     private router:Router
-    ) {}
+  ) {}
+  
+  fotoPreview: string | null = null
 
   ngOnInit(): void {
-    this.servicioEventos.getAllEventos().subscribe({
-      next:(eventos: Array<Evento>) => {
-        this.eventos = eventos;
-        console.log(eventos)
-        console.log("Llegan los eventos: "+eventos)
-      },
-      error:(err)=>{
-        console.log(err)
-      }
-    });
+    this.servicioEventos.getAllEventos()
+      .pipe(
+        finalize(() => this.formatearSrc())
+      )
+      .subscribe({
+        next:(eventos: Array<Evento>) => {
+          this.eventos = eventos;
+        },
+        error:(err)=>{
+          
+        }
+      });
+  }
+  formatearSrc(){
+    for (let i=0 ; i<this.eventos.length;i++){
+      if(!this.eventos[i].fotoCartel.includes('http') || !this.eventos[i].fotoCartel.includes('https')){
+        this.eventos[i].fotoCartel = environment.baseUrl + environment.urlFotosEventos + '/' + this.eventos[i].fotoCartel
+      }   
+    }
   }
 }

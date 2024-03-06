@@ -58,9 +58,24 @@ const borrarGaleria = (req, res = response) => {
         });
 }
 
+const obtenerGaleriaEvento = (req, res) => {
+    const conx = new GaleriaConexion()
+    
+    conx.getGaleriaEvento(req.params.id)
+    .then((galeria) => {
+        console.log('Obtenido correctamente!');
+        res.status(200).json(galeria);
+    })
+    .catch((err) => {
+        console.log('Fallo en la obtención!');
+        res.status(404).json(err);
+    });
+}
+
 module.exports = {
     obtenerGalerias,
     obtenerGaleriaPorId,
     subirGaleria,
-    borrarGaleria
+    borrarGaleria,
+    obtenerGaleriaEvento
 }

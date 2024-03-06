@@ -1,9 +1,10 @@
 <p-toast></p-toast>
 <!-- //Óscar -->
+
 <div class="contenedor" style="margin-top: 50px;">
 
-    <div class="card" style="border: 1px solid green;border-radius: 15px;" >
-        <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem'}">
+    <div class="card"  >
+        <p-table [value]="[noticia]" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}">
             <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Editar Noticia
@@ -11,7 +12,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="header">
-            <tr>
+            <tr class="header-glass" style="border: none;" >
                 <th>Nombre</th>
                 <th>Categoria</th>
                 <th>Foto</th>
@@ -28,7 +29,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-noticia>
-            <tr>
+            <tr class="glass">
                 <td>{{ noticia.titulo }}</td>
                 @for (categoria of listaCategorias; track categoria.id) {
                     @if(categoria.id==noticia.idCategoria){
@@ -50,17 +51,22 @@
                 }
                 @if(noticia.enlace!=undefined){
 
-                    <td colspan="2"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
+                    <td colspan="3"><a target="_blank" href="{{noticia.enlace}}">{{noticia.enlace}}</a></td>
                 }@else {
-                    <td colspan="2">[Sin enlace]</td>
+                    <td colspan="3">[Sin enlace]</td>
                 }
             </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+    
         </ng-template>
     </p-table>
 </div>
 
+<div style="margin: auto; max-width: 200px; margin-top: 30px;">
 
     <app-nueva-seccion [noticia]="noticia" [tipo]="0"></app-nueva-seccion>
+</div>
 
 
 @if(noticia.secciones){
@@ -69,15 +75,15 @@
     @if(noticia.secciones.length>0){
         @for (seccion of noticia.secciones; track seccion.id) {
             
-            <div class="card" style="margin-top: 10px;">
-                <p-table [value]="[seccion]" [tableStyle]="{ 'min-width': '50rem'}">
+            <div class="card" style="margin-top: 20px;">
+                <p-table [value]="[seccion]" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto',}">
                     <ng-template pTemplate="caption">
                         <div class="flex align-items-center justify-content-between">
                     Seccion nº{{contarSecciones(seccion)}}
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
-                <tr>
+                <tr class="header-glass" style="border: none;" >
                 <th [width]="30">Titulo</th>
                 <th [width]="30">Foto</th>
                 <th [width]="20">Texto</th>
@@ -85,11 +91,11 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-seccion>
-            <tr>
+            <tr class="glass">
                 <td>{{ seccion.titulo }}</td>
                 @if(seccion.foto!=undefined){
                     
-                    <td><img [src]="env.baseUrl+env.urlFotosSecciones+'/'+this.seccion.foto" [alt]="seccion.titulo" width="100" class="shadow-4"></td>
+                    
                     @if(esUrl(seccion.foto)){
                         <td><img [src]="seccion.foto" width="100" class="shadow-4"></td>
 
@@ -100,11 +106,12 @@
                 }@else {
                     <td>[Sin foto]</td>
                 }
-                <td style="max-width: 300px;">
+                <td colspan="2" style="max-width: 300px;">
                     <div style="word-wrap: break-word;">
                         {{seccion.texto}}
                     </div>
-                </td>         
+                </td> 
+                       
             </tr>
         </ng-template>
 
@@ -135,7 +142,7 @@
 }@else{
     
     <div class="card" style="margin-top: 10px;">
-        <p-table [value]="noticia.secciones!" [tableStyle]="{ 'min-width': '50rem'}">
+        <p-table [value]="noticia.secciones!" [tableStyle]="{ 'min-width': '50rem' ,'max-width':'80rem','margin':'auto'}">
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
                 Añade la primera seccion
@@ -147,3 +154,5 @@
 }
 }
 </div>
+
+<div style="height: 50px;"></div>

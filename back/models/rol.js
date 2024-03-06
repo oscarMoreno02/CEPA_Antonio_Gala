@@ -1,3 +1,5 @@
+//Raúl
+
 'use strict';
 const {
   Model
@@ -13,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           //Óscar
       this.hasMany(models.rolAsignado, {
         foreignKey: 'idRol',
-        as: 'asignaciones'
+        as: 'rolAsignado'
       });
     }
   }

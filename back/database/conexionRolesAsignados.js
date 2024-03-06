@@ -1,3 +1,5 @@
+//Raúl 
+
 require('dotenv').config()
 const bcrypt = require('bcrypt');
 const {
@@ -46,13 +48,35 @@ class ConexionRolesAsignados{
         }
     }
 
+    rolesAsignadosGetId = async (idUser) => {
+        try{
+            let resultado = [];
+            this.conectar();
+            resultado = await models.rolAsignado.findOne({
+                where: {
+                    idUser : idUser
+                }
+            });
+            if (!resultado) {
+                console.log(resultado)
+                throw new Error('error');
+            }
+            return resultado;
+        }catch(error){
+            console.log('llegaCatch')
+            throw error
+        }
+        finally{
+            this.desconectar()
+        }
+    }
+
     rolesAsignadosPost = async (body) => {
-        let resultado = 0;
+        let resultado;
         this.conectar();
         try {
-            const task = new models.rolAsignado(body);
-            await task.save();
-            resultado = 1;
+            const rolAsig = new models.rolAsignado(body);
+            await rolAsig.save();
         } catch (error) {
             console.log(error)
             throw error;
@@ -66,16 +90,13 @@ class ConexionRolesAsignados{
         try{
             this.conectar();
             let resultado = await models.rolAsignados.findByPk(id);
-            if (!resultado) {
-                throw error;
-            }
             await resultado.destroy();
-            return resultado;
         }catch(error){
             throw error
         }finally{
             this.desconectar()
         }
+        return resultado;
     }
     rolesAsignadosPut = async (id,body) => {
         try{

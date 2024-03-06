@@ -39,6 +39,12 @@
             </div>
 
             <div class="flex flex-column">
+                <label for="asistentes">Asistentes</label><br>
+                <input type="number" id="asistentes" pInputNumber min="0" [(ngModel)]="eventoModal.numAsistentes"><br>
+                <small id="asistentes">Introduce un número máximo de asistentes para el evento</small><br><br>
+            </div>
+
+          <!--  <div class="flex flex-column">
                 <label for="fotoCartel">Foto de cartel</label><br><br>
                     <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
                     @if(fotoPreview){
@@ -49,7 +55,7 @@
             <br>
             @if(fotoPreview){
                 <img [src]="fotoPreview">
-            }
+            }-->
 
         </div><br>
     <div style="margin-top: 20px;" >

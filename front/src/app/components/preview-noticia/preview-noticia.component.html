@@ -1,8 +1,9 @@
 
 <!-- //Óscar -->
-<p-card styleClass="mt10" >
-    <ng-template pTemplate="title">
-        <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
+
+    <p-card styleClass="mt10" >
+        <ng-template pTemplate="title">
+            <div  style="text-align: center;  overflow: hidden; margin-top: -50px;">
             @if(noticia.enlace!=null){
 
                 <h1>
@@ -11,16 +12,16 @@
                             
                             {{noticia.titulo}}
                         </span>
-                        <i class="pi pi-external-link"></i>
+                        <i class="pi pi-external-link "></i>
                     </a>
                 </h1>
             }@else {
                 <h1>
-                        <span  style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;" >
-                            
-                            {{noticia.titulo}}
-                        </span>
+                    <span  style="font-size: 20px; text-decoration: none; color: inherit; display: inline-block; max-width: 100%; word-wrap: break-word;" >
                         
+                        {{noticia.titulo}}
+                    </span>
+                    
                     
                 </h1>
             }
@@ -28,9 +29,9 @@
     </ng-template>
     <ng-template pTemplate="header">
         @if(noticia.foto!=null){
-
+            
             @if(esUrl(noticia.foto)){
-                <img alt="Card" src="{{noticia.foto}}" />
+                <img alt="noticia" src="{{noticia.foto}}" />
             }@else {
                 <img [src]="env.baseUrl+env.urlFotosNoticias+'/'+noticia.foto"  width="100%" class="shadow-4">
             }
@@ -38,23 +39,27 @@
     </ng-template>
 
     @if(noticia.secciones!.length>0){
-        <div class="mt-0" style="margin-top: -50px;">
+        <div  class="mt-0" style="margin-top: -50px;max-width: 500px;">
          
 
             <p style="word-wrap: break-word;">{{noticia.secciones![0].texto}}</p>
         </div>
             @if(noticia.secciones!.length>1){
                 <ng-template pTemplate="footer">
-                    <a routerLink="/categorias/{{noticia.idCategoria}}/noticia/{{noticia.id}}">Leer mas</a>
+                    <a routerLink="/categoria/{{noticia.idCategoria}}/noticia/{{noticia.id}}">Leer mas</a>
                 </ng-template>
             }@else {
                 @if(noticia.secciones![0].enlaces){
-                <ng-template pTemplate="footer">
-                    @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
-                        <a href="{{enlace.url}}">{{enlace.textoClave}}</a>&nbsp;
+                    <ng-template pTemplate="footer">
+                        @for (enlace of noticia.secciones![0].enlaces; track enlace.id) {
+                            <span style="line-height: 2;">
+                                <a href="{{enlace.url}}">
+                                    <p-tag [style]="{ 'background': 'linear-gradient(-225deg,#AC32E4 0%,#7918F2 48%,#4801FF 100%)'}" icon="pi pi-external-link" value=" {{enlace.textoClave}}"></p-tag>
+                                </a>&nbsp;
+                            </span>
                     }
                 </ng-template>
-                }
             }
+        }
     }
 </p-card>

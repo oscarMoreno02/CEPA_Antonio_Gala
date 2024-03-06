@@ -11,11 +11,16 @@ export const environment = {
     urlLogin:'/login',
     urlRegistro:'/register',
     urlUsers:'/usuario',
+    urlRol:'/roles',
+    urlRolAsignado:'/rolesAsignados',
     urlNoticiasSocket:'http://localhost:8090',
     urlAulas:'/aulas',
     urlFranjas:'/franjas',
     urlHorarios:'/horarios',
     urlAsistencias:'/asistencia',
     urlReservas:'/reservas',
-    urlEventosSocket: 'http://localhost:8091'
+    urlEventosSocket: 'http://localhost:8091',
+    urlFotosEventos:'/uploads/eventos',
+    urlGaleria: '/galeria',
+    urlFotosGaleria: '/uploads/galerias'
 };

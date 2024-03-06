@@ -1,6 +1,6 @@
 
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
@@ -32,7 +32,8 @@ import { Categoria } from '../../interface/categoria';
   ],
   templateUrl: './nueva-categoria.component.html',
   styleUrl: './nueva-categoria.component.css',
-  providers: [DialogService, MessageService, CategoriasService]
+  providers: [DialogService, MessageService, CategoriasService],
+  encapsulation:ViewEncapsulation.None
 })
 
 export class NuevaCategoriaComponent implements OnInit  {

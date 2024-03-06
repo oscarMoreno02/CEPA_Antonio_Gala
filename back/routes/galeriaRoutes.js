@@ -4,14 +4,16 @@ const { check } = require('express-validator');
 const router = express.Router();
 const controller = require('../controllers/galeriaController');
 const { validateValues } = require('../helpers/validar-campos');
+const authMid=require('../middlewares/validarJWT')
 
-router.get('/obtenerGalerias', controller.obtenerGalerias);
-router.get('/obtenerGaleriaPorId/:id', controller.obtenerGaleriaPorId);
-router.post('/subirGaleria',[
+router.get('/', controller.obtenerGalerias);
+router.get('/:id', controller.obtenerGaleriaPorId);
+router.post('/',[
     check('idEvento').isInt(),
     check('foto').isString().notEmpty(),
     validateValues
-], controller.subirGaleria);
-router.delete('/borrarGaleria/:id', controller.borrarGaleria);
+],authMid.validarJWT, controller.subirGaleria);
+router.delete('/:id', authMid.validarJWT, controller.borrarGaleria);
+router.get('/galeriaEvento/:id', controller.obtenerGaleriaEvento)
 
 module.exports = router;

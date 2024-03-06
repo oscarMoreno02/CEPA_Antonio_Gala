@@ -89,6 +89,7 @@ registro(){
     
         for(const e of err.error.errors){
           msg=msg+e.msg+ '<br>'
+          
         }
         this.error=msg
         
@@ -106,6 +107,7 @@ registro(){
   this.password=''
   this.password2=''
   this.nombre=''
+  this.error=''
 }
 validarRegistro():boolean | string{
   if(!this.EMAIL_REGEX.test(this.email)){

@@ -8,6 +8,7 @@ import { Usuario } from '../interface/usuario';
   providedIn: 'root'
 })
 //Óscar
+// Laura -> modificación getUid()
 export class AuthService  {
   private baseUrl = environment.baseUrl+environment.urlAuth
 
@@ -66,6 +67,9 @@ registro(usuario:Usuario): Observable<any | undefined> {
       return this.abilities
   }
   getUid(){
+    this.t=this.getToken()
+    this.payload=jwtDecode<any>(this.t)
+    this.abilities=this.payload.abilities
     return this.payload.uid
   }
   getName(){

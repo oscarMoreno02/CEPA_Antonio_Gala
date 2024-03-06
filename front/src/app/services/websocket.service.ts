@@ -30,7 +30,7 @@ this.socket.on("recibir-notificacion", (data:Noticia) => {
     const messageElement = document.querySelector('#unique-message-id .p-toast-detail');
     if (messageElement) {
       const link = document.createElement('a');
-      link.href = '/categoria/'+data.idCategoria!.toString(); 
+      link.href = '/categoria/'+data.idCategoria!.toString()+'/noticia/'+data.id!.toString(); 
       link.textContent = 'Ver noticia'; 
       link.target = '_blank'; 
       const content = 'Titulo:  <br> <br> ' + data.titulo + ' <br>   <br>';

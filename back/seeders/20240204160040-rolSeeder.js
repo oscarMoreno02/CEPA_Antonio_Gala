@@ -1,3 +1,5 @@
+//Raúl
+
 'use strict';
 const {rolFactory} =require('../factories/rolFactory')
 /** @type {import('sequelize-cli').Migration} */

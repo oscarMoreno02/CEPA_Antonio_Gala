@@ -80,7 +80,7 @@ console.log(this.fecha)
               next: (data: Array<Reserva>) => {
                 this.listaReservas=data
                 this.evaluarFechas()
-                console.log(this.listaReservas.length)
+                console.log(this.listaReservas)
               },
               error: (err) => {
               }
@@ -99,23 +99,26 @@ console.log(this.fecha)
           }
         }
     }
-    eliminar(b:Boolean,id:number){
-      this.messageService.add({ severity: 'info', summary: 'Anular Reserva', detail: 'En curso', life: 3000 });
-      this.servicioReservas.deleteReserva(id).subscribe({
+    eliminar(confirm:Boolean,id:number){
+      if(confirm){
+
+        this.messageService.add({ severity: 'info', summary: 'Anular Reserva', detail: 'En curso', life: 3000 });
+        this.servicioReservas.deleteReserva(id).subscribe({
         next:(data:any)=>{
           setTimeout(() => {
                   this.messageService.add({ severity: 'success', summary: 'Anular Reserva', detail: 'Completado', life: 3000 });
                   setTimeout(() => { 
                     this.listaReservas=this.listaReservas.filter(data => data.id !== id);
-                 
-                }, 1000);
-              }, 1000); 
-        },
-          error: (err) => {
-            this.messageService.add({ severity:'error', summary: 'Anular Reserva', detail: 'Cancelado', life: 3000 });
+                    
+                  }, 1000);
+                }, 1000); 
+              },
+              error: (err) => {
+                this.messageService.add({ severity:'error', summary: 'Anular Reserva', detail: 'Cancelado', life: 3000 });
+              }
+            })
           }
-      })
-    }
+        }
 
   evaluarFechas=()=>{
     for(let i =0;i<this.listaReservas.length;i++){

@@ -1,0 +1,26 @@
+<div style="margin-top: 100px;" class="card" style="text-align:center">
+    <br><h1>{{ evento.nombre }}</h1>
+    <img [src]="evento.fotoCartel" class="foto" alt="Foto de evento" style="width: auto; height: 500px;">
+    <br><br><p>{{ evento.descripcion }}</p>
+    <p>Fecha: {{ evento.fecha}}</p>
+    <p>Hora: {{ evento.hora }}</p><br><br>
+    
+    <p>Número de asistentes restantes: {{ evento.numAsistentes }}</p>
+    @if(userId > 0){
+        <app-confirm icono="plus" mensaje='¿Deseas apuntarte al evento?' color="success" tipo="Apuntarse" (confirmacion)="apuntarAsistente($event)"></app-confirm>
+    } @else {
+        <app-confirm icono="plus" mensaje='Debes de iniciar sesión' color="success" tipo="Apuntarse"></app-confirm>
+    }<br>
+    <p-button type="button" (onClick)="sumarMg()" icon="pi pi-heart" styleClass="mg" title="{{ evento.mg }}" label="{{ evento.mg }}" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button><br><br>
+    
+    <p-button type="button" icon="pi pi-file-pdf" label="Descargar la foto de cartel" (click)="downloadPDF()" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button>
+   <br><br><br><h1>GALERÍA</h1><br>
+   <div class="container">
+    @for (galerias of galerias; track galerias){
+        <ng-container>
+            <img [src]=galerias.foto class="foto" alt="Foto Galeria">
+        </ng-container>
+    }
+    </div>
+    <!--<h2>FORO DEL EVENTO</h2>-->
+</div>
