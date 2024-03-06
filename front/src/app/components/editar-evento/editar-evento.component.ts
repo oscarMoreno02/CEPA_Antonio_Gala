@@ -11,7 +11,6 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { EventosService } from '../../services/eventos.service';
 import { Evento } from '../../interface/evento';
 import {provideNativeDateAdapter} from '@angular/material/core';
-import { FotoCartelEventosService } from '../../services/foto-cartel-eventos.service';
 
 @Component({
   selector: 'app-editar-evento',
@@ -34,7 +33,6 @@ export class EditarEventoComponent{
   constructor(
     private servicioEvento : EventosService,
     private messageService:MessageService,
-    private servicioFotos : FotoCartelEventosService
   ){}
   @Input() eventos?: any 
   @Input() tipo=0
@@ -62,9 +60,6 @@ export class EditarEventoComponent{
     visibilidad: false,
     numAsistentes: 0
   }
-
-  formularioFoto: FormData | null = null
-  fotoPreview: string | null = null
 
   
   validarCampos():Boolean{
@@ -135,22 +130,7 @@ export class EditarEventoComponent{
   cerrar(): void {
     this.cerrarModal.emit();
   }
-  uplodadFoto(event: any) {
-    const file = event.target.files[0]
-    if (file) {
-      this.formularioFoto = new FormData()
-      this.formularioFoto.append('archivo', file)
-      this.fotoPreview = URL.createObjectURL(file);
-     
-    } else {
-      this.formularioFoto = null
-    }
-  }
-  limpiarFoto(archivo: any) {
-    archivo.value = null
-    this.formularioFoto = null
-    this.fotoPreview = null
-  }
+
   showDialog() {
     this.servicioEvento.getEvento(this.id!).subscribe({
       
@@ -173,8 +153,6 @@ export class EditarEventoComponent{
   async guardar(confirm:Boolean){
     if(confirm){
       if(this.validarCampos()){
-      //  this.servicioFotos.updateFoto(this.eventoModal.fotoCartel!, this.formularioFoto!).subscribe({
-         // next:(data:any) => {
             this.servicioEvento.updateEvento(this.eventoModal, this.id).subscribe({
               next: (data:any)=> {
                 setTimeout(()=>{
@@ -191,8 +169,6 @@ export class EditarEventoComponent{
                 this.messageService.add({ severity:'error', summary: 'Actualizar evento', detail: 'Error al actualizar el evento, inténtelo de nuevo', life: 3000 });
               }
             })  
-         // }
-       // }) 
       }
     }
   }

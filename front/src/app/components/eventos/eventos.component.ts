@@ -39,9 +39,30 @@ export class EventosComponent implements OnInit{
 
   evento! : Evento
   eventoId!: number;
+  @Input() fechaMayor!:String
 
   galerias: Array<Galeria> = []
   @Input () userId!: number;
+
+  compararFechas(fecha1:string, fecha2:string) {
+    const [dia1, mes1, ano1] = fecha1.split('/').map(Number)
+    const [dia2, mes2, ano2] = fecha2.split('/').map(Number)
+
+    const timestamp1 = new Date(ano1, mes1 - 1, dia1).getTime()
+    const timestamp2 = new Date(ano2, mes2 - 1, dia2).getTime()
+
+    var fechaMayor = ""
+    if (timestamp1 > timestamp2) {
+        fechaMayor = fecha1
+    } else if (timestamp2 > timestamp1) {
+        fechaMayor = fecha2
+    } 
+    console.log(fechaMayor)
+    console.log(timestamp1)
+    console.log(timestamp2)
+    return fechaMayor
+    
+  }
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -53,6 +74,8 @@ export class EventosComponent implements OnInit{
           if(!this.evento.fotoCartel.includes('http') || !this.evento.fotoCartel.includes('https')){
             this.evento.fotoCartel = environment.baseUrl + environment.urlFotosEventos + '/' + this.evento.fotoCartel
           }  
+          var fechaActual = new Date().getDay().toString()+'/'+new Date().getMonth().toString()+'/'+new Date().getFullYear().toString()
+          this.fechaMayor = this.compararFechas(this.evento.fecha, fechaActual)
         }
       })
 
@@ -69,8 +92,8 @@ export class EventosComponent implements OnInit{
       } catch {
         this.userId = 0
       }
-
-    }    
+    } 
+    
   }
 
   formatearSrc() {

@@ -9,6 +9,7 @@ const accessMid=require('../middlewares/validarRoles')
 const eventosMid = require('../middlewares/eventosMid');
 
 router.get('/obtener', controller.obtenerEventos);
+router.get('/obtenerActivos', controller.obtenerEventosActivos);
 router.get('/obtener/:id', controller.obtenerEventoPorId);
 router.post('', [
     check('nombre').isString().notEmpty().isLength({ min: 2, max: 50 }),
