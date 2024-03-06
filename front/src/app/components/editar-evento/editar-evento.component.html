@@ -28,8 +28,8 @@
             </div><br>
 
             <div class="flex felx-column">
-                <label for="hora">Hora</label><br>
-                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="eventoModal.hora"><br>
+                <label for="hora">Hora</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="time" class="{{ validacionHora }}"id="hora" name="hora" [(ngModel)]="eventoModal.hora">&nbsp;&nbsp;&nbsp;&nbsp;
                 <small id="hora">Introduce una hora para el nuevo evento</small>
             </div><br>
 
@@ -43,19 +43,6 @@
                 <input type="number" id="asistentes" pInputNumber min="0" [(ngModel)]="eventoModal.numAsistentes"><br>
                 <small id="asistentes">Introduce un número máximo de asistentes para el evento</small><br><br>
             </div>
-
-          <!--  <div class="flex flex-column">
-                <label for="fotoCartel">Foto de cartel</label><br><br>
-                    <input #archivo type="file" id="archivo" class="form-control" accept="image/*" (change)="uplodadFoto($event)" ><br>
-                    @if(fotoPreview){
-                        <p-button (onClick)="limpiarFoto(archivo)">Limpiar</p-button>
-                    }
-                <small id="fotoCartel">Sube la foto del cartel del nuevo evento</small><br>
-            </div>
-            <br>
-            @if(fotoPreview){
-                <img [src]="fotoPreview">
-            }-->
 
         </div><br>
     <div style="margin-top: 20px;" >

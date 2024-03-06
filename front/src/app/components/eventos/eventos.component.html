@@ -10,7 +10,7 @@
     @if(userId > 0){
         <app-confirm icono="plus" mensaje='¿Deseas apuntarte al evento?' color="success" tipo="Apuntarse" (confirmacion)="apuntarAsistente($event)"></app-confirm>
     } @else {
-        <app-confirm icono="plus" mensaje='Debes de iniciar sesión' color="success" tipo="Apuntarse"></app-confirm>
+        <p>Debes de iniciar sesión para poder apuntarte</p>
     }<br>
     <p-button type="button" (onClick)="sumarMg()" icon="pi pi-heart" styleClass="mg" title="{{ evento.mg }}" label="{{ evento.mg }}" [style]="{'background-color': '#D32F2F', 'color': 'white', 'border-color':'transparent'}"></p-button><br><br>
     
