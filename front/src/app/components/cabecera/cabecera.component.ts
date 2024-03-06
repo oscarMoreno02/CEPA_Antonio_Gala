@@ -71,6 +71,13 @@ userroles:Array<string>=[]
       label: 'Administrar Eventos',
       command: () => { this.router.navigate(['/admin/eventos']) },
 
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
+
     }
   ]
 
@@ -86,6 +93,13 @@ userroles:Array<string>=[]
     {
       label: 'Reservas',
       command: () => { this.router.navigate(['/aulas/reservas']) },
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
+
     }
   ]
   profItems: MenuItem[] | undefined = [
@@ -96,6 +110,13 @@ userroles:Array<string>=[]
     {
       label: 'Reservar Aula',
       command: () => { this.router.navigate(['/reservas/aulas']) },
+    },
+    {
+      label: 'Salir',
+      command: () => {
+        this.servicioAutenticacion.clearAccess()
+        this.router.navigate(['']) },
+
     }
   ]
 
