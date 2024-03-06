@@ -11,6 +11,7 @@ import { environment } from "../../../environments/environment.development";
 import { ConfirmComponent } from "../confirm/confirm.component";
 import { FotosGaleriaService } from "../../services/fotos-galeria.service";
 import { ToastModule } from "primeng/toast";
+import { ViewEncapsulation } from "@angular/compiler";
 
 @Component({
     selector: 'app-galeria',
@@ -27,7 +28,9 @@ import { ToastModule } from "primeng/toast";
         ButtonModule,
         ConfirmComponent,
         ToastModule
-    ]
+    ],
+
+
 })
 export class AdminGaleriaComponent implements OnInit{
   galerias: Array<Galeria> = []
@@ -74,6 +77,7 @@ export class AdminGaleriaComponent implements OnInit{
       }
       this.servicioGaleria.deleteGaleria(idGaleria).subscribe({
         next:(data:any) => {
+            window.location.reload()
               setTimeout(() => {
                 this.messageService.add({ severity: 'success', summary: 'Eliminar fotografía', detail: 'Completada', life:  3000 })
             },  1000) 

@@ -15,6 +15,7 @@ import { Evento } from '../../interface/evento';
 })
 export class PreviewEventosComponent{
   @Input() evento!:Evento
+  @Input() ruta!:String 
   constructor(private router: Router){}
   env=environment
 }

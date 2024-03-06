@@ -16,13 +16,13 @@
         </div>
     </ng-template>
         <ng-template pTemplate="header">
-            <tr>
-                <th style="width:20%">Borrar</th>
-                <th style="width:80%">Fotografía</th>
+            <tr class="header-glass">
+                <th>Borrar</th>
+                <th>Fotografía</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-galerias>
-            <tr>
+            <tr class="glass">
                 <td><app-confirm tipo="" icono="trash" mensaje="¿Deseas borrar esta fotografía?" color="danger" (confirmacion)="eliminar(galerias.id, $event)"></app-confirm></td>
                 <td><img [src]=galerias.foto alt="Foto de evento" style="width: auto; height: 200px;"></td>
         </ng-template>
