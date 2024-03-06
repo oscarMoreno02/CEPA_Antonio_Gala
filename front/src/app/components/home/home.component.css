@@ -35,3 +35,12 @@ body {
   padding: 20px 0; 
  }
  
+
+ .container {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
