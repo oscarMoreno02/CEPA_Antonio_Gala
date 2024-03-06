@@ -63,9 +63,7 @@ export class PerfilComponent implements OnInit{
     let validado = true
     let nombreRegex = /^(?=.{3,15}$)[A-ZÁÉÍÓÚ][a-zñáéíóú]+([\s-][A-ZÁÉÍÓÚ][a-zñáéíóú]+)?$/
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    //let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
-    //validar nombre
     if (this.usuarios.nombre){
 
       var nombrePrueba = nombreRegex.test(this.usuarios.nombre)
@@ -86,7 +84,6 @@ export class PerfilComponent implements OnInit{
 
     }
 
-    //validar email
     if (this.usuarios.email){
 
       var emailPrueba = emailRegex.test(this.usuarios.email)
