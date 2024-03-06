@@ -39,7 +39,17 @@ class ConexionAulaHorario {
         try {
             let resultado = []
             this.conectar()
-            resultado = await models.AulaHorario.findAll()
+            resultado = await models.AulaHorario.findAll({
+                include: [{
+                    model: models.AulaFranja,
+                    as: 'franja',
+                },
+                {
+                    model: models.AulaEspecial,
+                    as: 'aula',
+                }
+                ],
+            })
             return resultado
         } catch (error) {
             throw error
@@ -64,6 +74,9 @@ class ConexionAulaHorario {
                     as: 'aula',
                 }
                 ],
+                order: [
+                    [{ model: models.AulaFranja, as: 'franja' }, 'orden', 'ASC']
+                ]
             },
             )
             return resultado

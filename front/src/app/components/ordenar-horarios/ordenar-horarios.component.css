@@ -1,0 +1,13 @@
+.p-orderlist-controls-right .p-orderlist-controls {
+    order: 2;
+    display: none;
+  }
+.p-dialog{
+  width: 300px;
+}
+  .p-orderlist .p-orderlist-list .p-orderlist-item.p-highlight {
+
+color:#4b5563;
+
+  }
+ 

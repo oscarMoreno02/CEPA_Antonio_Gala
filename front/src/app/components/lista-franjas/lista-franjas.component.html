@@ -19,7 +19,7 @@
         <ng-template pTemplate="header">
             <tr class="header-glass">
                 <th><app-nueva-franja></app-nueva-franja></th>
-                <th style="width:10%">Nº</th>
+                <th style="width:10%"><app-ordenar-horarios></app-ordenar-horarios></th>
                 <th style="width:40%">Turno</th>
                 <th style="width:30%">Hora Inicio</th>
                 <th style="width:20%">Hora fin</th>
@@ -28,7 +28,7 @@
         <ng-template pTemplate="body" let-franja>
             <tr class="glass">
                 <td><app-editar-franja [id]="franja.id"></app-editar-franja></td>
-                <td>{{ franja.id}}</td>
+                <td>{{ franja.orden+'a'}}</td>
                 <td>{{ franja.turno}}</td>
                 <td>{{ franja.horaInicio}}</td>
                 <td>{{ franja.horaFin}}</td>

@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     turno: DataTypes.STRING,
     horaInicio: DataTypes.TIME(4),
-    horaFin: DataTypes.TIME(4)
+    horaFin: DataTypes.TIME(4),
+    orden:DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'AulaFranja',

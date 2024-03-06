@@ -3,7 +3,7 @@
     
     <div class="card flex justify-content-center">
         @if(tipo==0){
-    <p-button (click)="showDialog()" icon="pi pi-pencil"></p-button>
+    <p-button (click)="showDialog()" [raised]="true" label="Editar" icon="pi pi-pencil"></p-button>
         }
     <p-dialog header="Editar usuarios" [(visible)]="visible" [modal]="true" 
     [draggable]="false" (onHide)="cerrar()" [resizable]="false">
@@ -31,8 +31,11 @@
                 <small id="username-help3">Introduce una contraseña para el nuevo usuario</small>
             </div>
 
+        </div>
+        </div>
+        <div style="margin-top: 20px;" >
+
             <app-modificar-roles [idUser]="id"></app-modificar-roles>
-            </div>
         </div>
         <div style="margin-top: 20px;" >
 
@@ -40,7 +43,7 @@
         </div>
         <div style="margin-top: 20px;" >
 
-            <app-confirm tipo="Borrar" icono="pi-trash" mensaje="¿Deseas borrar esta usuarios?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
+            <app-confirm tipo="Borrar" icono="pi pi-trash" mensaje="¿Deseas borrar esta usuarios?" color="danger" (confirmacion)="eliminar($event)"></app-confirm>
         </div>
   </p-dialog>
 </div>

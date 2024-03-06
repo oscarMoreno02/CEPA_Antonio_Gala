@@ -13,6 +13,7 @@ import { Franja } from '../../interface/franja';
 import { FranjaService } from '../../services/franja.service';
 import { NuevaFranjaComponent } from '../nueva-franja/nueva-franja.component';
 import { EditarFranjaComponent } from '../editar-franja/editar-franja.component';
+import { OrdenarHorariosComponent } from '../ordenar-horarios/ordenar-horarios.component';
 //Óscar
 @Component({
   selector: 'app-lista-franjas',
@@ -27,7 +28,8 @@ import { EditarFranjaComponent } from '../editar-franja/editar-franja.component'
     NuevaAulaComponent,
     EditarAulaComponent,
     NuevaFranjaComponent,
-    EditarFranjaComponent
+    EditarFranjaComponent,
+    OrdenarHorariosComponent
   ],
   providers:[AulaService],
   templateUrl: './lista-franjas.component.html',

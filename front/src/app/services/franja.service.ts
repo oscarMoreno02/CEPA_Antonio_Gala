@@ -47,4 +47,12 @@ export class FranjaService {
       })
     )
    }
+
+   sortFranjas(franja:Array<Franja>): Observable<any | undefined> {
+    return this.http.put<any>(this.baseUrl+'/sort',franja,{params: {auth: true}}).pipe(
+     catchError((error) =>{
+       throw error
+     })
+   )
+  }
 }

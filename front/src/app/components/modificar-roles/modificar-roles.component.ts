@@ -60,7 +60,6 @@ export class ModificarRolesComponent {
     this.servicioRolAsig.rolesAsignadosGetIdUsu(this.idUser!).subscribe({
   
       next: (rolesAsignados: RolAsignado[]) => {
-        console.log(this.idUser!);
         rolesAsignados.forEach(rol => {
           if (rol.idRol === 1) {
             this.esAdmin = true;
