@@ -21,6 +21,14 @@ export class EventosService {
     )
   }
 
+  getEventosActivos(): Observable<any | undefined>{
+    return this.http.get<any>(this.baseUrl+'/obtenerActivos').pipe(
+      catchError((error)=>{
+        return of(undefined)
+      })
+    )
+  }
+
   getEvento(id:number): Observable<any | undefined>{
     return this.http.get<any>(this.baseUrl+'/obtener/'+id).pipe(
       catchError((error)=>{

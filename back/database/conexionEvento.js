@@ -43,6 +43,24 @@ class ConexionEvento {
         return resultado;
     }
 
+    getEventosActivos = async () => {
+        this.conectar();
+        let resultado = [];
+        try {
+            resultado = await models.Evento.findAll({
+                where: {
+                    visibilidad: true
+                }
+            });
+        } catch (error) {
+            console.error('Error al obtener eventos: ', error);
+        } finally {
+            this.desconectar();
+        }
+        return resultado;
+    }
+    
+
     getEventoPorId = async (id) => {
         this.conectar();
         let resultado;

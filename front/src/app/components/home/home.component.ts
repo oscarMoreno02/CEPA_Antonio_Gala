@@ -37,7 +37,8 @@ export class HomeComponent implements OnInit {
   ){}
   ngOnInit(): void {
     this.authService.clearAccess()
-    this.servicioEventos.getAllEventos()
+    this.servicioEventos.getEventosActivos()
+
       .pipe(
         finalize(() => this.formatearSrc())
       )

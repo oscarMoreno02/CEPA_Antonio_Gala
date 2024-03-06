@@ -125,6 +125,20 @@ const anadirAsistente = (req, res) => {
         });
 }
 
+const obtenerEventosActivos = (req, res) => {
+    const conx = new EventoConexion();
+
+    conx.getEventosActivos()
+        .then((eventos) => {
+            console.log('Listado correcto!');
+            res.status(200).json(eventos);
+        })
+        .catch((err) => {
+            console.log('No hay registros');
+            res.status(404).json({ 'msg': 'No se han encontrado registros' });
+        });
+}
+
 module.exports = {
     obtenerEventos,
     obtenerEventoPorId,
@@ -134,5 +148,6 @@ module.exports = {
     aumentarMg,
     obtenerNumAsistentes,
     eliminarAsistente,
-    anadirAsistente
+    anadirAsistente,
+    obtenerEventosActivos
 }
