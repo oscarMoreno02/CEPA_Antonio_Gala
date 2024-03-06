@@ -26,9 +26,7 @@ class ConexionAulaEspecial {
 
     conectar = () => {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.')
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error)
         })
     }
     desconectar = () => {
@@ -71,7 +69,7 @@ class ConexionAulaEspecial {
             this.conectar()
             resultado = await models.AulaEspecial.findOne({where: { nombre: n }})
             if (!resultado) {
-                console.log('error')
+           
                 throw new Error('error')
             }
             return resultado

@@ -24,9 +24,9 @@ class ConexionEnlaces{
 
     conectar = () => {
         this.db.authenticate().then(() => {
-            console.log('Connection has been established successfully.');
+           
         }).catch((error) => {
-            console.error('Unable to connect to the database: ', error);
+         
         });
     }
     desconectar = () => {
@@ -67,7 +67,7 @@ class ConexionEnlaces{
             this.conectar();
             resultado = await models.Enlace.findAll({where: { idSeccion: n}});
             if (!resultado) {
-                console.log('error')
+         
                 throw new Error('error');
             }
             return resultado;
